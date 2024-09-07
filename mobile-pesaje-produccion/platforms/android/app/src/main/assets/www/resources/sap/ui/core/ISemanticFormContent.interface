@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<interface xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ISemanticFormContent</name>
+    <derived/>
+    <documentation>Marker interface for controls that can be used as content of &lt;code&gt;sap.ui.layout.form.SemanticFormElement&lt;/code&gt;.
+
+If the value-holding property of the control is not &lt;code&gt;value&lt;/code or &lt;code&gt;text&lt;/code&gt;, the name of the
+value-holding property must be returned in the &lt;code&gt;getFormValueProperty&lt;/code&gt; function.
+
+If the value of the control needs some special output formatting (to show a description instead of a key), this
+formatted text needs to be returned in the &lt;code&gt;getFormFormattedValue&lt;/code&gt; function.</documentation>
+    <since>1.86.0</since>
+    <developmentState state="experimental" since="1.86"></developmentState>
+</interface>

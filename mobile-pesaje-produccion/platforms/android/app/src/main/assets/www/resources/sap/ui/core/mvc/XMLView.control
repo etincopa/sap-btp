@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>mvc/XMLView</name>
+    <derived/>
+    <documentation>A View defined using XML and, optionally, pure HTML markup.
+
+&lt;strong&gt;Note:&lt;/strong&gt;&lt;br&gt;
+Be aware that modifications of the content aggregation of this control are not supported due to technical reasons.
+This includes calls to all content modifying methods like &lt;code&gt;addContent&gt;&lt;/code&gt; etc., but also the implicit
+removal of controls contained by the content aggregation. For example the destruction of a Control via the &lt;code&gt;
+destroy&lt;/code&gt; method. All functions can be called but may not work properly or lead to unexpected side effects.
+
+&lt;strong&gt;Note:&lt;/strong&gt;&lt;br&gt;
+The XML view offers special handling for context binding and style classes.
+You can specify them via the &lt;code&gt;binding&lt;/code&gt; and &lt;code&gt;class&lt;/code&gt; attributes on a control's XML node.
+Please be aware that these attributes are not properties of the respective controls and thus
+are not supported by a control's constructor.
+For more information, see {@link topic:91f05e8b6f4d1014b6dd926db0e91070 Context Binding (Element Binding)}
+and {@link topic:b564935324f449209354c7e2f9903f22 Using CSS Style Sheets in XML Views}.
+
+&lt;strong&gt;Note:&lt;/strong&gt;&lt;br&gt;
+When the content aggregation of this control is bound, no HTML markup is allowed in the binding template of the
+bound content aggregation. An error will be thrown when the above combination is detected.</documentation>
+    <baseType>sap.ui.core/mvc/View</baseType>
+</control>

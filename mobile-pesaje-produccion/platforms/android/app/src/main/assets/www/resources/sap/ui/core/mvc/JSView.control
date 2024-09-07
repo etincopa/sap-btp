@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>mvc/JSView</name>
+    <derived/>
+    <documentation>A View defined/constructed by JavaScript code.</documentation>
+    <deprecation since="1.90">Instead use {@link topic:e6bb33d076dc4f23be50c082c271b9f0 Typed Views}
+by defining the view class with {@link sap.ui.core.mvc.View.extend View.extend} and
+creating the view instances with {@link sap.ui.core.mvc.View.create View.create}.</deprecation>
+    <baseType>sap.ui.core/mvc/View</baseType>
+</control>

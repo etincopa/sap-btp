@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>mvc/View</name>
+    <derived/>
+    <documentation>A base class for Views.
+
+Introduces the relationship to a Controller, some basic visual appearance settings like width and height,
+and provides lifecycle events.
+
+Views form an ID scope for the elements and controls in their content. They can prefix the IDs of
+elements either automatically (e.g. XMLView) or programmatically (using {@link #createId}).
+With method {@link #byId}, elements or controls can be found with their view-local ID.
+Also see {@link topic:91f28be26f4d1014b6dd926db0e91070 "Support for Unique IDs"} in the documentation.
+
+&lt;strong&gt;Note: For Views defined using XML markup&lt;/strong&gt;
+On root level, you can only define content for the default aggregation, e.g. without adding the &lt;code&gt;&amp;lt;content&amp;gt;&lt;/code&gt; tag.
+If you want to specify content for another aggregation of a view like &lt;code&gt;dependents&lt;/code&gt;, place it in a child
+control's dependents aggregation or add it by using {@link sap.ui.core.mvc.XMLView.addDependent}.
+
+&lt;h3&gt;View Definition&lt;/h3&gt;
+A view can be defined by {@link sap.ui.core.mvc.View.extend extending} this class and implementing
+the {@link #createContent} method. The method must return one or many root controls that will be
+rendered as content of the view.
+
+Views that are defined that way are referred to as &lt;b&gt;typed views&lt;/b&gt;, as each view definition is
+represented by its own class (type). See {@link topic:e6bb33d076dc4f23be50c082c271b9f0 Typed Views} for further information.
+
+&lt;b&gt;Example:&lt;/b&gt; Defining a typed view (module 'myapp/views/MainView.js')
+&lt;pre&gt;
+  // view definition
+  sap.ui.define([
+    "sap/ui/core/mvc/View",
+    "sap/m/Panel"
+  ], function(View, Panel) {
+
+    return View.extend("myapp.views.MainView", {
+
+      // define, which controller to use
+      getControllerName: function() {
+        return "myapp.controller.Main";
+      },
+
+      // whether the ID of content controls should be prefixed automatically with the view's ID
+      getAutoPrefixId: function() {
+        return true; // default is false
+      }
+
+      // create view content and return the root control(s)
+      // or a Promise resolving with the control(s).
+      createContent: function() {
+        return new Promise(function(res, rej) {
+            res(new Panel({...}));
+        }).catch(function(err) {
+            rej(err);
+        });
+      }
+    });
+  });
+&lt;/pre&gt;
+
+&lt;h3&gt;View Instantiation&lt;/h3&gt;
+The preferred way of instantiating a typed view is via the generic factory {@link sap.ui.core.mvc.View.create
+View.create}.
+
+When the &lt;code&gt;viewName&lt;/code&gt; starts with prefix &lt;code&gt;"module:"&lt;/code&gt;, the remainder of the name
+is assumed to be the name of a module that exports a typed view (a subclass of &lt;code&gt;View&lt;/code&gt;).
+The module name must use the same syntax as for &lt;code&gt;sap.ui.define/sap.ui.require&lt;/code&gt;
+(slash-separated name without '.js' suffix).
+
+&lt;b&gt;Example:&lt;/b&gt; Instantiating a typed view with &lt;code&gt;View.create&lt;/code&gt;
+&lt;pre&gt;
+  View.create({
+    viewName: "module:myapp/views/MainView"
+  }).then(oView) {
+    oView.placeAt("content");
+  });
+&lt;/pre&gt;
+
+A typed view can also be instantiated by calling its constructor without any arguments:
+&lt;pre&gt;
+  sap.ui.require(["myapp/views/MainView"], function(MainView) {
+    new MainView().placeAt("content");
+  });
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Other Methods&lt;/h3&gt;
+Besides &lt;code&gt;createContent&lt;/code&gt;, there are two other methods that a view can implement:
+Method {@link #getControllerName getControllerName} defines the name of the controller that should
+be instantiated and used for the view. The name must be in class name notation (dot notation),
+without the &lt;code&gt;".controller"&lt;/code&gt; suffix. The suffix will be added by the framework when
+loading the module containing the controller.
+
+{@link #getAutoPrefixId getAutoPrefixId} defines whether the IDs of controls created during
+the execution of &lt;code&gt;createContent&lt;/code&gt; will be prefixed with the ID of the view automatically.
+The default implementation of this method returns &lt;code&gt;false&lt;/code&gt;.</documentation>
+    <abstract/>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="width" type="sap.ui.core/CSSSize" defaultValue="100%" group="Dimension">
+            <documentation>The width</documentation>
+        </property>
+        <property name="height" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>The height</documentation>
+        </property>
+        <property name="viewName" type="sap.ui.core/string" group="Misc">
+            <documentation>Name of the View</documentation>
+        </property>
+        <property name="displayBlock" type="sap.ui.core/boolean" defaultValue="false" group="Appearance">
+            <documentation>Whether the CSS display should be set to "block".
+Set this to "true" if the default display "inline-block" causes a vertical scrollbar with Views that are set to 100% height.
+Do not set this to "true" if you want to display other content in the same HTML parent on either side of the View (setting to "true" may push that other content to the next/previous line).</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="afterInit" allowPreventDefault="false">
+            <documentation>Fired when the View has parsed the UI description and instantiated the contained controls (/control tree).</documentation>
+        </event>
+        <event name="beforeExit" allowPreventDefault="false">
+            <documentation>Fired when the view has received the request to destroy itself, but before it has destroyed anything.</documentation>
+        </event>
+        <event name="afterRendering" allowPreventDefault="false">
+            <documentation>Fired when the View has been (re-)rendered and its HTML is present in the DOM.</documentation>
+        </event>
+        <event name="beforeRendering" allowPreventDefault="false">
+            <documentation>Fired before this View is re-rendered. Use to unbind event handlers from HTML elements etc.</documentation>
+        </event>
+    </events>
+    <aggregations default="content">
+        <aggregation name="content" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Child Controls of the view</documentation>
+        </aggregation>
+    </aggregations>
+</control>
