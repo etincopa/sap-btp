@@ -1,0 +1,214 @@
+{
+	"_version": "3.0.0",
+	"sap.app": {
+		"id": "com.everis.suppliers.invoiceregister",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.2.2"
+		},
+		"dataSources": {
+			"annotations1": {
+				"uri": "webapp/annotations",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "webapp/annotations"
+				}
+			},
+			"SUPPLIERS_SRV": {
+				"uri": "/saperp/sap/opu/odata/EPER/SUPPLIERS_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/SUPPLIERS_SRV/metadata.xml",
+					"annotations": [
+						"annotations1"
+					]
+				}
+			}
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "InvoiceRegister",
+					"action": "Display",
+					"title": "{{appTitle}}",
+					"subTitle": "{{appDescription}}",
+					"info": "{{appSubTitle}}",
+					"icon": "sap-icon://sales-order-item"
+				}
+			}
+		}
+	},
+	"sap.platform.cf": {
+		"oAuthScopes": [
+			"$XSAPPNAME.invoiceregister"
+		]
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "generated.app.view.DetalleOc",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.50.0",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"ModelGlobal": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/modelGlobal.json",
+				"settings": {}
+			},
+			"": {
+				"dataSource": "SUPPLIERS_SRV",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"loadMetadataAsync": false,
+					"json": true,
+					"bJSON": true,
+					"defaultBindingMode": "TwoWay",
+					"useBatch": true,
+					"refreshAfterChange": false,
+					"disableHeadRequestForToken": true,
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.everis.suppliers.invoiceregister.view",
+				"controlId": "App",
+				"clearTarget": false,
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"CabeceraOc"
+					]
+				}
+			},
+			"targets": {
+				"CabeceraOc": {
+					"controlAggregation": "pages",
+					"viewName": "CabeceraOc",
+					"viewLevel": 2,
+					"transition": "slide"
+				},
+				"DetalleOc": {
+					"controlAggregation": "pages",
+					"viewName": "DetalleOc",
+					"viewLevel": 3,
+					"transition": "slide"
+				},
+				"PoLine": {
+					"controlAggregation": "pages",
+					"viewName": "PoLine",
+					"viewLevel": 4,
+					"transition": "slide"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "CabeceraOc/:context:",
+					"name": "CabeceraOc",
+					"target": [
+						"CabeceraOc"
+					]
+				},
+				{
+					"pattern": "",
+					"name": "default",
+					"target": [
+						"CabeceraOc"
+					]
+				},
+				{
+					"pattern": "DetalleOc/:context:,:clasePedido:",
+					"name": "DetalleOcContext",
+					"target": [
+						"DetalleOc"
+					]
+				},
+				{
+					"pattern": "PoLine/:context:",
+					"name": "PoLineContext",
+					"target": [
+						"PoLine"
+					]
+				},
+				{
+					"pattern": "DetalleOc/:context:/{reference}/{date}",
+					"name": "DetalleOc",
+					"target": [
+						"DetalleOc"
+					]
+				},
+				{
+					"pattern": "PoLine/:context:/{reference}/{date}",
+					"name": "PoLine",
+					"target": [
+						"PoLine"
+					]
+				}
+			]
+		}
+	},
+    "sap.cloud": {
+      "public": true,
+      "service": "medifarma-apps-suppliers-bs"
+    }
+}

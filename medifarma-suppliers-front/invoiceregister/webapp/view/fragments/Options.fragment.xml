@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog title="Selección de Ambito" contentWidth="400px">
+		<customHeader>
+			<Bar>
+				<contentMiddle class="sapUiSizeCompact">
+					<Text text="Selección de Pedidos"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:SimpleForm editable="true"   layout="ResponsiveGridLayout" labelSpanL="0" labelSpanM="0" columnsL="2" columnsM="1">
+				<f:content>
+					<Label text="Tipo de pedidos">
+						<layoutData>
+							<l:GridData span="L5 M5 S5"/>
+						</layoutData>
+					</Label>
+					<RadioButtonGroup id="idRdBtnOrderedT" class="sapUiSmallMarginTop" buttons="{/DirssSet}">
+						<RadioButton text="{Batxt}"/>
+						<layoutData>
+							<l:GridData span="L5 M2 S7"/>
+						</layoutData>
+					</RadioButtonGroup>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="Ok" press="onDialogOk" type="Default"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

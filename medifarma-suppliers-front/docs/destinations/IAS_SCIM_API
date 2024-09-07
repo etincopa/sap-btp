@@ -1,0 +1,14 @@
+#Password=<< Existing password/certificate removed on export >>
+#
+#Tue Jun 15 05:58:52 UTC 2021
+Description=Suppliers - IAS SCIM API
+Type=HTTP
+HTML5.DynamicDestination=True
+Authentication=BasicAuthentication
+WebIDEUsage=odata_gen
+Name=IAS_SCIM_API
+WebIDEEnabled=True
+ProxyType=Internet
+URL=https\://dummy.accounts.ondemand.com/service/scim/
+User=dummy
+WebIDESystem=IAS_SCIM_API

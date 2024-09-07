@@ -1,0 +1,144 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<form:Form width="100%" editable="true" visible="{visible>/state}">
+		<form:title>
+			<core:Title text="{i18n>dataBank}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblCountry}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listCountry>/'}" width="50%" placeholder="{i18n>phlblCountry}" change="onGetBank"
+								selectedKey="{DataBank>/CountryID}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}">
+								<core:ListItem key="{listCountry>CountryID}" text="{listCountry>Description}" additionalText="{listCountry>CountryID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>                  
+							<Label text="{i18n>lblBankPass}" design="Bold" width="100%" required="{=${claveBancoRequired>/state} &amp;&amp; ${requiredForLocal>/state}}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listBank>/'}" placeholder="{i18n>phlblBankPass}" change="oChangueClaveBanco" width="50%" selectedKey="{DataBank>/BankID}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{claveBanco>/state}" value="{DataBank>/BankDescription}">
+								<core:ListItem key="{listBank>BankID}" text="{listBank>Description}" additionalText="{listBank>BankID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAccountNumber}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input liveChange="onChangeDocumentNumber" value="{DataBank>/AccountNumber}" placeholder="{i18n>phlblAccountNumber}" type="Text"
+								showValueHelp="false" visible="true" width="50%" valueHelpOnly="false" maxLength="18" enabled="{documentNumber>/state}"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAccountType}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listTypeAccount>/'}" id="idCbmxTipoCuenta" width="50%" placeholder="{i18n>phlblAccountType}" selectedKey="{DataBank>/AccountType}"
+								value="{DataBank>/AccountDescription}" enabled="{general>/state}" showSecondaryValues="true" filterSecondaryValues="true"
+								change="onSetAccountNumber">
+								<core:ListItem key="{listTypeAccount>BankAccountTypeID}" text="{listTypeAccount>Description}"
+									additionalText="{listTypeAccount>BankAccountTypeID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblMoneda}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="idCbmxMoneda" items="{path : 'listCoin>/'}" width="50%" placeholder="{i18n>phlblMoneda}" selectedKey="{DataBank>/Currency}"
+								value="{DataBank>/CurrencyDescription}" enabled="{general>/state}" showSecondaryValues="true" filterSecondaryValues="true">
+								<core:ListItem key="{listCoin>BankCurrencyID}" text="{listCoin>Description}" additionalText="{listCoin>BankCurrencyID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAccountNumberCCI}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input liveChange="onChangeDocumentNumber" change="onChangeCci" value="{DataBank>/ReferenceNumber}" placeholder="{i18n>phlblAccountNumberCCI}" type="Text"
+								showValueHelp="false" enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="false" maxLength="34"/>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<Button press="onAddBank" text="{i18n>btnAddBank}" type="Emphasized" icon="sap-icon://official-service" iconFirst="true" width="auto"
+		enabled="{general>/state}" visible="{visible>/state}" iconDensityAware="false"/>
+	<Table items="{path:'listBanks>/'}" width="100%" noDataText="No hay datos" mode="None" showSeparators="All" growing="true"
+		growingThreshold="20" growingScrollToLoad="true">
+		<infoToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+				<content>
+					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+				</content>
+			</Toolbar>
+		</infoToolbar>
+		<headerToolbar/>
+		<columns>
+			<Column width="5px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clBank}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="12px" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clAccountNumber}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="8px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clCoin}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="8px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clAccountType}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="15px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clCCI}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="5px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clDelete}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active">
+				<cells>
+					<Text text="{listBanks>BankDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listBanks>AccountNumber}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listBanks>CurrencyDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listBanks>AccountDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listBanks>ReferenceNumber}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Button press="onDeleteBank" type="Transparent" icon="sap-icon://delete" enabled="{general>/state}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

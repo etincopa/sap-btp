@@ -1,0 +1,30 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/do/logout"
+    },
+    "routes": [
+        {
+            "source": "^(.*)/odata/(.*)$",
+            "target": "$2",
+            "authenticationType": "none",
+            "destination": "odata",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/saperp/(.*)$",
+            "target": "/sap/opu/odata/$1",
+            "authenticationType": "none",
+            "destination": "PROV_S4H_HTTP_BASIC",
+            "csrfProtection": false
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa",
+            "cacheControl": "no-cache, no-store, must-revalidate"
+        }
+    ]
+}

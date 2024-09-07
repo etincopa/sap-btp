@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleFilterDialogConfirm">
+		<filterItems>
+			<ViewSettingsFilterItem id="vsfIdFiler" text="{i18n>clstatus}" key="WeightMeasure" multiSelect="true"
+				items="{path:'/ConfigurationSet',filters:[{path:'Aplication',operator:'EQ',value1:'SCP_SUPPLIERS'},{path:'Group1',operator:'EQ',value1:'TRACK_PO'}]}">
+				<items>
+					<ViewSettingsItem text="{ValueLow}" key="{Sequence}"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

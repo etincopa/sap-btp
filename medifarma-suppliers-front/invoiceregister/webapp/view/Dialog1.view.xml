@@ -1,0 +1,21 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.Dialog1" xmlns="sap.m">
+    <Dialog id="Dialog1" horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Seleccione" type="Standard" verticalScrolling="true">
+        <content>
+        	<CheckBox id="allCheckBox" select="_onAllCheckSelect" text="Todas" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"/>
+	        <VBox id="cntCheckbox" items="{/CompanySet}" alignItems="Start" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+	                <items>
+	                    <CheckBox name="{Bukrs}" text="{Butxt}" select="_onCheckSelect" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"/>
+	                </items>
+	                <layoutData/>
+	         </VBox>
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="OK" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAccept"/>
+            <Button id="Cancel" text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" press="onCancel"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</mvc:View>

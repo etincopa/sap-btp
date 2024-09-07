@@ -1,0 +1,273 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	<f:Form width="auto" editable="true" visible="true" class="sapUiSizeCompact">
+		<f:toolbar>
+			<Toolbar>
+				<core:Icon src="sap-icon://money-bills"/>
+				<Title text="{i18n>txtTitleForm}" level="Auto"/>
+				<ToolbarSpacer/>
+				<!--<Text text="{userApi>/Bukrs} - {userApi>/Butxt}"/>-->
+			</Toolbar>
+		</f:toolbar>
+		<f:formContainers>
+			<f:FormContainer visible="true">
+				<f:formElements>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtLicitacion}" design="Standard" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<Input showValueHelp="true" value="{/cabeceraDetails/Licitacion}" enabled="false"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtMoneda}" design="Standard" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<ComboBox enabled="false" showSecondaryValues="true" items="{ModelGlobal>/Currency}" selectedKey="{/cabeceraDetails/Moneda}"
+								change="onChangeFilter" valueState="{= ${/cabeceraDetails/Moneda}.length === 0 ? 'Error' : 'None' }">
+								<core:ListItem key="{ModelGlobal>CurrencyCod}" text="{ModelGlobal>CurrencyCod} - {ModelGlobal>LongText}"
+									additionalText="{SUPPLIERS_SRV>ShortText}"/>
+							</ComboBox>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtCondicion}" design="Standard" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<ComboBox enabled="false" showSecondaryValues="false" items="{ModelGlobal>/PaymentCondition}" selectedKey="{/cabeceraDetails/CondPago}"
+								change="onChangeFilter" valueState="{= ${/cabeceraDetails/CondPago}.length === 0 ? 'Error' : 'None' }">
+								<core:ListItem key="{ModelGlobal>PaymentConditionCode}" text="{ModelGlobal>PaymentConditionCode} - {ModelGlobal>Description}" additionalText="{ModelGlobal>Description}"/>
+							</ComboBox>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtPlaza}" design="Standard" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<DatePicker enabled="false" placeholder="{Config>/placeHolderDatePicker}" value="{ path: '/cabeceraDetails/PzoOferta' }"
+								valueFormat="YYYYMMdd" displayFormat="{Config>/dateFormatValue}"/>
+						</f:fields>
+					</f:FormElement>
+					<!-- <f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtOfertaProveedor}" design="Standard" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<DatePicker enabled="{/flagDay}" placeholder="{Config>/placeHolderDatePicker}" valueFormat="YYYYMMdd"
+								displayFormat="{Config>/dateFormatValue}" valueState="{= ${/cabeceraDetails/VigOferta} === null ? 'Error' : 'None' }"
+								value="{ path: '/cabeceraDetails/VigOferta' }"/>
+						</f:fields>
+					</f:FormElement> -->
+				</f:formElements>
+				<f:title/>
+			</f:FormContainer>
+			<f:FormContainer visible="true">
+				<f:formElements>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtFechaDocumento}" design="Standard" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<DatePicker enabled="false" placeholder="{Config>/placeHolderDatePicker}" valueFormat="YYYYMMdd" displayFormat="{Config>/dateFormatValue}"
+								value="{ path: '/cabeceraDetails/FeDocu' }"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtComentario}" design="Standard" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<TextArea placeholder="Ingresar Observación" value="{/cabeceraDetails/Observacion}" enabled="false" valueLiveUpdate="true" rows="4"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement visible="true">
+						<f:label>
+							<Label text="{i18n>txtAdjuntar}" design="Standard" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</f:label>
+						<f:fields>
+							<Button text="{i18n>txtAttachButton}" enabled="true" icon="sap-icon://attachment" press="onOpenDialogAttach"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+				<f:title/>
+			</f:FormContainer>
+		</f:formContainers>
+		<f:layout>
+			<f:ResponsiveGridLayout adjustLabelSpan="true" columnsL="2" labelSpanL="3" columnsM="2" labelSpanM="2" labelSpanS="12"/>
+		</f:layout>
+	</f:Form>
+	<MessageStrip text="{i18n>txtHelpTable}" showIcon="true" showCloseButton="true" class="sapUiResponsiveMargin"></MessageStrip>
+	<t:Table id="idTableGrid" rows="{/cabeceraDetails/Details/results}" selectionMode="None" ariaLabelledBy="title"
+		class="sapUiResponsiveMargin" width="auto" visibleRowCountMode="Fixed" visibleRowCount="5" minAutoRowCount="5" enableColumnFreeze="true">
+		<t:extension>
+			<OverflowToolbar>
+				<content>
+					<Title id="title" text="Items"/>
+					<ToolbarSpacer/>
+				</content>
+			</OverflowToolbar>
+		</t:extension>
+		<t:rowSettingsTemplate>
+			<t:RowSettings highlight="{= ${IndCotizado} ? 'Success' : 'None'}"/>
+		</t:rowSettingsTemplate>
+		<t:columns>
+			<t:Column width="9em" hAlign="Center">
+				<Label text="{i18n>txtPeticion}"/>
+				<t:template>
+					<Text text="{PetOferta}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="9em" hAlign="Center">
+				<Label text="{i18n>txtOferta}"/>
+				<t:template>
+					<Text text="{Oferta}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="5em" hAlign="Center">
+				<Label text="{i18n>txtPosicion}"/>
+				<t:template>
+					<Text text="{PosPoferta}"/>
+				</t:template>
+			</t:Column>
+			<!-- <t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtEstatus}"/>
+				<t:template>
+					<Text text="{EstadoTxt}"/>
+				</t:template>
+			</t:Column> -->
+			<t:Column width="6em" hAlign="Center">
+				<Label text="{i18n>txtCentro}"/>
+				<t:template>
+					<Text text="{CentroTxt}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtMaterialSocio}"/>
+				<t:template>
+					<Text text="{MatServ}" textAlign="Begin" renderWhitespace="true"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="15em" hAlign="Begin">
+				<Label text="{i18n>txtDescripcion}"/>
+				<t:template>
+					<Text text="{MatServTxt}" textAlign="Begin" renderWhitespace="true"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="5em" hAlign="Center">
+				<Label text="{i18n>txtPosReadText}"/>
+				<t:template>
+					<Button press="onPressReadTextButton" icon="sap-icon://vds-file" enabled="{= ${TxtPos}.length > 0 ? true : false}"/>
+				</t:template>
+			</t:Column>
+			<!-- <t:Column width="5em" hAlign="Center">
+				<Label text="{i18n>txtCotizado}"/>
+				<t:template>
+					<Switch customTextOff="No" state="{IndCotizado}" enabled="false"
+						change="onChangeStatePos" customTextOn="Sí" visible="false"/>
+				</t:template>
+			</t:Column> -->
+			<t:Column width="4em" hAlign="Center">
+				<Label text="{i18n>txtUND}"/>
+				<t:template>
+					<Text text="{Unid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtCantSolic}"/>
+				<t:template>
+					<Text text="{CantSoli}" textAlign="End"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtFechaRequerida}"/>
+				<t:template>
+					<DatePicker enabled="false" value="{ path: 'FeEntreq' }" valueFormat="YYYYMMdd" displayFormat="{Config>/dateFormatValue}"/>
+					<!--<Text-->
+					<!--	text="{ path: 'FeEntreq', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-dd' }, pattern: 'dd/MM/YYYY'} }"/>-->
+				</t:template>
+			</t:Column>
+			<t:Column width="9em" hAlign="Center">
+				<Label text="{i18n>txtCantOfert}"/>
+				<t:template>
+					<Input textAlign="End" id="inptCantOfer11"
+						value="{path: 'CantOfer', type:'sap.ui.model.type.Float', formatOptions : { groupingEnabled: true, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 3, maxFractionDigits: 3 } }"
+						liveChange="onLiveChange" submit="onChangeCalcute" change="onChangeCalcute"
+						enabled="false"
+						valueState="{= parseFloat(${CantOfer}) === 0 ? 'Error': 'None'}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtFechaEntregaPropuesta}"/>
+				<t:template>
+					<DatePicker placeholder="{Config>/placeHolderDatePicker}"
+						enabled="{= ${/cabeceraDetails/Oferta} === '' }"
+						valueState="{= ${FeEntpro} === null ? 'Error': 'None' }" change="onChangeDatePicker" value="{ path: 'FeEntpro' }" valueFormat="YYYYMMdd"
+						displayFormat="{Config>/dateFormatValue}" minDate="{path: 'FeEntreq', formatter: '.format.formatMinDate' }"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="6em" hAlign="Center">
+				<Label text="{i18n>txtPU}"/>
+				<t:template>
+					<Input textAlign="End"
+						value="{path: 'PreUnit', type:'sap.ui.model.type.Float', formatOptions : { groupingEnabled: true, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 2, maxFractionDigits: 2 } }"
+						liveChange="onLiveChange" submit="onChangeCalcute" change="onChangeCalcute"
+						enabled="{= ${/cabeceraDetails/Oferta} === '' }"
+						valueState="{= parseFloat(${PreUnit}) === 0 ? 'Error': 'None'}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="8em" hAlign="Center">
+				<Label text="{i18n>txtCantidadBase}"/>
+				<t:template>
+					<Input textAlign="End"
+						value="{path: 'CantBase', type:'sap.ui.model.type.Float', formatOptions : { groupingEnabled: true, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 0, maxFractionDigits: 0 } }"
+						liveChange="onLiveChange" submit="onChangeCalcute" change="onChangeCalcute"
+						enabled="false"
+						valueState="{= parseFloat(${CantBase}) === 0 ? 'Error': 'None'}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="10em" hAlign="Center">
+				<Label text="{i18n>txtSubTotalSinDcto}"/>
+				<t:template>
+					<ObjectNumber textAlign="End"
+						number="{ parts:[{path:'SubtotSd'},{path:'/cabeceraDetails/Moneda'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false, decimalSeparator: '.', groupingSeparator: ','} }"
+						unit="{/cabeceraDetails/Moneda}" state="Success"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="5em" hAlign="Center" visible="false">
+				<Label text="{i18n>txtDcto}"/>
+				<t:template>
+					<Input textAlign="End"
+						value="{path: 'DsctoPer', type:'sap.ui.model.type.Float', formatOptions : { groupingEnabled: true, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 2, maxFractionDigits: 2 } }"
+						liveChange="onLiveChangeDcto" submit="onChangeCalcute" change="onChangeCalcute"
+						enabled="{= ${IndCotizado} &amp;&amp; ${/flagDay} &amp;&amp; ${Estado} !== 'R' ? true : false }" visible="false"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="8em" hAlign="Center" visible="false">
+				<Label text="{i18n>txtMontoDcto}"/>
+				<t:template>
+					<ObjectNumber textAlign="End"
+						number="{ parts:[{path:'MtoDscto'},{path:'/cabeceraDetails/Moneda'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+						unit="{/cabeceraDetails/Moneda}" state="Success"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="7em" hAlign="Center" visible="false">
+				<Label text="{i18n>txtSubTotalConDcto}"/>
+				<t:template>
+					<ObjectNumber textAlign="End"
+						number="{ parts:[{path:'SubtotCd'},{path:'/cabeceraDetails/Moneda'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+						unit="{/cabeceraDetails/Moneda}" state="Success"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="20em" hAlign="Center">
+				<Label text="{i18n>txtObservacion}"/>
+				<t:template>
+					<TextArea value="{ObserPos}" width="100%" growing="true"
+						enabled="{= ${/cabeceraDetails/Oferta} === '' }"/>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

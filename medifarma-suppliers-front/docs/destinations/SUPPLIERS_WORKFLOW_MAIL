@@ -1,0 +1,16 @@
+#mail.password=<< Existing password/certificate removed on export >>
+#
+#Tue Jun 15 06:33:19 UTC 2021
+Type=MAIL
+mail.description=Suppliers - Mail from Workflows
+mail.user=dummy@everis.nttdata.com
+mail.smtp.from=dummy@everis.nttdata.com
+mail.transport.protocol=smtp
+mail.smtp.starttls.required=true
+mail.smtp.ssl.checkserveridentity=true
+mail.smtp.host=smtp.office365.com
+Name=SUPPLIERS_WORKFLOW_MAIL
+mail.smtp.starttls.enable=true
+ProxyType=Internet
+mail.smtp.port=587
+mail.smtp.auth=true

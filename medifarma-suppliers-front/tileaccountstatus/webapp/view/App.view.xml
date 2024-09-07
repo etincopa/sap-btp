@@ -1,0 +1,22 @@
+<mvc:View controllerName="com.everis.suppliers.tileaccountstatus.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:micro="sap.suite.ui.microchart" xmlns="sap.m">
+	<GenericTile header="{i18n>headtile}" subheader="{i18n>subhtile}" frameType="TwoByOne" press="onPress">
+		<TileContent footer="">
+			<micro:ComparisonMicroChart size="S" scale="" maxValue="{tile>/Total}" view="Responsive">
+				<micro:data>
+					<micro:ComparisonMicroChartData title="{i18n>titleRegisterNotPO}" value="{tile>/Value1}" color="#FFD433"/>
+					<micro:ComparisonMicroChartData title="{i18n>titlePost}" value="{tile>/Value2}" color="#FF5833"/>
+					<micro:ComparisonMicroChartData title="{i18n>titleNullified}" value="{tile>/Value5}" color="#F33E65"/>
+				</micro:data>
+			</micro:ComparisonMicroChart>
+		</TileContent>
+		<TileContent footer="">
+			<micro:ComparisonMicroChart size="S" scale="" maxValue="{tile>/Total}" view="Responsive">
+				<micro:data>
+					<micro:ComparisonMicroChartData title="{i18n>titleOutstanding}" value="{tile>/Value3}" color="#2571C2"/>
+					<micro:ComparisonMicroChartData title="{i18n>titlePaid}" value="{tile>/Value4}" color="#378805"/>
+				</micro:data>
+			</micro:ComparisonMicroChart>
+		</TileContent>
+	</GenericTile>
+</mvc:View>

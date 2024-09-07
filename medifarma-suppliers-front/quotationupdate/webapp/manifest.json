@@ -1,0 +1,178 @@
+{
+	"_version": "3.0.0",
+	"sap.app": {
+		"id": "com.everis.suppliers.quotationupdate",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"SUPPLIERS_SRV": {
+				"uri": "/saperp/sap/opu/odata/EPER/SUPPLIERS_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/SUPPLIERS_SRV/metadata.xml"
+				}
+			},
+			"API_CV_ATTACHMENT_SRV": {
+				"uri": "/saperp/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/",
+				"type": "OData"
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "quotationupdate",
+					"action": "display",
+					"title": "Creación de Oferta",
+					"subTitle": "Proveedores",
+					"icon": "sap-icon://provision"
+				}
+			}
+		}
+	},
+	"sap.platform.cf": {
+	  "oAuthScopes": [
+	    "$XSAPPNAME.quotationupdate"
+	  ]
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.everis.suppliers.quotationupdate.view.Home",
+			"type": "XML",
+			"async": true,
+			"id": "Home"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.everis.suppliers.quotationupdate.i18n.i18n"
+				}
+			},
+			"settingColumn": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/settingColumn.json"
+			},
+			"Mime": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/Mime.json"
+			},
+			"Config": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/Config.json"
+			},
+			
+			"ModelGlobal": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/modelGlobal.json"
+			},
+			"SUPPLIERS_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request",
+					"useBatch": true,
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+				},
+				"dataSource": "SUPPLIERS_SRV",
+				"preload": true
+			},
+			"API_CV_ATTACHMENT_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request",
+					"useBatch": true,
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+				},
+				"dataSource": "API_CV_ATTACHMENT_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.everis.suppliers.quotationupdate.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "TargetHome",
+				"pattern": "RouteHome",
+				"target": ["TargetHome"]
+			}],
+			"targets": {
+				"TargetHome": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "Home",
+					"viewName": "Home"
+				}
+			}
+		}
+	},
+    "sap.cloud": {
+      "public": true,
+      "service": "medifarma-apps-suppliers-bs"
+    }
+}

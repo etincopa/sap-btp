@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleSortDialogConfirm">
+		<sortItems>
+			<ViewSettingsItem text="F. Creación Pedido" key="DOC_DATE" selected="true" />
+			<ViewSettingsItem text="N ° OC" key="PO_NUMBER" />
+			<ViewSettingsItem text="Monto Total" key="TOTAL_VALUE" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover showHeader="false" contentWidth="320px" contentHeight="500px" placement="Bottom">
+		<Table items="{path: '/aEbeln', sorter:{path: 'Ebeln', descending: true} }" width="auto" itemPress="onPressedItem" >
+			<columns>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="{i18n>txtLicitacion}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+					<footer/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Active">
+					<cells>
+						<HBox>
+							<core:Icon src="sap-icon://customer-order-entry" color="green" class="sapUiResponsiveMargin"/>
+							<ObjectIdentifier title="{Ebeln}" class="sapUiResponsiveMargin"/>
+						</HBox>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Popover>
+</core:FragmentDefinition>

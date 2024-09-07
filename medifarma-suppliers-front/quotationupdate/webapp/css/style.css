@@ -1,0 +1,31 @@
+/* Enter your custom styles here */
+
+span[id*=btnGo-content] bdi:before {
+    display: block;
+    content: "Buscar"
+}
+
+.sapMTextAreaMirror {
+    max-height: calc(94vh);
+    white-space: pre-wrap;
+    border: none;
+    overflow: scroll;
+    line-height: 1.4;
+    visibility: hidden;
+    position: absolute;
+    word-break: break-word;
+    font-size: 14px;
+    width: 100%;
+    padding: .625rem .75rem;
+}
+
+.sapMTextAreaGrow {
+    overflow: scroll;
+    height: 100%;
+    position: relative;
+    top: 0;
+}
+
+.sapUiCompFilterBarNonPhone.sapUiRespGrid.sapUiRespGridHSpace0 {
+    padding-top: 2rem;
+}

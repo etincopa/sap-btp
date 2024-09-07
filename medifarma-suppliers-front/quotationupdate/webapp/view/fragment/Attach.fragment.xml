@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttach">
+		<content>
+			<UploadCollection
+			id="UploadCollection"
+			noDataDescription="{i18n>txtnoDataDescription}"
+			noDataText="{i18n>txtNoDataText}"
+			maximumFilenameLength="{Config>/maximumFilenameLength}" 
+			maximumFileSize="{Config>/maximumFileSize}" 
+			multiple="{Config>/multiple}"
+			busy="{Config>/busy}"
+			change="onChange"
+			typeMissmatch="onTypeMissmatch"
+			fileType="{Config>/fileTypes}"
+			uploadComplete="onUploadComplete"
+			uploadTerminated="onUploadTerminated"
+			instantUpload="false"
+			uploadUrl="{Config>/uploadUrl}"
+			items="{ path: 'AttachmentsModel>/attachments' }"
+			beforeUploadStarts="onBeforeUploadStarts"
+			uploadButtonInvisible="{= !(${/cabeceraDetails/Oferta} === '' &amp;&amp; ${/flagDay} ? true: false) }"
+			mode="{Config>/mode}">
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitle"/>
+						<ToolbarSpacer/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem 
+					documentId="{AttachmentsModel>ArchiveDocumentID}"
+					fileName="{AttachmentsModel>FileName}"
+					mimeType="{AttachmentsModel>MimeType}"
+					url="/saperp/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/AttachmentContentSet(DocumentInfoRecordDocType='{AttachmentsModel>DocumentInfoRecordDocType}',DocumentInfoRecordDocNumber='{AttachmentsModel>DocumentInfoRecordDocNumber}',DocumentInfoRecordDocVersion='{AttachmentsModel>DocumentInfoRecordDocVersion}',DocumentInfoRecordDocPart='{AttachmentsModel>DocumentInfoRecordDocPart}',LogicalDocument='{AttachmentsModel>LogicalDocument}',ArchiveDocumentID='{AttachmentsModel>ArchiveDocumentID}',LinkedSAPObjectKey='{AttachmentsModel>LinkedSAPObjectKey}',BusinessObjectTypeName='{AttachmentsModel>BusinessObjectTypeName}')/$value"
+					deletePress="onFileDeleted"
+					enableEdit="{Config>/enableEdit}"
+					enableDelete="{Config>/enableDelete}" 
+					visibleDelete="{= ${/cabeceraDetails/Oferta} === '' &amp;&amp; ${/flagDay} ? true: false }"
+					visibleEdit="{Config>/visibleEdit}">
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialogAttach" icon="sap-icon://decline" type="Ghost"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

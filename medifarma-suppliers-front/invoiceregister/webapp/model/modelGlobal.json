@@ -1,0 +1,29 @@
+{
+	"Config": {
+		"fileType": [
+			"pdf",
+			"jpg",
+			"jpeg",
+			"png",
+			"msg",
+			"xls",
+			"xlsx",
+			"zip",
+			"rar",
+			"eml",
+			"docx",
+			"xml"
+		],
+		"fileTypeXml": [
+			"xml"
+		],
+		"fileTypePdf": [
+			"pdf"
+		]
+	},
+	"ElectronicSupplier": true,
+	"Masive": false,
+	"Anticipo": true,
+	"Selected": true,
+	"CheckFactura": false
+}

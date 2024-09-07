@@ -1,0 +1,5 @@
+/* Enter your custom styles here */
+span[id*=btnGo-content] bdi:before {
+    display: block;
+    content: "Buscar"
+}

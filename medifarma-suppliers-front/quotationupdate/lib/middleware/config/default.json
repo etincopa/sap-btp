@@ -1,0 +1,15 @@
+{
+  "proxy": {
+      "saperp": {
+          "target": "http://varsupport.everis.pe:50100",
+          "auth": "",
+          "entryPath": "/",
+          "sap-client": "600"
+      },
+      "iasscim": {
+          "target": "https://awjv7cscn.accounts.ondemand.com/service/scim",
+          "auth": "",
+          "entryPath": ""
+      }
+  }
+}

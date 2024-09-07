@@ -1,0 +1,94 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:t="sap.ui.table" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table sticky="ColumnHeaders" id="tblIdOrder" width="100%"
+		items="{path:'/TrackPurchaseOrderHeaderSet',filters:[{path:'OptionId',operator:'EQ',value1:'O'}]}" noDataText="No hay datos" mode="None"
+		showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" custom:custom="Order" itemPress="onNavChange">
+		<infoToolbar>
+			<OverflowToolbar id="vsdFilterBarOrder" visible="false">
+				<Text id="vsdFilterLabelOrder"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<headerToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="true" enabled="true">
+				<content>
+					<ToolbarSpacer/>
+					<SearchField width="20%" search="onSearchRegister">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</SearchField>
+					<!--<Button text="" type="Transparent" width="" enabled="true" icon="sap-icon://sort" iconFirst="true" activeIcon="" iconDensityAware="true"
+						tooltip="Ordenar" textDirection="Inherit"/>-->
+					<Button text="" type="Transparent" width="" enabled="true" icon="sap-icon://filter" iconFirst="true" activeIcon="" iconDensityAware="true"
+						tooltip="Filtrar" textDirection="Inherit" press="onPressFilter"/>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clstatus}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>cldocument}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<!-- <Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>cldocumentdate}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column> -->
+			<Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>cltotal}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clmoney}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="Condicion de Pago" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<!-- <Column width="auto" hAlign="Left" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>cldatevenc}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column> -->
+			<!--			<Column hAlign="Left" width="auto" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>-->
+		</columns>
+		<items>
+			<ColumnListItem type="Active" highlight="{StatusColor}">
+				<cells>
+					<ObjectIdentifier title="{StatusText}" titleActive="false" visible="true"/>
+					<Text text="{Document}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<!-- <Text text="{path:'DocumentDate',formatter:'.formatter.formatDate'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin"
+						textDirection="Inherit"/> -->
+					<ObjectNumber number="{path:'Total',formatter:'.formatter.formatNumber'}" unit="{CurrencyText}" emphasized="true" state="None"/>
+					<Text text="{CurrencyText}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{PayConditionText}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<!-- <Text text="{path:'DueDate',formatter:'.formatter.formatDate'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin"
+						textDirection="Inherit"/> -->
+					<!--<Button press="onDelete" icon="sap-icon://delete" visible="{= ${StatusText}.length > 0 ? true : false }"/>-->
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

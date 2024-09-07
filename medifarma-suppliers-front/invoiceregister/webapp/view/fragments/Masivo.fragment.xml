@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog title="Selección de Ambito" contentWidth="65%">
+		<customHeader>
+			<Bar>
+				<contentMiddle class="sapUiSizeCompact">
+					<Text text="Pre-Registro Masivo"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<Table width="100%" noDataText="No data" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"
+				items="{Masivo>/}" id="idTablaMasivo">
+				<columns>
+					<Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Tipo Doc" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Número de Factura" width="10rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Fecha Factura" width="6rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<header>
+							<Text text="Descrip. Factura" width="7rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Monto Total" width="7rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="4%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<header>
+							<Text text="Anexos" width="3rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Inactive">
+						<cells>
+							<Select forceSelection="false" selectedKey="{Masivo>tipodocumento}" items="{ path: 'ModelGlobal>/DocumentType', templateShareable:false}"
+								change="onSelectMassiveChange">
+								<core:Item key="{ModelGlobal>Codigo}"
+									enabled="{= (${ModelGlobal>Codigo} === '14' || ${ModelGlobal>Codigo} === '91') &amp;&amp; ${ModelGlobal>/ElectronicSupplier} ? false : true }"
+									text="{ModelGlobal>Descripcion}"/>
+							</Select>
+							<Input value="{Masivo>numeroFactura}" change="onChangeInputReference" type="Text" showValueHelp="false" enabled="true" visible="true"
+								width="auto" valueHelpOnly="false"
+								maxLength="{= ${Masivo>tipodocumento} === '02' ? 12 : ${Masivo>tipodocumento} === '14' ? 13 : ${Masivo>tipodocumento} === '91' ? 20 : 13}"
+								placeholder="{= ${Masivo>tipodocumento} === '02' ? 'XXXX-XXXXXXX' : ${Masivo>tipodocumento} === '14' || ${Masivo>tipodocumento} === '91' ? 'XXX...' : 'XXXX-XXXXXXXX' }"
+								editable="{= !${ModelGlobal>/ElectronicSupplier}}"/>
+							<DatePicker id="dpMasivoFechaFactura" value="{Masivo>fechaFactura}" editable="{= !${ModelGlobal>/ElectronicSupplier}}" valueFormat="yyyy-MM-dd"
+								displayFormat="dd/MM/yyyy" change="onValidateDate"/>
+							<Input value="{Masivo>textoCabecera}" maxLength="50" type="Text" enabled="true" visible="true" width="auto"/>
+							<Text text="{path: 'Masivo>total' , formatter:'.formatter.formatValue'}"/>
+							<Button icon="sap-icon://attachment" type="Default" tooltip="{i18n>tolAttachments}" press="onPressUploadAttachments"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="Ok" press="onDialogMOk" type="Default"/>
+			<Button text="Cancelar" press="onDialogMCancel" type="Default"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

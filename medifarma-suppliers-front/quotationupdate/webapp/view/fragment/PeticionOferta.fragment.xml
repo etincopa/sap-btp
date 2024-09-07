@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="Lista de Licitaciones" afterClose="onCloseDialogPetOfert">
+		<content>
+			<Table items="{path: 'PetOfert>/results', sorter: { path: 'PetOfert>Licitacion', descending:true }}" width="auto"
+				itemPress="onPressedItemPetOfert" heigh="600px">
+				<columns>
+					<Column width="1em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtSociedad}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="1em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtLicitacion}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="1.4em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline"
+						mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtPeticion}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="0.9em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline"
+						mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtMoneda}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="1em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtFechaDocumento}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="1em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>txtPlaza}" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<Text text="{PetOfert>Bukrs}"/>
+							<ObjectIdentifier title="{PetOfert>Description}"/>
+							<Text text="{PetOfert>Ebeln}"/>
+							<Text text="{PetOfert>Moneda}"/>
+							<Text
+								text="{ path: 'PetOfert>FeDocu' , type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-dd' }, pattern: 'dd/MM/YYYY'} }"/>
+							<Text
+								text="{ path: 'PetOfert>PzoOferta', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-dd' }, pattern: 'dd/MM/YYYY'}}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialogPetOfert" icon="sap-icon://decline"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

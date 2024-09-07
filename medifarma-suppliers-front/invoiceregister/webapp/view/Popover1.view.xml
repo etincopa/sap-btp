@@ -1,0 +1,36 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.Popover1" xmlns="sap.m">
+    <Popover bounce="true" contentHeight="auto" contentWidth="auto" horizontalScrolling="true" modal="false" offsetX="0" offsetY="0" placement="Auto" showHeader="true" title="" verticalScrolling="true" visible="true">
+        <content>
+            <List mode="SingleSelectMaster" width="100%" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar>
+                    <Toolbar visible="false" enabled="true" width="" design="Solid">
+                        <content>
+                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+                        </content>
+                    </Toolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem intro="Reported by" title="Item 1" number="1,000" numberUnit="" numberState="None" type="Active" selected="true" showMarkers="false">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus>
+                            <ObjectStatus title="" text="Status 2" state="None"/>
+                        </secondStatus>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+        <beginButton/>
+        <customHeader/>
+        <endButton/>
+        <footer/>
+        <subHeader/>
+    </Popover>
+</mvc:View>

@@ -1,0 +1,55 @@
+[{
+	"nameColumn": "Peticion de Oferta",
+	"flagVisible": true
+}, {
+	"nameColumn": "Posicion",
+	"flagVisible": true
+}, {
+	"nameColumn": "Status",
+	"flagVisible": true
+}, {
+	"nameColumn": "Centro",
+	"flagVisible": true
+}, {
+	"nameColumn": "Material/Servicio",
+	"flagVisible": true
+}, {
+	"nameColumn": "Descripcion",
+	"flagVisible": true
+}, {
+	"nameColumn": "UND",
+	"flagVisible": true
+}, {
+	"nameColumn": "Cantidad Solicitada",
+	"flagVisible": false
+}, {
+	"nameColumn": "Fecha Entrega Requerida",
+	"flagVisible": false
+}, {
+	"nameColumn": "Cantidad Ofertada",
+	"flagVisible": false
+}, {
+	"nameColumn": "Fecha Entrega Propuesta",
+	"flagVisible": false
+}, {
+	"nameColumn": "P.U. Sin IGV",
+	"flagVisible": false
+}, {
+	"nameColumn": "Cantidad Base",
+	"flagVisible": false
+}, {
+	"nameColumn": "Dcto %",
+	"flagVisible": false
+}, {
+	"nameColumn": "SubTotal Sin Dcto",
+	"flagVisible": false
+}, {
+	"nameColumn": "Monto Dcto",
+	"flagVisible": false
+}, {
+	"nameColumn": "SubTotal Con Dcto",
+	"flagVisible": false
+}, {
+	"nameColumn": "Observaciones",
+	"flagVisible": false
+}]

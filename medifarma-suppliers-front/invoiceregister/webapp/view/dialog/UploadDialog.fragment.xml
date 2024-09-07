@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified">
+	<Dialog title="{i18n>dlTitleUpload}" class="sapUiSizeCompact" id="iddialog" type="Standard" afterClose="onAfterCloseDialog">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="true" title="{i18n>txtDocRequired}">
+						<form:formElements>
+							<!--<form:FormElement visible="true">
+								<form:fields>
+									<MessageStrip text="{i18n>msgformat}" showIcon="true" showCloseButton="true" class="sapUiMediumMarginBottom"></MessageStrip>
+								</form:fields>
+							</form:FormElement>-->
+							<form:FormElement visible="{ModelGlobal>/ElectronicSupplier}">
+								<form:label>
+									<Label text="{i18n>lblInvoiceXML}" required="true" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<u:FileUploader value="{UploadAttachments>/xml/name}" name="myFileUpload1" buttonText="{i18n>btnFileUploaderText}" tooltip="Upload your file"
+										uploadComplete="handleUploadComplete" fileType="{ModelGlobal>/Config/fileTypeXml}" sameFilenameAllowed="true" custom:custom="XML"
+										change="onSaveFile"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>lblInvoicePDF}" required="true" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<u:FileUploader value="{UploadAttachments>/pdf/name}" name="myFileUpload2" sameFilenameAllowed="true" buttonText="{i18n>btnFileUploaderText}"
+										fileType="{ModelGlobal>/Config/fileTypePdf}" tooltip="Upload your file" uploadComplete="handleUploadComplete"
+										custom:custom="PDF" change="onSaveFile"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+                    	<form:FormContainer title="{i18n>txtDocOptional}">
+                        </form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="1" columnsM="1" labelSpanM="5" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<UploadCollection noDataDescription="{i18n>txtNoDataFile}" noDataText="{i18n>txtNoDataText}" maximumFileSize="10" change="_onChangeAddFile"
+				typeMissmatch="onTypeMissmatch" fileType="{ModelGlobal>/Config/fileType}" uploadComplete="uploadComplete" maximumFilenameLength="55"
+				multiple="false" uploadTerminated="onUploadTerminated" items="{ path: 'UploadAttachments>/blobs' }" instantUpload="true"
+				uploadEnabled="true" fileDeleted="onPressFileRemove" sameFilenameAllowed="false" fileSizeExceed="onFileSizeExceed"
+				filenameLengthExceed="onFilenameLengthExceed">
+				<toolbar>
+					<OverflowToolbar>
+						<!--Title id="attachmentTitleDownload" text="Documentos Adicionales"/-->
+						<ToolbarSpacer/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem documentId="{UploadAttachments>name}" fileName="{UploadAttachments>name}" mimeType="{UploadAttachments>type}"
+						deletePress=".onPressFileRemove" url="{UploadAttachments>name}" enableEdit="true" enableDelete="true" visibleDelete="true"
+						visibleEdit="false"></UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<buttons>
+			<Button text="{i18n>btnClose}" press="onClose" type="Emphasized"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,13 @@
+span[id*='btnGo-content'] bdi:before {
+    display: block;
+    content: "Buscar";
+}
+
+span[id*='btnGoFilterDialog-content'] bdi:before {
+    display: block;
+    content: "Buscar";
+}
+
+.fontTitleDetailAndPoLine {
+    font-size: 1rem;
+}

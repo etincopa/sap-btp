@@ -1,0 +1,242 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<form:Form width="100%" editable="true" visible="true">
+		<form:title>
+			<core:Title text="{i18n>dataDoc}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblGroup}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboGroup" items="{path : 'listGrouping>/'}" placeholder="{i18n>phlblGroup}" selectedKey="{DataGeneral>/BPGrouping}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listGrouping>GroupingID}" text="{listGrouping>Description}" additionalText="{listGrouping>GroupingID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblTypeDocument}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboDocumentType" items="{path : 'listDocumentType>/'}" placeholder="{i18n>phlblTypeDocument}"
+								selectedKey="{DataGeneral>/DocumentType}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}"
+								change="onValidatorColumns">
+								<core:ListItem key="{listDocumentType>DocumentTypeID}" text="{listDocumentType>Description}"
+									additionalText="{listDocumentType>DocumentTypeID}"/>
+							</ComboBox>
+						</form:fields>
+						<form:fields>
+							<!--<Label text="{i18n>lblNroDocument}" vAlign="Middle" design="Bold" width="80%" required="true" textAlign="Begin" textDirection="Inherit"/>-->
+							<Input id="iptDocumentNumber" liveChange="onChangeDocumentNumber" value="{DataGeneral>/DocumentNumber}"
+								placeholder="{i18n>phlblNroDocument}" type="Text" showValueHelp="false" enabled="{general>/state}" visible="true" width="100%"
+								valueHelpOnly="false" maxLength="11"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true" label="">
+						<form:fields>
+							<RadioButtonGroup id="rdbPersonType" columns="2" selectedIndex="{DataGeneral>/PersonType}" enabled="{general>/state}">
+								<RadioButton text="{i18n>lblOrganization}"/>
+								<RadioButton text="{i18n>lblPerson}"/>
+							</RadioButtonGroup>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblName}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptName" value="{DataGeneral>/Name}" placeholder="{=${DataGeneral>/PersonType} === 1 ? 'Ingrese nombres' : 'Nombre de Raz\u00F3n Social'}" type="Text" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="auto" valueHelpOnly="false" maxLength="35" liveChange="onValidatorColumns"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{=${DataGeneral>/PersonType} === 1 ? 'Apellidos' : ''}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptName2" value="{DataGeneral>/Name2}" placeholder="{=${DataGeneral>/PersonType} === 1 ? 'Ingrese apellidos' : 'Nombre de Raz\u00F3n Social'}" type="Text" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="auto" valueHelpOnly="false" maxLength="35" liveChange="onValidatorColumns"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblStreet}/{i18n>lblNumber}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<!--Cambio de Kallpa maxlength de 60 a 35-->
+							<Input id="iptSteet" value="{DataGeneral>/Street}" placeholder="{i18n>phlblStreet}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="35" liveChange="onValidatorColumns"/>
+							<!--Cambio de Kallpa-->
+							<Input id="iptSteetNumber" liveChange="onChangeDocumentNumber" value="{DataGeneral>/StreetNumber}" placeholder="{i18n>phlblNumber}"
+								type="Text" showValueHelp="false" enabled="{general>/state}" visible="false" width="auto" valueHelpOnly="false" maxLength="10"/>
+
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblCountry}/{i18n>lblRegion}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboCountry" items="{path : 'listCountry>/'}" placeholder="{i18n>phlblCountry}" change="onGetRegion"
+								selectedKey="{DataGeneral>/Country}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}">
+								<core:ListItem key="{listCountry>CountryID}" text="{listCountry>Description}" additionalText="{listCountry>CountryID}"/>
+							</ComboBox>
+							<ComboBox id="cboRegion" items="{path : 'listRegion>/'}" placeholder="{i18n>phlblRegion}" selectedKey="{DataGeneral>/Region}"
+								enabled="{region>/state}" showSecondaryValues="true" filterSecondaryValues="true" change="onGetCity">
+								<core:ListItem key="{listRegion>RegionID}" text="{listRegion>Description}" additionalText="{listRegion>RegionID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblPoblation}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboPoblation" items="{path : 'listPoblation>/'}" placeholder="{i18n>phlblPoblation}" selectedKey="{DataGeneral>/City}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onGetDistrict">
+								<core:ListItem key="{listPoblation>CityID}" text="{listPoblation>Description}" additionalText="{listPoblation>CityID}"/>
+							</ComboBox>
+							<Input value="{DataGeneral>/PostalCode}" placeholder="{i18n>phlblPostalCode}" type="Text" showValueHelp="false" enabled="false"
+								visible="true" width="auto" valueHelpOnly="false" maxLength="10"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblDistrict}" design="Bold" width="100%" required="{requiredForLocal>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboDistrict" items="{path : 'listDistrict>/'}" placeholder="{i18n>phlblDistrict}" selectedKey="{DataGeneral>/District}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listDistrict>DistrictID}" text="{listDistrict>Description}" additionalText="{listDistrict>DistrictID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="{address>/state}">
+						<form:label>
+							<Label text="{i18n>lblTaxResidence}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataGeneral>/TaxLocation}" placeholder="{i18n>phlblTaxResidence}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="15"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="{address>/state}">
+						<form:label>
+							<Label text="{i18n>lblStreet2}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataGeneral>/Street2}" placeholder="{i18n>phlblStreet2}" type="Text" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="auto" valueHelpOnly="false" maxLength="40"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="false">
+						<form:label>
+							<Label text="{i18n>lblUbigeo}" design="Bold" width="100%" required="{ubigeoRequired>/state}" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboUbigee" items="{path : 'listUbigeo>/'}" placeholder="{i18n>phlblUbigeo}" selectedKey="{DataGeneral>/Ubigee}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{ubigeo>/state}">
+								<core:ListItem key="{listUbigeo>UbigeeID}" text="{listUbigeo>Description}" additionalText="{listUbigeo>UbigeeID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<!--<form:FormElement visible="true">-->
+					<!--	<form:label>-->
+					<!--		<Label text="{i18n>lblRamo}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>-->
+					<!--	</form:label>-->
+					<!--	<form:fields>-->
+					<!--		<ComboBox items="{path : 'listRamo>/'}" placeholder="{i18n>phlblRamo}" selectedKey="{DataGeneral>/Industry}" showSecondaryValues="true"-->
+					<!--			filterSecondaryValues="true" enabled="{general>/state}">-->
+					<!--			<core:ListItem key="{listRamo>IndustryID}" text="{listRamo>Description}" additionalText="{listRamo>IndustryID}"/>-->
+					<!--		</ComboBox>-->
+					<!--	</form:fields>-->
+					<!--</form:FormElement>-->
+					<form:FormElement visible="false">
+						<form:label>
+							<Label text="{i18n>lblConceptSearch}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataGeneral>/Commentary}" placeholder="{i18n>phlblConceptSearch}" type="Text" showValueHelp="false" enabled="{general>/state}" visible="true" width="100%"
+								valueHelpOnly="false" maxLength="20"/>
+						</form:fields>
+					</form:FormElement>
+                    <form:FormElement visible="false">                       
+						<form:fields>
+							<Input id="iptConceptSearch" value="{DataGeneral>/SearchName}" placeholder="{i18n>phlblConceptSearch}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="false" width="auto" valueHelpOnly="false"  liveChange="onValidatorColumns"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblLanguage}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboLanguage" items="{path : 'listLanguage>/'}" placeholder="{i18n>phlblLanguage}" selectedKey="{DataGeneral>/Language}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listLanguage>LanguageID}" text="{listLanguage>Description}" additionalText="{listLanguage>LanguageID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<IconTabBar class="sapUiLargeMarginBottom" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid"
+		upperCase="false" visible="true" selectedKey="Ok" select="onSelectIconTabFilter">
+		<items>
+			<IconTabFilter icon="sap-icon://add-contact" iconColor="Positive" text="{i18n>icoDataSupplier}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationOfBP" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon="" iconDensityAware="false"/>
+			<IconTabFilter icon="sap-icon://capital-projects" iconColor="Neutral" text="{i18n>icoBank}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationBPBank" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon="" iconDensityAware="false"/>
+			<IconTabFilter icon="sap-icon://citizen-connect" iconColor="Critical" text="{i18n>icoContactPerson}" count="" design="Horizontal"
+				showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationContactPerson" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://manager" iconColor="Negative" text="{i18n>icoSociety}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationSociety" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://cart-full" iconColor="Positive" text="{i18n>icoPurchaseOrg}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationPurchaseOrganization" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://history" iconColor="Critical" text="{i18n>icoTimeLine}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="{timeLine>/state}" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationTimeLine" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://upload-to-cloud" iconColor="Contrast" text="{i18n>icoAdjunt}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="ADJ">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.bpcreationrequest.view.fragment.InformationAdjunt" type="XML"/>
+				</content>
+			</IconTabFilter>
+		</items>
+		<content/>
+	</IconTabBar>
+</core:FragmentDefinition>

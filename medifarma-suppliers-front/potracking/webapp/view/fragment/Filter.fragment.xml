@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onCleanFilters" search="onSearch" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="true" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblsociety}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<!--Multicombobox GRPR-->
+					<MultiComboBox required="true" placeholder="{i18n>phlblsociety}" showSecondaryValues="true" change="onChangeZone"
+						selectedKeys="{modelGlobal>/Filter/Company}" items="{ path: '/CompanySet',templateShareable:true }">
+						<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>
+					</MultiComboBox>
+					<!--<ComboBox id="cmbIdCompany" items="{ path: '/CompanySet',templateShareable:true }" placeholder="{i18n>phlblsociety}"-->
+					<!--	showSecondaryValues="true" change="onChangeZone" selectedKey="{modelGlobal>/Filter/Company}">-->
+					<!--	<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>-->
+					<!--</ComboBox>-->
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lbldocumentdate}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<!--Cambio de la Fecha de filtro GRPR-->
+					<ComboBox required="true" id="idCmbFecha" selectedKey="{modelGlobal>/Filter/OptionDate}" change="onSelectionChange"
+						placeholder="{i18n>phlbldocumentdate}">
+						<core:Item key="0" text="{i18n>cblTxt30}"/>
+						<core:Item key="1" text="{i18n>cblTxt15}"/>
+						<core:Item key="99" text="{i18n>cblTxtOtherRange}"/>
+					</ComboBox>
+					<!--<DatePicker placeholder="{i18n>phlbldocumentdate}" valueFormat="yyyy-MM-dd" value="{modelGlobal>/Filter/DocumentDate}" change="handleChange"/>-->
+				</fb:control>
+			</fb:FilterGroupItem>
+			<!--<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblstatus}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : '/StatusSet'}" placeholder="{i18n>phlblstatus}" change="onChangeContratista" selectedKey="{/FilterKeyStatus}">
+						<core:Item key="{Key}" text="{Text}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>-->
+			<!--<fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>lblfolio}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input type="Text" value="{modelGlobal>/Filter/Folio}" placeholder="{i18n>phlblfolio}"/>
+				</fb:control>
+			</fb:FilterGroupItem>-->
+			<!--<fb:FilterGroupItem groupName="MANGROUP" name="QN" label="{i18n>lblquotationnumber}" partOfCurrentVariant="true" visibleInFilterBar="false">
+				<fb:control>
+					<Input type="Text" value="{modelGlobal>/Filter/QuotationNumber}" placeholder="{i18n>phlblquotationnumber}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="PO" label="{i18n>lblpurchaseorder}" partOfCurrentVariant="true" visibleInFilterBar="false">
+				<fb:control>
+					<Input type="Text" value="{modelGlobal>/Filter/Order}" placeholder="{i18n>phlblpurchaseorder}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="MD" label="{i18n>lblmaterialdocument}" partOfCurrentVariant="true" visibleInFilterBar="false">
+				<fb:control>
+					<Input type="Text" value="{modelGlobal>/Filter/MaterialDocument}" placeholder="{i18n>phlblmaterialdocument}"/>
+				</fb:control>
+			</fb:FilterGroupItem>-->
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

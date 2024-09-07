@@ -1,0 +1,72 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:t="sap.ui.table">
+	<IconTabBar id="itIdMaster" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false"
+		visible="true" selectedKey="itfIdQuotation">
+		<items>
+			<IconTabFilter key="itfIdQuotation" icon="sap-icon://sales-quote" iconColor="Neutral" text="{i18n>icoquotation}" count=""
+				design="Horizontal" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<NavContainer id="navcIdOCQuotation">
+						<pages showHeader="false">
+							<ScrollContainer id="TBLEQuotation" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableQuotation" type="XML"/>
+							</ScrollContainer>
+							<ScrollContainer id="TBDTQuotation" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableQuotationDetail" type="XML"/>
+							</ScrollContainer>
+						</pages>
+					</NavContainer>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon="" iconDensityAware="false"/>
+			<IconTabFilter key="itfIdOrder" icon="sap-icon://shipping-status" iconColor="Critical" text="{i18n>icoorder}" count="" design="Horizontal"
+				showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<NavContainer id="navcIdOCOrder">
+						<pages showHeader="false">
+							<ScrollContainer id="TBLEOrder" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableOrder" type="XML"/>
+							</ScrollContainer>
+							<ScrollContainer id="TBDTOrder" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableOrderDetail" type="XML"/>
+							</ScrollContainer>
+						</pages>
+					</NavContainer>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon="" iconDensityAware="false"/>
+			<IconTabFilter key="itfIdInvoice" icon="sap-icon://order-status" iconColor="Default" text="{i18n>icoinvoice}" count="" design="Horizontal"
+				showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<NavContainer id="navcIdOCInvoice">
+						<pages showHeader="false">
+							<ScrollContainer id="TBLEInvoice" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableInvoice" type="XML"/>
+							</ScrollContainer>
+							<ScrollContainer id="TBDTInvoice" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TableInvoiceDetail" type="XML"/>
+							</ScrollContainer>
+						</pages>
+					</NavContainer>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon="" iconDensityAware="false"/>
+			<IconTabFilter key="itfIdPay" icon="sap-icon://lead" iconColor="Positive" text="{i18n>icopay}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+				<content>
+					<NavContainer id="navcIdOCPayment">
+						<pages showHeader="false">
+							<ScrollContainer id="TBLEPayment" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TablePayment" type="XML"/>
+							</ScrollContainer>
+							<ScrollContainer id="TBDTPayment" horizontal="false" vertical="true" height="100%">
+								<core:Fragment fragmentName="com.everis.suppliers.potracking.view.fragment.TablePaymentDetail" type="XML"/>
+							</ScrollContainer>
+						</pages>
+					</NavContainer>
+				</content>
+			</IconTabFilter>
+		</items>
+		<content/>
+	</IconTabBar>
+</core:FragmentDefinition>

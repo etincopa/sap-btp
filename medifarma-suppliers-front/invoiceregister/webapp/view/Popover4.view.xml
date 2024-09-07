@@ -1,0 +1,16 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.Popover4" xmlns="sap.m">
+    <Popover bounce="false" contentHeight="350px" contentWidth="250px" horizontalScrolling="true" modal="false" offsetX="0" offsetY="0" placement="Right" showHeader="true" title="Sociedad" verticalScrolling="true" visible="true">
+        <content>
+            <RadioButtonGroup id="sap_m_Popover_0-content-sap_m_RadioButtonGroup-1516985199825" columns="1" selectedIndex="0" valueState="None" width="228.984375px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect" buttons="{path:'/PurchaseOrderHeaderSet', length:8}">
+                <buttons>
+                    <RadioButton text="{ID}" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+                </buttons>
+            </RadioButtonGroup>
+        </content>
+        <beginButton/>
+        <customHeader/>
+        <endButton/>
+        <footer/>
+        <subHeader/>
+    </Popover>
+</mvc:View>

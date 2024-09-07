@@ -1,0 +1,103 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.PoLine" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="true" title="{DN_NUMBER}" showFooter="true" showNavButton="false">
+		<html:style>
+			.size span{ font-size: 1rem; }
+		</html:style>
+		<content>
+			<Table updateFinished="onListUpdateFinishedPosition" selectionChange="onSelectionChange" width="100%" noDataText="No data" mode="None"
+				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" items="{Lines}" id="Detalle">
+				<infoToolbar/>
+				<headerToolbar>
+					<Toolbar>
+						<content>
+							<Title text="Cantidad recibida en almacén / Porcentaje de Servicio Aceptado" level="H5" class="size"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="11%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="N° OC" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Posición" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="20%" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Descripción" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Cantidad" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="PU" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Sub-Total" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Valor Total" width="auto" maxLines="1" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="11%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Valor Total" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<ObjectIdentifier title="{PO_NUMBER}" text="" titleActive="false" visible="true"/>
+							<ObjectIdentifier title="{ITEMNUMBER}" text="" titleActive="false" visible="true"/>
+							<Title text="{ITEMDESCRIPTION}" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="true"/>
+							<ObjectNumber number="{path:'QUANTITY',formatter:'.formatNumber'}" unit="{PO_UNIT}" emphasized="true" state="None"/>
+							<ObjectNumber number="{path:'UNITPRICE',formatter:'.formatNumber'}" unit="{CURRENCY}" emphasized="true" state="None"/>
+							<ObjectNumber number="{path:'SUBTOTAL',formatter:'.formatNumber'}" unit="{CURRENCY}" emphasized="true" state="None"/>
+							<!--<ObjectNumber number="{WRBTR}" unit="{CURRENCY}" emphasized="true" state="None"/>-->
+							<!--Brad agrego formato a WRBTR-->
+							<ObjectNumber number="{path:'WRBTR',formatter:'.formatNumber'}" unit="{CURRENCY}" emphasized="true" state="None"/>
+							<ObjectNumber number="{path:'SUBTOTAL',formatter:'.formatNumber'}" unit="{CURRENCY}" emphasized="true" state="None"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Bar design="Auto">
+				<contentLeft>
+					<Button id="popoverButton" icon="sap-icon://message-popup" text="Mensajes" type="Emphasized" press="_handleMessagePopoverPress"/>
+				</contentLeft>
+				<contentMiddle/>
+				<contentRight>
+					<CheckBox id="chkPIPO" text="Conexión PI/PO" selected="true" visible="false"/>
+					<Button text="Pre-Registrar" type="Accept" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false"
+						press="onRegistrar"/>
+				</contentRight>
+			</Bar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

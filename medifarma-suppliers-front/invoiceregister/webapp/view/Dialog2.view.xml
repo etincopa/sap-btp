@@ -1,0 +1,30 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.Dialog2" xmlns="sap.m">
+    <Dialog id="Dialog2" horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Seleccione" type="Standard" verticalScrolling="true">
+        <content>
+		            <VBox alignItems="Stretch" direction="Column" fitContainer="true" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+		                <items>
+		                	<Text text="Fecha:" textAlign="Center" width="100%" class="sapUiTinyMarginTopBottom"/>
+		                	 <RadioButtonGroup select="onSelectionChange" id="sap_m_Dialog_0-content-sap_m_VBox-1517808956268-items-sap_m_RadioButtonGroup-1517808979426" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit">
+		                        <buttons>
+		                            <RadioButton class="sapUiTinyMarginBegin" text="Ultimos 30 días" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+		                            <RadioButton class="sapUiTinyMarginBegin" text="Ultimos 15 días" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+		                            <RadioButton class="sapUiTinyMarginBegin" text="Ultimos 7 días" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+		                            <RadioButton class="sapUiTinyMarginBegin" text="Seleccione intervalo" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" id="intervalo"/>
+		                        </buttons>
+		                    </RadioButtonGroup>
+		                    <DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" class="sapUiMediumMarginBegin" id="desde" placeholder="Desde" enabled="true" visible="false" width="70%"/>
+		                    <DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" class="sapUiMediumMarginBegin sapUiTinyMarginBottom" id="hasta" placeholder="Hasta" enabled="true" visible="false" width="70%"/>    
+		                </items>
+		                <layoutData/>
+		            </VBox>
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="OK" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAccept"/>
+            <Button id="Cancel" text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" press="onCancel"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</mvc:View>

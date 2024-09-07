@@ -1,0 +1,254 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.everis.suppliers.invoiceregister.controller.CabeceraOc"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page visible="true" showHeader="false" title="Pre-Registro Facturas" showFooter="true" showNavButton="false" enableScrolling="false">
+		<content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="PurchaseOrderHeaderSet" header="Filtros" reset="onRestoreFilters"
+				search="sendData" useToolbar="true" filterBarExpanded="true" showGoOnFB="true" showFilterConfiguration="true" showRestoreOnFB="true" showRestoreButton="false">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ItCompanyId" label="Sociedad" groupId="_BASIC" mandatory="mandatory">
+						<smartFilterBar:customControl>
+							<!--<MultiComboBox required="true" id="mbxSociedad" showSecondaryValues="true"-->
+							<!--	items="{ path: '/CompanySet',templateShareable:true }">-->
+							<!--	<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>-->
+							<!--</MultiComboBox>-->
+							<ComboBox required="true" id="mbxSociedad" showSecondaryValues="true" items="{ path: '/CompanySet',templateShareable:true }" change="sendData">
+								<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>
+							</ComboBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ItRequestDate" label="F. Creación Pedido" groupId="_BASIC" index="3" mandatory="mandatory"
+						visibleInAdvancedArea="true">
+						<smartFilterBar:customControl>
+						 <!-- TODO: items={/PreRegDateFilterSet} -->
+							<Select id="idCmbFecha" selectedKey="0" change="_onSelectionChange">
+								<!-- <core:Item key="{Key}" text="{Description}"/> -->
+								<core:Item key="0" text="30 últimos días"/>
+								<core:Item key="1" text="15 últimos días"/>
+								<!--<core:Item key="98" text="Desde 05/08/2017"/>-->
+								<core:Item key="99" text="Seleccionar otro rango..."/>
+							</Select>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ItOrderedType" label="{i18n>flOrdeType}" groupId="_BASIC" index="3" mandatory="mandatory"
+						visibleInAdvancedArea="true">
+						<smartFilterBar:customControl>
+							<Select id="idCmbTipoPed" items="{/DirssSet}" change="sendData">
+								<core:Item key="{Bsart}" text="{Batxt}"/>
+							</Select>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ItDocumentType" label="{i18n>flOperationType}" groupId="_BASIC" index="3" mandatory="mandatory"
+						visibleInAdvancedArea="true">
+						<smartFilterBar:customControl>
+							<Select id="idCmbDocumentType" items="{path:'/DocumentTypeSet',sorter:{path:'Codigo',descending: true},filters:[{path:'Filter',operator:'EQ',value1:'true'}]}" change="sendData">
+								<core:Item key="{Codigo}" text="{Descripcion}"/>
+							</Select>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<ScrollContainer height="75%" width="100%" horizontal="true" vertical="true">
+				<Table fixedLayout="false" id="POHeaderTable" sticky="ColumnHeaders" selectionChange="onSelectionChangeTable" width="100%" noDataText="No data"
+					mode="{EventosModel>/tableMode}" showSeparators="All" growing="true" growingThreshold="20" updateStarted="starTable"
+					growingScrollToLoad="true" items="{ path: '/PurchaseOrderHeaderSet'}" updateFinished="onUpdateFinished">
+					<headerToolbar>
+						<Toolbar width="auto" height="46px" design="Auto" visible="true" enabled="true">
+							<content>
+								<Title text="" level="H2"/>
+								<SearchField placeholder="Buscar" showSearchButton="true" visible="false" width="250px"/>
+								<ToolbarSpacer width=""/>
+								<Button tooltip="View Sort Settings" icon="sap-icon://sort" press="handleSortButtonPressed"/>
+								<Button icon="sap-icon://excel-attachment" press="onExport"/>
+								<!--Button id="filterButton" text="" type="Transparent" icon="sap-icon://filter" iconFirst="true" 
+                            width="auto" enabled="true" visible="true" iconDensityAware="false" press="onDisplayFilter"/-->
+							</content>
+							<tooltip/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="5em" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clType}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="13em" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" visible="{= !${ModelGlobal>/Anticipo}}" demandPopin="true"
+							popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clGRHES}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="5em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" visible="{ModelGlobal>/Anticipo}" demandPopin="true"
+							popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clPaymentCondition}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" tooltip="{i18n>clPaymentCondition}"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="5em" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clDateOrderCreation}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" tooltip="{i18n>clDateOrderCreation}"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="5em" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clNOC}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<!--<Column width="9%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Sociedad" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>-->
+						<Column width="9%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clTotalAmount}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="3em" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clCurrency}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="11%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clDocType}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="13%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clInvoiceNumber}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="11%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clInvoiceDate}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="11%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clInvoiceDescription}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column visible="true" width="3em" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clAnnexes}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column visible="false" width="1%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clCompany}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column visible="false" width="1%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clNoIVA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column visible="false" width="1%" hAlign="Center" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+							mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clIVA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press="_onLinkPress">
+							<cells>
+								<Text text="{DocumentType}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit"/>
+								<!--Brad 14_08_2019 cambio tipo link por tipo text-->
+								<!--<Link text="{DN_NUMBER}" textAlign="Center" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false"-->
+								<!--	subtle="false" press="_onLinkPress"/>-->
+								<Text text="{DescripcionGrHes}" width="100%" maxLines="1" wrapping="false" textAlign="Center" visible="{= !${ModelGlobal>/Anticipo}}"
+									textDirection="Inherit" tooltip="{DescripcionGrHes}"/>
+								<Text text="{PAYMENT_TERMS}" width="100%" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit"
+									visible="{ModelGlobal>/Anticipo}" tooltip="{PAYMENT_TERMS}"/>
+								<Text text="{path: 'DOC_DATE' , formatter:'.formatter.formatDateJs'}" width="auto" maxLines="1" wrapping="false" textAlign="Center"
+									textDirection="Inherit"/>
+								<Text text="{PO_NUMBER}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit"/>
+								<!--Link text="{PO_NUMBER}" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false"
+								subtle="false" press="_onLinkPress"/-->
+								<!--<Text text="{COMPANY}" width="auto" maxLines="3" wrapping="true" textAlign="Center" textDirection="Inherit"/>-->
+								<!--<ComboBox showSecondaryValues="true" items="{ path: '/DocumentTypeSet', sorter: { path: 'DOCUMENT_TYPE' } }">
+								<core:ListItem key="{DOCUMENT_TYPE}" text="{DOCUMENT_TEXT}" additionalText="{DOCUMENT_TYPE}"/>
+								</ComboBox>-->
+								<Text id="txtTotal" text="{path:'TOTAL_VALUE',formatter:'.formatNumber'}" visible="true" width="auto" custom:custom="txtTotalValue"/>
+								<Text text="{CURRENCY}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+								<!--<ObjectNumber number="{path:'TOTAL_VALUE',formatter:'.formatNumber'}" unit="{CURRENCY}"/>-->
+								<Select change="onSelectChange" forceSelection="false" selectedKey="{TIPDOCREFERENCE}" custom:custom="selectDocumentType"
+									items="{ path: 'ModelGlobal>/DocumentType', templateShareable:false}" enabled="{= !${ModelGlobal>/Masive}}">
+									<!-- TODO: Llevar valores en duro a constantes -->
+									<!-- 
+									<core:Item key="{ModelGlobal>Codigo}"
+										enabled="{= (${ModelGlobal>Codigo} === '14' || ${ModelGlobal>Codigo} === '91') &amp;&amp; ${ModelGlobal>/ElectronicSupplier} ? false : true }"
+										text="{ModelGlobal>Descripcion}"/>
+									-[EGT] -->
+
+										<core:Item 
+										key="{ModelGlobal>Codigo}"
+										enabled="{= (${ModelGlobal>IsElectronicSupplier} === false) &amp;&amp; ${ModelGlobal>/ElectronicSupplier} ? false : true }"
+										text="{ModelGlobal>Descripcion}"/> <!-- +[EGT] -->
+								</Select>
+								<Input value="{REFERENCE}" type="Text" showValueHelp="false" visible="true" width="auto" valueHelpOnly="false" maxLength="{= ${TIPDOCREFERENCE} === '02' ? 12 : ${TIPDOCREFERENCE} === '14' ? 13 : ${TIPDOCREFERENCE} === '91' ? 20 : 13}"
+									change="onChangeInputReference" placeholder="{= ${TIPDOCREFERENCE} === '02' ? 'XXXX-XXXXXXX' : ${TIPDOCREFERENCE} === '14' || ${TIPDOCREFERENCE} === '91' ? 'XXX...' : 'XXXX-XXXXXXXX' }"
+									custom:custom="inputReference" editable="{= ${ModelGlobal>/ElectronicSupplier} || ${ModelGlobal>/Masive} ? false : true}"/>
+								<DatePicker id="dpDate" value="{FechaFacturaP}" valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" custom:custom="dateInvoiceDate"
+									editable="{= ${ModelGlobal>/ElectronicSupplier} || ${ModelGlobal>/Masive} ? false : true}" change="onValidateDate"/>
+								<Input value="{HEADER_TEXT}" type="Text" maxLength="50" enabled="true" visible="true" width="auto" custom:custom="inputHeader"
+									editable="{= !${ModelGlobal>/Masive}}"/>
+								<Button visible="true" icon="sap-icon://attachment" type="Default" tooltip="{i18n>tolAttachments}" enabled="{= !${ModelGlobal>/Masive}}"
+									press="onPressUploadAttachments"/>
+								<Text text="{COMPANY}" visible="false" width="auto" maxLines="3" wrapping="true" textAlign="Center" textDirection="Inherit"/>
+								<Text visible="false" text="{path:'TOTAL_VALUE_NO_IGV',formatter:'.formatNumber'}" width="auto" custom:custom="txtTotalValueNoIgv"/>
+								<Text visible="false" text="{path:'TOTAL_VALUE_IGV',formatter:'.formatNumber'}" width="auto" custom:custom="txtTotalValueIgv"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<footer>
+			<Bar design="Auto">
+				<contentLeft>
+					<Button id="popoverButton" icon="sap-icon://message-popup" text="Mensajes" type="Emphasized" press="_handleMessagePopoverPress"/>
+				</contentLeft>
+				<contentMiddle/>
+				<contentRight>
+					<CheckBox text="{i18n>chkDevSunat}" selected="true" select='onSelectDevSunat'/>
+					<CheckBox text="{i18n>chkElectronicSupplier}" custom:custom="electronicsupplier" selected="{ModelGlobal>/ElectronicSupplier}"
+						select='onSelectCheckbox'/>
+					<CheckBox id="chkMASIVO" text="Masivo" custom:custom="masive" selected="{ModelGlobal>/Masive}" select='onSelectCheckbox'/>
+					<CheckBox text="Verificación Factura" selected="{ModelGlobal>/CheckFactura}" visible="false"/>
+					<CheckBox id="chkPIPO" text="Conexión PI/PO" selected="false" visible="false"/>
+					<Button text="Pre-Registrar" id="btnRegister" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true"
+						iconDensityAware="false" press="onPreRegistrar"/>
+				</contentRight>
+			</Bar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

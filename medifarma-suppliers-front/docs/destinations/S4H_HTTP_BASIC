@@ -1,0 +1,11 @@
+#Password=<< Existing password/certificate removed on export >>
+#
+#Tue Jun 15 05:55:25 UTC 2021
+URL=http\://erpdev\:8080
+Description=Suppliers - ERP connection
+Name=S4H_HTTP_BASIC
+ProxyType=OnPremise
+Type=HTTP
+sap-client=100
+Authentication=BasicAuthentication
+User=CTAPIAS

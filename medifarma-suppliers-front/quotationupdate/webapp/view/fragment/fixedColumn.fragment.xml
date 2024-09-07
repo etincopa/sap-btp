@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover showHeader="false" placement="Bottom" class="sapUiResponsiveMargin" >
+		<Input width="auto" class="sapUiResponsiveMargin" value="{/columnFixed}" placeholder="Ingresar el número de columna" submit="onFixedColumn" />
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://technical-object" type="Accept" text="Fijar Columna" press="onFixedColumn" />
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

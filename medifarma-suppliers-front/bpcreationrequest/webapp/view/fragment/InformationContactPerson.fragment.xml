@@ -1,0 +1,149 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<form:Form width="100%" editable="true" visible="{visible>/state}">
+		<form:title>
+			<core:Title text="{i18n>dataContactPerson}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblName}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataContactPerson>/Name}" placeholder="{i18n>phlblName}" type="Text" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="50%" valueHelpOnly="false" maxLength="100"/>
+						</form:fields>
+					</form:FormElement>
+                    <form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblApellido}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataContactPerson>/Lastname}" placeholder="{i18n>lblApellido}" type="Text" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="50%" valueHelpOnly="false" maxLength="100"/>
+						</form:fields>
+					</form:FormElement>
+                    <form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblSexo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+						<RadioButtonGroup id="rbg1" columns="5"  class="sapUiMediumMarginBottom">
+			                <RadioButton id="rbg1-1" text="M" />
+			                <RadioButton id="rbg1-2" text="F" />
+		               </RadioButtonGroup>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblFunction}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listRelation>/'}" placeholder="{i18n>phlblFunction}" selectedKey="{DataContactPerson>/RelationshipCategory}"
+								width="50%" enabled="false" value="{DataContactPerson>/RelationshipCategoryDescription}">
+								<core:Item key="{listRelation>RelationshipCategoryID}" text="{listRelation>Description}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblTelephone}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input liveChange="onChangeDocumentNumber" value="{DataContactPerson>/Phone}" placeholder="{i18n>phlblTelephone}" type="Text"
+								showValueHelp="false" enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="false" maxLength="30"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblCellphone}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input liveChange="onChangeDocumentNumber" value="{DataContactPerson>/MobilePhone}" placeholder="{i18n>phlblCellphone}" type="Text"
+								showValueHelp="false" enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="false" maxLength="30"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblEMail}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataContactPerson>/Email}" placeholder="{i18n>phlblEMail}" type="Email" showValueHelp="false" enabled="{general>/state}"
+								visible="true" width="50%" valueHelpOnly="false" maxLength="241"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblComment}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataContactPerson>/Commentary}" placeholder="{i18n>phlblComment}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="false" maxLength="40"/>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<Button press="onAddContactPerson" text="{i18n>btnAddContact}" type="Emphasized" icon="sap-icon://collaborate" iconFirst="true" width="auto"
+		enabled="{general>/state}" visible="{visible>/state}" iconDensityAware="false"/>
+	<Table items="{path:'listContactPerson>/'}" width="100%" noDataText="No hay datos" mode="None" showSeparators="All" growing="true"
+		growingThreshold="20" growingScrollToLoad="true">
+		<infoToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+				<content>
+					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+				</content>
+			</Toolbar>
+		</infoToolbar>
+		<headerToolbar/>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblName}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>phlblTelephone}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblCellphone}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblEMail}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clDelete}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active">
+				<cells>
+					<Text text="{listContactPerson>Name}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listContactPerson>Phone}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listContactPerson>MobilePhone}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listContactPerson>Email}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Button press="onDeleteContactPerson" type="Transparent" icon="sap-icon://delete" enabled="{general>/state}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

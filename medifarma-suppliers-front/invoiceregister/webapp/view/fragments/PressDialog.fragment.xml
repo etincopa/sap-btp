@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="sapUiContentPadding" horizontalScrolling="true" showHeader="true" state="None" stretch="false"
+		title="Seleccionar Rango de Fechas" type="Standard" verticalScrolling="true">
+		<content>
+			<DateRangeSelection id="DRS1" displayFormat="dd/MM/yyyy" change="handleChange"/>
+		</content>
+		<buttons>
+			<Button id="btnOk" text="OK" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+				press="_onDialogBtnPress"/>
+			<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+				press="_onDialogClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

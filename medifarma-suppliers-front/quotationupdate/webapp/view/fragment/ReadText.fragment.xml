@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="{i18n>txtTxtTileReadText}" afterClose="onCloseDialogReadText">
+		<content>
+			<TextArea value="{/ovPos/TxtPos}"  rows="8" width="100%" enabled="false" placeholder="Texto de Posición" />
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialogReadText" icon="sap-icon://decline" type="Accept"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>
