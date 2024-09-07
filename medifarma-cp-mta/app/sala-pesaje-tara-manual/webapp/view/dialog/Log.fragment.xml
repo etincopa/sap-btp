@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog title="Ver Log" class="sapUiSizeCompact" contentWidth="800px">
+        <content>
+            <Table id="idProductsTable"
+                inset="false"
+                items="{
+                    path: 'localModel>/LogDetalle',
+                    sorter: [
+                    {
+                        path: 'fechaRegistro', 
+                        descending: 'true'
+                    }               
+                    ]     
+                }">
+
+                <columns>
+                    <Column
+                        width="12em">
+                        <Text text="Fecha" />
+                    </Column>
+                    <Column>
+                        <Text text="Usuario" />
+                    </Column>
+                    <Column>
+                        <Text text="Campo" />
+                    </Column>
+                    <Column>
+                        <Text text="Valor Anterior" />
+                    </Column>    
+                    <Column>
+                        <Text text="Valor Actual" />
+                    </Column>                                    
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+
+                            <Text
+                                text="{path: 'localModel>fechaRegistro', 				type: 'sap.ui.model.type.DateTime',
+                                    formatOptions: {
+                                        pattern: 'dd/MM/yyyy HH:mm'
+                                    }}" />
+                            <Text
+                                text="{localModel>usuarioRegistro}" />     
+                            <Text
+                                text="{localModel>campo}" />     
+                            <Text
+                                text="{localModel>valorAnterior}" />         
+                            <Text
+                                text="{localModel>valorActual}" />                                                                                                                 
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            
+
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="{i18n>btnCancelar}" type="Default" iconFirst="true" width="auto" press="onPressClose"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

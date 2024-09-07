@@ -1,0 +1,37 @@
+{
+    "proxy": {
+        "saperp": {
+            "target": "http://<internal.sap.erp.domain>:<port>",
+            "auth": "<erp_user>:<password>",
+            "entryPath": "/sap/opu/odata"
+        },
+        "es4": {
+            "target": "http://varsupport.everis.pe:50100",
+            "auth": "<es4_user>:<es4_password>",
+            "entryPath": "/sap/opu/odata",
+            "sap-client": "120"
+        },
+        "ias": {
+            "target": "https://<iastenant>.accounts.ondemand.com",
+            "auth": "<T00000user>:<password>"
+        },
+        "bpmworkflowruntime": {
+            "target": "https://<bpmworkflowruntime...>.<region>.hana.ondemand.com",
+            "auth": "<scp_user>:<password>",
+            "entryPath": "/workflow-service"
+        },
+        "cmis": {
+            "target": "<java_cmis_app_endpoint>/cmis/json",
+            "not": "tested yet"
+        },
+        "DocumentService": {
+            "target": "<java_cmis_app_endpoint>",
+            "auth": "<scp_user>:<password>",
+            "entryPath": "<java_cmis_app_name>/cmis/json"
+        },
+        "Northwind": {
+            "target": "https://services.odata.org",
+            "entryPath": ""
+        }
+    }
+}

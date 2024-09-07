@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog title="{= ${localModel>/Sala/Editar} ? ${i18n>lblEditarSala} : ${i18n>lblCrearSala}}" class="sapUiSizeCompact" contentWidth="600px">
+        <content>
+
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="4"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="2"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <core:Title text="{i18n>tlDatosSala}" />
+                    <Label text="{i18n>lblCentro}" required="true"/>
+                    <Select selectedKey="{localModel>/Sala/oPlanta_iMaestraId}"  items="{path: 'localModel>/Plantas'}">
+                        <core:Item key="{localModel>iMaestraId}" text="{localModel>contenido}"/>
+                    </Select>                    
+                    <Label text="{i18n>lblSala}" required="true"/>
+                    <Input value="{localModel>/Sala/sala}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                    <Label text="{i18n>lblIP}" required="true"/>
+                    <Input value="{localModel>/Sala/ipPc}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                    <Label text="{i18n>lblHoraTaraManual}" required="true"/>
+                    <Select selectedKey="{localModel>/Sala/horaTaraManual}"  items="{path: 'localModel>/Horas'}">
+                        <core:Item key="{localModel>codigo}" text="{localModel>descripcion}"/>
+                    </Select>
+                    <Label text="{i18n>lblMinutosPesoManual}" required="true"/>
+                    <Select selectedKey="{localModel>/Sala/minutPesoManual}"  items="{path: 'localModel>/Minutos'}">
+                        <core:Item key="{localModel>codigo}" text="{localModel>descripcion}"/>
+                    </Select>
+                    <Label text="{i18n>lblHoraLecturaEtiqueta}" required="true"/>
+                    <Select selectedKey="{localModel>/Sala/horaLectEtiqueta}"  items="{path: 'localModel>/Horas'}">
+                        <core:Item key="{localModel>codigo}" text="{localModel>descripcion}"/>
+                    </Select>                                                                                               
+                </f:content>
+            </f:SimpleForm>
+
+        </content>
+        <beginButton />
+        <buttons>
+            <Button type="Default" iconFirst="true" width="auto" icon="sap-icon://display" press="onPressLog"/>
+            <Button text="{i18n>btnGuardar}" type="Default" iconFirst="true" width="auto" press="onPressSave"/>
+            <Button text="{i18n>btnCancelar}" type="Default" iconFirst="true" width="auto" press="onPressClose"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>
