@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>CustomListItem</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>This control with a content aggregation can be used to customize standard list items that we don't provide. List mode and ListItem type are applied to CustomListItems as well.
+&lt;b&gt;Note:&lt;/b&gt; Even though the content aggregation allows any control, complex responsive layout controls (e.g. &lt;code&gt;Table, Form&lt;/code&gt;) should not be aggregated as content.</documentation>
+    <baseType>sap.m/ListItemBase</baseType>
+    <properties>
+        <property name="accDescription" type="sap.ui.core/string" group="Behavior" since="1.84">
+            <documentation>Defines the custom accessibility announcement.
+
+&lt;b&gt;Note:&lt;/b&gt; If defined, then only the provided custom accessibility description is announced when there is a focus on the list item.</documentation>
+        </property>
+    </properties>
+    <aggregations default="content">
+        <aggregation name="content" type="sap.ui.core/Control" cardinality="0..n" bindable="bindable">
+            <documentation>The content of this list item</documentation>
+        </aggregation>
+    </aggregations>
+</control>
