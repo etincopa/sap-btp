@@ -1,0 +1,13 @@
+﻿Instalando ensamblado 'C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe'.
+Los parámetros afectados son:
+   logtoconsole = 
+   logfile = C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.InstallLog
+   assemblypath = C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe
+No se pudieron encontrar instaladores públicos con el atributo RunInstallerAttribute.Yes en el ensamblado C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe.
+Confirmando ensamblado 'C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe'.
+Los parámetros afectados son:
+   logtoconsole = 
+   logfile = C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.InstallLog
+   assemblypath = C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe
+No se pudieron encontrar instaladores públicos con el atributo RunInstallerAttribute.Yes en el ensamblado C:\Medifarma\medifarma-cp-app\cola-impresion\CentralPesada.ColaImpresion\bin\Release\CentralPesada.ColaImpresion.exe.
+Quitar el archivo InstallState porque no hay instaladores.
