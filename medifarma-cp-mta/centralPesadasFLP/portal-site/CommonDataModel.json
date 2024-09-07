@@ -1,0 +1,162 @@
+{
+	"_version": "3.0.0",
+	"identification": {
+		"id": "ed79d05a-7457-497e-8c19-fa4dff80dd24",
+		"entityType": "bundle"
+	},
+	"payload": {
+		"catalogs": [
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "defaultCatalogId",
+					"title": "{{title}}",
+					"entityType": "catalog",
+					"i18n": "i18n/defaultCatalogId.properties"
+				},
+				"payload": {
+					"viz": []
+				}
+			}
+		],
+		"groups": [
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "defaultGroupId",
+					"title": "{{title}}",
+					"entityType": "group",
+					"i18n": "i18n/defaultGroupId.properties"
+				},
+				"payload": {
+					"viz": [
+						{
+							"id": "com.medifarma.cp.manejopedidos-0-1636985793104",
+							"appId": "com.medifarma.cp.manejopedidos",
+							"vizId": "manejoPedidos-display"
+						}
+					]
+				}
+			},
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "accesoCentralPesadasId",
+					"title": "{{title_accesoCentralPesada}}",
+					"entityType": "group",
+					"i18n": "i18n/defaultGroupId.properties"
+				},
+				"payload": {
+					"viz": [
+						{
+							"id": "com.medifarma.cp.salapesaje-6-1637754729916",
+							"appId": "com.medifarma.cp.salapesaje",
+							"vizId": "salapesaje_accesos-display"
+						},
+						{
+							"id": "com.medifarma.cp.salapesajepesomanual-8-1637823522359",
+							"appId": "com.medifarma.cp.salapesajepesomanual",
+							"vizId": "salapesaje_pesomanual-display"
+						},
+						{
+							"id": "com.medifarma.cp.salapesajelecturaetiqueta-9-1638334669656",
+							"appId": "com.medifarma.cp.salapesajelecturaetiqueta",
+							"vizId": "salapesaje_lecturaetiqueta-display"
+						},
+						{
+							"id": "com.medifarma.cp.salapesajetaramanual-7-1637821638783",
+							"appId": "com.medifarma.cp.salapesajetaramanual",
+							"vizId": "salapesaje_taramanual-display"
+						}
+					]
+				}
+			},
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "configuracionEquipoId",
+					"title": "{{title_configEquipo}}",
+					"entityType": "group",
+					"i18n": "i18n/defaultGroupId.properties"
+				},
+				"payload": {
+					"viz": [
+						{
+							"id": "com.medifarma.cp.balanza-4-1637006435140",
+							"appId": "com.medifarma.cp.balanza",
+							"vizId": "balanza-display"
+						},
+						{
+							"id": "com.medifarma.cp.impresora-5-1637751644668",
+							"appId": "com.medifarma.cp.impresora",
+							"vizId": "impresora-display"
+						}
+					]
+				}
+			},
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "temporalId",
+					"title": "{{title_temporal}}",
+					"entityType": "group",
+					"i18n": "i18n/defaultGroupId.properties"
+				},
+				"payload": {
+					"viz": [
+						{
+							"id": "com.medifarma.cp.pesajeimpresionbultosaldo-1-1636998012305",
+							"appId": "com.medifarma.cp.pesajeimpresionbultosaldo",
+							"vizId": "pesajeimpresionbultosaldo-display"
+						}
+					]
+				}
+			}
+		],
+		"sites": [
+			{
+				"_version": "3.0.0",
+				"identification": {
+					"id": "b7991e35-b5e9-4ce6-b229-83037b4af725",
+					"entityType": "site",
+					"title": "SAP Fiori launchpad site on Cloud Foundry",
+					"description": "SAP Fiori launchpad site on Cloud Foundry, deployed from WING"
+				},
+				"payload": {
+					"config": {
+						"ushellConfig": {
+							"renderers": {
+								"fiori2": {
+									"componentData": {
+										"config": {
+											"applications": {
+												"Shell-home": {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"groupsOrder": [
+						"defaultGroupId",
+						"accesoCentralPesadasId",
+						"configuracionEquipoId",
+						"temporalId"
+					],
+					"sap.cloud.portal": {
+						"config": {
+							"theme.id": "sap_fiori_3",
+							"theme.active": [
+								"sap_fiori_3",
+								"sap_fiori_3_dark",
+								"sap_belize_hcb",
+								"sap_belize_hcw"
+							]
+						}
+					}
+				}
+			}
+		]
+	}
+}

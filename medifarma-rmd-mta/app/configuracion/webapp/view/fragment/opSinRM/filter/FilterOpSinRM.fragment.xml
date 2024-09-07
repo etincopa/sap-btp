@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFiltersOpSinRmd" search="onSearchOpSinRmd" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="false" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>opSinRMProd}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataFilterOpSinRmd>/productoId}" placeholder="{i18n>opSinRMProd}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false" liveChange="onValidationNumber" submit="onSearchOpSinRmd"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>fltEtapa}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataFilterOpSinRmd>/etapa}" placeholder="{i18n>phFltEtapa}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false" submit="onSearchOpSinRmd"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="Fecha Inicio" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<DatePicker valueFormat="MM/dd/yyyy" required="true" value="{oDataFilterOpSinRmd>/fechaInicio}" placeholder="Fecha Inicio"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

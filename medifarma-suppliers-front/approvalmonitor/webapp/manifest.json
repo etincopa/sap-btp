@@ -1,0 +1,123 @@
+{
+	"_version": "3.0.0",
+	"sap.app": {
+		"id": "com.everis.suppliers.approvalmonitor",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "approvalMonitor",
+					"action": "Display",
+					"title": "Monitor ",
+					"info": "Visualiza las solicitudes",
+					"subTitle": "Monitor de aprobaciones",
+					"icon": "sap-icon://sys-monitor"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
+	},
+	"sap.platform.cf": {
+		"oAuthScopes": [
+			"$XSAPPNAME.approvalmonitor"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.everis.suppliers.approvalmonitor.view.Home",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.everis.suppliers.approvalmonitor.i18n.i18n"
+				}
+			},
+			"ModelGlobal": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/modelGlobal.json"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.everis.suppliers.approvalmonitor.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "RouteHome",
+				"pattern": "RouteHome",
+				"target": ["TargetHome"]
+			}],
+			"targets": {
+				"TargetHome": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Home"
+				}
+			}
+		}
+	},
+    "sap.cloud": {
+      "public": true,
+      "service": "medifarma-apps-suppliers-bs"
+    }
+}

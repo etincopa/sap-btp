@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		noDataText="No se encontraron usuarios"
+		title="Seleccionar Usuario"
+		search=".onSearchUsuariosButton"
+        multiSelect="true"
+		confirm="onUsuarioConfirmar"
+		cancel="onUsuarioCerrar"
+		items="{
+			path: 'modelGeneral>/Usuarios',
+			sorter: {
+				path: 'codigo',
+				descending: false
+			},
+			filters: [{
+				path: 'rol',
+				operator: 'EQ',
+				value1: 'AUXILIAR'
+			}]
+		}">
+		<StandardListItem
+			selected="{modelGeneral>seleccionado}"
+			title="{modelGeneral>codigo}"
+			description="{modelGeneral>nombre}"
+			iconDensityAware="false"
+			iconInset="false"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

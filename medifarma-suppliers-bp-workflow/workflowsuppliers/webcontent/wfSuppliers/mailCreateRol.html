@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Agregar Rol</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Estimados CJG:</h3>
+        <p>Por favor su apoyo con la asignación del rol solicitado al Usuario</p>
+
+        <table style="width:100%" border=1>
+            <tr> 
+              <th style="width:20%">Last Name</th>  
+              <th style="width:20%">E-mail</th>     
+              <th style="width:16%">Login Name</th> 
+              <th style="width:27%">Rol</th> 
+              <th style="width:18%">customAttribute1</th>     
+            </tr>  
+            <tr>     
+              <td style="width:20%">${context.initiatorName}</td>
+              <td style="width:20%">${context.mail}</td>
+              <td style="width:16%">${context.bpRequestData.DOCUMENTNUMBER}</td>
+              <td style="width:27%">GRP_SUPPLIERS_BP_PROVEEDOR</td>
+              <td style="width:16%">${context.bpRequestData.DOCUMENTNUMBER}</td>
+            </tr>
+          </table>
+        
+    </body>
+</html>

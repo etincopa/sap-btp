@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" sticky="ColumnHeaders" items="{listMdReceta>/}" updateFinished="onUpdateFinish" growing="true"
+		growingScrollToLoad="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>asocRecetas} ({=${listMdReceta>/}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton tooltip="{i18n>onRefresh}" icon="sap-icon://synchronize" press="onActualizarRecetas"/>
+				<OverflowToolbarButton tooltip="{i18n>addProducto}" icon="sap-icon://add" press="onAsociarRecetas"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocCod}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocVte}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocDesc}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocEtapa}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocEstado}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocPuestoTrabajo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocPlnr}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocAlnr}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocAcc}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{listMdReceta>recetaId/Matnr}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdReceta>recetaId/Verid}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdReceta>recetaId/Text1}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdReceta>recetaId/Atwrt}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{path: 'listMdReceta>recetaId/Mksp', formatter: '.formatter.onFormatterStateProduct'}"/>
+				<Text text="{listMdReceta>recetaId/Mdv01}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdReceta>recetaId/Plnnr}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdReceta>recetaId/Alnal}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<HBox>
+					<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrintRecetas"/>
+					<OverflowToolbarButton text="{i18n>TbEDownload}" tooltip="{i18n>TbEDownload}" icon="sap-icon://download" press="onDownloadRecetas"/>
+					<OverflowToolbarButton text="{i18n>txtDeleteRecipe}" tooltip="{i18n>txtDeleteRecipe}" icon="sap-icon://delete" app:model="listMdReceta" press="onDeleteAsocReceta"/>
+				</HBox>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

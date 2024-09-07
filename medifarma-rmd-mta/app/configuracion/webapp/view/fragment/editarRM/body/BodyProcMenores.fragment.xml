@@ -1,0 +1,113 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:dnd="sap.ui.core.dnd">
+	<Table id="tblProcMenorPaso" width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{listMdEsPasoInsumoPaso>/}" updateFinished="onUpdateFinish" growing="true"
+		growingScrollToLoad="true">
+		<dragDropConfig>
+				<dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropResponsive"/>
+			</dragDropConfig>
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>ProcMenTitle} ({=${listMdEsPasoInsumoPaso>/}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>accAddPasos}" tooltip="{i18n>accAddPasos}" icon="sap-icon://add" type="Transparent" press="onGetPasosEtiquetaPM" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<OverflowToolbarButton text="{i18n>accAddInsumo}" tooltip="{i18n>accAddInsumo}" icon="sap-icon://add-equipment" type="Transparent" press="onGetInsumosEtiquetaPM" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<OverflowToolbarButton text="{i18n>btnSave}" tooltip="{i18n>btnSave}" icon="sap-icon://save" press="onSavePasosResponsive('proceso')" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" press="onDeletePasosPMResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEOrder}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbECod}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="20%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEDes}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbECantIns}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEUM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbETab}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEEdit}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbETipoDato}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEValBegin}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEValEnd}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEMargen}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEDecimal}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEGenPP}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEEstadoCC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEEstadoMov}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbCFormato}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem press="onEditPasoGeneralProcMenor" type="Navigation">
+			<!-- <ColumnListItem > -->
+				<!-- <Text text="{listMdEsPasoInsumoPaso>orden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+				<Input value="{listMdEsPasoInsumoPaso>orden}" change="onDropResponsive" width="auto" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEsPasoInsumoPaso>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEsPasoInsumoPaso>descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Input value="{listMdEsPasoInsumoPaso>cantidadInsumo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<Text text="{listMdEsPasoInsumoPaso>unidad}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<CheckBox selected="{listMdEsPasoInsumoPaso>tab}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<CheckBox selected="{listMdEsPasoInsumoPaso>edit}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+						filters: [{
+						path: 'oMaestraTipo_maestraTipoId',
+						operator: 'EQ',
+						value1: '5'
+					}]}" 
+					placeholder="Tipo de Dato" selectedKey="{listMdEsPasoInsumoPaso>tipoDatoId_iMaestraId}" showSecondaryValues="true" change="onChangeTipoDatoMd">
+					<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+				</ComboBox>
+				<Input value="{listMdEsPasoInsumoPaso>valorInicial}" enabled="{listMdEsPasoInsumoPaso>enabledValorInicial}" width="auto" change="onChangeDataAutorization"/>
+				<Input value="{listMdEsPasoInsumoPaso>valorFinal}" enabled="{listMdEsPasoInsumoPaso>enabledValorFinal}" width="auto" change="onChangeDataAutorization"/>
+				<Input value="{listMdEsPasoInsumoPaso>margen}" enabled="{listMdEsPasoInsumoPaso>enabledMargen}" width="auto" change="onChangeDataAutorization"/>
+				<Input value="{listMdEsPasoInsumoPaso>decimales}" enabled="{listMdEsPasoInsumoPaso>enabledDecimales}" width="auto" change="onChangeDataAutorization"/>
+				<CheckBox selected="{listMdEsPasoInsumoPaso>genpp}" select="onChangeDataAutorization"/>
+				<CheckBox selected="{listMdEsPasoInsumoPaso>estadoCC}" select="onChangeDataAutorization"/>
+				<CheckBox selected="{listMdEsPasoInsumoPaso>estadoMov}" select="onChangeDataAutorization"/>
+				<HBox>
+					<Button tooltip="{i18n>TbCFormato}" app:component="ProcMenores" press="openFullColorSample" icon="sap-icon://palette" type="{=${listMdEsPasoInsumoPaso>formato} === true ? 'Ghost' : 'Reject'}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<Button icon="sap-icon://lab" tooltip="{i18n>btnFormula}" press="onOpenFormulasPasoInsumoPaso" type="Transparent" visible="{=${listMdEsPasoInsumoPaso>formulaButton} ? true : false }"/>
+						
+				</HBox>
+			
+					<!-- <OverflowToolbarButton icon="sap-icon://delete" tooltip="{i18n>btnDelete}" press="onDelPasotoPaso" type="Transparent"  />
+					<OverflowToolbarButton icon="sap-icon://edit-outside" tooltip="{i18n>btnEditStep}" press="onEditMdPasotoPaso" type="Transparent" enabled="{=${listMdEsPasoInsumoPaso>editMdPaso} ? false : true }"/>
+					<OverflowToolbarButton icon="sap-icon://save" tooltip="{i18n>btnSaveStep}" press="onSaveEditMdPasotoPaso" type="Transparent" enabled="{=${listMdEsPasoInsumoPaso>editMdPaso} ? true : false }"/> -->
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

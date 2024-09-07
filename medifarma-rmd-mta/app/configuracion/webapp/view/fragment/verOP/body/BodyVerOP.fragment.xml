@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<!-- <ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true"> -->
+		<Table width="auto" sticky="ColumnHeaders" items="{localModel>/Estructura}" updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="true">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>verOPAsoc} ({=${localModel>/Estructura}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPTipo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPNro}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<!-- <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPTarea}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column> -->
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPVrs}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPCod}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPDesc}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPLote}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPExpira}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPvers}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPFecha}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPEstado}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPFechaIni}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPFechaFin}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>verOPAcc}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<HBox>
+						<Button tooltip="{i18n>btnPdfConf}" icon="sap-icon://print" press="onPrintConfHeaderRmd" type="Transparent"/>
+						<Button tooltip="{i18n>btnPdfRegister}" icon="sap-icon://pdf-reader" press="onGetPdfViewerRmo" type="Transparent"/>
+						<Button tooltip="{i18n>btnPdfDownloadRegister}" icon="sap-icon://download" press="onGetPdfViewerRmoDownload" type="Transparent"/>
+					</HBox>
+					<Text text="{localModel>falta}" width="auto" wrapping="true"/>
+					<Text text="{localModel>ordenSAP}" width="auto" wrapping="true"/>
+					<!-- <Text text="{localModel>falta}" width="auto" wrapping="true"/> -->
+					<Text text="{localModel>verid}" width="auto" wrapping="true"/>
+					<Text text="{localModel>productoId}" width="auto" wrapping="true"/>
+					<Text text="{localModel>descripcion}" width="auto" wrapping="true"/>
+					<Text text="{localModel>lote}" width="auto" wrapping="true"/>
+					<Text text="{path: 'localModel>expira', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true }}" width="auto" wrapping="true"/>
+					<Text text="{localModel>falta}" width="auto" wrapping="true"/>
+					<Text text="{path: 'localModel>fechaInicio', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy hh:mm:ss', UTC: false }}" width="auto" wrapping="true"/>
+					<Text text="{localModel>estadoIdRmd/contenido}" width="auto" wrapping="true"/>
+					<Text text="{path: 'localModel>fechaInicio', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy hh:mm:ss', UTC: false }}" width="auto" wrapping="true"/>
+					<Text text="{path: 'localModel>fechaCierre', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy hh:mm:ss', UTC: false }}" width="auto" wrapping="true"/>
+					<Button tooltip="{i18n>desasociarOP}" icon="sap-icon://delete" press="onDeleteAsociacionOP"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+	<!-- </ScrollContainer> -->
+</core:FragmentDefinition>

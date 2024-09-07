@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFiltersStep" search="onSearchStep" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblCodigo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/aFiltro/codStep}" placeholder="{i18n>phlblCodigo}" type="Number"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblDescription}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/aFiltro/descrpStep}" placeholder="{i18n>phlblDescription}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lblStructure}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox 
+                    items="{
+                        path: 'mainModelv2>/ESTRUCTURA',
+                        filters: [{
+                            path: 'activo',
+                            operator: 'EQ',
+                            value1: 'true'
+                        }]
+                    }" 
+                    selectedKey="{localModel>/aFiltro/structStep}" 
+                    placeholder="{i18n>phlblStructure}"
+					showSecondaryValues="true" filterSecondaryValues="true">
+					<core:ListItem key="{mainModelv2>estructuraId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>etapa} - {mainModelv2>codigo}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>lblLabel}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox 
+                    items="{
+                        path: 'mainModelv2>/ETIQUETA',
+                        filters: [{
+                            path: 'activo',
+                            operator: 'EQ',
+                            value1: 'true'
+                        }]
+                    }" 
+                    selectedKey="{localModel>/aFiltro/labelStep}" 
+                    placeholder="{i18n>phlblLabel}"
+					showSecondaryValues="true" filterSecondaryValues="true">
+					<core:ListItem key="{mainModelv2>etiquetaId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>codigo}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

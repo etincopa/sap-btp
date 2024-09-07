@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblEtiqueta" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" 
+			items="{
+				path: 'aListEtiqueta>/',
+				sorter: {
+					path: 'aListPaso>codigo',
+					descending: false
+				}
+			}" 
+		updateFinished="onUpdateFinish" growing="true" growingScrollToLoad="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Etiquetas ({=${aListEtiqueta>/}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton tooltip="{i18n>onRefresh}" icon="sap-icon://synchronize" press="onAddEtiquetasResponsive"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="300px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Código" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Descripción" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{aListEtiqueta>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEtiqueta>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

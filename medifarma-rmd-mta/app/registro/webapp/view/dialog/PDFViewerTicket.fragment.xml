@@ -1,0 +1,108 @@
+<core:FragmentDefinition
+	height="100%"
+	controllerName="sap.m.sample.MultiComboBox.controller.MultiComboBox"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+  xmlns:form="sap.ui.layout.form"
+>
+	<Dialog
+		title="{i18n>tltTicket}"
+		class="sapUiContentPadding sapUiSizeCompact"
+		contentWidth="30%"
+		afterClose="onCancelPDFViewerTicket"
+	>
+		<content>
+      <l:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+            <form:formContainers>
+                <form:FormContainer>
+                    <form:formElements>
+                        <form:FormElement>
+                            <form:label>
+                            </form:label>
+                            <form:fields>
+                                <RadioButtonGroup selectedIndex="{modelGeneral>/oDataImpresion/hu}" enabled="false">
+                                    <RadioButton text="Con HU"/>
+                                    <RadioButton text="Sin HU"/>
+                                </RadioButtonGroup>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement>
+                            <form:label>
+                                <Label text="Elija una opción" design="Bold" width="100%"/>
+                            </form:label>
+                            <form:fields>
+                                <RadioButtonGroup select="onChangeImprimir">
+                                    <RadioButton text="Imprimir Todo" />
+                                    <RadioButton text="Imprimir Rango"/>
+                                </RadioButtonGroup>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement>
+                            <form:label>
+                                <Label text="Ingrese Rango" design="Bold" width="100%"/>
+                            </form:label>
+                            <form:fields>
+                                <VBox>
+                                  <Input value="{modelGeneral>/oDataImpresion/desde}" enabled="{=${modelGeneral>/ImprimirRango} === true ? true : false}" type="Number"/>
+                                  <Text text="a"/>
+                                  <Input value="{modelGeneral>/oDataImpresion/hasta}" enabled="{=${modelGeneral>/ImprimirRango} === true ? true : false}" type="Number"/>
+                                </VBox>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="{copias>/state}">
+                            <form:label>
+                                <Label text="Copias" design="Bold" width="100%"/>
+                            </form:label>
+                            <form:fields>
+                                <VBox>
+                                  <Input value="{modelGeneral>/oDataImpresion/copia}" type="Number"/>
+                                </VBox>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer>
+                    <form:formElements>
+                        <form:FormElement>
+                            <form:label>
+                                <Label text="Impresora" design="Bold" width="100%"/>
+                            </form:label>
+                            <form:fields>
+                                <ComboBox items="{path: 'modelGeneral>/Impresoras'}" 
+                                    placeholder="Seleccione una Impresora" selectedKey="{modelGeneral>/tipoDatoId_iMaestraId}"
+                                    showSecondaryValues="true" filterSecondaryValues="true">
+                                    <core:ListItem key="{modelGeneral>impresoraId}" text="{modelGeneral>nombre}" additionalText="{modelGeneral>area}"/>
+                                </ComboBox>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer> 
+            </form:formContainers>
+            <form:layout>
+                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+            </form:layout>
+        </form:Form>
+			</l:VerticalLayout>
+		</content>
+		<buttons>
+			<Button
+				text="{i18n>btnVisualizar}"
+				press="onVisualizarTicketObj"
+				type="Accept"
+			/>
+			<Button
+				text="{i18n>btnImprimir}"
+				press="onImprimirTicket"
+				type="Accept"
+			/>
+			<Button
+				text="{i18n>btnClose}"
+				press="onCancelPDFViewerTicket"
+				type="Reject"
+			/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,172 @@
+{
+    "pruebaPDF": "pdf/prueba.pdf",
+    "obj_editar_config": {},
+    "editar": 0,
+    "headerAddPaso": "",
+    "editEquipo": 0,
+    "editarPaso": {},
+    "editarProcM": {},
+    "adjuntoEliminado" : [],
+    "aListaPasosPrevios": [],
+    "aListaPasosDynamic": [],
+    "tablaFormula": [
+        {
+            "orden": "1",
+            "desc": "57104",
+            "items": "EMPLEAR UNA JARRA DE ACERO INOXIDABLE",
+            "rank": 0
+        },
+        {
+            "orden": "2",
+            "desc": "57105",
+            "items": "CANTIDAD TEORICA",
+            "rank": 0
+        },
+        {
+            "orden": "3",
+            "desc": "57106",
+            "items": "CANTIDAD TEORICA 2",
+            "rank": 0
+        }
+    ],
+    "aListFormulaPasoDisponibleSeleccionados": [],
+    "formulaText": "",
+    "formulaInput": "",
+    "formulaCombobox": "000",
+    "cmbTblProduct": [
+        {
+            "productid": "1",
+            "description": "Producto 1"
+        },
+        {
+            "productid": "2",
+            "description": "Producto 2"
+        },
+        {
+            "productid": "3",
+            "description": "Producto 3"
+        }
+    ],
+    "cmbSucursal": [
+        {
+            "id": "1",
+            "descripcion": "Sucursal 1"
+        },
+        {
+            "id": "2",
+            "descripcion": "Sucursal 2"
+        },
+        {
+            "id": "3",
+            "descripcion": "Sucursal 3"
+        }
+    ],
+    "cmbArea": [
+        {
+            "id": "1",
+            "descripcion": "Area 1"
+        },
+        {
+            "id": "2",
+            "descripcion": "Area 2"
+        },
+        {
+            "id": "3",
+            "descripcion": "Area 3"
+        }
+    ],
+    "aInsumos": [
+        {
+            "estructuraRecetaInsumoId": "",
+            "mdId_mdId": "",
+            "estructuraId_estructuraId": "",
+            "recetaId_recetaId": "",
+            "codigo": "1",
+            "descripcion": "Insumo 1",
+            "cantidadReceta": 100,
+            "cantidadRm": 20,
+            "um": "unidad",
+            "orden": "1"
+        },
+        {
+            "estructuraRecetaInsumoId": "",
+            "mdId_mdId": "",
+            "estructuraId_estructuraId": "",
+            "recetaId_recetaId": "",
+            "codigo": "2",
+            "descripcion": "Insumo 2",
+            "cantidadReceta": 33,
+            "cantidadRm": 12,
+            "um": "unidad",
+            "orden": "2"
+        },
+        {
+            "estructuraRecetaInsumoId": "",
+            "mdId_mdId": "",
+            "estructuraId_estructuraId": "",
+            "recetaId_recetaId": "",
+            "codigo": "3",
+            "descripcion": "Insumo 3",
+            "cantidadReceta": 120,
+            "cantidadRm": 40,
+            "um": "unidad",
+            "orden": "3"
+        },
+        {
+            "estructuraRecetaInsumoId": "",
+            "mdId_mdId": "",
+            "estructuraId_estructuraId": "",
+            "recetaId_recetaId": "",
+            "codigo": "4",
+            "descripcion": "Insumo 4",
+            "cantidadReceta": 80,
+            "cantidadRm": 80,
+            "um": "unidad",
+            "orden": "4"
+        }
+    ],
+    "aFiltro": {},
+    "lineaSeleccionada": {},
+    "destinations": [],
+    "destinationsAditional": [],
+    "editLineaRM": {},
+    "editLineaRMBackUp": {},
+    "lineaStatusProd": {},
+    "lineaReenvio": {},
+    "pasoPadreSeleccionado": {},
+    "pasoPadreSeleccionadoBackUp": {},
+    "copyA": {},
+    "filtroCopy": {},
+    "oInfoUsuario": {},
+    "aListaSeccionMD": [],
+    "aListaSecciones": [],
+    "esJefeDT": false,
+    "esRegistrador": false,
+    "lineaAddDocumentos": {},
+    "editableRango" : false,
+    "editableDecimales" : false,
+    "oEditableNoOP" : false,
+    "aListaEtiquetas" : [],
+    "newClasificacion" : {},
+    "editableEditRango" : false,
+    "editableEditDecimales" : false,
+    "oImagenCargada": {},
+    "oPasoSelectedImagen": {
+        "bEtiquetaPaso" : false,
+        "bEstructuraPaso" : false,
+        "oDataPaso": {}
+    },
+    "flagEstadoFormula":false,
+    "flagEnsayoSAP":false,
+    "listMDTemp":[],
+    "flagShowFormulas":true,
+    "lineaSeleccionadaWF":[],
+    "aAdjuntosSharepoint":[],
+    "temp":{
+        
+    },
+    "fitrosComparativo":[
+        {"name":"Codigo","code":"C"},
+        {"name":"Descripción","code":"D"}
+    ]
+}

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id = "idPredecesorList" noDataText="Sin Predecesores" title="Lista de Predecesores" search="onBuscarPredecesores" confirm="onConfirmPredecesor"
+		cancel="onCancelPredecesor" items="{
+			path: 'localModel>/aListaPasosDynamic',
+			sorter: {
+				path: 'localModel>estructuraId/descripcion',
+				descending: false,
+				group: true
+			},
+			groupHeaderFactory: '.getGroupHeader'
+		}" 
+        contentWidth="auto" contentHeight="50%" resizable="true" draggable="true">
+		<StandardListItem title="{localModel>pasoId/etiquetaId/descripcion} - Codigo: {localModel>pasoId/codigo}" info="Orden: {localModel>orden}" description="{localModel>pasoId/descripcion}"
+			iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

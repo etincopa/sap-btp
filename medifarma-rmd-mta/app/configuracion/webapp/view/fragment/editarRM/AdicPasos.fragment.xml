@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Adicionar Pasos: {localModel>/headerAddPaso}" afterClose="onCancelAddEditarRM">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.filter.FilterAdPasos" type="XML"/>
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.body.BodyAdPasos" type="XML"/>
+        <beginButton>
+            <Button text="{i18n>btnAgregar}" press="onAgregarPasosEdit" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+			<Button text="{i18n>btnClose}" press="onCancelAddEditarRM" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

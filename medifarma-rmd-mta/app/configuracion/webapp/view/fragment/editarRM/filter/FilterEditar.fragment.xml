@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearch" useToolbar="false" showGoOnFB="false"
+		showFilterConfiguration="false" showRestoreOnFB="false" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>codWeb}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{asociarDatos>/codigo}" placeholder="{i18n>codWeb}" type="Number" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false" editable="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblDescription}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{asociarDatos>/descripcion}" placeholder="{i18n>phlblDescription}" type="Text" showValueHelp="false" visible="true"
+						width="100%" valueHelpOnly="false" editable="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lblLevel}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{localModel>/aListaNiveles}" placeholder="{i18n>phlblLevel}" selectedKey="{asociarDatos>/nivelTxt}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="false">
+                        <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+      		<fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>lblPlanta}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{
+                        path : 'mainModel>/MAESTRA',
+                        filters: [{
+                            path: 'oMaestraTipo_maestraTipoId',
+                            operator: 'EQ',
+                            value1: '18'
+                        }]
+                        }" placeholder="{i18n>phlblPlanta}" selectedKey="{asociarDatos>/sucursalId_iMaestraId}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="false">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="E" label="{i18n>lblState}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'mainModel>/ESTADORMD'}" placeholder="{i18n>phlblState}" selectedKey="{asociarDatos>/estadoIdRmd_iMaestraId}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="false">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>iMaestraId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

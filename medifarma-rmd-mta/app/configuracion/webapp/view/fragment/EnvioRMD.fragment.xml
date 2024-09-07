@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Solicitar Revisión de Registro de Manufactura" contentWidth="50%">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.prodEstatus.onEnviarRMD" type="XML"/>
+        <beginButton>
+            <Button text="Enviar" press="onConfirmEnviarRMD" type="Accept"/>
+        </beginButton>
+        <endButton>
+			<Button text="Cancelar" press="onCancelEnviarRMD" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

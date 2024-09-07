@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notificacion de la Solicitud</title>
+    <style>
+        table.MyTable {
+            width: 100%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-width: 1px;
+            border-color: #0d00bd;
+            border-style: solid;
+            color: #1512c4;
+        }
+        
+        table.MyTable th {
+            border-width: 1px;
+            border-color: #0d00bd;
+            border-style: solid;
+            padding: 10px;
+        }
+        
+        table.MyTable thead {
+            background-color: #95a2d5;
+        }
+    </style>
+    </head>
+    <body>
+        <table class="MyTable">
+            <thead>
+              <tr>
+                <th>MANTENIMIENTO DE CUENTAS BANCARIAS</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>      CÓDIGO: <strong></strong></td>
+                </tr>
+                <tr>
+                    <td>      R.U.C.: <strong>${context.bpRequestData.DOCUMENTNUMBER}</strong></td>
+                </tr>
+                <tr>
+                    <td>RAZÓN SOCIAL: <strong>${context.bpRequestData.NAME}</strong></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>      Banco: <strong>${context.updatedBank.BANKID}</strong></td>
+                </tr>
+                <tr>
+                    <td>Tipo Cuenta: <strong>${context.updatedBank.ACCOUNTTYPE}</strong></td>
+                </tr>
+                <tr>
+                    <td>     Moneda: <strong>${context.updatedBank.CURRENCY}</strong></td>
+                </tr>
+                <tr>
+                    <td>     Número: <strong>${context.updatedBank.ACCOUNTNUMBER}</strong></td>
+                </tr>
+                <tr>
+                    <td>        CCI: <strong>${context.updatedBank.REFERENCENUMBER}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

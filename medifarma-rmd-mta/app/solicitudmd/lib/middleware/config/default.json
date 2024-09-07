@@ -1,0 +1,14 @@
+{
+    "proxy": {
+        "saperp": {
+            "target": "http://10.100.4.10:8000",
+            "auth": "<user>:<pass>",
+            "entryPath": "/",
+            "sap-client": "150"
+        },
+        "srv_api": {
+            "target": "http://localhost:4004",
+            "entryPath": "/"
+        }
+    }
+}

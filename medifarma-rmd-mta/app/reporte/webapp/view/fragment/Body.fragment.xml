@@ -1,0 +1,110 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:plugins="sap.m.plugins">
+	<!-- <ScrollContainer width="100%" horizontal="true" vertical="false" focusable="true"> -->
+		<Table id="tblRMD" width="auto" sticky="ColumnHeaders" items="{path:'modelGeneral>/reporteGeneral'}" updateFinished="onUpdateFinish" growing="true" growingScrollToLoad="true" 
+        noDataText="{i18n>tblNoData}" itemPress="onDetailRmd" mode="None" fixedLayout="Strict" contextualWidth="Tablet" popinLayout="GridSmall" 
+        class="sapUiResponsiveMargin">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title id="titHeader" text="{i18n>tltRMD} ({= ${modelGeneral>/reporteGeneral}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://action-settings" press="onPersoButtonPressed"/>
+					<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLS"/>
+				</OverflowToolbar>
+			</headerToolbar>
+            <!-- <dependents>
+			    <plugins:ColumnResizer/>
+		    </dependents> -->
+			<columns>
+                <Column id="column1" width="15em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clArticulo}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column2" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clOP}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column3" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clCodigo}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column4" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clRpt}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column5" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clAlter}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column6" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clLote}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column7" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clDateInit}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column8" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clDateCierre}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column9" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clStageProduction}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column10" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clArea}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column11" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>clExpire}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column12" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>clCountTheory}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column13" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clUM}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column id="column14" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clVersionForm}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column id="column15" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clDateAuthorization}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column16" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clUsuarioAct}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column17" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clStateRMD}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column18" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clUsuarioHabilita}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column19" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clFechaHabilita}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column id="column20" width="6em" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>clDateCierreRMD}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+                <ColumnListItem type="Inactive">
+					<ObjectIdentifier title="{modelGeneral>productoId}" text="{modelGeneral>descripcion}"/>
+                    <Text text="{modelGeneral>ordenSAP}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>mdId/codigo}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>mdId/rptaValidacion}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>mdId/aReceta/results/0/recetaId/Stlal}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{modelGeneral>lote}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{modelGeneral>fechaInicioRMD}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{modelGeneral>fechaCierreRMD}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{modelGeneral>mdId/nivelTxt}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>areaRmdTxt}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>fechaVencRMD}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>vfmng}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>Amein}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+					<Text text="{modelGeneral>mdId/version}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>mdId/fechaAutorizacionRMD}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+					<Text text="{modelGeneral>mdId/usuarioActualiza}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>estadoIdRmd/contenido}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>usuarioHabilita}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>fechaHabilitaRMD}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+                    <Text text="{modelGeneral>fechaCierreRMDFinal}" width="auto" maxLines="5" wrapping="true" textAlign="End" textDirection="Inherit"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+	<!-- </ScrollContainer> -->
+</core:FragmentDefinition>

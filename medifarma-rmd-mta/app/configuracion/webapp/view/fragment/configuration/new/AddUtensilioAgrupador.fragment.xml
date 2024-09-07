@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Data" title="Seleccione Utensilios" search="onSearchUtensilio" confirm="onConfirmAddUtensilio"
+		 items="{localModel>/aListUtensilios}" multiSelect="true">
+		<StandardListItem selected="{selected}" title="{localModel>codigo}" description="{localModel>descripcion}"
+			iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

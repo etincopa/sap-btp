@@ -1,0 +1,84 @@
+/* Enter your custom styles here */
+.MyAcceptButton.sapMBtn:not(.sapMBtnDisabled)>span.sapMBtnInner.sapMBtnAccept.sapMBtnActive {
+    background-color: Orange !important;
+  }  
+
+  .TextStyleJefe{
+    color: #0000ff !important;
+  }
+
+  .TextStyleAuxiliar{
+    color: #0f828f !important;
+  }
+
+  .TextStyleSupervisor{
+    color: #8c004b !important;
+  }
+
+  .TextStyleControlCalidad{
+    color: #FF0000 !important;
+  }
+
+  .TextStyleControlProcesos{
+    color: #000000 !important;
+  }
+
+  .TextStyleNone{
+    color: #000000 !important;
+  }
+
+  .TextStyleModificar{
+    color: #ff8000 !important;
+  }
+
+  .TextStyleNoAplica{
+    color: #ffc400 !important;
+  }
+
+  .BultoParcial{
+    background-color: orange !important;
+  }
+
+  .BultoCompleto{
+    background-color: lightgreen !important;
+  }
+  
+  .BultoInicial{
+    background-color: yellow !important;
+  }
+
+  .BultoVacio{
+    background-color: tomato !important;
+  }
+
+  .sapMListTblCell.cellBorderRight {
+    border-right: 1px solid lightgray;
+  }
+  
+  .sapMListTblCell.cellBorderLeft {
+    border-left: 1px solid lightgray;
+  }
+
+  .myRowSize {
+    height: 55px !important;
+  }
+  .myButtonSize>.sapMBtnInner {
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    place-content: stretch;
+    padding-left: 0.4375rem;
+  }
+  .sapMBtn.increaseFont .sapMBtnIcon {
+    font-size: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    /* color: red; */
+}
+
+.boderitem{
+  border: 1px solid lightgray;
+  padding: 5px;
+}

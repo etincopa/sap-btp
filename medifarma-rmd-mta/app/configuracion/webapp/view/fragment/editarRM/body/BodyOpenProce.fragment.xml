@@ -1,0 +1,219 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar" displayBlock="true" height="100%" xmlns:dnd="sap.ui.core.dnd"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+		<ui:TreeTable toggleOpenState="onOpenProcedimiento" id="id_TreeSolped" rows="{listMdEsEtiquetaGeneral>/}" selectionMode="Single"
+			ariaLabelledBy="title" visibleRowCount="10">
+			<ui:extension>
+				<OverflowToolbar>
+					<Title text="Etiquetas ({=${listMdEsEtiquetaGeneral>/}.length})" level="H2"/>
+					<ToolbarSpacer/>
+					<OverflowToolbarButton tooltip="{i18n>accAddEtiqueta}" text="{i18n>accAddEtiqueta}" icon="sap-icon://document-text"
+						press="onAddEtiqueta" type="Transparent"/>
+				</OverflowToolbar>
+			</ui:extension>
+			<ui:columns>
+				<ui:Column width="170px" hAlign="Center">
+					<Label text="{i18n>TbEOrder}" design="Bold"/>
+					<ui:template>
+						<Label text="{listMdEsEtiquetaGeneral>orden}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false"/>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="200px">
+					<Label text="{i18n>TbECod}" design="Bold"/>
+					<ui:template>
+						<Label text="{listMdEsEtiquetaGeneral>codigo}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false"/>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Left" width="500px">
+					<Label text="{i18n>TbEDes}" design="Bold"/>
+					<ui:template>
+						<Label text="{listMdEsEtiquetaGeneral>descripcion}" design="{listMdEsEtiquetaGeneral>design}" wrapping="true"/>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="{i18n>TbEItem}" design="Bold"/>
+					<ui:template>
+						<Label text="{listMdEsEtiquetaGeneral>cantidad}" design="{listMdEsEtiquetaGeneral>design}" wrapping="true"/>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="{i18n>TbEConform}" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Label text="{listMdEsEtiquetaGeneral>conforme}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>visEtiqueta} !== true &amp;&amp; ${listMdEsEtiquetaGeneral>editMdPaso} !== true ? true : false}"/>
+                            <!-- <ObjectStatus text="{listMdEsEtiquetaGeneral>conforme}" state="{listMdEsEtiquetaGeneral>state}"/> -->
+                            <CheckBox selected="{=${listMdEsEtiquetaGeneral>conforme} !== true &amp;&amp; ${listMdEsEtiquetaGeneral>conforme} !== false ? false : ${listMdEsEtiquetaGeneral>conforme}}" visible="{=${listMdEsEtiquetaGeneral>visEtiqueta} ? true : false}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+							<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                    filters: [{
+                                    path: 'oMaestraTipo_maestraTipoId',
+                                    operator: 'EQ',
+                                    value1: '5'
+                                }]}" 
+                                placeholder="Tipo de Dato" selectedKey="{listMdEsEtiquetaGeneral>conforme}" showSecondaryValues="true" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }">
+                                <core:ListItem key="{mainModelv2>contenido}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+                            </ComboBox>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="{i18n>TbEPMenor}" design="Bold"/>
+					<ui:template>
+						<VBox alignContent="Center" alignItems="Center">
+                            <Label text="{listMdEsEtiquetaGeneral>procesoMenor}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>visEtiqueta} !== true &amp;&amp; ${listMdEsEtiquetaGeneral>editMdPaso} !== true ? true : false}"/>
+							<!-- <Label text="{listMdEsEtiquetaGeneral>procesoMenor}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false"/> -->
+							<CheckBox selected="{=${listMdEsEtiquetaGeneral>procesoMenor} !== true &amp;&amp; ${listMdEsEtiquetaGeneral>procesoMenor} !== false ? false : ${listMdEsEtiquetaGeneral>procesoMenor}}" visible="{=${listMdEsEtiquetaGeneral>visEtiqueta} ? true : false}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+                            <Input value="{listMdEsEtiquetaGeneral>procesoMenor}" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+						</VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="Acc." design="Bold"/>
+					<ui:template>
+						<HBox >
+							<HBox visible="{listMdEsEtiquetaGeneral>menuVisible}">
+								<OverflowToolbarButton tooltip="{i18n>accDeleteEq}" text="{i18n>accDeleteRM}" icon="sap-icon://delete" press="onDelEtiqueta"
+									type="Transparent"/>
+								<OverflowToolbarButton tooltip="{i18n>accAddPasos}" text="{i18n>accAddPasos}" icon="sap-icon://edit" press="onEditMenuActionProcess"
+									type="Transparent"/>
+							</HBox>
+							<Label text="{listMdEsEtiquetaGeneral>actions}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? false : true }"/>
+                            <Input value="{listMdEsEtiquetaGeneral>actions}" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+							<!-- <Button icon="sap-icon://delete" tooltip="Eliminar" press="onDelPaso" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visAccEquipos} ? true : false }" />
+                                <Button icon="sap-icon://edit" tooltip="Editar" press="onEditEquipo" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visAccEquipos} ? true : false }" /> -->
+						</HBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Input value="{listMdEsEtiquetaGeneral>margen}" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEsEtiquetaGeneral>margen}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? false : true }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Input value="{listMdEsEtiquetaGeneral>decimales}" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEsEtiquetaGeneral>decimales}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>editMdPaso} ? false : true }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>estadoCC}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+                            <Label text="{listMdEsEtiquetaGeneral>estadoCCTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>estadoCCTxT} === 'Estado CC' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>estadoMov}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>estadoMovTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>estadoMovTxT} === 'Estado Mov.' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>pmop}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>pmopTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>pmopTxT} === 'PM Op' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>genpp}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>genppTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>genppTxT} === 'Gen PP' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>edit}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>editTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>editTxT} === 'Edit' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+                <ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>rpor}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>rporTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>rporTxT} === 'R. Por' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+                <ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>vb}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>vbTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>vbTxT} === 'V. B.' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>formato}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>formatoTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>formatoTxT} === 'Formato' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="170px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEsEtiquetaGeneral>imagen}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false }" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}"/>
+						    <Label text="{listMdEsEtiquetaGeneral>imagenTxT}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{=${listMdEsEtiquetaGeneral>imagenTxT} === 'Imagen' ? true : false }"/>
+                        </VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="100px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+						<VBox alignContent="Center" alignItems="Center">
+							<Label text="{listMdEsEtiquetaGeneral>promenor}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false" visible="{listMdEsEtiquetaGeneral>visLabProcmen}"/>
+							<Button icon="sap-icon://database" tooltip="{i18n>btnProMenor}" press="onObtenerProcMenores" type="Transparent" visible="{listMdEsEtiquetaGeneral>procmenButton}"/>
+						</VBox>
+					</ui:template>
+				</ui:Column>
+				<ui:Column hAlign="Center" width="200px">
+					<Label text="" design="Bold"/>
+					<ui:template>
+						<HBox >
+							<Label text="{listMdEsEtiquetaGeneral>actionsPos}" design="{listMdEsEtiquetaGeneral>design}" wrapping="false"/>
+							<Button icon="sap-icon://edit" tooltip="{i18n>btnEdit}" press="onEditPasoRM" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false }" />
+							<Button icon="sap-icon://delete" tooltip="{i18n>btnDelete}" press="onDelPasoToEtiqueta" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false }"/>
+							<Button icon="sap-icon://edit-outside" tooltip="{i18n>btnEditStep}" press="onEditMdPasoEtiqueta" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false }" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? false : true}"/>
+                            <Button icon="sap-icon://save" tooltip="{i18n>btnSaveStep}" press="onSaveEditMdPasoEtiqueta" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>visButEtiqueta} ? true : false}" enabled="{=${listMdEsEtiquetaGeneral>editMdPaso} ? true : false}"/>
+							<Button icon="sap-icon://lab" tooltip="Fórmula" press="onOpenFormulas" type="Transparent" visible="{=${listMdEsEtiquetaGeneral>formulaButton} ? true : false }"/>
+						</HBox>
+					</ui:template>
+				</ui:Column>
+			</ui:columns>
+			<ui:dragDropConfig>
+                <dnd:DragDropInfo
+                    sourceAggregation="rows"
+                    targetAggregation="rows"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropEtiqueta"/>
+            </ui:dragDropConfig>
+		</ui:TreeTable>
+	</ScrollContainer>
+</core:FragmentDefinition>

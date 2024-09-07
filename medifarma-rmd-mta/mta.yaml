@@ -1,0 +1,288 @@
+_schema-version: "3.1"
+ID: rmd-mta
+description: A simple CAP project.
+version: 1.0.7
+modules:
+- name: rmd-approuter
+  type: approuter.nodejs
+  path: approuter
+  properties:
+    destinations: '[{"name": "sdibackend", "url": "https://api-sdm-di.cfapps.eu10.hana.ondemand.com",
+      "forwardAuthToken": true}]'
+  requires:
+  - name: rmd-run
+  - name: srv_api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv_api
+      url: ~{url}
+  - name: rmd-uaa
+  - name: rmd-dest
+  - name: rmd-conn
+  - name: rmd-wfi
+  - name: rmd-portal
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.25/nodejs-buildpack-cflinuxfs3-v1.7.25.zip
+    disk-quota: 256M
+    memory: 256M
+- name: rmd-srv
+  type: nodejs
+  path: gen/srv
+  properties:
+    EXIT: 1
+  requires:
+  - name: rmd-hdi
+  - name: rmd-uaa
+  - name: rmd-conn
+  - name: rmd-dest
+  - name: rmd-log
+  - name: rmd-wfi
+  provides:
+  - name: srv_api
+    properties:
+      url: ${default-url}
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.67/nodejs-buildpack-cflinuxfs3-v1.7.67.zip
+    disk-quota: 1024M
+    memory: 1024M
+- name: rmd-db
+  type: hdb
+  path: gen/db
+  properties:
+    TARGET_CONTAINER: rmd-hdi
+  requires:
+  - name: rmd-hdi
+  - name: rmd-uaa
+  - name: mif_admin-hdi
+  - name: cp-hdi
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.25/nodejs-buildpack-cflinuxfs3-v1.7.25.zip
+- name: rmd-wf
+  type: com.sap.application.content
+  path: wf
+  requires:
+  - name: rmd-wfi
+    parameters:
+      content-target: true
+- name: rmd-dest_content
+  type: com.sap.application.content
+  requires:
+  - name: rmd-dest
+    parameters:
+      content-target: true
+  - name: rmd-host
+    parameters:
+      service-key:
+        name: rmd-host_key
+  - name: rmd-uaa
+    parameters:
+      service-key:
+        name: rmd-uaa_key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: rmd_repo_host
+          ServiceInstanceName: rmd-host
+          ServiceKeyName: rmd-host_key
+          sap.cloud.service: mif-apps-rmd-bs
+        - Authentication: OAuth2UserTokenExchange
+          Name: rmd_uaa
+          ServiceInstanceName: rmd-uaa
+          ServiceKeyName: rmd-uaa_key
+          sap.cloud.service: mif-apps-rmd-bs
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: rmd-mta-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: rmd-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: app/resources
+    requires:
+    - artifacts:
+      - mifrmdsolicitudmd.zip
+      name: mifrmdsolicitudmd
+      target-path: app/resources/
+    - artifacts:
+      - mifrmdconfiguracion.zip
+      name: mifrmdconfiguracion
+      target-path: app/resources/
+    - artifacts:
+      - mifrmdregistro.zip
+      name: mifrmdregistro
+      target-path: app/resources/
+    - artifacts:
+      - mifrmdreporte.zip
+      name: mifrmdreporte
+      target-path: app/resources/
+    - artifacts:
+      - mifrmdreporteuso.zip
+      name: mifrmdreporteuso
+      target-path: app/resources/
+    - artifacts:
+      - mifrmdcargainicial.zip
+      name: mifrmdcargainicial
+      target-path: app/resources/
+- name: mifrmdsolicitudmd
+  type: html5
+  path: app/solicitudmd
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: mifrmdconfiguracion
+  type: html5
+  path: app/configuracion
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: mifrmdregistro
+  type: html5
+  path: app/registro
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: mifrmdreporte
+  type: html5
+  path: app/reporte
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: mifrmdreporteuso
+  type: html5
+  path: app/reporteuso
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: flp
+  type: com.sap.application.content
+  path: flp
+  requires:
+  - name: rmd-portal
+    parameters:
+      content-target: true
+      service-key:
+        config:
+          content-endpoint: developer
+        name: content-deploy-key
+  - name: rmd-uaa
+  - name: rmd-host
+  - name: rmd-wfi
+  - name: rmd-mta-app-content
+- name: mifrmdcargainicial
+  type: html5
+  path: app/cargainicial
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: rmd-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: rmd-run
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: rmd-hdi
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      database_id: 4b2d851d-1a61-445c-b40c-42f2ff5eba56
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: mif_admin-hdi
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: mif_admin-hdi
+- name: cp-hdi
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: cp-hdi
+- name: rmd-dest
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-plan: lite
+- name: rmd-conn
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: rmd-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: rmd-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: rmd-log
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: application-logs
+    service-plan: lite
+- name: rmd-wfi
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: workflow
+    service-plan: standard
+- name: rmd-portal
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: portal
+    service-plan: standard
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production

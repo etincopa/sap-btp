@@ -1,0 +1,142 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog id="dlgStepReason" title="{=${localModel>/editar} === 0 ? 'Nuevo Motivo de Lapsos' : 'Editar Motivo de Lapsos' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelAddStepReason">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editar} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{mainModelv2>codigo}" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newMotivoLapso/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clType}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '47'
+                                        }]}" 
+                                        placeholder="{i18n>clType}" selectedKey="{localModel>/newMotivoLapso/tipoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clIndicator}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <Switch state="{localModel>/newMotivoLapso/indicador}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}"/>
+									<!-- <Input value="{localModel>/newMotivoLapso/indicador}" placeholder="{i18n>clIndicator}"/> -->
+								</form:fields>
+							</form:FormElement>
+							<!-- <form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '3'
+                                        }]}" 
+                                        placeholder="{i18n>clState}" selectedKey="{localModel>/newMotivoLapso/estadoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement> -->
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+                    <form:FormContainer visible="{=${localModel>/editar} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editMotivoLapso/codigo}" editable="false" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editMotivoLapso/descripcion}" placeholder="{i18n>clDescription}" enabled="{motLapsoDependencies>/state}"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clType}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                        <ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '47'
+                                        }]}" 
+                                        placeholder="{i18n>clType}" selectedKey="{localModel>/editMotivoLapso/tipoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clIndicator}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <Switch state="{localModel>/editMotivoLapso/indicador}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '3'
+                                        }]}" 
+                                        placeholder="{i18n>clState}" selectedKey="{localModel>/editMotivoLapso/estadoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{=${localModel>/editar} === 0 ? 'Agregar' : 'Actualizar' }" press="onConfirmStepReason" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelStepReason" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

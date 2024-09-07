@@ -1,0 +1,18 @@
+<mvc:View
+    controllerName="mif.rmd.reporteuso.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+  <App id="app" class="sapUiSizeCompact">
+    <pages>
+      <Page id="page" title="{i18n>title}">
+        <content>
+          <core:Fragment fragmentName="mif.rmd.reporteuso.view.fragment.Filter" type="XML"/>
+          <core:Fragment fragmentName="mif.rmd.reporteuso.view.fragment.Body" type="XML"/>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>

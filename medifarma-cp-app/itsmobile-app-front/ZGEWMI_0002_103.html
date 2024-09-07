@@ -1,0 +1,2993 @@
+<!-- 
+
+	ORIGINAL HTML, CSS
+
+-->
+`if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`elseif (~itsmobileStandardsMode == "X")`
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+`end;`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"
+      class="MobileHtml"`
+  end;`>`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;`
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0103
+      DATE:   20220810
+      TIME:   152323
+      STYLE:  MOBILE4
+-->
+declare class(name, idx=1), style(name, idx=1), style_attr(name, idx=1), icon(name, idx=1),
+    class_ext(name, idx=1), align(name, idx=1), label(name, idx=1), has_label(name, idx=1),
+    width(i, a), margin_left(i, a), w(i, a), sh(), mkid(s) in "some.html";
+if ( ~itsmobileFuncInclude != "" )
+    include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude, ~style="x");
+else
+    include(~service="itsmobile", ~language="", ~theme="99", ~name=nonExt&"functions", ~style="x");
+end;`
+`
+    `<head>`
+    if ( ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;`
+`
+        `<title>`~windowtitle`</title>
+`if (~resp_content_type == "") ~resp_content_type = "text/html"; end;`
+        <meta http-equiv="Content-Type" content="`~resp_content_type`; charset=`~resp_content_charset`" `sh()`>`
+if ( ~itsmobileSoundInclude != "" ) <!-- customers sound -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileSoundInclude & ".html");
+else <!-- default -->
+   include(~service="itsmobile", ~language="", ~theme="99", ~name="include/sound.html");
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" `sh()`>
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile.css")`" type="text/css" `sh()`>
+` end;
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile.js")`"></script>
+` end;
+  if ( ~itsmobileCustomJsInclude != "" )`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCustomJsInclude & ".js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;`
+`
+    `</head>`
+    `<body class="MobileBody `class("~currdynpro", 1)`" `style_attr("~currdynpro", 1);
+      if (~currdynpro.speechenabled != "")` id="MobileBody" ev:event="load" ev:handler="#sayOnPageLoad"` else
+      ` onload="setFocus('`~focusfield`');`~itsmobileOnloadHandler`"` end;
+      ` onkeydown="return processKeyEvent(event);" onhelp="return false;">
+`
+        `<form method="post" action="`WGateURL()`" id="mobileform" name="mobileform" onsubmit="return firstSend()" style="display:inline">
+            <input type="hidden" name="~OkCode" value="/0"`sh()`>
+            <input type="hidden" name="~FKey" value=""`sh()`>
+            <input type="hidden" name="~Focusfield" value=""`sh()`>`if (~SEC_SESSTOKEN != "")`
+            <input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`"`sh()`>`end`
+`if (~active_timer != "")
+    include(~service="itsmobile", ~theme="99", ~name="timer.html");
+    timer(~active_timer, width, height);
+end`
+`
+`<!-- main screen begin -->
+<div>`
+    if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+    elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+       include(~service="itsmobile", ~language="", ~theme="99", ~name="include/cuaarea.html");
+    end;`
+</div>
+<div class="MobileUserArea">`
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'TXT_103'[1].exists == "X" && 'TXT_103'[1].visible == "X" ) ||
+     ( 'TXT_103_USER'[1].exists == "X" && 'TXT_103_USER'[1].visible == "X" ) ||
+     0 )
+`<!-- line 1 -->
+<div class="MobileRow">`
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'TXT_103'[1].exists == "X" ) && ( 'TXT_103'[1].visible == "X" ) )
+    `<span style="`width("28", "22.960em"); align("TXT_103", 1); style("TXT_103", 1)`" `
+    if ( 'TXT_103'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted MobileOutputOnly `class("TXT_103", 1)`"`
+    else
+        `class="MobileLabel MobileOutputOnly `class("TXT_103", 1)`"`
+    end;
+    `>`strmask('TXT_103'[1])`</span>`
+else
+    `<span style="`margin_left("28", "22.960em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'TXT_103_USER'[1].exists == "X" ) && ( 'TXT_103_USER'[1].visible == "X" ) )
+    `<span style="`width("14", "11.480em"); align("TXT_103_USER", 1); style("TXT_103_USER", 1)`" `
+    if ( 'TXT_103_USER'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted MobileOutputOnly `class("TXT_103_USER", 1)`"`
+    else
+        `class="MobileLabel MobileOutputOnly `class("TXT_103_USER", 1)`"`
+    end;
+    `>`strmask('TXT_103_USER'[1])`</span>`
+else
+    `<span style="`margin_left("14", "11.480em")`; height:1px"></span>`
+end;
+if ( 10 != 0 )
+    `<span style="`margin_left("10", "8.200em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'BTN_IMP'[1].exists == "X" && 'BTN_IMP'[1].visible == "X" ) ||
+     ( 'BTN_EL'[1].exists == "X" && 'BTN_EL'[1].visible == "X" ) ||
+     ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" ) ||
+     0 )
+`<!-- line 2 -->
+<div class="MobileRow">`
+if ( ( 'BTN_IMP'[1].exists == "X" ) && ( 'BTN_IMP'[1].visible == "X" ) )
+    `<input type="button" style="`width("11", "9.020em"); style("BTN_IMP", 1)`" `
+    `class="MobileButton`class_ext("BTN_IMP", 1)` `class("BTN_IMP", 1)`" `
+    if ( 'BTN_IMP'[1].disabled == "X" ) `disabled="disabled" `end;
+    `name="`'BTN_IMP'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'BTN_IMP'[1].name`" `end;
+    `value="`label("BTN_IMP", 1)`" `
+    if ( 'BTN_IMP'[1].onclick != "" )
+         `onclick="`'BTN_IMP'[1].onclick`;" `
+    elseif ( 'BTN_IMP'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_IMP'[1].name`');"
+        onblur="leaveFocusField('`'BTN_IMP'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_IMP'[1].okcode`');" `
+    end;
+    sh()`>`
+else
+    `<span style="`margin_left("11", "9.020em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'BTN_EL'[1].exists == "X" ) && ( 'BTN_EL'[1].visible == "X" ) )
+    `<input type="button" style="`width("12", "9.840em"); style("BTN_EL", 1)`" `
+    `class="MobileButton`class_ext("BTN_EL", 1)` `class("BTN_EL", 1)`" `
+    if ( 'BTN_EL'[1].disabled == "X" ) `disabled="disabled" `end;
+    `name="`'BTN_EL'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'BTN_EL'[1].name`" `end;
+    `value="`label("BTN_EL", 1)`" `
+    if ( 'BTN_EL'[1].onclick != "" )
+         `onclick="`'BTN_EL'[1].onclick`;" `
+    elseif ( 'BTN_EL'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_EL'[1].name`');"
+        onblur="leaveFocusField('`'BTN_EL'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_EL'[1].okcode`');" `
+    end;
+    sh()`>`
+else
+    `<span style="`margin_left("12", "9.840em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'BTN_SALIR'[1].exists == "X" ) && ( 'BTN_SALIR'[1].visible == "X" ) )
+    `<input type="button" style="`width("9", "7.380em"); style("BTN_SALIR", 1)`" `
+    `class="MobileButton`class_ext("BTN_SALIR", 1)` `class("BTN_SALIR", 1)`" `
+    if ( 'BTN_SALIR'[1].disabled == "X" ) `disabled="disabled" `end;
+    `name="`'BTN_SALIR'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'BTN_SALIR'[1].name`" `end;
+    `value="`label("BTN_SALIR", 1)`" `
+    if ( 'BTN_SALIR'[1].onclick != "" )
+         `onclick="`'BTN_SALIR'[1].onclick`;" `
+    elseif ( 'BTN_SALIR'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_SALIR'[1].name`');"
+        onblur="leaveFocusField('`'BTN_SALIR'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_SALIR'[1].okcode`');" `
+    end;
+    sh()`>`
+else
+    `<span style="`margin_left("9", "7.380em")`; height:1px"></span>`
+end;
+if ( 20 != 0 )
+    `<span style="`margin_left("20", "16.400em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 3 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_ORDEN'[1].exists == "X" && 'LBL_ORDEN'[1].visible == "X" ) ||
+     ( 'GWA_PEDIATENC-ORDEN'[1].exists == "X" && 'GWA_PEDIATENC-ORDEN'[1].visible == "X" ) ||
+     0 )
+`<!-- line 4 -->
+<div class="MobileRow">`
+if ( ( 'LBL_ORDEN'[1].exists == "X" ) && ( 'LBL_ORDEN'[1].visible == "X" ) )
+    icon( "LBL_ORDEN", 1 );
+    `<span style="width:`w("6", "4.920em")``if ( 'LBL_ORDEN'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_ORDEN'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_ORDEN'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("6", "4.920em")`"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( 'GWA_PEDIATENC-ORDEN'[1].exists == "X" )
+    if ( 'GWA_PEDIATENC-ORDEN'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_PEDIATENC-ORDEN', 1); class("GWA_PEDIATENC-ORDEN", 1)`" `
+         if ( 'GWA_PEDIATENC-ORDEN'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_PEDIATENC-ORDEN'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_PEDIATENC-ORDEN'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_PEDIATENC-ORDEN'[1].okcode`');return false;" `
+         end;
+         `style="`width("30", "24.600em"); style("GWA_PEDIATENC-ORDEN", 1)`" `
+         `rows="`'GWA_PEDIATENC-ORDEN'[1].rows`" cols="30" `
+         `onfocus="setFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+         `name="`'GWA_PEDIATENC-ORDEN'[1].name`">`'GWA_PEDIATENC-ORDEN'[1]`</textarea>`
+    else
+        if ( 'GWA_PEDIATENC-ORDEN'[1].disabled == "X" )
+            if ( 'GWA_PEDIATENC-ORDEN'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_PEDIATENC-ORDEN'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            elseif ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_PEDIATENC-ORDEN", 1); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_PEDIATENC-ORDEN", 1); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+            `name="`'GWA_PEDIATENC-ORDEN'[1].name`" `
+            if ( ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) && ( 'GWA_PEDIATENC-ORDEN'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_PEDIATENC-ORDEN'[1], 1)`" `
+            end;
+            `size="`'GWA_PEDIATENC-ORDEN'[1].width`" maxlength="`'GWA_PEDIATENC-ORDEN'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_PEDIATENC-ORDEN", 1 );
+            if ( 'GWA_PEDIATENC-ORDEN'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_PEDIATENC-ORDEN'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("30", "24.600em"); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            elseif ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_PEDIATENC-ORDEN", 1); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_PEDIATENC-ORDEN", 1); style("GWA_PEDIATENC-ORDEN", 1)`" `
+                if ( 'GWA_PEDIATENC-ORDEN'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_PEDIATENC-ORDEN", 1)`" `
+                end;
+            end;
+            if ( 'GWA_PEDIATENC-ORDEN'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_PEDIATENC-ORDEN'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+            `name="`'GWA_PEDIATENC-ORDEN'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_PEDIATENC-ORDEN'[1].name`" `end;
+            if ( ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) && ( 'GWA_PEDIATENC-ORDEN'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_PEDIATENC-ORDEN'[1], 1)`" `
+            end;
+            `size="`'GWA_PEDIATENC-ORDEN'[1].width`" maxlength="`'GWA_PEDIATENC-ORDEN'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("30", "24.600em")`; height:1px"></span>`
+end;
+if ( 17 != 0 )
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 5 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_FRACCION'[1].exists == "X" && 'LBL_FRACCION'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-FRACCION'[1].exists == "X" && 'GWA_CONS_DET-FRACCION'[1].visible == "X" ) ||
+     0 )
+`<!-- line 6 -->
+<div class="MobileRow">`
+if ( ( 'LBL_FRACCION'[1].exists == "X" ) && ( 'LBL_FRACCION'[1].visible == "X" ) )
+    icon( "LBL_FRACCION", 1 );
+    `<span style="width:`w("6", "4.920em")``if ( 'LBL_FRACCION'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_FRACCION'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_FRACCION'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("6", "4.920em")`"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-FRACCION'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-FRACCION'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-FRACCION', 1); class("GWA_CONS_DET-FRACCION", 1)`" `
+         if ( 'GWA_CONS_DET-FRACCION'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-FRACCION'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-FRACCION'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-FRACCION'[1].okcode`');return false;" `
+         end;
+         `style="`width("30", "24.600em"); style("GWA_CONS_DET-FRACCION", 1)`" `
+         `rows="`'GWA_CONS_DET-FRACCION'[1].rows`" cols="30" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+         `name="`'GWA_CONS_DET-FRACCION'[1].name`">`'GWA_CONS_DET-FRACCION'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-FRACCION'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-FRACCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-FRACCION'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-FRACCION", 1); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-FRACCION", 1); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-FRACCION'[1].name`" `
+            if ( ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-FRACCION'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-FRACCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-FRACCION'[1].width`" maxlength="`'GWA_CONS_DET-FRACCION'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-FRACCION", 1 );
+            if ( 'GWA_CONS_DET-FRACCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-FRACCION'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-FRACCION", 1); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-FRACCION", 1); style("GWA_CONS_DET-FRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-FRACCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-FRACCION", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-FRACCION", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-FRACCION'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-FRACCION'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-FRACCION'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-FRACCION'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-FRACCION'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-FRACCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-FRACCION'[1].width`" maxlength="`'GWA_CONS_DET-FRACCION'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("30", "24.600em")`; height:1px"></span>`
+end;
+if ( 17 != 0 )
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 7 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_ART'[1].exists == "X" && 'LBL_ART'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-DESCRIPCION'[1].exists == "X" && 'GWA_CONS_DET-DESCRIPCION'[1].visible == "X" ) ||
+     0 )
+`<!-- line 8 -->
+<div class="MobileRow">`
+if ( ( 'LBL_ART'[1].exists == "X" ) && ( 'LBL_ART'[1].visible == "X" ) )
+    icon( "LBL_ART", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_ART'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_ART'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_ART'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-DESCRIPCION'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-DESCRIPCION'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-DESCRIPCION', 1); class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+         if ( 'GWA_CONS_DET-DESCRIPCION'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-DESCRIPCION'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-DESCRIPCION'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-DESCRIPCION'[1].okcode`');return false;" `
+         end;
+         `style="`width("30", "24.600em"); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+         `rows="`'GWA_CONS_DET-DESCRIPCION'[1].rows`" cols="30" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+         `name="`'GWA_CONS_DET-DESCRIPCION'[1].name`">`'GWA_CONS_DET-DESCRIPCION'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-DESCRIPCION'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-DESCRIPCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-DESCRIPCION", 1); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-DESCRIPCION", 1); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `
+            if ( ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-DESCRIPCION'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-DESCRIPCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-DESCRIPCION'[1].width`" maxlength="`'GWA_CONS_DET-DESCRIPCION'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-DESCRIPCION", 1 );
+            if ( 'GWA_CONS_DET-DESCRIPCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-DESCRIPCION", 1); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-DESCRIPCION", 1); style("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-DESCRIPCION", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-DESCRIPCION'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-DESCRIPCION'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-DESCRIPCION'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-DESCRIPCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-DESCRIPCION'[1].width`" maxlength="`'GWA_CONS_DET-DESCRIPCION'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("30", "24.600em")`; height:1px"></span>`
+end;
+if ( 17 != 0 )
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 9 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_LOTE'[1].exists == "X" && 'LBL_LOTE'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-LOTE'[1].exists == "X" && 'GWA_CONS_DET-LOTE'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-UNIDADM'[1].exists == "X" && 'GWA_CONS_DET-UNIDADM'[1].visible == "X" ) ||
+     0 )
+`<!-- line 10 -->
+<div class="MobileRow">`
+if ( ( 'LBL_LOTE'[1].exists == "X" ) && ( 'LBL_LOTE'[1].visible == "X" ) )
+    icon( "LBL_LOTE", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_LOTE'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_LOTE'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_LOTE'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-LOTE'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-LOTE'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-LOTE', 1); class("GWA_CONS_DET-LOTE", 1)`" `
+         if ( 'GWA_CONS_DET-LOTE'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-LOTE'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-LOTE'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-LOTE'[1].okcode`');return false;" `
+         end;
+         `style="`width("15", "12.300em"); style("GWA_CONS_DET-LOTE", 1)`" `
+         `rows="`'GWA_CONS_DET-LOTE'[1].rows`" cols="15" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+         `name="`'GWA_CONS_DET-LOTE'[1].name`">`'GWA_CONS_DET-LOTE'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-LOTE'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-LOTE'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-LOTE'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("15", "12.300em"); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("15", "12.300em"); align("GWA_CONS_DET-LOTE", 1); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("15", "12.300em"); align("GWA_CONS_DET-LOTE", 1); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+            `name="`'GWA_CONS_DET-LOTE'[1].name`" `
+            if ( ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-LOTE'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-LOTE'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-LOTE'[1].width`" maxlength="`'GWA_CONS_DET-LOTE'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-LOTE", 1 );
+            if ( 'GWA_CONS_DET-LOTE'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-LOTE'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("15", "12.300em"); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-LOTE", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("15", "12.300em"); align("GWA_CONS_DET-LOTE", 1); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-LOTE", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("15", "12.300em"); align("GWA_CONS_DET-LOTE", 1); style("GWA_CONS_DET-LOTE", 1)`" `
+                if ( 'GWA_CONS_DET-LOTE'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-LOTE", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-LOTE", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-LOTE'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-LOTE'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+            `name="`'GWA_CONS_DET-LOTE'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-LOTE'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-LOTE'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-LOTE'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-LOTE'[1].width`" maxlength="`'GWA_CONS_DET-LOTE'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("15", "12.300em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-UNIDADM'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-UNIDADM'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-UNIDADM', 1); class("GWA_CONS_DET-UNIDADM", 1)`" `
+         if ( 'GWA_CONS_DET-UNIDADM'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-UNIDADM'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-UNIDADM'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-UNIDADM'[1].okcode`');return false;" `
+         end;
+         `style="`width("14", "11.480em"); style("GWA_CONS_DET-UNIDADM", 1)`" `
+         `rows="`'GWA_CONS_DET-UNIDADM'[1].rows`" cols="14" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+         `name="`'GWA_CONS_DET-UNIDADM'[1].name`">`'GWA_CONS_DET-UNIDADM'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-UNIDADM'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-UNIDADM'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-UNIDADM'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("14", "11.480em"); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("14", "11.480em"); align("GWA_CONS_DET-UNIDADM", 1); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("14", "11.480em"); align("GWA_CONS_DET-UNIDADM", 1); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+            `name="`'GWA_CONS_DET-UNIDADM'[1].name`" `
+            if ( ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-UNIDADM'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-UNIDADM'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-UNIDADM'[1].width`" maxlength="`'GWA_CONS_DET-UNIDADM'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-UNIDADM", 1 );
+            if ( 'GWA_CONS_DET-UNIDADM'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-UNIDADM'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("14", "11.480em"); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("14", "11.480em"); align("GWA_CONS_DET-UNIDADM", 1); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("14", "11.480em"); align("GWA_CONS_DET-UNIDADM", 1); style("GWA_CONS_DET-UNIDADM", 1)`" `
+                if ( 'GWA_CONS_DET-UNIDADM'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-UNIDADM", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-UNIDADM'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-UNIDADM'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+            `name="`'GWA_CONS_DET-UNIDADM'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-UNIDADM'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-UNIDADM'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-UNIDADM'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-UNIDADM'[1].width`" maxlength="`'GWA_CONS_DET-UNIDADM'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("14", "11.480em")`; height:1px"></span>`
+end;
+if ( 17 != 0 )
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 11 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_SUBFRACCION'[1].exists == "X" && 'LBL_SUBFRACCION'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-SUBFRACCION'[1].exists == "X" && 'GWA_CONS_DET-SUBFRACCION'[1].visible == "X" ) ||
+     0 )
+`<!-- line 12 -->
+<div class="MobileRow">`
+if ( ( 'LBL_SUBFRACCION'[1].exists == "X" ) && ( 'LBL_SUBFRACCION'[1].visible == "X" ) )
+    icon( "LBL_SUBFRACCION", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_SUBFRACCION'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_SUBFRACCION'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_SUBFRACCION'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-SUBFRACCION'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-SUBFRACCION'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-SUBFRACCION', 1); class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+         if ( 'GWA_CONS_DET-SUBFRACCION'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-SUBFRACCION'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-SUBFRACCION'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-SUBFRACCION'[1].okcode`');return false;" `
+         end;
+         `style="`width("30", "24.600em"); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+         `rows="`'GWA_CONS_DET-SUBFRACCION'[1].rows`" cols="30" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+         `name="`'GWA_CONS_DET-SUBFRACCION'[1].name`">`'GWA_CONS_DET-SUBFRACCION'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-SUBFRACCION'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-SUBFRACCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-SUBFRACCION", 1); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-SUBFRACCION", 1); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `
+            if ( ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-SUBFRACCION'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-SUBFRACCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-SUBFRACCION'[1].width`" maxlength="`'GWA_CONS_DET-SUBFRACCION'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-SUBFRACCION", 1 );
+            if ( 'GWA_CONS_DET-SUBFRACCION'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("30", "24.600em"); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-SUBFRACCION", 1); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("30", "24.600em"); align("GWA_CONS_DET-SUBFRACCION", 1); style("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-SUBFRACCION", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-SUBFRACCION'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-SUBFRACCION'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+            `name="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-SUBFRACCION'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-SUBFRACCION'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-SUBFRACCION'[1].width`" maxlength="`'GWA_CONS_DET-SUBFRACCION'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("30", "24.600em")`; height:1px"></span>`
+end;
+if ( 17 != 0 )
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 13 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_REQ'[1].exists == "X" && 'LBL_REQ'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-CANTIDADR'[1].exists == "X" && 'GWA_CONS_DET-CANTIDADR'[1].visible == "X" ) ||
+     ( 'LBL_AT'[1].exists == "X" && 'LBL_AT'[1].visible == "X" ) ||
+     ( 'GWA_CONS_DET-CANTIDADA'[1].exists == "X" && 'GWA_CONS_DET-CANTIDADA'[1].visible == "X" ) ||
+     0 )
+`<!-- line 14 -->
+<div class="MobileRow">`
+if ( ( 'LBL_REQ'[1].exists == "X" ) && ( 'LBL_REQ'[1].visible == "X" ) )
+    icon( "LBL_REQ", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_REQ'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_REQ'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_REQ'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-CANTIDADR'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-CANTIDADR'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-CANTIDADR', 1); class("GWA_CONS_DET-CANTIDADR", 1)`" `
+         if ( 'GWA_CONS_DET-CANTIDADR'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-CANTIDADR'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-CANTIDADR'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADR'[1].okcode`');return false;" `
+         end;
+         `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+         `rows="`'GWA_CONS_DET-CANTIDADR'[1].rows`" cols="17" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+         `name="`'GWA_CONS_DET-CANTIDADR'[1].name`">`'GWA_CONS_DET-CANTIDADR'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-CANTIDADR'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-CANTIDADR'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADR", 1); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADR", 1); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+            `name="`'GWA_CONS_DET-CANTIDADR'[1].name`" `
+            if ( ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADR'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-CANTIDADR'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-CANTIDADR'[1].width`" maxlength="`'GWA_CONS_DET-CANTIDADR'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-CANTIDADR", 1 );
+            if ( 'GWA_CONS_DET-CANTIDADR'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADR", 1); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADR", 1); style("GWA_CONS_DET-CANTIDADR", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-CANTIDADR", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-CANTIDADR'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADR'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+            `name="`'GWA_CONS_DET-CANTIDADR'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-CANTIDADR'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADR'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-CANTIDADR'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-CANTIDADR'[1].width`" maxlength="`'GWA_CONS_DET-CANTIDADR'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( ( 'LBL_AT'[1].exists == "X" ) && ( 'LBL_AT'[1].visible == "X" ) )
+    icon( "LBL_AT", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_AT'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_AT'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_AT'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_CONS_DET-CANTIDADA'[1].exists == "X" )
+    if ( 'GWA_CONS_DET-CANTIDADA'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_CONS_DET-CANTIDADA', 1); class("GWA_CONS_DET-CANTIDADA", 1)`" `
+         if ( 'GWA_CONS_DET-CANTIDADA'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_CONS_DET-CANTIDADA'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_CONS_DET-CANTIDADA'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADA'[1].okcode`');return false;" `
+         end;
+         `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+         `rows="`'GWA_CONS_DET-CANTIDADA'[1].rows`" cols="17" `
+         `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+         `name="`'GWA_CONS_DET-CANTIDADA'[1].name`">`'GWA_CONS_DET-CANTIDADA'[1]`</textarea>`
+    else
+        if ( 'GWA_CONS_DET-CANTIDADA'[1].disabled == "X" )
+            if ( 'GWA_CONS_DET-CANTIDADA'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADA", 1); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADA", 1); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+            `name="`'GWA_CONS_DET-CANTIDADA'[1].name`" `
+            if ( ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADA'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_CONS_DET-CANTIDADA'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-CANTIDADA'[1].width`" maxlength="`'GWA_CONS_DET-CANTIDADA'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_CONS_DET-CANTIDADA", 1 );
+            if ( 'GWA_CONS_DET-CANTIDADA'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("17", "13.940em"); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADA", 1); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("17", "13.940em"); align("GWA_CONS_DET-CANTIDADA", 1); style("GWA_CONS_DET-CANTIDADA", 1)`" `
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_CONS_DET-CANTIDADA", 1)`" `
+                end;
+            end;
+            if ( 'GWA_CONS_DET-CANTIDADA'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADA'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+            `name="`'GWA_CONS_DET-CANTIDADA'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-CANTIDADA'[1].name`" `end;
+            if ( ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADA'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_CONS_DET-CANTIDADA'[1], 1)`" `
+            end;
+            `size="`'GWA_CONS_DET-CANTIDADA'[1].width`" maxlength="`'GWA_CONS_DET-CANTIDADA'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("17", "13.940em")`; height:1px"></span>`
+end;
+if ( 6 != 0 )
+    `<span style="`margin_left("6", "4.920em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 15 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_IMP'[1].exists == "X" && 'LBL_IMP'[1].visible == "X" ) ||
+     ( 'GWA_ATBU_ALM-IMP'[1].exists == "X" && 'GWA_ATBU_ALM-IMP'[1].visible == "X" ) ||
+     0 )
+`<!-- line 16 -->
+<div class="MobileRow">`
+if ( ( 'LBL_IMP'[1].exists == "X" ) && ( 'LBL_IMP'[1].visible == "X" ) )
+    icon( "LBL_IMP", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_IMP'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_IMP'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_IMP'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( ( 'GWA_ATBU_ALM-IMP'[1].exists == "X" ) && ( 'GWA_ATBU_ALM-IMP'[1].visible == "X" ) )
+    `<select style="`width("41", "33.620em"); style("GWA_ATBU_ALM-IMP", 1)`" `
+    `class="MobileListbox`class_ext("GWA_ATBU_ALM-IMP", 1)` `class("GWA_ATBU_ALM-IMP", 1)`" `
+    if ( 'GWA_ATBU_ALM-IMP'[1].disabled == "X" ) `disabled="disabled" `end;
+    `name="`'GWA_ATBU_ALM-IMP'[1].name`" `
+    if ( 'GWA_ATBU_ALM-IMP'[1].okcode != "" )
+        `onchange="setOkCode('`'GWA_ATBU_ALM-IMP'[1].okcode`');return false;" `
+    end
+    `onfocus="setFocusField('`'GWA_ATBU_ALM-IMP'[1].name`');" `
+    `onblur="leaveFocusField('`'GWA_ATBU_ALM-IMP'[1].name`');" >`
+    if ( 'GWA_ATBU_ALM-IMP'[1].VALUESET != "" )
+        myvalueset = 'GWA_ATBU_ALM-IMP'[1].VALUESET;
+        repeat with i from 1 to ^myvalueset.dim`
+            <option value="`^myvalueset[i].key`" `
+                if ( ('GWA_ATBU_ALM-IMP'[1].selecteditem + 1) == i )
+                    `selected="selected" `
+                end
+            `>`strmaskext(^myvalueset[i].label, 1)`</option>
+`       end;
+    end;
+    `</select>`
+else
+   `<span style="`margin_left("41", "33.620em")`; height:1px"></span>`
+end;
+if ( 6 != 0 )
+    `<span style="`margin_left("6", "4.920em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 17 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_BULTO'[1].exists == "X" && 'LBL_BULTO'[1].visible == "X" ) ||
+     ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].exists == "X" && 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible == "X" ) ||
+     0 )
+`<!-- line 18 -->
+<div class="MobileRow">`
+if ( ( 'LBL_BULTO'[1].exists == "X" ) && ( 'LBL_BULTO'[1].visible == "X" ) )
+    icon( "LBL_BULTO", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_BULTO'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_BULTO'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_BULTO'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].exists == "X" )
+    if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_ATEN_BULT_ENT-IDBULTO', 1); class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+         if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode`');return false;" `
+         end;
+         `style="`width("28", "22.960em"); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+         `rows="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].rows`" cols="28" `
+         `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+         `name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`">`'GWA_ATEN_BULT_ENT-IDBULTO'[1]`</textarea>`
+    else
+        if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].disabled == "X" )
+            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("28", "22.960em"); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("28", "22.960em"); align("GWA_ATEN_BULT_ENT-IDBULTO", 1); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("28", "22.960em"); align("GWA_ATEN_BULT_ENT-IDBULTO", 1); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+            `name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `
+            if ( ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_ATEN_BULT_ENT-IDBULTO'[1], 1)`" `
+            end;
+            `size="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].width`" maxlength="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_ATEN_BULT_ENT-IDBULTO", 1 );
+            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("28", "22.960em"); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("28", "22.960em"); align("GWA_ATEN_BULT_ENT-IDBULTO", 1); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("28", "22.960em"); align("GWA_ATEN_BULT_ENT-IDBULTO", 1); style("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_ATEN_BULT_ENT-IDBULTO", 1)`" `
+                end;
+            end;
+            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+            `name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `end;
+            if ( ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_ATEN_BULT_ENT-IDBULTO'[1], 1)`" `
+            end;
+            `size="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].width`" maxlength="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("28", "22.960em")`; height:1px"></span>`
+end;
+if ( 19 != 0 )
+    `<span style="`margin_left("19", "15.580em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 19 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'LBL_CANT'[1].exists == "X" && 'LBL_CANT'[1].visible == "X" ) ||
+     ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].exists == "X" && 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible == "X" ) ||
+     0 )
+`<!-- line 20 -->
+<div class="MobileRow">`
+if ( ( 'LBL_CANT'[1].exists == "X" ) && ( 'LBL_CANT'[1].visible == "X" ) )
+    icon( "LBL_CANT", 1 );
+    `<span style="width:`w("7", "5.740em")``if ( 'LBL_CANT'[1].alignment == "right" )`; text-align: right`end;`" `
+    if ( 'LBL_CANT'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted" `
+    else
+        `class="MobileLabel" `
+    end
+    `>`strmask('LBL_CANT'[1].label)`</span>`
+else
+    `<span style="height:1px; margin-left:`w("7", "5.740em")`"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].exists == "X" )
+    if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].mode == "multiline" )
+        `<textarea `
+         `class="MobileEditMultiline`class_ext('GWA_ATEN_BULT_ENT-CANTIDAD', 1); class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+         if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].disabled == "X" ) `disabled="disabled" `end;
+         if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].readonly == "X" ) `readonly="readonly" `end;
+         if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode != "" )
+             `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode`');return false;" `
+         end;
+         `style="`width("9", "7.380em"); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+         `rows="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].rows`" cols="9" `
+         `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+         `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+         `name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`">`'GWA_ATEN_BULT_ENT-CANTIDAD'[1]`</textarea>`
+    else
+        if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].disabled == "X" )
+            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].type == "Password" )
+                `<input type="password" readonly="readonly" tabindex="-1" `
+                `style="`width("9", "7.380em"); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlightedDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else;
+                    `class="MobilePasswordDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" )
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("9", "7.380em"); align("GWA_ATEN_BULT_ENT-CANTIDAD", 1); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlightedDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else;
+                    `class="MobileEditRequiredDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            else
+                `<input type="text" readonly="readonly" tabindex="-1" `
+                `style="`width("9", "7.380em"); align("GWA_ATEN_BULT_ENT-CANTIDAD", 1); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobileEditHighlightedDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else;
+                    `class="MobileEditDisabled `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            end;
+            `onfocus="focusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+            `name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `
+            if ( ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1] == "?" ) )
+                 `value="" `
+            else
+                 `value="`strmaskext('GWA_ATEN_BULT_ENT-CANTIDAD'[1], 1)`" `
+            end;
+            `size="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].width`" maxlength="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].maxinputsize`"
+            `sh()`>`
+        else                                     <!-- not disabled -->
+            icon( "GWA_ATEN_BULT_ENT-CANTIDAD", 1 );
+            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible != "X" )
+                `<input type="hidden" `
+            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].type == "Password" )
+                `<input type="password" `
+                `style="`width("9", "7.380em"); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobilePasswordHighlighted `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else
+                    `class="MobilePassword `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" )
+                `<input type="text" `
+                `style="`width("9", "7.380em"); align("GWA_ATEN_BULT_ENT-CANTIDAD", 1); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobileEditRequiredHighlighted `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else
+                    `class="MobileEditRequired `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            else
+                `<input type="text" `
+                `style="`width("9", "7.380em"); align("GWA_ATEN_BULT_ENT-CANTIDAD", 1); style("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].highlighted == "X" )
+                    `class="MobileEditHighlighted `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                else
+                    `class="MobileEdit `class("GWA_ATEN_BULT_ENT-CANTIDAD", 1)`" `
+                end;
+            end;
+            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode != "" )
+                `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode`');return false;" `
+            end;
+            `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+            `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+            `name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `
+            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `end;
+            if ( ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1] == "?" ) )
+                `value="" `
+            else
+                `value="`strmaskext('GWA_ATEN_BULT_ENT-CANTIDAD'[1], 1)`" `
+            end;
+            `size="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].width`" maxlength="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].maxinputsize`"`
+            sh()`>`
+        end;
+    end;
+else
+    `<span style="`margin_left("9", "7.380em")`; height:1px"></span>`
+end;
+if ( 38 != 0 )
+    `<span style="`margin_left("38", "31.160em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     1 )
+`<!-- line 21 -->
+<div class="MobileRow">`
+if ( 54 != 0 )
+    `<span style="`margin_left("54", "44.280em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'CC_DET_BULT_AT'[1].exists == "X" && 'CC_DET_BULT_AT'[1].visible == "X" ) ||
+     1 )
+`<!-- line 22 -->
+<div class="MobileRow">`
+declare cust_control(name, width, height) in "some.html";
+if ( ~itsmobileCustomControls != "" )
+    include(~service=~current_service, ~theme=~theme, ~name=~itsmobileCustomControls, ~style="x");
+else
+    include(~service="itsmobile", ~theme="99", ~name=nonExt&"cust_controls", ~style="x");
+end;
+cust_control("CC_DET_BULT_AT", "36.080em", 4);`
+`
+<!-- content row end -->`
+</div>
+`end;
+`</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+	CUSTOM HTML, CSS
+
+-->
+`if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`elseif (~itsmobileStandardsMode == "X")`
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+`end;`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"
+      class="MobileHtml"`
+  end;`>`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;`
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0103
+      DATE:   20220810
+      TIME:   152323
+      STYLE:  MOBILE4
+-->
+declare class(name, idx=1), style(name, idx=1), style_attr(name, idx=1), icon(name, idx=1),
+    class_ext(name, idx=1), align(name, idx=1), label(name, idx=1), has_label(name, idx=1),
+    width(i, a), margin_left(i, a), w(i, a), sh(), mkid(s) in "some.html";
+if ( ~itsmobileFuncInclude != "" )
+    include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude, ~style="x");
+else
+    include(~service="itsmobile", ~language="", ~theme="99", ~name=nonExt&"functions", ~style="x");
+end;`
+`
+    `<head>`
+    if ( ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;`
+`
+        `<title>`~windowtitle`</title>
+`if (~resp_content_type == "") ~resp_content_type = "text/html"; end;`
+        <meta http-equiv="Content-Type" content="`~resp_content_type`; charset=`~resp_content_charset`" `sh()`>`
+if ( ~itsmobileSoundInclude != "" ) <!-- customers sound -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileSoundInclude & ".html");
+else <!-- default -->
+   include(~service="itsmobile", ~language="", ~theme="99", ~name="include/sound.html");
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" `sh()`>
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile.css")`" type="text/css" `sh()`>
+` end;
+`
+
+        <!--link rel="shortcut icon" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/image/favicon.gif")`" type="image/png"-->
+        <link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/bootstrap.css")`" type="text/css" />
+        <link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/stylecustom.css")`" type="text/css" />
+        <!--link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/customcolors.css")`" type="text/css" /-->
+        <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"-->
+
+`
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile.js")`"></script>
+` end;
+  if ( ~itsmobileCustomJsInclude != "" )`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCustomJsInclude & ".js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;`
+`
+    `</head>`
+    `<body
+        class="text-center"
+        `if (~currdynpro.speechenabled != "")`
+            id="MobileBody"
+            ev:event="load"
+            ev:handler="#sayOnPageLoad"
+        ` else `
+            onload="setFocus('`~focusfield`');`~itsmobileOnloadHandler`"
+        ` end; `
+            onkeydown="return processKeyEvent(event);"
+            onhelp="return false;">
+
+        <div>
+           `
+           if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+           include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+           elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+           include(~service="zgewmt_002", ~language="", ~theme="99", ~name="include/zcuaarea.html");
+           end
+           `
+        </div>
+        <form
+            class="form-body"
+            method="post"
+            action="`WGateURL()`"
+            id="mobileform"
+            name="mobileform"
+            onsubmit="return firstSend()">
+
+            <input type="hidden" name="~OkCode" value="/0"`sh()`>
+            <input type="hidden" name="~FKey" value=""`sh()`>
+            <input type="hidden" name="~Focusfield" value=""`sh()`>`if (~SEC_SESSTOKEN != "")`
+            <input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`"`sh()`>`end`
+            `if (~active_timer != "")
+            include(~service="itsmobile", ~theme="99", ~name="timer.html");
+            timer(~active_timer, width, height);
+            end`
+        `
+        `<!-- main screen begin -->
+        <div>`
+        if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+        ( 'TXT_103'[1].exists == "X" && 'TXT_103'[1].visible == "X" ) ||
+        ( 'TXT_103_USER'[1].exists == "X" && 'TXT_103_USER'[1].visible == "X" ) ||
+        0 )
+        `<!-- line 1 -->
+            <div
+                class="clearfix"
+                style="background-color: #adb5bd; color: white;">
+                    `
+                    if ( ( 'TXT_103'[1].exists == "X" ) && ( 'TXT_103'[1].visible == "X" ) )
+                    `
+                    <span class="float-start p-1 app-user">
+                            `strmask('TXT_103'[1])`
+                    </span>
+                    `
+                    end;
+                    if ( ( 'TXT_103_USER'[1].exists == "X" ) && ( 'TXT_103_USER'[1].visible == "X" ) )
+                    `
+                    <span class="float-end p-1 app-user" style="background-color: #ffff31; color: #424242;">
+                            `strmask('TXT_103_USER'[1])`
+                    </span>
+                    `
+                    end;
+                    `
+            </div>
+            `end;
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'BTN_IMP'[1].exists == "X" && 'BTN_IMP'[1].visible == "X" ) ||
+                 ( 'BTN_EL'[1].exists == "X" && 'BTN_EL'[1].visible == "X" ) ||
+                 ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 2 -->
+            <div class="clearfix row mb-2">
+                <div class="col-12 justify-content-between">
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-lg float-start mt-2 w-35"
+                        ` if ( 'BTN_IMP'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        ` end; `
+                            name="`'BTN_IMP'[1].name`"
+                        ` if ( ~currdynpro.speechenabled != "" ) `
+                            id="`'BTN_IMP'[1].name`"
+                        ` end; `
+                        ` if ( 'BTN_IMP'[1].onclick != "" ) `
+                            onclick="`'BTN_IMP'[1].onclick`;"
+                        ` elseif ( 'BTN_IMP'[1].rfidenabled == "X" ) `
+                            onfocus="setFocusField('`'BTN_IMP'[1].name`');"
+                            onblur="leaveFocusField('`'BTN_IMP'[1].name`');"
+                            onclick="RfidButtonClick();"
+                        ` else `
+                            onclick="setOkCode('`'BTN_IMP'[1].okcode`');"
+                        ` end;
+                        sh()`
+                        >
+                            `label("BTN_IMP", 1)`
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-lg float-center mt-2 w-30"
+                        ` if ( 'BTN_EL'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        ` end; `
+                            name="`'BTN_EL'[1].name`"
+                        ` if ( ~currdynpro.speechenabled != "" ) `
+                            id="`'BTN_EL'[1].name`"
+                        ` end; `
+                        ` if ( 'BTN_EL'[1].onclick != "" ) `
+                            onclick="`'BTN_EL'[1].onclick`;"
+                        ` elseif ( 'BTN_EL'[1].rfidenabled == "X" ) `
+                            onfocus="setFocusField('`'BTN_EL'[1].name`');"
+                            onblur="leaveFocusField('`'BTN_EL'[1].name`');"
+                            onclick="RfidButtonClick();"
+                        ` else `
+                            onclick="setOkCode('`'BTN_EL'[1].okcode`');"
+                        ` end;
+                        sh()`
+                        >
+                            `label("BTN_EL", 1)`
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-lg float-end mt-2 w-25"
+                        ` if ( 'BTN_SALIR'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        ` end; `
+                            name="`'BTN_SALIR'[1].name`"
+                        ` if ( ~currdynpro.speechenabled != "" ) `
+                            id="`'BTN_SALIR'[1].name`"
+                        ` end; `
+                        ` if ( 'BTN_SALIR'[1].onclick != "" ) `
+                            onclick="`'BTN_SALIR'[1].onclick`;"
+                        ` elseif ( 'BTN_SALIR'[1].rfidenabled == "X" ) `
+                            onfocus="setFocusField('`'BTN_SALIR'[1].name`');"
+                            onblur="leaveFocusField('`'BTN_SALIR'[1].name`');"
+                            onclick="RfidButtonClick();"
+                        ` else `
+                            onclick="setOkCode('`'BTN_SALIR'[1].okcode`');"
+                        ` end;
+                        sh()`
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-fill" viewBox="0 0 16 16">
+                              <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39
+8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
+                            </svg>
+                            `label("BTN_SALIR", 1)`
+                        </button>
+
+                </div>
+            </div>
+            `end;
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_ORDEN'[1].exists == "X" && 'LBL_ORDEN'[1].visible == "X" ) ||
+                 ( 'GWA_PEDIATENC-ORDEN'[1].exists == "X" && 'GWA_PEDIATENC-ORDEN'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 4 -->
+
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_ORDEN'[1].exists == "X" ) && ( 'LBL_ORDEN'[1].visible == "X" ) )
+                    icon( "LBL_ORDEN", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_ORDEN'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_PEDIATENC-ORDEN'[1].exists == "X" )
+                    if ( 'GWA_PEDIATENC-ORDEN'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_PEDIATENC-ORDEN'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_PEDIATENC-ORDEN'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_PEDIATENC-ORDEN'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_PEDIATENC-ORDEN'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_PEDIATENC-ORDEN'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');"
+                            name="`'GWA_PEDIATENC-ORDEN'[1].name`">
+                            `'GWA_PEDIATENC-ORDEN'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_PEDIATENC-ORDEN'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_PEDIATENC-ORDEN'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_PEDIATENC-ORDEN'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_PEDIATENC-ORDEN'[1].name`');"
+                                name="`'GWA_PEDIATENC-ORDEN'[1].name`" `
+                            if ( ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) && ( 'GWA_PEDIATENC-ORDEN'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_PEDIATENC-ORDEN'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_PEDIATENC-ORDEN'[1].width`"
+                                maxlength="`'GWA_PEDIATENC-ORDEN'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_PEDIATENC-ORDEN", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_PEDIATENC-ORDEN'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_PEDIATENC-ORDEN'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_PEDIATENC-ORDEN'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_PEDIATENC-ORDEN'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_PEDIATENC-ORDEN'[1].name`');" `
+                            `name="`'GWA_PEDIATENC-ORDEN'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_PEDIATENC-ORDEN'[1].name`" `end;
+                            if ( ( 'GWA_PEDIATENC-ORDEN'[1].inputrequired == "X" ) && ( 'GWA_PEDIATENC-ORDEN'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_PEDIATENC-ORDEN'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_PEDIATENC-ORDEN'[1].width`"
+                            maxlength="`'GWA_PEDIATENC-ORDEN'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+            `end;
+            `
+            <div class="clearfix mb-2 mt-2">
+            `
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_FRACCION'[1].exists == "X" && 'LBL_FRACCION'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-FRACCION'[1].exists == "X" && 'GWA_CONS_DET-FRACCION'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 6 -->
+
+                ` if ( ( 'LBL_FRACCION'[1].exists == "X" ) && ( 'LBL_FRACCION'[1].visible == "X" ) )
+                    icon( "LBL_FRACCION", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_FRACCION'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-FRACCION'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-FRACCION'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-30"
+                        ` if ( 'GWA_CONS_DET-FRACCION'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-FRACCION'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-FRACCION'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-FRACCION'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-FRACCION'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');"
+                            name="`'GWA_CONS_DET-FRACCION'[1].name`">
+                            `'GWA_CONS_DET-FRACCION'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-FRACCION'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-30"
+                            `
+                            if ( 'GWA_CONS_DET-FRACCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-FRACCION'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-FRACCION'[1].name`');"
+                                name="`'GWA_CONS_DET-FRACCION'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-FRACCION'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-FRACCION'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-FRACCION'[1].width`"
+                                maxlength="`'GWA_CONS_DET-FRACCION'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-FRACCION", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-30"
+                            `
+                            if ( 'GWA_CONS_DET-FRACCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-FRACCION'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-FRACCION'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-FRACCION'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-FRACCION'[1].name`');" `
+                            `name="`'GWA_CONS_DET-FRACCION'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-FRACCION'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-FRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-FRACCION'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-FRACCION'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-FRACCION'[1].width`"
+                            maxlength="`'GWA_CONS_DET-FRACCION'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+            <!-- content row end -->`
+
+            `end;
+            <!--/div>
+            <div class="clearfix mb-2 mt-2"-->
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_SUBFRACCION'[1].exists == "X" && 'LBL_SUBFRACCION'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-SUBFRACCION'[1].exists == "X" && 'GWA_CONS_DET-SUBFRACCION'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 12 -->
+
+                ` if ( ( 'LBL_SUBFRACCION'[1].exists == "X" ) && ( 'LBL_SUBFRACCION'[1].visible == "X" ) )
+                    icon( "LBL_SUBFRACCION", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_SUBFRACCION'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-SUBFRACCION'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-SUBFRACCION'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-25"
+                        ` if ( 'GWA_CONS_DET-SUBFRACCION'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-SUBFRACCION'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-SUBFRACCION'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-SUBFRACCION'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-SUBFRACCION'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');"
+                            name="`'GWA_CONS_DET-SUBFRACCION'[1].name`">
+                            `'GWA_CONS_DET-SUBFRACCION'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-SUBFRACCION'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-25"
+                            `
+                            if ( 'GWA_CONS_DET-SUBFRACCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');"
+                                name="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-SUBFRACCION'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-SUBFRACCION'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-SUBFRACCION'[1].width`"
+                                maxlength="`'GWA_CONS_DET-SUBFRACCION'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-SUBFRACCION", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-25"
+                            `
+                            if ( 'GWA_CONS_DET-SUBFRACCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-SUBFRACCION'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-SUBFRACCION'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-SUBFRACCION'[1].name`');" `
+                            `name="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-SUBFRACCION'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-SUBFRACCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-SUBFRACCION'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-SUBFRACCION'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-SUBFRACCION'[1].width`"
+                            maxlength="`'GWA_CONS_DET-SUBFRACCION'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+
+            `end;
+            `
+            </div>
+            `
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_ART'[1].exists == "X" && 'LBL_ART'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-DESCRIPCION'[1].exists == "X" && 'GWA_CONS_DET-DESCRIPCION'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 8 -->
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_ART'[1].exists == "X" ) && ( 'LBL_ART'[1].visible == "X" ) )
+                    icon( "LBL_ART", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_ART'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-DESCRIPCION'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-DESCRIPCION'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_CONS_DET-DESCRIPCION'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-DESCRIPCION'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-DESCRIPCION'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-DESCRIPCION'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-DESCRIPCION'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');"
+                            name="`'GWA_CONS_DET-DESCRIPCION'[1].name`">
+                            `'GWA_CONS_DET-DESCRIPCION'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-DESCRIPCION'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-DESCRIPCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');"
+                                name="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-DESCRIPCION'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-DESCRIPCION'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-DESCRIPCION'[1].width`"
+                                maxlength="`'GWA_CONS_DET-DESCRIPCION'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-DESCRIPCION", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-DESCRIPCION'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-DESCRIPCION'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-DESCRIPCION'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-DESCRIPCION'[1].name`');" `
+                            `name="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-DESCRIPCION'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-DESCRIPCION'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-DESCRIPCION'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-DESCRIPCION'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-DESCRIPCION'[1].width`"
+                            maxlength="`'GWA_CONS_DET-DESCRIPCION'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+            `end;
+
+
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_LOTE'[1].exists == "X" && 'LBL_LOTE'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-LOTE'[1].exists == "X" && 'GWA_CONS_DET-LOTE'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-UNIDADM'[1].exists == "X" && 'GWA_CONS_DET-UNIDADM'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 10 -->
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_LOTE'[1].exists == "X" ) && ( 'LBL_LOTE'[1].visible == "X" ) )
+                    icon( "LBL_LOTE", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_LOTE'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-LOTE'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-LOTE'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_CONS_DET-LOTE'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-LOTE'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-LOTE'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-LOTE'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-LOTE'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-LOTE'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-LOTE'[1].name`');"
+                            name="`'GWA_CONS_DET-LOTE'[1].name`">
+                            `'GWA_CONS_DET-LOTE'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-LOTE'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-50"
+                            `
+                            if ( 'GWA_CONS_DET-LOTE'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-LOTE'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-LOTE'[1].name`');"
+                                name="`'GWA_CONS_DET-LOTE'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-LOTE'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-LOTE'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-LOTE'[1].width`"
+                                maxlength="`'GWA_CONS_DET-LOTE'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-LOTE", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-50"
+                            `
+                            if ( 'GWA_CONS_DET-LOTE'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-LOTE'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-LOTE'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-LOTE'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-LOTE'[1].name`');" `
+                            `name="`'GWA_CONS_DET-LOTE'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-LOTE'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-LOTE'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-LOTE'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-LOTE'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-LOTE'[1].width`"
+                            maxlength="`'GWA_CONS_DET-LOTE'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+
+
+                if ( 'GWA_CONS_DET-UNIDADM'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-UNIDADM'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-25"
+                        ` if ( 'GWA_CONS_DET-UNIDADM'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-UNIDADM'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-UNIDADM'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-UNIDADM'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-UNIDADM'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');"
+                            name="`'GWA_CONS_DET-UNIDADM'[1].name`">
+                            `'GWA_CONS_DET-UNIDADM'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-UNIDADM'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-25"
+                            `
+                            if ( 'GWA_CONS_DET-UNIDADM'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-UNIDADM'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-UNIDADM'[1].name`');"
+                                name="`'GWA_CONS_DET-UNIDADM'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-UNIDADM'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-UNIDADM'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-UNIDADM'[1].width`"
+                                maxlength="`'GWA_CONS_DET-UNIDADM'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-UNIDADM", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-25"
+                            `
+                            if ( 'GWA_CONS_DET-UNIDADM'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-UNIDADM'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-UNIDADM'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-UNIDADM'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-UNIDADM'[1].name`');" `
+                            `name="`'GWA_CONS_DET-UNIDADM'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-UNIDADM'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-UNIDADM'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-UNIDADM'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-UNIDADM'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-UNIDADM'[1].width`"
+                            maxlength="`'GWA_CONS_DET-UNIDADM'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+            `end;
+
+
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_REQ'[1].exists == "X" && 'LBL_REQ'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-CANTIDADR'[1].exists == "X" && 'GWA_CONS_DET-CANTIDADR'[1].visible == "X" ) ||
+                 ( 'LBL_AT'[1].exists == "X" && 'LBL_AT'[1].visible == "X" ) ||
+                 ( 'GWA_CONS_DET-CANTIDADA'[1].exists == "X" && 'GWA_CONS_DET-CANTIDADA'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 14 -->
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_REQ'[1].exists == "X" ) && ( 'LBL_REQ'[1].visible == "X" ) )
+                    icon( "LBL_REQ", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_REQ'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-CANTIDADR'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-CANTIDADR'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_CONS_DET-CANTIDADR'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-CANTIDADR'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-CANTIDADR'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-CANTIDADR'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-CANTIDADR'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');"
+                            name="`'GWA_CONS_DET-CANTIDADR'[1].name`">
+                            `'GWA_CONS_DET-CANTIDADR'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-CANTIDADR'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-CANTIDADR'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');"
+                                name="`'GWA_CONS_DET-CANTIDADR'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADR'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-CANTIDADR'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-CANTIDADR'[1].width`"
+                                maxlength="`'GWA_CONS_DET-CANTIDADR'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-CANTIDADR", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-CANTIDADR'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-CANTIDADR'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADR'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADR'[1].name`');" `
+                            `name="`'GWA_CONS_DET-CANTIDADR'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-CANTIDADR'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-CANTIDADR'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADR'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-CANTIDADR'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-CANTIDADR'[1].width`"
+                            maxlength="`'GWA_CONS_DET-CANTIDADR'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+
+
+
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_AT'[1].exists == "X" ) && ( 'LBL_AT'[1].visible == "X" ) )
+                    icon( "LBL_AT", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_AT'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_CONS_DET-CANTIDADA'[1].exists == "X" )
+                    if ( 'GWA_CONS_DET-CANTIDADA'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_CONS_DET-CANTIDADA'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_CONS_DET-CANTIDADA'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_CONS_DET-CANTIDADA'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_CONS_DET-CANTIDADA'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_CONS_DET-CANTIDADA'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');"
+                            name="`'GWA_CONS_DET-CANTIDADA'[1].name`">
+                            `'GWA_CONS_DET-CANTIDADA'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_CONS_DET-CANTIDADA'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-CANTIDADA'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');"
+                                name="`'GWA_CONS_DET-CANTIDADA'[1].name`" `
+                            if ( ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADA'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_CONS_DET-CANTIDADA'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_CONS_DET-CANTIDADA'[1].width`"
+                                maxlength="`'GWA_CONS_DET-CANTIDADA'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_CONS_DET-CANTIDADA", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_CONS_DET-CANTIDADA'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_CONS_DET-CANTIDADA'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_CONS_DET-CANTIDADA'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_CONS_DET-CANTIDADA'[1].name`');" `
+                            `name="`'GWA_CONS_DET-CANTIDADA'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_CONS_DET-CANTIDADA'[1].name`" `end;
+                            if ( ( 'GWA_CONS_DET-CANTIDADA'[1].inputrequired == "X" ) && ( 'GWA_CONS_DET-CANTIDADA'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_CONS_DET-CANTIDADA'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_CONS_DET-CANTIDADA'[1].width`"
+                            maxlength="`'GWA_CONS_DET-CANTIDADA'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+
+            `end;
+
+
+
+
+
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_IMP'[1].exists == "X" && 'LBL_IMP'[1].visible == "X" ) ||
+                 ( 'GWA_ATBU_ALM-IMP'[1].exists == "X" && 'GWA_ATBU_ALM-IMP'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 16 -->
+                <div class="clearfix mb-2 mt-2">
+                    `
+                    if ( ( 'LBL_IMP'[1].exists == "X" ) && ( 'LBL_IMP'[1].visible == "X" ) )
+                        icon( "LBL_IMP", 1 ); `
+                        <label class="form-label w-20">
+                            `strmask('LBL_IMP'[1].label)`
+                        </label>
+                    ` end;
+                    if ( ( 'GWA_ATBU_ALM-IMP'[1].exists == "X" ) && ( 'GWA_ATBU_ALM-IMP'[1].visible == "X" ) )
+                    `
+                    <select class="form-select form-select-line form-control-sm w-75"
+                        ` if ( 'GWA_ATBU_ALM-IMP'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        ` end; `
+                            name="`'GWA_ATBU_ALM-IMP'[1].name`"
+                        ` if ( 'GWA_ATBU_ALM-IMP'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_ATBU_ALM-IMP'[1].okcode`');return false;"
+                        ` end `
+                            onfocus="setFocusField('`'GWA_ATBU_ALM-IMP'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_ATBU_ALM-IMP'[1].name`');" >
+                        `
+                            if ( 'GWA_ATBU_ALM-IMP'[1].VALUESET != "" )
+                                myvalueset = 'GWA_ATBU_ALM-IMP'[1].VALUESET;
+                                repeat with i from 1 to ^myvalueset.dim`
+                                    <option value="`^myvalueset[i].key`"
+                                        ` if ( ('GWA_ATBU_ALM-IMP'[1].selecteditem + 1) == i ) `
+                                            selected="selected"
+                                        ` end `
+                                    >
+                                        `strmaskext(^myvalueset[i].label, 1)`
+                                    </option>
+                            ` end;
+                    end; `
+                    </select>
+                    `
+                    end;
+                <!-- content row end -->`
+                </div>
+            `end;
+
+
+
+
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_BULTO'[1].exists == "X" && 'LBL_BULTO'[1].visible == "X" ) ||
+                 ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].exists == "X" && 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 18 -->
+
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_BULTO'[1].exists == "X" ) && ( 'LBL_BULTO'[1].visible == "X" ) )
+                    icon( "LBL_BULTO", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_BULTO'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].exists == "X" )
+                    if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');"
+                            name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`">
+                            `'GWA_ATEN_BULT_ENT-IDBULTO'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');"
+                                name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `
+                            if ( ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_ATEN_BULT_ENT-IDBULTO'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].width`"
+                                maxlength="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_ATEN_BULT_ENT-IDBULTO", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`');" `
+                            `name="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].name`" `end;
+                            if ( ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-IDBULTO'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_ATEN_BULT_ENT-IDBULTO'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].width`"
+                            maxlength="`'GWA_ATEN_BULT_ENT-IDBULTO'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+            `end;
+
+
+
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'LBL_CANT'[1].exists == "X" && 'LBL_CANT'[1].visible == "X" ) ||
+                 ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].exists == "X" && 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible == "X" ) ||
+                 0 )
+            `<!-- line 20 -->
+
+                <div class="clearfix mb-2 mt-2">
+                ` if ( ( 'LBL_CANT'[1].exists == "X" ) && ( 'LBL_CANT'[1].visible == "X" ) )
+                    icon( "LBL_CANT", 1 ); `
+                    <label class="form-label w-20">
+                        `strmask('LBL_CANT'[1].label)`
+                    </label>
+                ` end;
+
+                if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].exists == "X" )
+                    if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].mode == "multiline" )
+                        `
+                        <textarea class="form-control form-control-line form-control-sm w-50"
+                        ` if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].disabled == "X" ) `
+                            disabled="disabled"
+                        `end;
+                        if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].readonly == "X" ) `
+                            readonly="readonly"
+                        `end;
+                        if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode != "" ) `
+                            onchange="setOkCode('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode`');return false;"
+                        ` end; `
+                            rows="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].rows`"
+                            cols="30"
+                            onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');"
+                            onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');"
+                            name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`">
+                            `'GWA_ATEN_BULT_ENT-CANTIDAD'[1]`
+                        </textarea>
+                        `
+                    else
+                        if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].disabled == "X" )
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].type == "Password" ) `
+                                type="password" readonly="readonly" tabindex="-1" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            else `
+                                type="text" readonly="readonly" tabindex="-1" `
+                            end;
+                            `
+                                onfocus="focusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');"
+                                name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `
+                            if ( ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1] == "?" ) )
+                                 `value="" `
+                            else
+                                 `value="`strmaskext('GWA_ATEN_BULT_ENT-CANTIDAD'[1], 1)`" `
+                            end;
+                            `
+                                size="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].width`"
+                                maxlength="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].maxinputsize`"
+                            `sh()`>`
+                        else                                     <!-- not disabled -->
+                            icon( "GWA_ATEN_BULT_ENT-CANTIDAD", 1 );
+                            `
+                            <input class="form-control-line form-control-sm w-75"
+                            `
+                            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].visible != "X" ) `
+                                type="hidden" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].type == "Password" ) `
+                                type="password" `
+                            elseif ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) `
+                                type="text" `
+                            else `
+                                type="text" `
+                            end;
+                            if ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode != "" )
+                                `onchange="setOkCode('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].okcode`');return false;" `
+                            end;
+                            `onfocus="setFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+                            `onblur="leaveFocusField('`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`');" `
+                            `name="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `
+                            if ( ~currdynpro.speechenabled != "" ) `id="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].name`" `end;
+                            if ( ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1].inputrequired == "X" ) && ( 'GWA_ATEN_BULT_ENT-CANTIDAD'[1] == "?" ) )
+                                `value="" `
+                            else
+                                `value="`strmaskext('GWA_ATEN_BULT_ENT-CANTIDAD'[1], 1)`" `
+                            end;
+                            `
+                            size="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].width`"
+                            maxlength="`'GWA_ATEN_BULT_ENT-CANTIDAD'[1].maxinputsize`"
+                            `sh()`>`
+                        end;
+                    end;
+                end;
+                <!-- content row end -->`
+                </div>
+
+            `end;
+
+
+            if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+                 ( 'CC_DET_BULT_AT'[1].exists == "X" && 'CC_DET_BULT_AT'[1].visible == "X" ) ||
+                 1 )
+            `<!-- line 22 -->
+                <div class="table-responsive" >`
+                    declare cust_control(name, width, height) in "some.html";
+                    if ( ~itsmobileCustomControls != "" )
+                        include(~service=~current_service, ~theme=~theme, ~name=~itsmobileCustomControls, ~style="x");
+                    else
+                        include(~service="itsmobile", ~theme="99", ~name=nonExt&"cust_controls", ~style="x");
+                    end;
+                    cust_control("CC_DET_BULT_AT", "100%", 4);`
+                `
+                <!-- content row end -->`
+                </div>
+            `end;
+            `</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>

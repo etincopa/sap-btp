@@ -1,0 +1,282 @@
+`   if ( ~itsmobileFuncInclude != "" )
+declare width(i, a), w(i, a), pos(t, l), alignment(elem) in "some.html";
+include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude & ".html", ~style="x");
+else
+include(~service="itsmobile", ~language="", ~theme="99", ~name="functions.html", ~style="x");;
+end;
+if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`end`
+<html`if (~currdynpro.speechenabled != "")
+` xmlns="http://www.w3.org/1999/xhtml"
+xmlns:vxml="http://www.w3.org/2001/vxml"
+xmlns:ev="http://www.w3.org/2001/xml-events"
+xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"`
+end` `
+
+` >`
+if ( ~itsmobileNameSpace != "" )
+~current_service = ~itsmobileNameSpace & ~service;
+elseif ( strsub(~sources, 0, 1) == "/" )
+~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+else
+~current_service = ~service;
+end;
+if ( ~AttrMimeUrlService == "" ) ~AttrMimeUrlService = ~current_service; end;
+if ( ~AttrMimeUrlTheme == "" ) ~AttrMimeUrlTheme = ~theme; end;`
+`
+<!-- Generated Template
+   NAME:   ZGEWMI_0002
+   SCREEN: 0010
+   DATE:   20220304
+   TIME:   110040
+   STYLE:  MOBILE5
+   -->
+`
+<head>
+   `
+   if (  ~itsmobileDeviceInclude != "" )
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+   end;
+   `
+   <title>`~windowtitle`</title>
+   `if (NOTIFY_BELL_SIGNAL > 0)
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="`NOTIFY_BELL_SIGNAL`">
+   `end;
+   if ( ( ~messageline != "" ) && ( ~itsmobilemsgsound == "1" ) || ( ~currdynpro.messagesound != "" ) )
+   if ( ~messagetype == "S" || ~currdynpro.messagesound == "S" )
+   <!-- sucess message -->
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+   `  elseif ( ~messagetype == "I" || ~currdynpro.messagesound == "I" )
+   <!-- information message -->
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+   `  elseif ( ~messagetype == "W" || ~currdynpro.messagesound == "W" )
+   <!-- warning message -->
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="1" />
+   `  elseif ( ~messagetype == "E" || ~currdynpro.messagesound == "E" )
+   <!-- error message -->
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="3" />
+   `  elseif ( ~currdynpro.messagesound != "" )
+   <!-- message type not set -->
+   `        <bgsound src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~currdynpro.messagesound)`" loop="1" />
+   `  else
+   <!-- message type not set -->
+   `        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+   `  end;
+   end;
+   if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+   <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" />
+   ` else <!-- default include from itsmobile --> `
+   <!--link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile_e.css")`" type="text/css" /-->
+   ` end;`
+
+
+<!--link rel="shortcut icon" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/image/favicon.gif")`" type="image/png"-->
+<link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/bootstrap.css")`" type="text/css" />
+<link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/stylecustom.css")`" type="text/css" />
+<!--link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/customcolors.css")`" type="text/css" /-->
+<!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"-->
+<style>
+.bgImage {
+    /*background-color: #F5F9FC;*/
+    background-image: url(`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/image/logo-medifarma.png")`);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+</style>
+
+`
+   if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+   <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+   ` else <!-- default include from itsmobile -->`
+   <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile_e.js")`"></script>
+   ` end;`
+   <script type="text/javascript" language="Javascript">
+      var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+   </script>
+   ` <!-- rfid values --------------------------- -->
+   if ( ~RfidEnabledFields != "" ) `
+   <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+   <script type="text/javascript" language="Javascript">
+      var rfid_fields = new Object;
+      `   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+      rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+      `   end;`
+   </script>
+   ` end;`
+   `       <!-- Check if screen supports voice integration -->
+   if ( ~currdynpro.speechenabled != "" )
+   <!-- include the htmlb functions for voice integration -->
+   if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+   else <!-- default its default voice include -->
+   include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+   end;
+   end;
+   `
+</head>
+`
+`<body class="text-center bgImage"`
+if (~currdynpro.speechenabled != "")` ev:event="load" ev:handler="#sayOnPageLoad"` else
+` onload="setFocus('`~focusfield`')"` end;
+` onkeydown="return processKeyEvent(event);" onhelp="return false;"`
+` `
+`id="MobileBody" `
+` >
+`
+`<!-- main screen begin -->`
+`
+<div>
+   `
+   if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+   elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+   include(~service="zgewmt_002", ~language="", ~theme="99", ~name="include/zcuaarea.html");
+   end
+   `
+</div>
+`
+
+`<form method="post" action="`WGateURL()`" `
+`id="mobileform" `
+`name="mobileform" `
+` onsubmit="return firstSend()" class="form-signin">`
+`
+<!-- hidden okcode field -->
+<input type="hidden" id="~OkCode" name="~OkCode" value="/0" />
+<!-- hidden fkey field -->
+<input type="hidden" id="~FKey" name="~FKey" value="" />
+<!-- hidden focus field -->
+<input type="hidden" id="~Focusfield" name="~Focusfield" value="" />
+<!-- already send flag -->
+<input type="hidden" id="~ItsMobFirstSend" name="~ItsMobFirstSend" value="" />`
+if (~SEC_SESSTOKEN != "")
+`<input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`" />`
+end;
+xFactorFromGenerator=1000`
+`yFactorFromGenerator=1000
+
+
+`<div >`
+`<div class="clearfix" style="background-color: #adb5bd; color: white;">`
+if ( ( 'TXT_000'[1].exists == "X" ) && ( 'TXT_000'[1].visible == "X" ) )
+`<span class="float-start p-1 app-user"`
+if ( 'TXT_000'[1].highlighted == "X" )
+``
+` `
+if ( 'TXT_000'[1].alignment == "right" )
+` `
+end
+``
+else
+``
+if ( 'TXT_000'[1].alignment == "right" )
+` `
+end
+``
+end;
+`>`
+strmask('TXT_000'[1])
+`</span>`
+end;
+if ( ( 'TXT_000_USER'[1].exists == "X" ) && ( 'TXT_000_USER'[1].visible == "X" ) )
+`<span class="float-end p-1 app-user" style="background-color: #ffff31; color: #424242;"`
+if ( 'TXT_000_USER'[1].highlighted == "X" )
+``
+if ( 'TXT_000_USER'[1].alignment == "right" )
+` `
+end
+``
+else
+``
+if ( 'TXT_000_USER'[1].alignment == "right" )
+` `
+end
+``
+end;
+`>`
+strmask('TXT_000_USER'[1])
+`</span>`
+end;
+`</div>`
+`<div class="mb-5 pt-5"></div>`
+`<div class="mb-2 pt-2"></div>`
+if ( 'BTN_PEDATENC'[1].exists == "X" && 'BTN_PEDATENC'[1].visible == "X" )
+`<input type="button" class="form-control btn btn-primary p-4 mt-5 btnSize25b"`
+if ( 'BTN_PEDATENC'[1].disabled == "X" )
+` disabled="disabled"`
+else
+``
+end;
+`name="`'BTN_PEDATENC'[1].name`" `
+if ( ~currdynpro.speechenabled != "" )
+`id="`
+'BTN_PEDATENC'[1].name
+`" `
+end;
+`value="`
+strmask('BTN_PEDATENC'[1].label)
+`" `
+if ( 'BTN_PEDATENC'[1].onclick != "" )
+`onclick="`'BTN_PEDATENC'[1].onclick`;" `
+elseif ( 'BTN_PEDATENC'[1].rfidenabled == "X" )
+`onfocus="setFocusField('`'BTN_PEDATENC'[1].name`');"
+onblur="leaveFocusField('`'BTN_PEDATENC'[1].name`');"
+onclick="RfidButtonClick();" `
+else
+`onclick="setOkCode('`'BTN_PEDATENC'[1].okcode`');" `
+end;
+`/>`
+end;
+
+if ( 'BTN_ENTDOC'[1].exists == "X" && 'BTN_ENTDOC'[1].visible == "X" )
+`<input type="button" class="form-control btn btn-info p-4 mt-2 btnSize25b" `
+if ( 'BTN_ENTDOC'[1].disabled == "X" )
+` disabled="disabled" `
+else
+``
+end;
+`name="`
+'BTN_ENTDOC'[1].name
+`" `
+if ( ~currdynpro.speechenabled != "" )
+`id="`
+'BTN_ENTDOC'[1].name
+`" `
+end;
+`value="`strmask('BTN_ENTDOC'[1].label)`" `
+if ( 'BTN_ENTDOC'[1].onclick != "" )
+`onclick="`'BTN_ENTDOC'[1].onclick`;" `
+elseif ( 'BTN_ENTDOC'[1].rfidenabled == "X" )
+`onfocus="setFocusField('`'BTN_ENTDOC'[1].name`');"
+onblur="leaveFocusField('`'BTN_ENTDOC'[1].name`');"
+onclick="RfidButtonClick();" `
+else
+`onclick="setOkCode('`'BTN_ENTDOC'[1].okcode`');" `
+end;
+`/>`
+end;
+if ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" )
+`
+<a class="btn btn-danger btn-lg mt-2 form-btn-signin float-end" href="`wgateUrl(~okcode="/nex"); if (~SEC_SESSTOKEN != "")`&amp;~SEC_SESSTOKEN=`~SEC_SESSTOKEN; end
+         `" class="btn btn-danger btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+  <path d="M7.5 1v7h1V1h-1z"/>
+  <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+</svg> `
+sh()
+` `
+strmask('BTN_SALIR'[1].label)
+`</a>`
+end;
+`</div>
+<!-- main screen end -->`
+`</form>`
+`</body>`
+`</html>

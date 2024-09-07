@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblPaso" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" 
+			items="{
+				path: 'aListPaso>/',
+				sorter: {
+					path: 'aListPaso>codigo',
+					descending: false
+				}
+			}" updateFinished="onUpdateFinish" growing="true" growingScrollToLoad="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>adPPasos} ({=${aListPaso>/}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+		<!-- <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewRM}" icon="sap-icon://add-activity-2" press="onGetNewRM"/>
+				<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLS"/>
+				<OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/> -->
+				<OverflowToolbarButton tooltip="{i18n>onRefresh}" icon="sap-icon://synchronize" press="onRefreshPasos"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>adPCod}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="35%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>adPDesc}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="7%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbCEstado}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>adPNum}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="25%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>adPEst}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="25%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>adPEtq}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{aListPaso>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListPaso>descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListPaso>estadoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{=${aListPaso>numeracion} ? 'SI' : 'NO'}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListPaso>estructuraId/descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListPaso>etiquetaId/descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

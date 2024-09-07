@@ -1,0 +1,16 @@
+<mvc:View controllerName="mif.rmd.configuracion.controller.MainView" displayBlock="true"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc">
+  <App id="idAppControl">
+    <pages>
+      <Page id="page" title="{i18n>title}">
+        <content>
+          <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.Filter" type="XML"/>
+          <!--<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.Form" type="XML"/>-->
+          <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.Body" type="XML"/>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>

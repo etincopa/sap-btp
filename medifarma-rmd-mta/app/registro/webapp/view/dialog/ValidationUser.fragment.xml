@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+  xmlns:layout="sap.ui.layout">
+  <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="auto" title="{i18n>mnValidationUser}">
+		<content>
+			<layout:VerticalLayout>
+				<Input value="{modelGeneral>/passwordValidate}" placeholder="{i18n>phlblpassword}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false" required="true"/>
+			</layout:VerticalLayout>
+		</content>
+        <beginButton>
+			<Button text="{i18n>btnValidate}" press="onConfirmValidationUser" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelValidationUserStep" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

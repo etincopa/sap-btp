@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"> 
+    <Popover showHeader="false" contentWidth="320px" placement="Left" initialFocus="action" ariaLabelledBy="master-title">
+        <Table contextualWidth="Auto" items="{ path: 'localModel>/aAdjuntosSharepoint' }">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <core:Icon src="sap-icon://pdf-attachment"/>
+                    <Title text="Adjuntos" level="H2"/>
+                    <ToolbarSpacer/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column width="1.5rem">
+                    <Text text="" />
+                </Column>
+                <Column width="8rem">
+                    <Text text="Nombre"/>
+                </Column>
+                <Column width="2rem">
+                    <Text text=""/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells >
+                        <core:Icon src="sap-icon://pdf-attachment"/>
+                        <Link text="{localModel>Name}" press="onDownloadAdjunto" />
+                        <Button icon="sap-icon://delete"  press="onDeleteAdjunto"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Cerrar" press="onCerrarAdjuntos" type="Transparent"/>
+        </endButton>
+	</Popover>
+</core:FragmentDefinition>

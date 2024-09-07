@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:cards="sap.f.cards"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:l="sap.ui.layout">
+    <Dialog class="sapUiContentPadding sapUiSizeCompact" afterClose="onCancelVisualizeEtiquetaCoProducto" title="{i18n>tlVisualizeEtiqueta}" contentWidth="38%">
+        <content>
+            <Carousel height="auto" id="carouselDataCoProducto" loop="true">
+            </Carousel>
+        </content>
+        <beginButton>
+            <Button text="{i18n>mnPrint}" press="onImprimirTicketCoProducto" type="Accept"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>btnClose}" press="onCancelVisualizeEtiquetaCoProducto" type="Reject"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

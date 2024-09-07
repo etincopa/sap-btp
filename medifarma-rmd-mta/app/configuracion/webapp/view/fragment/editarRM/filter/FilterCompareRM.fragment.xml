@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFiltersCompare" search="onSearchMdEstructureCompare" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="true">
+		<fb:filterGroupItems>
+		<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>Campo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'localModel>/fitrosComparativo'}"
+						 placeholder="{i18n>phlblTipo}" selectedKey="{oDataMdEstructura>/code}"
+                        showSecondaryValues="true" filterSecondaryValues="true"
+						id="cmbTipoComparacion">
+                        <core:ListItem key="{localModel>code}" text="{localModel>name}"  />
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>addBuscar}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataMdEstructura>/description}" submit="onSearchMdEstructureCompare" placeholder="{i18n>addBuscar}"
+					 type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

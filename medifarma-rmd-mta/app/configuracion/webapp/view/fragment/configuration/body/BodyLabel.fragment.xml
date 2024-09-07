@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<!-- <ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true"> -->
+		<Table id="tblLabel" width="auto" sticky="HeaderToolbar,ColumnHeaders" items="{path: 'mainModelv2>/ETIQUETA',
+                parameters: { 'expand' : 'estadoId,estructuraId'},
+                filters: [{
+                    path: 'activo',
+                    operator: 'EQ',
+                    value1: 'true'
+                }],
+				sorter: {
+					path: 'codigo'
+				}}" updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="false">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>icoLabel}"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewLabel}" icon="sap-icon://add-activity-2" press="onAddEtiqueta"/>
+					<OverflowToolbarButton text="{i18n>btnExportLabel}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="33%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="20%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clStructure}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clState}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="12%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clUserDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDateDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clAction}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{mainModelv2>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>estructuraId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>estadoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>usuarioRegistro}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{path: 'mainModelv2>fechaRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd', UTC: false }}" width="auto" wrapping="true"/>
+                    <HBox>
+                        <Button tooltip="{i18n>editConfig}" icon="sap-icon://edit" press="onEditarEtiqueta" type="Transparent"/>
+                        <Button tooltip="{i18n>deleteConfig}" icon="sap-icon://delete" press="onDeleteDataMaestra" type="Transparent"/>
+                    </HBox>
+				</ColumnListItem>
+			</items>
+		</Table>
+	<!-- </ScrollContainer> -->
+</core:FragmentDefinition>

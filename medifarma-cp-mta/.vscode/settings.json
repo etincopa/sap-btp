@@ -1,0 +1,30 @@
+{
+  "files.exclude": {
+    "**/.gitignore": true,
+    "**/.git": true,
+    "**/.vscode": true
+  },
+  "[xml].editor.defaultFormatter": "dotjoshjohnson.xml",
+  "sqltools.connections": [
+    {
+      "dialect": "SAPHana",
+      "port": 443,
+      "server": "837981d0-6a33-4f4b-af8b-c88860da5141.hana.trial-us10.hanacloud.ondemand.com",
+      "database": "975EA90F92B34F719EB8D5881A1C7700",
+      "username": "975EA90F92B34F719EB8D5881A1C7700_BLGRXM0GXQ3WY55EKICOVKAWU_RT",
+      "password": "Wi5AwDSkwhvT3rEtHF3RdwsTJ7ys_3OnpnwNv_jsqDXdt5Y7.N0n5thLXYWmJO7jTm2Um0lO__xzcQTGC18Bjg7w_GZ-7ZKQN.Dog75BkjP3kyKodYFi2LUu_icBEAl6",
+      "name": "hanadb3",
+      "hanaOptions": {
+        "encrypt": true,
+        "sslValidateCertificate": true,
+        "sslCryptoProvider": "openssl",
+        "sslTrustStore": "/home/user/.ssl/DigiCertGlobalRootCA.pem"
+      },
+      "isActive": true,
+      "isConnected": true
+    }
+  ],
+  "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/central-pesadas/db/src",
+  "SAP HANA Database Explorer.displaySapWebAnalyticsStartupNotification": false,
+  "SAP HANA Database Explorer.enableSapWebAnalytics": false
+}

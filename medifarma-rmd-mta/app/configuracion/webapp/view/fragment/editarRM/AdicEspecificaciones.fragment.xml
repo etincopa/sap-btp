@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>tltAddEspec}" afterClose="onCancelAddEspecificacionEditRM">
+        <form:Form width="100%" editable="true" visible="{visible>/state}">
+            <form:formContainers>
+                <form:FormContainer visible="true">
+                    <form:formElements>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblEnsayoPadre}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <ComboBox items="{path: 'aListEnsayoPadre>/', sorter: {path: 'aListEnsayoPadre>codigo', descending: false}}" width="100%" placeholder="{i18n>phlblEnsayoPadre}" selectedKey="{oDataFormEspecificaciones>/ensayoPadreId_iMaestraId}" 
+                                    showSecondaryValues="true" filterSecondaryValues="true">
+                                    <core:ListItem key="{aListEnsayoPadre>iMaestraId}" text="{aListEnsayoPadre>contenido}" additionalText="{aListEnsayoPadre>codigo}"/>
+                                </ComboBox>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblEnsayoHijo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <Input value="{oDataFormEspecificaciones>/ensayoHijo}" placeholder="{i18n>phlblEnsayoHijo}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblEspecificaciones}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <Input value="{oDataFormEspecificaciones>/especificacion}" placeholder="{i18n>phlblEspecificaciones}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblTipoDato}" vAlign="Middle" design="Bold" width="80%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <ComboBox items="{path: 'mainModel>/MAESTRA', filters: [{path: 'oMaestraTipo_maestraTipoId', operator: 'EQ', value1: 5}, {path: 'campo1', operator: 'EQ', value1: 'ESPECIFICACION'}]}" 
+                                    placeholder="{i18n>phlblTipoDato}" selectedKey="{oDataFormEspecificaciones>/tipoDatoId_iMaestraId}"
+                                    showSecondaryValues="true" filterSecondaryValues="true">
+                                    <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+                                </ComboBox>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblValores}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <HBox width="100%">
+                                    <Input value="{oDataFormEspecificaciones>/valorInicial}" placeholder="{i18n>phMinimo}" type="Number" editable="{=${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '438' || ${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '443' ? true : false}"/>
+                                    <Input value="{oDataFormEspecificaciones>/valorFinal}" placeholder="{i18n>phMaximo}" type="Number" editable="{=${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '438' || ${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '443' ? true : false}"/>
+                                    <Input value="{oDataFormEspecificaciones>/margen}" placeholder="{i18n>phMargen}" type="Number" editable="{=${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '438' || ${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '443' ? true : false}"/>
+                                </HBox>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement visible="true">
+                            <form:label>
+                                <Label text="{i18n>lblDecimal}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                            </form:label>
+                            <form:fields>
+                                <Input value="{oDataFormEspecificaciones>/decimales}" placeholder="{i18n>phlblDecimal}" type="Number" editable="{=${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '438' || ${oDataFormEspecificaciones>/tipoDatoId_iMaestraId} === '443' ? true : false}"/>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                    <form:title/>
+                </form:FormContainer>
+            </form:formContainers>
+            <form:layout>
+                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+            </form:layout>
+        </form:Form>
+        <beginButton>
+            <Button text="{i18n>btnAgregar}" press="onConfirmAddEspecification" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+			<Button text="{i18n>btnClose}" press="onCancelAddEspecificacionEditRM" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

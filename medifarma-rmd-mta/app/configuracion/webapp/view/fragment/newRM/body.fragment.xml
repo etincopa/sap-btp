@@ -1,0 +1,120 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <form:Form id="idNewRMDForm" width="100%" editable="true" visible="true">
+        <form:formContainers>
+            <form:FormContainer visible="true">
+                <form:formElements>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>asocSolicitud}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{
+                                path : 'mainModel>/MD',
+                                filters: [{
+                                    path: 'estadoIdRmd_iMaestraId',
+                                    operator: 'EQ',
+                                    value1: 469
+                                }]
+                                }" placeholder="Asociar Solicitud" selectedKey="{oDataNewMD>/mdId}"
+                                showSecondaryValues="true" filterSecondaryValues="true" change="onSelectSolicitud">
+                                <core:ListItem key="{mainModel>mdId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigoSolicitud}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>descRM}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <Input value="{oDataNewMD>/descripcion}" placeholder="{i18n>descRM}" type="Text" showValueHelp="false" visible="true"
+                                width="100%" valueHelpOnly="false" editable="{=${oDataNewMD>/mdId} ? false : true}"/>
+                        </form:fields>
+                    </form:FormElement>              
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>nivel}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{localModel>/aListaNiveles}" placeholder="{i18n>phlblLevel}" selectedKey="{oDataNewMD>/nivelTxt}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${oDataNewMD>/mdId} ? false : true}">
+                                <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>sucursal}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{path : 'mainModel>/MAESTRA',
+                                filters: [{
+                                    path: 'oMaestraTipo_maestraTipoId',
+                                    operator: 'EQ',
+                                    value1: '18'
+                                }]}" placeholder="{i18n>phSucursal}" selectedKey="{oDataNewMD>/sucursalId_iMaestraId}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${oDataNewMD>/mdId} ? false : true}">
+                                <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigo}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <!-- <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>fechaSol}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <DatePicker
+                                id="DP5"
+                                placeholder="Ingresar Fecha"
+                                valueFormat="yyyy/MM/dd"
+                                class="sapUiSmallMarginBottom"
+                                value="{oDataNewMD>/fechaSolicitud}"
+                                displayFormat="dd/MM/yyyy"
+                                editable="{=${oDataNewMD>/mdId} ? false : true}"/>
+                        </form:fields>
+                    </form:FormElement> -->
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>motivo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{path : 'mainModel>/MOTIVO',
+                                filters: [{
+                                    path: 'activo',
+                                    operator: 'EQ',
+                                    value1: 'true'
+                                    },
+                                    {
+                                    path: 'estadoId_iMaestraId',
+                                    operator: 'EQ',
+                                    value1: '2'
+                                    }],
+                                sorter: {
+                                        path: 'codigo'
+                                    }
+                                }" 
+                                placeholder="{i18n>phMotivo}" selectedKey="{oDataNewMD>/motivoId_motivoId}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${oDataNewMD>/mdId} ? false : true}">
+                                <core:ListItem key="{mainModel>motivoId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigo}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>area}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{path : 'localModel>/aListaSecciones'}" placeholder="{i18n>phArea}" selectedKey="{oDataNewMD>/areaRmdTxt}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${oDataNewMD>/mdId} || ${localModel>/aListaSecciones}.length === 0 ? false : true}">
+                                <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                </form:formElements>
+                <form:title/>
+            </form:FormContainer>
+        </form:formContainers>
+        <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+        </form:layout>
+    </form:Form>
+</core:FragmentDefinition>

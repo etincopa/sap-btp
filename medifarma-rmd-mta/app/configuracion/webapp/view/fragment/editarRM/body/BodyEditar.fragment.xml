@@ -1,0 +1,182 @@
+<core:FragmentDefinition xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:ui="sap.ui.table"
+  xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" displayBlock="true" height="100%" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+        <ui:TreeTable toggleOpenState="onOpenProcedimiento" id="id_TreeSolped" rows="{ path: 'listMdEstructuraGeneral>/'}" selectionMode="Single" ariaLabelledBy="title" visibleRowCount="10">
+            <ui:extension>
+                <OverflowToolbar>
+                    <Title text="{i18n>estRegistro} ({=${listMdEstructuraGeneral>/}.length})" level="H2"/>
+                    <ToolbarSpacer/>
+                    <!-- <Button type="Transparent" icon="sap-icon://excel-attachment" press="onPressDescargarExcel" tooltip="Descargar Excel"/> -->
+                    <OverflowToolbarButton text="{i18n>TbEVers}" tooltip="{i18n>TbEVers}" icon="sap-icon://sys-add" press="onGenerarNuevaVersion" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>TbEPaste}" tooltip="{i18n>TbEPaste}" icon="sap-icon://paste" press="onCopiarARM" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>TbECopy}" tooltip="{i18n>TbECopy}" icon="sap-icon://copy" press="onCopiarDeRM" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>TbEExport}" tooltip="{i18n>TbEExport}" icon="sap-icon://excel-attachment" press="onExportXLS" type="Transparent"/>
+                    <!-- <OverflowToolbarButton text="{i18n>TbEConfirm}" tooltip="{i18n>TbEConfirm}" icon="sap-icon://accept" press="onExportXLS"/> -->
+                    <OverflowToolbarButton text="{i18n>TbEGenerate}" tooltip="{i18n>TbEGenerate}" icon="sap-icon://documents" press="onGenerarPredecesores" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>TbEUpdate}" tooltip="{i18n>TbEUpdate}" icon="sap-icon://timesheet" press="onGenerarActualizarEnLinea" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? true : false}"/>
+                    <OverflowToolbarButton text="{i18n>TbEConf}" tooltip="{i18n>TbEConf}" icon="sap-icon://settings" press="onGenerarConfiguracionInicial" type="Transparent"/>
+                    <OverflowToolbarButton text="{i18n>add}" tooltip="{i18n>add}" icon="sap-icon://add" press="onAddNewEstructure" type="Transparent"/>
+                </OverflowToolbar>
+            </ui:extension>
+            <ui:columns>
+                <ui:Column width="170px"  hAlign="Center">
+                    <Label text="{i18n>TbEOrder}" design="Bold"/>
+                    <ui:template>
+                        <Label text="{listMdEstructuraGeneral>orden}" design="{listMdEstructuraGeneral>design}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Left" width="500px">
+                    <Label text="{i18n>TbEDes}" design="Bold"/>
+                    <ui:template>
+                        <Label text="{listMdEstructuraGeneral>descripcion_est}" design="{listMdEstructuraGeneral>design}" wrapping="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" width="170px" >
+                    <Label text="{i18n>TbECod}" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{=${listMdEstructuraGeneral>codigo_est} !== true &amp;&amp; ${listMdEstructuraGeneral>codigo_est} !== false ? false : ${listMdEstructuraGeneral>codigo_est}}" visible="{=${listMdEstructuraGeneral>visButProceso} ? true : false}" enabled="true"/>
+                            <Label text="{listMdEstructuraGeneral>codigo_est}" design="{listMdEstructuraGeneral>design}" visible="{=${listMdEstructuraGeneral>visButProceso} ? false : true}" wrapping="true"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="{i18n>TbEItem}" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{=${listMdEstructuraGeneral>cantidad_mde} !== true &amp;&amp; ${listMdEstructuraGeneral>cantidad_mde} !== false ? false : ${listMdEstructuraGeneral>cantidad_mde}}" visible="{=${listMdEstructuraGeneral>visButProceso} ? true : false}" enabled="false"/>
+                            <Label text="{listMdEstructuraGeneral>cantidad_mde}" design="{listMdEstructuraGeneral>design}" visible="{=${listMdEstructuraGeneral>visButProceso} ? false : true}" wrapping="true"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" width="170px" >
+                    <Label text="{i18n>TbERep}" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <ObjectStatus text="{listMdEstructuraGeneral>estadoIdRmd}" state="{listMdEstructuraGeneral>state}" visible="{=${listMdEstructuraGeneral>editMdPaso} ? false : true }"/>
+                            <ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                    filters: [{
+                                    path: 'oMaestraTipo_maestraTipoId',
+                                    operator: 'EQ',
+                                    value1: '5'
+                                }]}" 
+                                placeholder="Tipo de Dato" selectedKey="{listMdEstructuraGeneral>estadoIdRmd}" showSecondaryValues="true" visible="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }">
+                                <core:ListItem key="{mainModelv2>contenido}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+                            </ComboBox>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" width="170px" >
+                    <Label text="{i18n>TbENum}" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Label text="{=${listMdEstructuraGeneral>numeracion_est} === true ? 'SI' : 'NO'}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>editMdPaso} ? false : true }"/> 
+                            <Input value="{listMdEstructuraGeneral>numeracion_est}" visible="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                            <!-- <Button icon="sap-icon://database" tooltip="Procesos Menores" press="onOpenProcMenores" type="Transparent" visible="{=${listMdEstructuraGeneral>visible} ? true : false }" /> -->
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center"  width="170px" >
+                    <Label text="{i18n>TbEAcc}" design="Bold"/>
+                    <ui:template>
+                        <HBox>
+                        <!-- <MenuButton width="150px" visible="{listMdEstructuraGeneral>menuVisible}"  text="{i18n>acciones}" buttonMode="Split" defaultAction="onDefaultAction" >
+                            <menu >
+                            <Menu width="150px" itemSelected="onEditMenuAction"> -->
+                            <HBox visible="{listMdEstructuraGeneral>menuVisible}">
+                                <OverflowToolbarButton tooltip="{i18n>accDeleteRM}" text="{i18n>accDeleteRM}" icon="sap-icon://delete" press="onDelEstructura" type="Transparent"/>
+                                <OverflowToolbarButton tooltip="{i18n>accAddEtiqueta}" text="{i18n>accAddEtiqueta}" icon="sap-icon://document-text" press="onEditMenuAction"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 487 ? true : false }"/>
+                                <OverflowToolbarButton tooltip="{i18n>accAddPasos}" text="{i18n>accAddPasos}" icon="sap-icon://edit" press="onEditMenuAction"  type="Transparent" visible="{=(${listMdEstructuraGeneral>tipoEstructuraId} === 484 || ${listMdEstructuraGeneral>tipoEstructuraId} === 483) ? true :  false }"/>
+                                <OverflowToolbarButton tooltip="{i18n>accAddEquipo}" text="{i18n>accAddEquipo}" icon="sap-icon://add-equipment" press="onEditMenuAction"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 485 ? true : false }"/>
+                                <OverflowToolbarButton tooltip="{i18n>accAddEspecification}" text="{i18n>accAddEspecification}" icon="sap-icon://lab" press="onEditMenuAction"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 486 ? true : false }"/>
+                            </HBox>
+                            <!-- </Menu>
+                            </menu>
+                        </MenuButton> -->
+                        <Label text="{listMdEstructuraGeneral>actions}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>editMdPaso} ? false : true }"/>
+                        <Input value="{listMdEstructuraGeneral>actions}" visible="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                        <Button icon="sap-icon://delete" tooltip="Eliminar" press="onDelEstructura" type="Transparent" visible="{=${listMdEstructuraGeneral>visAccEquipos} ? true : false }" />
+                        <Button icon="sap-icon://edit" tooltip="Editar" press="onEditEquipo" type="Transparent" visible="{=${listMdEstructuraGeneral>visAccEquipos} ? true : false }" />
+                        </HBox>
+                    </ui:template> 
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Label text="{listMdEstructuraGeneral>items2}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>editMdPaso} ? false : true }"/>
+                            <Input value="{listMdEstructuraGeneral>items2}" visible="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <Label text="{listMdEstructuraGeneral>items3}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>editMdPaso} ? false : true }"/>
+                            <Input value="{listMdEstructuraGeneral>items3}" visible="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEstructuraGeneral>items4}" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEstructuraGeneral>items4TxT}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>items4TxT} === 'Estado CC' ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEstructuraGeneral>items5}" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEstructuraGeneral>items5TxT}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>items5TxT} === 'Estado Mov.' ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEstructuraGeneral>items7}" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEstructuraGeneral>items7TxT}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>items7TxT} === 'Formato' ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <VBox alignContent="Center" alignItems="Center">
+                            <CheckBox selected="{listMdEstructuraGeneral>items8}" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? true : false }"/>
+                            <Label text="{listMdEstructuraGeneral>items8TxT}" design="{listMdEstructuraGeneral>design}" wrapping="false" visible="{=${listMdEstructuraGeneral>items8TxT} === 'Imagen' ? true : false }"/>
+                        </VBox>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column  hAlign="Center" width="170px" >
+                    <Label text="" design="Bold"/>
+                    <ui:template>
+                        <HBox alignContent="Center" alignItems="Center">
+                            <Label text="{listMdEstructuraGeneral>items6}" design="{listMdEstructuraGeneral>design}" wrapping="false"/>
+                            <!-- <Button icon="sap-icon://database" tooltip="Procesos Menores" press="onOpenProcMenores" type="Transparent" visible="{=${listMdEstructuraGeneral>visible} ? true : false }" /> -->
+                            <Button icon="sap-icon://edit" tooltip="{i18n>btnEdit}" press="onEditPasoRM" type="Transparent" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false }" />
+                            <Button icon="sap-icon://delete" tooltip="{i18n>btnDelete}" press="onDelPaso" type="Transparent" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false }" />
+                            <Button icon="sap-icon://edit-outside" tooltip="{i18n>btnEditStep}" press="onEditMdPaso" type="Transparent" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? false : true}"/>
+                            <Button icon="sap-icon://save" tooltip="{i18n>btnSaveStep}" press="onSaveEditMsPaso" type="Transparent" visible="{=${listMdEstructuraGeneral>visButPrecaucion} ? true : false}" enabled="{=${listMdEstructuraGeneral>editMdPaso} ? true : false}"/>
+                        </HBox>
+                    </ui:template>
+                </ui:Column>
+            </ui:columns>
+            <ui:dragDropConfig>
+                <dnd:DragDropInfo
+                    sourceAggregation="rows"
+                    targetAggregation="rows"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDrop"/>
+            </ui:dragDropConfig>
+        </ui:TreeTable>
+	</ScrollContainer>
+</core:FragmentDefinition>

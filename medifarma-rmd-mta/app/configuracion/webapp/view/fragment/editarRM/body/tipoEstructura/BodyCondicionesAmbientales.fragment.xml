@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:dnd="sap.ui.core.dnd">
+	<Dialog title="{asociarDatos>/codigo} - {asociarDatos>/descripcion}" afterClose="onCancelCondicionesAmbientalesResponsive">
+		<Table width="auto" id="idTblPasoCondicionesAmbientales" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListPasoAssignResponsive>/}" updateFinished="onUpdateFinish">
+			<dragDropConfig>
+				<dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropResponsive"/>
+			</dragDropConfig>
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>adPPasos} ({=${aListPasoAssignResponsive>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>add}" tooltip="{i18n>add}" icon="sap-icon://add" press="onAddPasosResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<OverflowToolbarButton text="{i18n>btnSave}" tooltip="{i18n>btnSave}" icon="sap-icon://save" press="onSavePasosResponsive" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" press="onDeletePasosCAResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCOrden}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCCodigo}" width="auto"/>
+				</Column>
+				<Column width="30%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCDescripcion}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCTipoDato}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCValInicial}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCValFinal}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCMargen}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCDecimal}" width="auto"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onEditPasoGeneral">
+					<Text text="{aListPasoAssignResponsive>orden}" width="auto"/>
+					<Text text="{aListPasoAssignResponsive>pasoId/codigo}" width="auto"/>
+					<Text text="{aListPasoAssignResponsive>pasoId/descripcion}" width="auto"/>
+					<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+							filters: [{
+							path: 'oMaestraTipo_maestraTipoId',
+							operator: 'EQ',
+							value1: '5'
+						}]}" 
+						placeholder="Tipo de Dato" selectedKey="{aListPasoAssignResponsive>tipoDatoId_iMaestraId}" showSecondaryValues="true" change="onChangeTipoDatoMd">
+						<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+					</ComboBox>
+					<Input value="{aListPasoAssignResponsive>valorInicial}" enabled="{aListPasoAssignResponsive>enabledValorInicial}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>valorFinal}" enabled="{aListPasoAssignResponsive>enabledValorFinal}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>margen}" enabled="{aListPasoAssignResponsive>enabledMargen}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>decimales}" enabled="{aListPasoAssignResponsive>enabledDecimales}" width="auto" change="onChangeDataAutorization"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelCondicionesAmbientalesResponsive" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form">
+    <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="auto" title="{i18n>tltSelectImagen}" afterClose="onCancelSelectImagen">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer>
+						<form:formElements>
+							<form:FormElement>
+								<form:fields>
+									<u:FileUploader id="fu_selectImagen" change="onUploadImagen" fileType="jpg,jpeg,png"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:fields>
+									<Image id="idImgPaso"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>lbImagenPosition}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<RadioButtonGroup valueState="Information" selectedIndex="{localModel>/oImagenCargada/position}" select="onChangePosition">
+										<RadioButton text="Arriba"/>
+										<RadioButton text="Derecha" />
+										<RadioButton text="Abajo" />
+									</RadioButtonGroup>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{sI18nMaxWidth>/i18n}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/oImagenCargada/width}" placeholder="{sI18nMaxWidth>/phi18n}" type="Number" showValueHelp="false" width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12" />
+				</form:layout>
+			</form:Form>
+		</content>
+        <beginButton>
+			<Button text="{i18n>btnConfirm}" press="onConfirmSelectImagen" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelSelectImagen" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

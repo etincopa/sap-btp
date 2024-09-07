@@ -1,0 +1,44 @@
+{
+    "authenticationMethod": "none",
+    "logout": {
+        "logoutEndpoint": "/do/logout"
+    },
+    "routes": [
+        {
+            "source": "^/srv_api/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "MIF_RMD",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/srv_api_cp/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "CP_BTP_HTTP",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/saperp/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "RMD_S4H_HTTP_BASIC",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/scimApi/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "IAS_SCIM_API",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/IAS_API/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "IAS_API",
+            "csrfProtection": false
+        }
+    ],
+    "welcomeFile": "/cp.portal"
+}

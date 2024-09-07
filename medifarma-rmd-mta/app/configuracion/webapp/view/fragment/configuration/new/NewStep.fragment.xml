@@ -1,0 +1,313 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog id="dlgStep" title="{=${localModel>/editar} === 0 ? 'Nuevo Paso' : 'Editar Paso' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelAddPaso">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editar} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="{i18n>newPasoCod}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input value="{mainModelv2>codigo}" placeholder="{i18n>newPasoCod}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoDesc}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<TextArea rows="4" value="{localModel>/newPaso/descripcion}" placeholder="{i18n>newPasoDesc}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoEst}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/ESTRUCTURA',
+                                        filters: [{
+                                            path: 'activo',
+                                            operator: 'EQ',
+                                            value1: 'true'
+                                        }]}" placeholder="{i18n>newPasoEst}" change="onChangeEstructura" selectedKey="{localModel>/newPaso/estructuraId_estructuraId}" showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>estructuraId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>etapa} - {mainModelv2>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoEti}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'localModel>/aListaEtiquetas'}" placeholder="{i18n>newPasoEti}" selectedKey="{localModel>/newPaso/etiquetaId_etiquetaId}" editable="{=${localModel>/aListaEtiquetas}.length > 0 ? true : false}" change="onChangeEtiqueta" showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{localModel>etiquetaId}" text="{localModel>descripcion}" additionalText="{localModel>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoFlg}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Switch state="{localModel>/newPaso/numeracion}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoTipo}" vAlign="Middle" design="Bold" width="80%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '5'
+                                        }]}" placeholder="{i18n>newPasoTipo}" selectedKey="{localModel>/newPaso/tipoDatoId_iMaestraId}" showSecondaryValues="true" filterSecondaryValues="true" change="onChangingStepDataType">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<!-- mchp ADD start -->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoclv}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+									</form:label>
+									<form:fields>
+										<ComboBox items="{path: 'localModel>/dataClaveModelo'}" placeholder="{i18n>newPasoclv}"  selectedKey="{localModel>/newPaso/clvModelo}" showSecondaryValues="true" filterSecondaryValues="false" enabled="false" id="idCmbxClvModelo">
+											<core:ListItem key="{localModel>Vlsch}" text="{localModel>Txt}" />
+											</ComboBox>
+										</form:fields>
+							</form:FormElement>
+							<!-- <form:FormElement visible="true">
+										<form:label>
+											<Label text="{i18n>automatico}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Switch state="{localModel>/newPaso/automatico}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}" />
+									</form:fields>
+							</form:FormElement> -->
+								<!-- mchp ADD end -->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoValor}" required="{localModel>/editableRango}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input id="idInputStepInitialValue" enabled="false" type="Number" value="{localModel>/newPaso/valorInicial}" placeholder="{i18n>newPasoValorInicial}" />
+									<Input id="idInputStepFinalValue" enabled="false" type="Number" value="{localModel>/newPaso/valorFinal}" placeholder="{i18n>newPasoValorFinal}" />
+									<Input id="idInputStepMarginValue" enabled="false" type="Number" value="{localModel>/newPaso/margen}" placeholder="{i18n>newPasoValorMargen}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoDecimal}" required="{localModel>/editableDecimales}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input id="idInputStepPrecisionValue" enabled="false" value="{localModel>/newPaso/decimales}" placeholder="{i18n>newPasoDecimal}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoLapso}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<!-- <HBox width="100%"> -->
+									<ComboBox items="{path: 'mainModel>/MOTIVO_LAPSO',
+                                            filters: [{
+                                                path: 'activo',
+                                                operator: 'EQ',
+                                                value1: 'true'
+                                            }]}" width="100%" placeholder="{i18n>newPasoLapso}" selectedKey="{localModel>/newPaso/tipoLapsoId_motivoLapsoId}">
+										<core:ListItem key="{mainModel>motivoLapsoId}" text="{mainModel>descripcion}" />
+										<layoutData>
+											<l:GridData span="XL3 L4 M5 S6" />
+										</layoutData>
+									</ComboBox>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                            filters: [{
+                                                path: 'oMaestraTipo_maestraTipoId',
+                                                operator: 'EQ',
+                                                value1: '46'
+                                            }]}" width="100%" placeholder="{i18n>newPasoLapso}" selectedKey="{localModel>/newPaso/tipoCondicionId_iMaestraId}">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" />
+										<layoutData>
+											<l:GridData span="XL3 L4 M5 S6" />
+										</layoutData>
+									</ComboBox>
+									<!-- </HBox> -->
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+
+					<form:FormContainer visible="{=${localModel>/editar} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoCod}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editPaso/codigo}" placeholder="{i18n>newPasoCod}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoDesc}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<TextArea editable="{localModel>/oEditableNoOP}" rows="3" value="{localModel>/editPaso/descripcion}" placeholder="{i18n>newPasoDesc}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoEst}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/ESTRUCTURA',
+                                            filters: [{
+                                                path: 'activo',
+                                                operator: 'EQ',
+                                                value1: 'true'
+                                            }]}" placeholder="{i18n>newPasoEst}" editable="{localModel>/oEditableNoOP}" selectedKey="{localModel>/editPaso/estructuraId_estructuraId}" showSecondaryValues="true" filterSecondaryValues="true" change="onChangeEstructura">
+										<core:ListItem key="{mainModelv2>estructuraId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>etapa} - {mainModelv2>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoEti}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'localModel>/aListaEtiquetas'}" placeholder="{i18n>newPasoEti}" editable="{=${localModel>/oEditableNoOP} ? true : false &amp;&amp; ${localModel>/aListaEtiquetas}.length > 0 ? true : false}" selectedKey="{localModel>/editPaso/etiquetaId_etiquetaId}" showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{localModel>etiquetaId}" text="{localModel>descripcion}" additionalText="{localModel>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoFlg}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Switch enabled="{localModel>/oEditableNoOP}" state="{localModel>/editPaso/numeracion}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}" />
+								</form:fields>
+							</form:FormElement>
+							<!-- Tipo Dato-->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoTipo}" vAlign="Middle" design="Bold" width="80%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '5'
+                                        }]}" placeholder="{i18n>newPasoTipo}" selectedKey="{localModel>/editPaso/tipoDatoId_iMaestraId}" showSecondaryValues="true" filterSecondaryValues="true" change="onChangingStepDataTypeEdit">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<!-- mchp EDIT-->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoclv}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'localModel>/dataClaveModelo'}" placeholder="{i18n>newPasoclv}"  
+										selectedKey="{localModel>/editPaso/clvModelo}" showSecondaryValues="true" filterSecondaryValues="false" enabled="{= ${localModel>/editPaso/tipoDatoId_iMaestraId}===447 ? true:false }" id="idCmbxClvModeloEdit">
+										<core:ListItem key="{localModel>Vlsch}" text="{localModel>Txt}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<!-- <form:FormElement visible="true">
+										<form:label>
+											<Label text="{i18n>automatico}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Switch state="{localModel>/editPaso/automatico}" customTextOff="{i18n>swOff}" customTextOn="{i18n>swOn}" />
+									</form:fields>
+							</form:FormElement> -->
+								<!-- mchp ADD end -->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoValor}" required="{localModel>/editableRango}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input id="idInputStepInitialValueEdit" type="Number" value="{localModel>/editPaso/valorInicial}" placeholder="{i18n>newPasoValorInicial}" />
+									<Input id="idInputStepFinalValueEdit" type="Number" value="{localModel>/editPaso/valorFinal}" placeholder="{i18n>newPasoValorFinal}" />
+									<Input id="idInputStepMarginValueEdit" type="Number" value="{localModel>/editPaso/margen}" placeholder="{i18n>newPasoValorMargen}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoDecimal}" required="{localModel>/editableDecimales}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<Input id="idInputStepPrecisionValueEdit" value="{localModel>/editPaso/decimales}" placeholder="{i18n>newPasoDecimal}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>newPasoLapso}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<!-- <HBox width="100%"> -->
+									<ComboBox width="100%" items="{path: 'mainModelv2>/MOTIVO_LAPSO',
+                                            filters: [{
+                                                path: 'activo',
+                                                operator: 'EQ',
+                                                value1: 'true'
+                                            }]}" placeholder="{i18n>newPasoLapso}" editable="true" selectedKey="{localModel>/editPaso/tipoLapsoId_motivoLapsoId}">
+										<core:ListItem key="{mainModelv2>motivoLapsoId}" text="{mainModelv2>descripcion}" />
+										<layoutData>
+											<l:GridData span="XL3 L4 M5 S6" />
+										</layoutData>
+									</ComboBox>
+									<ComboBox width="100%" items="{path: 'mainModelv2>/MAESTRA',
+                                            filters: [{
+                                                path: 'oMaestraTipo_maestraTipoId',
+                                                operator: 'EQ',
+                                                value1: '46'
+                                            }]}" placeholder="{i18n>newPasoLapso}" editable="true" selectedKey="{localModel>/editPaso/tipoCondicionId_iMaestraId}">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" />
+										<layoutData>
+											<l:GridData span="XL3 L4 M5 S6" />
+										</layoutData>
+									</ComboBox>
+									<!-- </HBox> -->
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit" />
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '3'
+                                        }]}" placeholder="{i18n>clState}" selectedKey="{localModel>/editPaso/estadoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12" />
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{=${localModel>/editar} === 0 ? 'Agregar' : 'Actualizar' }" press="onConfirmPaso" type="Emphasized" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelPaso" type="Transparent" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

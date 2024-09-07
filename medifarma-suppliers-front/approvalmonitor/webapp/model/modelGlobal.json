@@ -1,0 +1,40 @@
+{
+	"Instances": [],
+	"Application": [{
+		"Id": "wfsuppliers",
+		"Name": "Business Partner Request",
+		"SemanticObject": "semanticbpcreationrequest",
+		"Action": "Display"
+	}, {
+		"Id": "wfinvoicenotoc",
+		"Name": "Pre-registro sin Orden de Compra",
+		"SemanticObject": "semanticInvoiceRegisterNotOc",
+		"Action": "Display"
+	}],
+	"ApplicationKey": "",
+	"RequestDate": {
+		"From": null,
+		"UpTo": null
+	},
+	"CompletedDate": {
+		"From": null,
+		"UpTo": null
+	},
+	"StatusKey": "",
+	"Status": [{
+		"Id": "P",
+		"Key": "RUNNING",
+		"Description": "Pendiente",
+		"Color": "Indication03"
+	}, {
+		"Id": "A",
+		"Key": "COMPLETED",
+		"Description": "Aprobado",
+		"Color": "Indication04"
+	}, {
+		"Id": "R",
+		"Key": "RUNNING",
+		"Description": "Rechazado",
+		"Color": "Indication02"
+	}]
+}

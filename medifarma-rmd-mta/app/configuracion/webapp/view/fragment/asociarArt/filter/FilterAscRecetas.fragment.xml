@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearchReceta" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="false" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>asocRCod}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataFilterReceta>/code}" placeholder="{i18n>asocRCod}" type="Number" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<!-- <fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>asocRBase}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+                    <ComboBox items="{path : 'mainModel>/NIVEL'}" placeholder="{i18n>phlblLevel}" selectedKey="{oDataFilterReceta>/etapaBase}"
+                        showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>iMaestraId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem> -->
+            <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>asocRDesc}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataFilterReceta>/description}" placeholder="{i18n>asocRDesc}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<!-- <fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>asocREtapa}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : ''}" placeholder="{i18n>phlblLevel}" selectedKey="{oDataFilterReceta>/level}"
+                        showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>iMaestraId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem> -->
+			<fb:FilterGroupItem groupName="MANGROUP" name="E" label="{i18n>asocRVar}" partOfCurrentVariant="true" visibleInFilterBar="true">
+                <fb:control>
+                <Input value="{oDataFilterReceta>/variante}" placeholder="{i18n>asocRVar}" type="Text" showValueHelp="false" visible="true" width="100%"
+                    valueHelpOnly="false"/>
+                </fb:control>
+			</fb:FilterGroupItem>
+			<!-- <fb:FilterGroupItem groupName="MANGROUP" name="F" label="{i18n>asocREst}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : ''}" placeholder="{i18n>phlblLevel}" selectedKey="{oDataFilterReceta>/level}"
+                        showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>iMaestraId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem> -->
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

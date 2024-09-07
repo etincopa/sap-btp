@@ -1,0 +1,13 @@
+{
+  "cmbTipoEquipo": [{
+    "id": 1,
+    "description": "Principal"
+  }, {
+    "id": 2,
+    "description": "Secundario"
+  }],  
+  "aListaSecciones": [],
+  "oFilters": {},
+  "aFiltersTable": null,
+  "aListaLapsos": []
+}

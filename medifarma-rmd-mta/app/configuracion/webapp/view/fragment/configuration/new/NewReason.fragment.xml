@@ -1,0 +1,96 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog id="dlgReason" title="{=${localModel>/editar} === 0 ? 'Nuevo Motivo' : 'Editar Motivo' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelAddReason">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editar} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newMotivo/codigo}" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clAbreviatura}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newMotivo/abreviatura}" placeholder="{i18n>clAbreviatura}" />
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newMotivo/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+          			<form:FormContainer visible="{=${localModel>/editar} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editMotivo/codigo}" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clAbreviatura}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editMotivo/abreviatura}" placeholder="{i18n>clAbreviatura}"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editMotivo/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '3'
+                                        }]}" 
+                                        placeholder="{i18n>clState}" selectedKey="{localModel>/editMotivo/estadoId_iMaestraId}" showSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{=${localModel>/editar} === 0 ? 'Agregar' : 'Actualizar' }" press="onConfirmReason" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelReason" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

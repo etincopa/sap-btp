@@ -1,0 +1,67 @@
+#mac
+.DS_Store
+
+#Node
+npm-debug.log
+node_modules
+/node_modules
+node_modules/
+
+#Cordova
+/platforms
+/.gradle
+/package-lock.json
+
+
+# res
+resources/signing
+/dist
+
+# Android Studio
+/.idea
+
+
+# Visual Studio Code
+/.vscode
+/typings
+
+/mta_archives/
+fioriHtmlRunner.html
+.*/fioriHtmlRunner.html
+visual_ext_index.html
+/webapp/visual_ext_index.html
+extended_runnable_file.html
+.*/extended_runnable_file.html
+sap-ui-cachebuster-info.json
+mock_preview_sapui5.html
+.*/mock_preview_sapui5.html
+UIAdaptation_index.html
+changes_preview.js
+AppVariant_index.html
+AppVariantPreviewPayload.zip
+mergedManifestDescriptor.json
+APIExternalProducer.js
+.*/APIExternalProducer.js
+
+# Node Package Manager
+node_modules/
+npm-debug.log
+
+# Gradle
+.gradle
+
+# IntelliJ IDEA
+**/.idea/**/*
+*.iml
+coverage/
+.nyc_output/
+
+# Other generated files & folders
+bin/*
+build
+gen
+
+# Cordova www folder
+# Files will be built into this folder
+www/**/*
+!www/.gitkeep

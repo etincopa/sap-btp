@@ -1,0 +1,22 @@
+{
+    "proxy": {
+        "saperp": {
+            "target": "http://10.100.3.12:8000",
+            "auth": "RMD_S4H_PP:Medif$2022",
+            "entryPath": "/",
+            "sap-client": "300"
+        },
+        "srv_api": {
+            "target": "http://localhost:4004",
+            "entryPath": "/"
+        },
+        "srv_api_cp": {
+            "target": "https://medifarmaprd-prd-cp-srv.cfapps.us10.hana.ondemand.com",
+            "entryPath": "/"
+        },
+        "IAS_API":{
+            "target": "https://ao1k9k5jk.accounts.ondemand.com/service/users/password",
+            "entryPath": "/"
+        }
+    }
+}

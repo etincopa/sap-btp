@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer width="100%" height="100%" horizontal="true" vertical="true" focusable="true">
+		<Table id="idTblOpSinRmd" width="auto" sticky="ColumnHeaders" items="{aListOps>/}" updateFinished="onUpdateFinish">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>opSinRMTab} ({=${aListOps>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLSOPSinRMD"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMOrden}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMPlant}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMCod}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMDesc}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMVersion}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMEtapa}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMLinea}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>opSinRMArea}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia1}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia2}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia3}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia4}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia5}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia6}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia7}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia8}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia9}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia10}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia11}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia12}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia13}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia14}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="4%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{oFechaOpSinRmd>/dia15}" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<!-- <ComboBox items="{path : 'mainModel>/MAESTRA', filters: [{path: 'oMaestraTipo_maestraTipoId', operator: 'EQ', value1: '18'}]}" 
+						placeholder="{i18n>phlblPlanta}" selectedKey="{aListOps>Pwerk}" showSecondaryValues="true" filterSecondaryValues="true" editable="false">
+                        <core:ListItem key="{mainModel>codigo}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+                    </ComboBox> -->
+					<Text text="{aListOps>Aufnr}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>planta}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Matnr}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Maktx}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Verid}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Dauat}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Dsnam}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListOps>Atwrt}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<CheckBox selected="{aListOps>dia1}" editable="false"/>
+					<CheckBox selected="{aListOps>dia2}" editable="false"/>
+					<CheckBox selected="{aListOps>dia3}" editable="false"/>
+					<CheckBox selected="{aListOps>dia4}" editable="false"/>
+					<CheckBox selected="{aListOps>dia5}" editable="false"/>
+					<CheckBox selected="{aListOps>dia6}" editable="false"/>
+					<CheckBox selected="{aListOps>dia7}" editable="false"/>
+					<CheckBox selected="{aListOps>dia8}" editable="false"/>
+					<CheckBox selected="{aListOps>dia9}" editable="false"/>
+					<CheckBox selected="{aListOps>dia10}" editable="false"/>
+					<CheckBox selected="{aListOps>dia11}" editable="false"/>
+					<CheckBox selected="{aListOps>dia12}" editable="false"/>
+					<CheckBox selected="{aListOps>dia13}" editable="false"/>
+					<CheckBox selected="{aListOps>dia14}" editable="false"/>
+					<CheckBox selected="{aListOps>dia15}" editable="false"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+	<!-- <OverflowToolbar class="sapUiSmallMarginTop">
+		<ToolbarSpacer/>
+		<ToolbarSeparator/>
+		<Button icon="sap-icon://add" text="{i18n>btnNew}" type="Emphasized" press="onNewStructure"/>
+		<Button icon="sap-icon://edit" text="{i18n>btnEdit}" type="Emphasized" press="onAddRegisterGroup"/>
+		<Button icon="sap-icon://delete" text="{i18n>btnDelete}" type="Emphasized" press="onDeleteGroupService"/>
+	</OverflowToolbar> -->
+</core:FragmentDefinition>

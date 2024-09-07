@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:dnd="sap.ui.core.dnd">
+	<Dialog title="{asociarDatos>/codigo} - {asociarDatos>/descripcion}" afterClose="onCancelEquipmentResponsive">
+		<Table width="auto" id="idTblEquipmentEstructure" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListEquipoAssignResponsive>/}">
+			<dragDropConfig>
+				<dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropResponsive"/>
+			</dragDropConfig>
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="Equipos ({=${aListEquipoAssignResponsive>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>accAddEquipo}" tooltip="{i18n>accAddEquipo}" icon="sap-icon://add" press="onAddEquipoResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" press="onDeleteEquiposResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbEOrden}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbECodigo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbEDescripcion}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbEEstado}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbEArea}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>tbETipoEquipo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="Acciones" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{aListEquipoAssignResponsive>orden}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListEquipoAssignResponsive>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListEquipoAssignResponsive>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListEquipoAssignResponsive>estado}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListEquipoAssignResponsive>area}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListEquipoAssignResponsive>tipo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<OverflowToolbarButton tooltip="Actualizar Utensilio" icon="sap-icon://feed" press="onUpdateUtensiliosRMD" visible="{aListEquipoAssignResponsive>visibleButtonCorregir}"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelEquipmentResponsive" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

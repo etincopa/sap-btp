@@ -1,0 +1,120 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <form:Form width="100%" editable="true" visible="true">
+        <form:formContainers>
+            <form:FormContainer visible="true">
+                <form:formElements>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>codWeb}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <Input value="{localModel>/editLineaRM/codigo}" placeholder="{i18n>codWeb}" type="Text" showValueHelp="false" visible="true"
+                                width="100%" valueHelpOnly="false" enabled="false"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>codSolicitud}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <Input value="{localModel>/editLineaRM/codigoSolicitud}" placeholder="{i18n>codWeb}" type="Text" showValueHelp="false" visible="true"
+                                width="100%" valueHelpOnly="false" enabled="false"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>descRM}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <Input value="{localModel>/editLineaRM/descripcion}" placeholder="{i18n>descRM}" type="Text" showValueHelp="false" visible="true"
+                                width="100%" valueHelpOnly="false"/>
+                        </form:fields>
+                    </form:FormElement>              
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>nivel}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{localModel>/aListaNiveles}" placeholder="{i18n>phlblLevel}" selectedKey="{localModel>/editLineaRM/nivelTxt}"
+                                showSecondaryValues="true" filterSecondaryValues="true">
+                                <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>sucursal}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{
+                                path : 'mainModel>/MAESTRA',
+                                filters: [{
+                                    path: 'oMaestraTipo_maestraTipoId',
+                                    operator: 'EQ',
+                                    value1: '18'
+                                }]
+                                }" placeholder="{i18n>phlblPlanta}" selectedKey="{localModel>/editLineaRM/sucursalId_iMaestraId}"
+                                showSecondaryValues="true" filterSecondaryValues="true">
+                                <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>fechaSol}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <DatePicker
+                                id="DP5"
+                                enabled="false"
+                                valueFormat="dd/MM/yyyy"
+                                placeholder="Ingresar Fecha"
+                                class="sapUiSmallMarginBottom"
+                                value="{path: 'localModel>/editLineaRM/fechaSolicitud', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: false }}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>motivo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{path : 'mainModel>/MOTIVO',
+                                filters: [{
+                                    path: 'activo',
+                                    operator: 'EQ',
+                                    value1: 'true'
+                                    },
+                                    {
+                                    path: 'estadoId_iMaestraId',
+                                    operator: 'EQ',
+                                    value1: '2'
+                                    }],
+                                sorter: {
+                                        path: 'codigo'
+                                    }
+                                }" placeholder="{i18n>phlblLevel}" selectedKey="{localModel>/editLineaRM/motivoId_motivoId}"
+                                showSecondaryValues="true" filterSecondaryValues="true">
+                                <core:ListItem key="{mainModel>motivoId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigo}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement visible="true">
+                        <form:label>
+                            <Label text="{i18n>area}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+                        </form:label>
+                        <form:fields>
+                            <ComboBox items="{path : 'localModel>/aListaSecciones'}" placeholder="{i18n>phlblArea}" selectedKey="{localModel>/editLineaRM/areaRmdTxt}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${localModel>/aListaSecciones}.length === 0 ? false : true}">
+                                <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                            </ComboBox>
+                        </form:fields>
+                    </form:FormElement>
+                </form:formElements>
+                <form:title/>
+            </form:FormContainer>
+        </form:formContainers>
+        <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+        </form:layout>
+    </form:Form>
+</core:FragmentDefinition>

@@ -1,0 +1,41 @@
+
+GET http://localhost:4004/browse/SALA_PESAJE?$expand=aProgramacion($filter=oSalaPesaje_salaPesajeId%20eq%20%27SALA02%27)
+
+GET http://localhost:4004/api/v1/cp/programacion
+
+### Post Flujo Ingreso
+POST http://localhost:4004/api/v1/cp/programacion
+Content-Type: application/json
+
+[
+        {
+            "keyCentro":"67",
+            "valueCentro":"PLANTA 01",
+            "valueStateCentro":"Success",
+            "keySala":"SALA01",
+            "valueSala":"SALA 01",
+            "valueStateSala":"Success",
+            "fecha":"2021-10-08",
+            "valueStateFecha":"None",
+            "orden":"10145314",
+            "keyOrden":"",
+            "valueStateOrden":"Success",
+            "lote":"L12312",
+            "valueProducto":"SAL DE ANDREWS",
+            "keyProducto":"M92838232",
+            "estado":"Liberado",
+            "keyEstado":"7",
+            "icon":"sap-icon://status-in-process",
+            "color":"Indication03"
+        }
+]
+###DELETE  HTTP/1.1
+
+DELETE http://localhost:4004/api/v1/cp/programacion
+Content-Type: application/json
+
+{
+    "ordenId":"3c163616-b434-4a4b-8de9-e47852008fdd",
+    "oProgramacion_programacionId":"6f08f713-7d19-48d0-ae20-6f66023b5180",
+
+}

@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<!-- <ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true"> -->
+		<Table id="tblEquipment" width="auto" sticky="HeaderToolbar,ColumnHeaders" items="{localModel>/aListaUtensilio}" updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="false">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>icoEquipment}"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewEquipment}" icon="sap-icon://add-activity-2" press="onAddEquipo"/>
+					<OverflowToolbarButton text="{i18n>btnExportEquipment}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+					<OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="12%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="25%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clTipo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clState}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clAgrupador}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="12%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clUserDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDateDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column width="15%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clAction}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{localModel>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{localModel>tipoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>estadoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<!-- <Text text="{=${localModel>clasificacionId_clasificacionUtensilioId} === null ? 'NO' : 'SI'}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+					<Text text="{localModel>bPerteneceAgrupador}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>usuarioRegistro}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{path: 'localModel>fechaRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd', UTC: false }}" width="auto" wrapping="true"/>
+                    <HBox>
+						<Button visible="{=${localModel>tipoId/contenido} === 'AGRUPADOR' ? false : true}" tooltip="{i18n>openAsocRM}" icon="sap-icon://documents" press="onOpenRMAUtensilio" type="Transparent"/>
+                        <Button visible="{=${localModel>tipoId/contenido} === 'AGRUPADOR' ? false : true}" tooltip="{i18n>editConfig}" icon="sap-icon://edit" press="onEditarEquipos" type="Transparent"/>
+                        <Button visible="{=${localModel>tipoId/contenido} === 'AGRUPADOR' ? false : true}" tooltip="{i18n>deleteConfig}" icon="sap-icon://delete" press="onDeleteDataMaestra" type="Transparent"/>
+						<Button visible="{=${localModel>tipoId/contenido} === 'AGRUPADOR' ? true : false}" tooltip="{i18n>editAgrupador}" icon="sap-icon://edit" press="onPressAgrupadorMain" type="Transparent"/>
+                    </HBox>
+				</ColumnListItem>
+			</items>
+		</Table>
+	<!-- </ScrollContainer> -->
+</core:FragmentDefinition>

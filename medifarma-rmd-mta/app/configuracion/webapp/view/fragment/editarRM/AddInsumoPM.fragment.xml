@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Adicionar Pasos: {localModel>/headerAddPaso}" afterClose="onCanceloAddInsumoPM">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.body.BodyAddInsumoPM" type="XML"/>
+        <beginButton>
+            <Button text="{i18n>btnAgregar}" press="onAgregarInsumoEditPM" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+			<Button text="{i18n>btnClose}" press="onCanceloAddInsumoPM" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,14 @@
+{
+    "proxy": {
+        "saperp": {
+            "target": "https://saprowdccdev.medifarma.com.pe:44340",
+            "auth": "<user>:<pass>",
+            "entryPath": "/",
+            "sap-client": "150"
+        },
+        "srv_api": {
+            "target": "http://localhost:4004",
+            "entryPath": "/"
+        }
+    }
+}

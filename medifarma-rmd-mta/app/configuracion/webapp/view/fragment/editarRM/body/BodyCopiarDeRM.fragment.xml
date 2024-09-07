@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{localModel>/aListMDCopy}" updateFinished="onUpdateFinish" growing="true"
+		growingScrollToLoad="true" id="idTBCopyDe">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>copyInfoRM} ({=${localModel>/aListMDCopy}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTCod}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTDesc}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTVer}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTNiv}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTSuc}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>copyDeRMTEst}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{localModel>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{localModel>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{localModel>version}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{localModel>nivelTxt}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{localModel>sucursalId/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{localModel>estadoIdRmd/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:layout="sap.ui.layout">
+    <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="65%" title="Agrupadores">
+            <content>
+                <layout:VerticalLayout>
+                   <Table sticky="ColumnHeaders" items="{path:'modelGeneral>/tblListAgrupador'}" growing="true"
+                        growingScrollToLoad="true" noDataText="{i18n>tblNoData}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="{i18n>tlListAgrupador}"/>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                            <Text text="{i18n>lblDescription}" width="auto" maxLines="2"/>
+                        </Column>
+                        <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                            <Text text="{i18n>trazUsuario}" width="auto" maxLines="2"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onSelectAgrupador">
+                            <Text text="{modelGeneral>agrupadorId/descripcion}" width="auto" maxLines="3"/>
+                            <Text text="{modelGeneral>agrupadorId/usuarioRegistro}" width="auto" maxLines="3"/>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+			</layout:VerticalLayout>
+		</content>
+        <endButton>
+            <Button text="{i18n>btnClose}" press="onCerrarAgrupador" type="Reject"/>
+        </endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,26 @@
+@server =http://localhost:4004
+@credAdmin = Authorization: Basic elvis.percy.garcia.tincopa@everis.com:ScpPeruEveris2022++
+
+
+
+POST {{server}}/v2/browse/RMD_ES_HISTORIAL
+Content-Type: application/json
+{{credAdmin}}
+
+{
+    "rmdHistorialId":"cc8870a4-9c32-11ed-a8fc-0242ac120002",
+    "rmdEstructuraPasoId_rmdEstructuraPasoId":"7aa51d50-7d2e-47dc-ba2a-e1fe90628ccc",
+    "rmdEstructuraEquipoId_rmdEstructuraEquipoId":null,
+    "rmdEstructuraUtensilioId_rmdEstructuraUtensilioId":null,
+    "rmdEstructuraEspecificacionId_rmdEstructuraEspecificacionId":null,
+    "rmdEstructuraRecetaInsumoId_rmdEstructuraRecetaInsumoId":null,
+    "rmdEstructuraPasoInsumoPasoId_rmdEstructuraPasoInsumoPasoId":null,
+    "usuarioRegistro":"CMACALUPUY",
+    "fechaRegistro":null,
+    "activo":true,
+    "descripcionItem":"EVITAR EL INGRESO AL AREA DE TRABAJO SI PRESENTA SINTOMAS DE ENFERMEDAD Y/O HERIDAS EXPUESTAS SEGUN PPRO-213 VIGENTE.",
+    "descripcion":"Verificación Check",
+    "valor":"ACTIVADO",
+    "motivoModif":"Stress Test " + null,
+    "rol":"TextStyleJefe"
+}

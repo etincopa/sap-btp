@@ -1,0 +1,68 @@
+{
+    "MIF_CP_MIF_ADMIN_HDI_AUDITORIA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_AUDITORIA",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_MAESTRA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_MAESTRA",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_MAESTRA_TIPO": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_MAESTRA_TIPO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_USUARIO": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_USUARIO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_USUARIO_SISTEMA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_USUARIO_SISTEMA",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_USUARIO_ROL": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_USUARIO_ROL",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_SISTEMA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_SISTEMA",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_APLICACION": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_APLICACION",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL_APP_WF": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL_APP_WF",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL_APP_ACCIONES": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL_APP_ACCIONES",
+            "schema": "_PLACEHOLDER_"
+        }
+    }
+}

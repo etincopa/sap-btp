@@ -1,0 +1,85 @@
+{
+  "name": "rmd-mta",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@sap/cds": "^5.0.4",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.7.10",
+    "@sap/xsenv": "^3.1.1",
+    "@sap/xssec": "^3.2.7",
+    "compare-pdf": "^1.1.5",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "exceljs": "^4.3.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "gd-sprest": "^6.5.8",
+    "groupdocs-comparison-cloud": "^21.7.0",
+    "hana-cli": "^3.202203.3",
+    "hdb": "^0.18.3",
+    "json-as-xlsx": "^2.4.0",
+    "moment": "^2.29.1",
+    "node-sp-auth": "^3.0.4",
+    "nodemailer": "^6.7.3",
+    "passport": "0.4.1",
+    "pdfmake": "^0.2.4",
+    "request-promise": "^4.2.6",
+    "sap-cf-axios": "^0.2.30",
+    "sap-cf-destconn": "0.0.30",
+    "sharepoint": "0.0.5",
+    "sharepointplus": "^6.1.5",
+    "sp-download": "^2.0.0",
+    "sqlite3": "^5.0.2",
+    "browser-detect": "^0.2.28",
+    "express-device": "^0.4.2",
+    "axios" : "^0.27.2"
+  },
+  "scripts": {
+    "genres": "cds serve test/genres.cds",
+    "start": "cds run",
+    "watch": "cds watch",
+    "watch-demo": "cds watch --open demo/webapp/index.html#fe-lrop-v4",
+    "watch-configuracion": "cds watch --open configuracion/webapp/index.html#fe-lrop-v4",
+    "watch-solicitud": "cds watch --open solicitud/webapp/index.html#fe-lrop-v4",
+    "undeploy": "cf undeploy rmd-mta --delete-services --delete-service-keys",
+    "setup": "npm install && npm run build && npm run start"
+  },
+  "cds": {
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
+    "requires": {
+      "db": {
+        "kind": "hana"
+      },
+      "auth": {
+        "kind": "jwt-auth"
+      },
+      "Z_PP_NECESIDADESRMD_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/Z_PP_NECESIDADESRMD_SRV",
+        "credentials": {
+          "destination": "RMD_S4H_HTTP_BASIC",
+          "path": "/sap/opu/odata/sap/Z_PP_NECESIDADESRMD_SRV",
+          "requestTimeout": 30000
+        },
+        "pool": {
+          "min": 1,
+          "max": 10
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/demo",
+    "app/configuracion",
+    "app/solicitud",
+    "app/registro",
+    "app/reporte",
+    "app/reporteuso"
+  ],
+  "devDependencies": {
+    "@sap/hdi-deploy": "^4.2.0",
+    "@sap/ux-specification": "^1.90.14"
+  }
+}

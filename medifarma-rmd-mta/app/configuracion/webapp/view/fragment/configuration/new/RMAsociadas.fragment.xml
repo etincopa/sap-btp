@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Ver RM Asociadas" afterClose="onCancelOpenRMA">
+		<Table id="tblRMA" width="auto" sticky="ColumnHeaders" 
+            items="{path: 'aListPasosAsociados>/'}"
+            updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="true">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>RMAsoc} ({=${aListPasosAsociados>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton text="{i18n>btnExportRMA}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>RMAsocCod}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>RMAsocManu}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>RMAsocNiv}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<!-- <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>RMAsocArt}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column> --> 
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>RMAsocEst}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{aListPasosAsociados>mdId/codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListPasosAsociados>mdId/descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListPasosAsociados>mdId/nivelTxt}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<!-- <Text text="{aListPasosAsociados>pasoId_pasoId}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+					<Text text="{aListPasosAsociados>mdId/estadoIdRmd/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+  		<endButton>
+			<Button text="{i18n>btnCerrar}" press="onCancelOpenRMA" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

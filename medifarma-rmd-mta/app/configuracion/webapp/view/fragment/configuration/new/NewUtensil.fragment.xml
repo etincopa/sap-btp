@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog title="{=${localModel>/editar} === 0 ? 'Nuevo Utensilio' : 'Editar Utensilio' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelAddUtensil">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editar} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clCodigo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clDescription}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clState}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<!-- <form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clUserDo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clUserDo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDateDo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clDateDo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement> -->
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+            <form:FormContainer visible="{=${localModel>/editar} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clCodigo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clDescription}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clState}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<!-- <form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clUserDo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clUserDo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDateDo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{oDataGroup>/id}" placeholder="{i18n>clDateDo}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement> -->
+						</form:formElements>
+						<form:title/>
+			</form:FormContainer>
+
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{i18n>btnAgregar}" press="onAgregarUtensil" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelAddUtensil" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyADesc}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/copyA/descripcion}" placeholder="{i18n>copyADesc}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement> 
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyACodDef}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/copyA/codDefecto}" placeholder="{i18n>copyACodDef}" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyANivel}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <ComboBox items="{localModel>/aListaNiveles}" 
+                                        placeholder="{i18n>phlblLevel}" selectedKey="{localModel>/copyA/nivelTxt}"
+                                        showSecondaryValues="true" filterSecondaryValues="true" enabled="false">
+                                        <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                                    </ComboBox>
+								</form:fields>
+							</form:FormElement>               
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyAEstado}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <ComboBox items="{path : 'mainModel>/ESTADORMD'}" placeholder="{i18n>phlblState}" selectedKey="{localModel>/copyA/estadoIdRmd_iMaestraId}"
+                                        showSecondaryValues="true" filterSecondaryValues="true" enabled="false">
+                                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>iMaestraId}"/>
+                                    </ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyASu}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <ComboBox items="{
+                                        path : 'mainModel>/MAESTRA',
+                                        filters: [{
+                                                path: 'oMaestraTipo_maestraTipoId',
+                                                operator: 'EQ',
+                                                value1: '18'
+                                            }]
+                                            }" 
+                                        placeholder="{i18n>phlblPlanta}" selectedKey="{localModel>/copyA/sucursalId_iMaestraId}"
+                                        showSecondaryValues="true" filterSecondaryValues="true">
+                                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigo}"/>
+                                    </ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyAMot}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <ComboBox items="{
+                                        path : 'mainModel>/MOTIVO',
+                                        filters: [{
+                                                path: 'activo',
+                                                operator: 'EQ',
+                                                value1: 'true'
+                                            }]
+                                            }" 
+                                        placeholder="{i18n>phlblReason}" selectedKey="{localModel>/copyA/motivoId_motivoId}"
+                                        showSecondaryValues="true" filterSecondaryValues="true">
+                                        <core:ListItem key="{mainModel>motivoId}" text="{mainModel>descripcion}" additionalText="{mainModel>abreviatura}"/>
+                                    </ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyAFecha}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<DatePicker
+                                    id="DP5"
+                                    value="{localModel>/copyA/fechaSolicitud}"
+                                    placeholder="Ingresar Fecha"
+                                    valueFormat="yyyy/MM/dd"
+                                    class="sapUiSmallMarginBottom"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>copyAObs}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<TextArea height="70px" placeholder="Escribir observacion" value="{localModel>/copyA/observacion}" />
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+   
+</core:FragmentDefinition>

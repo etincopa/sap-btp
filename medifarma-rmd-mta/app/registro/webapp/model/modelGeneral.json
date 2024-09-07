@@ -1,0 +1,389 @@
+{
+  "oDataFilterEquipoUtensilio": {},
+  "oDataFilterAgrupador": {},
+  "addLapsoEnabled": false,
+  "ordenesAbap": [],
+  "loteFilter": "",
+  "usuariosRmd": [],
+  "usuariosAbap": [],
+  "estructuras": [],
+  "tblCuadros": [],
+  "tblEquipos": [],
+  "tblVerificaFirmas": [],
+  "motivosLapso": [],
+  "observacionesRMD": [],
+  "LineaActualRMD": {},
+  "CantidadConHUOp": {},
+  "LineaActualMD": {},
+  "bAvisoMant": false,
+  "bNoAvisoMant": false,
+  "aObjetosEquipo": [],
+  "aSintomasEquipo": [],
+  "aCausasEquipo": [],
+  "oObjObjetoEquipo": {},
+  "oObjSintomaEquipo": {},
+  "oObjCausaEquipo": {},
+  "Mds": [],
+  "ObservacionRMD": "",
+  "ComentarioLapso": "",
+  "EtiquetaSinEnlace": {},
+  "EtiquetaSinEnlaceAdd": {},
+  "ImprimirRango" : false,
+  "bFlagNotifFinal": false,
+  "equipoSelected": {},
+  "oDataImpresion" : {},
+  "selectedPrinterKey": "",
+  "tipoDatoId_iMaestraId": null,
+  "Impresoras": null,
+  "flagNotificacion": false,
+  "viewColumn": true,
+  "cuadrosColumn": [
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    }
+  ],
+  "equiposColumn": [
+    {
+      "text": "Descripción"
+    },
+    {
+      "text": "Tipo"
+    },
+    {
+      "text": "Calificaciones/Calibracion"
+    },
+    {
+      "text": "Código"
+    },
+    {
+      "text": "Check",
+      "Cod": "chk"
+    },
+    {
+      "text": "Opción"
+    }
+  ],
+  "especificacionColumn": [
+    {
+      "text": "Ensayo"
+    },
+    {
+      "text": "Especificaciones"
+    },
+    {
+      "text": "Resultados"
+    },
+    {
+      "text": ""
+    }
+  ],
+  "condicionesAmbientalesColumn": [
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    },
+    {
+      "text": ""
+    }
+  ],
+  "verificacionFirmasColumn": [
+    {
+      "text": "Realizado por (R)"
+    },
+    {
+      "text": "Supervisado por (S)"
+    },
+    {
+      "text": "Nombres y Apellidos"
+    },
+    {
+      "text": "Firma"
+    }
+  ],
+  "fragments": [
+    {
+      "fragment": "Cuadros",
+      "tipo": 4
+    },
+    {
+      "fragment": "Equipos",
+      "tipo": 5
+    },
+    {
+      "fragment": "Formulas",
+      "tipo": 8
+    },
+    {
+      "fragment": "CondicionesAmbientales",
+      "tipo": 3
+    },
+    {
+      "fragment": "Procesos",
+      "tipo": 7
+    },
+    {
+      "fragment": "Especificaciones",
+      "tipo": 6
+    },
+    {
+      "fragment": "VerificacionFirmas",
+      "tipo": 9
+    }
+  ],
+  "tiposDatos": [
+    {
+      "control": "Texto",
+      "tipo": 43
+    },
+    {
+      "control": "Cantidad",
+      "tipo": 44
+    },
+    {
+      "control": "Fecha",
+      "tipo": 45
+    },
+    {
+      "control": "FechaHora",
+      "tipo": 46
+    },
+    {
+      "control": "Hora",
+      "tipo": 47
+    },
+    {
+      "control": "Numeros",
+      "tipo": 48
+    },
+    {
+      "control": "RealizadoPor",
+      "tipo": 49
+    },
+    {
+      "control": "VistoBueno",
+      "tipo": 50
+    },
+    {
+      "control": "RealizadoPorVistoBueno",
+      "tipo": 51
+    },
+    {
+      "control": "VerificacionCheck",
+      "tipo": 52
+    },
+    {
+      "control": "MultipleCheck",
+      "tipo": 53
+    },
+    {
+      "control": "Rango",
+      "tipo": 54
+    },
+    {
+      "control": "DatoFijo",
+      "tipo": 55
+    },
+    {
+      "control": "Formula",
+      "tipo": 56
+    },
+    {
+      "control": "Sin tipo de dato",
+      "tipo": 57
+    },
+    {
+      "control": "Notificacion",
+      "tipo": 137
+    }
+  ],
+  "Estructura": [
+    {
+      "equipoId": "1",
+      "codigo": "Eqp1",
+      "descripcion": "Materiales",
+      "codigoGaci": "S",
+      "estadoId": 27,
+      "estado": "ok",
+      "sucursalId": "Plnata 01",
+      "tipo": "Equipo",
+      "area": "Area 1"
+    },
+    {
+      "equipoId": "2",
+      "codigo": "Eqp2",
+      "descripcion": "PC",
+      "codigoGaci": "S",
+      "estadoId": 27,
+      "estado": "ok",
+      "sucursalId": "Plnata 01",
+      "tipo": "Equipo",
+      "area": "Area 1"
+    }
+  ],
+  "formulaColumn":[
+    {
+        "text": "Descripción"
+    },
+    {
+        "text": "Código"
+    },
+    {
+        "text": "UM"
+    },
+    {
+        "text": "Cantidad"
+    },
+    {
+        "text": "Cantidad Entregada"
+    },
+    {
+        "text": "N Bultos"
+    },
+    {
+        "text": ""
+    },
+    {
+        "text": ""
+    }
+  ],
+  "procesoColumn": [
+    {
+      "text": "Código",
+      "Cod": "code"
+    },
+    {
+      "text": "Descripción"
+    },
+    {
+      "text": "Check",
+      "Cod": "codeCenter"
+    },
+    {
+      "text": "Opcion",
+      "Cod": "codeCenter"
+    }
+  ],
+  "listaInsumos": [
+    {
+      "checkbox": false,
+      "cantidadBulto": "4/4",
+      "material": "1000000488",
+      "descrMaterial": "EPINEFRINA BITARTRATO",
+      "insumoLote": "0000000052",
+      "adicional": "N",
+      "ifa": 7.5,
+      "cantidadOP": 7.5,
+      "cantidadDespachada": 7.5,
+      "cantidadVerificada": 7.5,
+      "unidadMedidad": "kg",
+      "fraccion": 1
+    },
+    {
+      "checkbox": false,
+      "cantidadBulto": "5/12",
+      "material": "1000001131",
+      "descrMaterial": "ACETATO DE SODIO ANHIDRO GR",
+      "insumoLote": "0000000044",
+      "adicional": "N",
+      "ifa": 2.5,
+      "cantidadOP": 2.5,
+      "cantidadDespachada": 2.5,
+      "cantidadVerificada": 2.5,
+      "unidadMedidad": "kg",
+      "fraccion": 1
+    },
+    {
+      "checkbox": false,
+      "cantidadBulto": "5/5",
+      "material": "1000000968",
+      "descrMaterial": "METABISULFITO DE SODIO USP P/INYECTABLE",
+      "insumoLote": "0000000043",
+      "adicional": "N",
+      "ifa": 0.002,
+      "cantidadOP": 0.002,
+      "cantidadDespachada": 0.002,
+      "cantidadVerificada": 0.002,
+      "unidadMedidad": "kg",
+      "fraccion": 1
+    },
+    {
+      "checkbox": false,
+      "cantidadBulto": "0/8",
+      "material": "1000000917",
+      "descrMaterial": "CLORURO DE SODIO APIROGENO",
+      "insumoLote": "0000000043",
+      "adicional": "N",
+      "ifa": 0.484,
+      "cantidadOP": 0.484,
+      "cantidadDespachada": 0.484,
+      "cantidadVerificada": 0.484,
+      "unidadMedidad": "kg",
+      "fraccion": 1
+    },
+    {
+      "checkbox": false,
+      "cantidadBulto": "1/5",
+      "material": "1000000893",
+      "descrMaterial": "ACIDO ACETICO GLACIAL",
+      "insumoLote": "1012119",
+      "adicional": "N",
+      "ifa": 0.293,
+      "cantidadOP": 0.293,
+      "cantidadDespachada": 0.293,
+      "cantidadVerificada": 0.293,
+      "unidadMedidad": "kg",
+      "fraccion": 1
+    }
+  ],
+  "listaInsumosDetalle": [
+    {
+      "estado": "",
+      "numeroBultos": 1,
+      "codigoBulto": "C1677935",
+      "cantidadDespachada": 1.5,
+      "ptara": 3.50,
+      "unidadMedidad": "kg"
+    },
+    {
+      "estado": "",
+      "numeroBultos": 2,
+      "codigoBulto": "C1677920",
+      "cantidadDespachada": 3,
+      "ptara": 7.00,
+      "unidadMedidad": "kg"
+    },
+    {
+      "estado": "",
+      "numeroBultos": 3,
+      "codigoBulto": "C1677835",
+      "cantidadDespachada": 2,
+      "ptara": 5.25,
+      "unidadMedidad": "kg"
+    },
+    {
+      "estado": "",
+      "numeroBultos": 4,
+      "codigoBulto": "C1672122",
+      "cantidadDespachada": 1,
+      "ptara": 2.75,
+      "unidadMedidad": "kg"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar id="filterBar" reset="onReset" search="onSearchRequestByFilter" showRestoreButton="true" showClearButton="true">
+		<fb:filterGroupItems>
+			<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="N° Solicitud" visibleInFilterBar="true">
+				<fb:control>
+					<Input type="Text" value="{utils>/Filters/req_id}" placeholder="Ingrese número solicitud"/>
+				</fb:control>
+			</fb:FilterGroupItem>-->
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Aplicación" mandatory="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox id="cbApplication" selectedKey="{ModelGlobal>/ApplicationKey}" items="{ModelGlobal>/Application}" placeholder="Seleccione una aplicación">
+						<core:Item key="{ModelGlobal>Id}" text="{ModelGlobal>Name}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="Fecha de solicitud" mandatory="true" visibleInFilterBar="true">
+				<fb:control>
+					<DateRangeSelection id="drsSolicitud" displayFormat="dd/MM/yyyy" dateValue="{ModelGlobal>/RequestDate/From}" valueFormat="yyyyMMdd"
+						secondDateValue="{ModelGlobal>/RequestDate/UpTo}" placeholder="Seleccione una fecha"></DateRangeSelection>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="C" label="Fecha de aprobación" visibleInFilterBar="true">
+				<fb:control>
+					<DateRangeSelection id="drsAprobacion" displayFormat="dd/MM/yyyy" dateValue="{ModelGlobal>/CompletedDate/From}"
+						secondDateValue="{ModelGlobal>/CompletedDate/UpTo}" placeholder="Seleccione una fecha"></DateRangeSelection>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="D" label="Estado" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox id="cbEstado" selectedKey="{ModelGlobal>/StatusKey}" items="{ModelGlobal>/Status}" placeholder="Seleccione un estado">
+						<core:Item key="{ModelGlobal>Id}" text="{ModelGlobal>Description}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

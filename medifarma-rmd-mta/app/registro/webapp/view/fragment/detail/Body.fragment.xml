@@ -1,0 +1,18 @@
+<core:FragmentDefinition 
+  xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+  <Wizard
+		id="idEstructuraWizard"
+        showNextButton="false"
+        renderMode="Page"
+        steps="{path: 'modelGeneral>/estructuras'}"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+		<WizardStep title="{modelGeneral>title}"
+					activate="onActivate">
+                    
+		</WizardStep>
+  </Wizard>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+ID: workflowupdmta
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: workflowsuppliersupdate
+    type: com.sap.application.content
+    path: workflowsuppliersupdate
+    requires:
+      - name: workflow_service
+        parameters:
+          content-target: true
+resources:
+  - name: workflow_service
+    parameters:
+      service-plan: standard
+      service: workflow
+    type: org.cloudfoundry.managed-service

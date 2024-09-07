@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>dlgMdAddDocumento}: {asociarDatos>/codigo} - {asociarDatos>/descripcion}">
+    <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.documentoMD.DocumentoMD" type="XML"/>
+		<beginButton>
+			<Button text="{i18n>btnGuardar}" press="onConfirmAddDocumento" type="Transparent"/>
+		</beginButton>
+        <endButton>
+			<Button text="{i18n>btnCerrar}" press="onCancelAddDocumento" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

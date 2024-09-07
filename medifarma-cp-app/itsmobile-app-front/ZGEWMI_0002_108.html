@@ -1,0 +1,761 @@
+<!-- 
+
+	ORIGINAL HTML, CSS
+
+-->
+`if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`elseif (~itsmobileStandardsMode == "X")`
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+`end;`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"
+      class="MobileHtml"`
+  end;`>`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;`
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0108
+      DATE:   20220816
+      TIME:   121540
+      STYLE:  MOBILE4
+-->
+declare class(name, idx=1), style(name, idx=1), style_attr(name, idx=1), icon(name, idx=1),
+    class_ext(name, idx=1), align(name, idx=1), label(name, idx=1), has_label(name, idx=1),
+    width(i, a), margin_left(i, a), w(i, a), sh(), mkid(s) in "some.html";
+if ( ~itsmobileFuncInclude != "" )
+    include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude, ~style="x");
+else
+    include(~service="itsmobile", ~language="", ~theme="99", ~name=nonExt&"functions", ~style="x");
+end;`
+`
+    `<head>`
+    if ( ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;`
+`
+        `<title>`~windowtitle`</title>
+`if (~resp_content_type == "") ~resp_content_type = "text/html"; end;`
+        <meta http-equiv="Content-Type" content="`~resp_content_type`; charset=`~resp_content_charset`" `sh()`>`
+if ( ~itsmobileSoundInclude != "" ) <!-- customers sound -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileSoundInclude & ".html");
+else <!-- default -->
+   include(~service="itsmobile", ~language="", ~theme="99", ~name="include/sound.html");
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" `sh()`>
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile.css")`" type="text/css" `sh()`>
+` end;
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile.js")`"></script>
+` end;
+  if ( ~itsmobileCustomJsInclude != "" )`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCustomJsInclude & ".js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;`
+`
+    `</head>`
+    `<body class="MobileBody `class("~currdynpro", 1)`" `style_attr("~currdynpro", 1);
+      if (~currdynpro.speechenabled != "")` id="MobileBody" ev:event="load" ev:handler="#sayOnPageLoad"` else
+      ` onload="setFocus('`~focusfield`');`~itsmobileOnloadHandler`"` end;
+      ` onkeydown="return processKeyEvent(event);" onhelp="return false;">
+`
+        `<form method="post" action="`WGateURL()`" id="mobileform" name="mobileform" onsubmit="return firstSend()" style="display:inline">
+            <input type="hidden" name="~OkCode" value="/0"`sh()`>
+            <input type="hidden" name="~FKey" value=""`sh()`>
+            <input type="hidden" name="~Focusfield" value=""`sh()`>`if (~SEC_SESSTOKEN != "")`
+            <input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`"`sh()`>`end`
+`if (~active_timer != "")
+    include(~service="itsmobile", ~theme="99", ~name="timer.html");
+    timer(~active_timer, width, height);
+end`
+`
+`<!-- main screen begin -->
+<div>`
+    if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+    elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+       include(~service="itsmobile", ~language="", ~theme="99", ~name="include/cuaarea.html");
+    end;`
+</div>
+<div class="MobileUserArea">`
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'GV_EXITO'[1].exists == "X" && 'GV_EXITO'[1].visible == "X" ) ||
+     ( 'GV_CEXITO'[1].exists == "X" && 'GV_CEXITO'[1].visible == "X" ) ||
+     0 )
+`<!-- line 1 -->
+<div class="MobileRow">`
+if ( 2 != 0 )
+    `<span style="`margin_left("2", "1.640em")`; height:1px"></span>`
+end;
+if ( ( 'GV_EXITO'[1].exists == "X" ) && ( 'GV_EXITO'[1].visible == "X" ) )
+    `<input type="radio" class="MobileRadioButton `class("GV_EXITO", 1)`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'GV_EXITO'[1].name`" ` end;
+    if ( 'GV_EXITO'[1].label == "" )
+        `style="`width("9", "7.380em"); style("GV_EXITO", 1)`" `
+    else
+        style_attr("GV_EXITO", 1);
+    end;
+    if ( 'GV_EXITO'[1].disabled == "X" ) `disabled="disabled" `end;
+    if ( 'GV_EXITO'[1] == "X" ) `checked="checked" `end;
+    `id="`mkid('GV_EXITO'[1].name)`" name="`'GV_EXITO'[1].group`" value="GV_EXITO[`1`]" `
+    if ( 'GV_EXITO'[1].okcode != "" )
+        `onclick="setOkCode('`'GV_EXITO'[1].okcode`');" `
+    end;
+    sh()`>`
+    icon( "GV_EXITO", 1 );
+    if ( has_label("GV_EXITO", 1) )
+        `<label class="MobileRadioLabel" `style_attr("GV_EXITO", 1)`
+          for="`mkid('GV_EXITO'[1].name)`">`label("GV_EXITO", 1)`</label>`
+    end;
+else
+    `<span style="`margin_left("9", "7.380em")`; height:1px"></span>`
+end;
+if ( 0 != 0 )
+    `<span style="`margin_left("0", "0.000em")`; height:1px"></span>`
+end;
+if ( ( 'GV_CEXITO'[1].exists == "X" ) && ( 'GV_CEXITO'[1].visible == "X" ) )
+    `<span style="`width("12", "9.840em"); align("GV_CEXITO", 1); style("GV_CEXITO", 1)`" `
+    if ( 'GV_CEXITO'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted MobileOutputOnly `class("GV_CEXITO", 1)`"`
+    else
+        `class="MobileLabel MobileOutputOnly `class("GV_CEXITO", 1)`"`
+    end;
+    `>`strmask('GV_CEXITO'[1])`</span>`
+else
+    `<span style="`margin_left("12", "9.840em")`; height:1px"></span>`
+end;
+if ( 58 != 0 )
+    `<span style="`margin_left("58", "47.560em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'GV_ERROR'[1].exists == "X" && 'GV_ERROR'[1].visible == "X" ) ||
+     ( 'GV_CERROR'[1].exists == "X" && 'GV_CERROR'[1].visible == "X" ) ||
+     ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" ) ||
+     0 )
+`<!-- line 2 -->
+<div class="MobileRow">`
+if ( 2 != 0 )
+    `<span style="`margin_left("2", "1.640em")`; height:1px"></span>`
+end;
+if ( ( 'GV_ERROR'[1].exists == "X" ) && ( 'GV_ERROR'[1].visible == "X" ) )
+    `<input type="radio" class="MobileRadioButton `class("GV_ERROR", 1)`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'GV_ERROR'[1].name`" ` end;
+    if ( 'GV_ERROR'[1].label == "" )
+        `style="`width("8", "6.560em"); style("GV_ERROR", 1)`" `
+    else
+        style_attr("GV_ERROR", 1);
+    end;
+    if ( 'GV_ERROR'[1].disabled == "X" ) `disabled="disabled" `end;
+    if ( 'GV_ERROR'[1] == "X" ) `checked="checked" `end;
+    `id="`mkid('GV_ERROR'[1].name)`" name="`'GV_ERROR'[1].group`" value="GV_ERROR[`1`]" `
+    if ( 'GV_ERROR'[1].okcode != "" )
+        `onclick="setOkCode('`'GV_ERROR'[1].okcode`');" `
+    end;
+    sh()`>`
+    icon( "GV_ERROR", 1 );
+    if ( has_label("GV_ERROR", 1) )
+        `<label class="MobileRadioLabel" `style_attr("GV_ERROR", 1)`
+          for="`mkid('GV_ERROR'[1].name)`">`label("GV_ERROR", 1)`</label>`
+    end;
+else
+    `<span style="`margin_left("8", "6.560em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'GV_CERROR'[1].exists == "X" ) && ( 'GV_CERROR'[1].visible == "X" ) )
+    `<span style="`width("12", "9.840em"); align("GV_CERROR", 1); style("GV_CERROR", 1)`" `
+    if ( 'GV_CERROR'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted MobileOutputOnly `class("GV_CERROR", 1)`"`
+    else
+        `class="MobileLabel MobileOutputOnly `class("GV_CERROR", 1)`"`
+    end;
+    `>`strmask('GV_CERROR'[1])`</span>`
+else
+    `<span style="`margin_left("12", "9.840em")`; height:1px"></span>`
+end;
+if ( 41 != 0 )
+    `<span style="`margin_left("41", "33.620em")`; height:1px"></span>`
+end;
+if ( ( 'BTN_SALIR'[1].exists == "X" ) && ( 'BTN_SALIR'[1].visible == "X" ) )
+    `<input type="button" style="`width("16", "13.120em"); style("BTN_SALIR", 1)`" `
+    `class="MobileButton`class_ext("BTN_SALIR", 1)` `class("BTN_SALIR", 1)`" `
+    if ( 'BTN_SALIR'[1].disabled == "X" ) `disabled="disabled" `end;
+    `name="`'BTN_SALIR'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'BTN_SALIR'[1].name`" `end;
+    `value="`label("BTN_SALIR", 1)`" `
+    if ( 'BTN_SALIR'[1].onclick != "" )
+         `onclick="`'BTN_SALIR'[1].onclick`;" `
+    elseif ( 'BTN_SALIR'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_SALIR'[1].name`');"
+        onblur="leaveFocusField('`'BTN_SALIR'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_SALIR'[1].okcode`');" `
+    end;
+    sh()`>`
+else
+    `<span style="`margin_left("16", "13.120em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'GV_TOTAL'[1].exists == "X" && 'GV_TOTAL'[1].visible == "X" ) ||
+     ( 'GV_CTOTAL'[1].exists == "X" && 'GV_CTOTAL'[1].visible == "X" ) ||
+     0 )
+`<!-- line 3 -->
+<div class="MobileRow">`
+if ( 2 != 0 )
+    `<span style="`margin_left("2", "1.640em")`; height:1px"></span>`
+end;
+if ( ( 'GV_TOTAL'[1].exists == "X" ) && ( 'GV_TOTAL'[1].visible == "X" ) )
+    `<input type="radio" class="MobileRadioButton `class("GV_TOTAL", 1)`" `
+    if ( ~currdynpro.speechenabled != "" ) `id="`'GV_TOTAL'[1].name`" ` end;
+    if ( 'GV_TOTAL'[1].label == "" )
+        `style="`width("8", "6.560em"); style("GV_TOTAL", 1)`" `
+    else
+        style_attr("GV_TOTAL", 1);
+    end;
+    if ( 'GV_TOTAL'[1].disabled == "X" ) `disabled="disabled" `end;
+    if ( 'GV_TOTAL'[1] == "X" ) `checked="checked" `end;
+    `id="`mkid('GV_TOTAL'[1].name)`" name="`'GV_TOTAL'[1].group`" value="GV_TOTAL[`1`]" `
+    if ( 'GV_TOTAL'[1].okcode != "" )
+        `onclick="setOkCode('`'GV_TOTAL'[1].okcode`');" `
+    end;
+    sh()`>`
+    icon( "GV_TOTAL", 1 );
+    if ( has_label("GV_TOTAL", 1) )
+        `<label class="MobileRadioLabel" `style_attr("GV_TOTAL", 1)`
+          for="`mkid('GV_TOTAL'[1].name)`">`label("GV_TOTAL", 1)`</label>`
+    end;
+else
+    `<span style="`margin_left("8", "6.560em")`; height:1px"></span>`
+end;
+if ( 1 != 0 )
+    `<span style="`margin_left("1", "0.820em")`; height:1px"></span>`
+end;
+if ( ( 'GV_CTOTAL'[1].exists == "X" ) && ( 'GV_CTOTAL'[1].visible == "X" ) )
+    `<span style="`width("12", "9.840em"); align("GV_CTOTAL", 1); style("GV_CTOTAL", 1)`" `
+    if ( 'GV_CTOTAL'[1].highlighted == "X" )
+        `class="MobileLabelHighlighted MobileOutputOnly `class("GV_CTOTAL", 1)`"`
+    else
+        `class="MobileLabel MobileOutputOnly `class("GV_CTOTAL", 1)`"`
+    end;
+    `>`strmask('GV_CTOTAL'[1])`</span>`
+else
+    `<span style="`margin_left("12", "9.840em")`; height:1px"></span>`
+end;
+if ( 58 != 0 )
+    `<span style="`margin_left("58", "47.560em")`; height:1px"></span>`
+end;
+<!-- content row end -->`
+</div>
+`end;
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'CC_TABLE_TRAS'[1].exists == "X" && 'CC_TABLE_TRAS'[1].visible == "X" ) ||
+     1 )
+`<!-- line 4 -->
+<div class="MobileRow">`
+declare cust_control(name, width, height) in "some.html";
+if ( ~itsmobileCustomControls != "" )
+    include(~service=~current_service, ~theme=~theme, ~name=~itsmobileCustomControls, ~style="x");
+else
+    include(~service="itsmobile", ~theme="99", ~name=nonExt&"cust_controls", ~style="x");
+end;
+cust_control("CC_TABLE_TRAS", "66.420em", 17);`
+`
+<!-- content row end -->`
+</div>
+`end;
+`</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+	CUSTOM HTML, CSS
+
+-->
+`if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`elseif (~itsmobileStandardsMode == "X")`
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+`end;`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"
+      class="MobileHtml"`
+  end;`>`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;`
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0108
+      DATE:   20220816
+      TIME:   121540
+      STYLE:  MOBILE4
+-->
+declare class(name, idx=1), style(name, idx=1), style_attr(name, idx=1), icon(name, idx=1),
+    class_ext(name, idx=1), align(name, idx=1), label(name, idx=1), has_label(name, idx=1),
+    width(i, a), margin_left(i, a), w(i, a), sh(), mkid(s) in "some.html";
+if ( ~itsmobileFuncInclude != "" )
+    include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude, ~style="x");
+else
+    include(~service="itsmobile", ~language="", ~theme="99", ~name=nonExt&"functions", ~style="x");
+end;`
+`
+    `<head>`
+    if ( ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;`
+`
+        `<title>`~windowtitle`</title>
+`if (~resp_content_type == "") ~resp_content_type = "text/html"; end;`
+        <meta http-equiv="Content-Type" content="`~resp_content_type`; charset=`~resp_content_charset`" `sh()`>`
+if ( ~itsmobileSoundInclude != "" ) <!-- customers sound -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileSoundInclude & ".html");
+else <!-- default -->
+   include(~service="itsmobile", ~language="", ~theme="99", ~name="include/sound.html");
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" `sh()`>
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile.css")`" type="text/css" `sh()`>
+` end;
+`
+
+        <!--link rel="shortcut icon" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/image/favicon.gif")`" type="image/png"-->
+        <link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/bootstrap.css")`" type="text/css" />
+        <link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/stylecustom.css")`" type="text/css" />
+        <!--link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/customcolors.css")`" type="text/css" /-->
+        <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"-->
+
+`
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile.js")`"></script>
+` end;
+  if ( ~itsmobileCustomJsInclude != "" )`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCustomJsInclude & ".js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;`
+`
+    `</head>`
+    `<body
+        class="text-center"
+        `if (~currdynpro.speechenabled != "")`
+            id="MobileBody"
+            ev:event="load"
+            ev:handler="#sayOnPageLoad"
+        ` else `
+            onload="setFocus('`~focusfield`');`~itsmobileOnloadHandler`"
+        ` end; `
+            onkeydown="return processKeyEvent(event);"
+            onhelp="return false;">
+        <div>
+           `
+           if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+           elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+            include(~service="zgewmt_002", ~language="", ~theme="99", ~name="include/zcuaarea.html");
+           end
+           `
+        </div>
+
+        <form
+            class="form-body"
+            method="post"
+            action="`WGateURL()`"
+            id="mobileform"
+            name="mobileform"
+            onsubmit="return firstSend()">
+
+            <input type="hidden" name="~OkCode" value="/0"`sh()`>
+            <input type="hidden" name="~FKey" value=""`sh()`>
+            <input type="hidden" name="~Focusfield" value=""`sh()`>
+            `if (~SEC_SESSTOKEN != "")`
+            <input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`"`sh()`>
+            `end`
+`if (~active_timer != "")
+    include(~service="itsmobile", ~theme="99", ~name="timer.html");
+    timer(~active_timer, width, height);
+end`
+`
+`<!-- main screen begin -->
+<div class="confirmContent">
+    <div class="clearfix row mb-2">
+    `
+    if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+         ( 'GV_EXITO'[1].exists == "X" && 'GV_EXITO'[1].visible == "X" ) ||
+         ( 'GV_CEXITO'[1].exists == "X" && 'GV_CEXITO'[1].visible == "X" ) ||
+         0 )
+    `<!-- line 1 -->
+        <div class="form-check">
+        `
+          if ( ( 'GV_EXITO'[1].exists == "X" ) && ( 'GV_EXITO'[1].visible == "X" ) )
+            `
+            <input
+                type="radio"
+                class="form-check-input"
+              `
+              if ( ~currdynpro.speechenabled != "" ) `
+                id="`'GV_EXITO'[1].name`"
+              ` end;
+              if ( 'GV_EXITO'[1].disabled == "X" ) `
+                disabled="disabled"
+              `end;
+              if ( 'GV_EXITO'[1] == "X" ) `
+                checked="checked"
+              `end; `
+                id="`mkid('GV_EXITO'[1].name)`"
+                name="`'GV_EXITO'[1].group`"
+                value="GV_EXITO[`1`]"
+              `
+              if ( 'GV_EXITO'[1].okcode != "" ) `
+                onclick="setOkCode('`'GV_EXITO'[1].okcode`');"
+              ` end;
+              sh()`>`
+
+              icon( "GV_EXITO", 1 );
+              if ( has_label("GV_EXITO", 1) )
+                  `
+                <label
+                  class="form-label form-check-label"
+                  for="`mkid('GV_EXITO'[1].name)`">
+                    `label("GV_EXITO", 1)`
+                </label>`
+              end;
+          end;
+
+          if ( ( 'GV_CEXITO'[1].exists == "X" ) && ( 'GV_CEXITO'[1].visible == "X" ) )
+          `
+            <span>
+              `strmask('GV_CEXITO'[1])`
+            </span>
+          `
+          end;
+          <!-- content row end -->`
+        </div>
+    `end;
+    if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+         ( 'GV_ERROR'[1].exists == "X" && 'GV_ERROR'[1].visible == "X" ) ||
+         ( 'GV_CERROR'[1].exists == "X" && 'GV_CERROR'[1].visible == "X" ) ||
+         ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" ) ||
+         0 )
+    `<!-- line 2 -->
+        <div class="form-check">
+        `
+          if ( ( 'GV_ERROR'[1].exists == "X" ) && ( 'GV_ERROR'[1].visible == "X" ) )
+            `
+            <input
+                type="radio"
+                class="form-check-input"
+              `
+              if ( ~currdynpro.speechenabled != "" ) `
+                id="`'GV_ERROR'[1].name`"
+              ` end;
+              if ( 'GV_ERROR'[1].disabled == "X" ) `
+                disabled="disabled"
+              `end;
+              if ( 'GV_ERROR'[1] == "X" ) `
+                checked="checked"
+              `end; `
+                id="`mkid('GV_ERROR'[1].name)`"
+                name="`'GV_ERROR'[1].group`"
+                value="GV_ERROR[`1`]"
+              `
+              if ( 'GV_ERROR'[1].okcode != "" ) `
+                onclick="setOkCode('`'GV_ERROR'[1].okcode`');"
+              ` end;
+              sh()`>`
+
+              icon( "GV_ERROR", 1 );
+              if ( has_label("GV_ERROR", 1) )
+                  `
+                <label
+                  class="form-label form-check-label"
+                  for="`mkid('GV_ERROR'[1].name)`">
+                    `label("GV_ERROR", 1)`
+                </label>
+            `
+              end;
+          end;
+
+          if ( ( 'GV_CERROR'[1].exists == "X" ) && ( 'GV_CERROR'[1].visible == "X" ) )
+          `
+            <span>
+              `strmask('GV_CERROR'[1])`
+            </span>
+          `
+          end;
+          <!-- content row end -->`
+        </div>
+    `end;
+    if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+         ( 'GV_TOTAL'[1].exists == "X" && 'GV_TOTAL'[1].visible == "X" ) ||
+         ( 'GV_CTOTAL'[1].exists == "X" && 'GV_CTOTAL'[1].visible == "X" ) ||
+         0 )
+    `<!-- line 3 -->
+        <div class="form-check">
+        `
+          if ( ( 'GV_TOTAL'[1].exists == "X" ) && ( 'GV_TOTAL'[1].visible == "X" ) )
+            `
+            <input
+                type="radio"
+                class="form-check-input"
+              `
+              if ( ~currdynpro.speechenabled != "" ) `
+                id="`'GV_TOTAL'[1].name`"
+              ` end;
+              if ( 'GV_TOTAL'[1].disabled == "X" ) `
+                disabled="disabled"
+              `end;
+              if ( 'GV_TOTAL'[1] == "X" ) `
+                checked="checked"
+              `end; `
+                id="`mkid('GV_TOTAL'[1].name)`"
+                name="`'GV_TOTAL'[1].group`"
+                value="GV_TOTAL[`1`]"
+              `
+              if ( 'GV_TOTAL'[1].okcode != "" ) `
+                onclick="setOkCode('`'GV_TOTAL'[1].okcode`');"
+              ` end;
+              sh()`>`
+
+              icon( "GV_TOTAL", 1 );
+              if ( has_label("GV_TOTAL", 1) )
+                  `
+                <label
+                  class="form-label form-check-label"
+                  for="`mkid('GV_TOTAL'[1].name)`">
+                    `label("GV_TOTAL", 1)`
+                </label>`
+              end;
+          end;
+
+          if ( ( 'GV_CTOTAL'[1].exists == "X" ) && ( 'GV_CTOTAL'[1].visible == "X" ) )
+          `
+            <span>
+              `strmask('GV_CTOTAL'[1])`
+            </span>
+          `
+          end;
+          <!-- content row end -->`
+        </div>
+    `end;
+    `
+    </div>
+
+`
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'GV_ERROR'[1].exists == "X" && 'GV_ERROR'[1].visible == "X" ) ||
+     ( 'GV_CERROR'[1].exists == "X" && 'GV_CERROR'[1].visible == "X" ) ||
+     ( 'BTN_SALIR'[1].exists == "X" && 'BTN_SALIR'[1].visible == "X" ) ||
+     0 )
+`<!-- line 2 -->
+
+    <div class="clearfix row mb-2">
+        <div class="col-12 justify-content-between">
+                <button
+                    type="button"
+                    class="btn btn-danger btn-lg float-end mt-2 w-30"
+                ` if ( 'BTN_SALIR'[1].disabled == "X" ) `
+                    disabled="disabled"
+                ` end; `
+                    name="`'BTN_SALIR'[1].name`"
+                ` if ( ~currdynpro.speechenabled != "" ) `
+                    id="`'BTN_SALIR'[1].name`"
+                ` end; `
+                ` if ( 'BTN_SALIR'[1].onclick != "" ) `
+                    onclick="`'BTN_SALIR'[1].onclick`;"
+                ` elseif ( 'BTN_SALIR'[1].rfidenabled == "X" ) `
+                    onfocus="setFocusField('`'BTN_SALIR'[1].name`');"
+                    onblur="leaveFocusField('`'BTN_SALIR'[1].name`');"
+                    onclick="RfidButtonClick();"
+                ` else `
+                    onclick="setOkCode('`'BTN_SALIR'[1].okcode`');"
+                ` end;
+                sh()`
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-fill" viewBox="0 0 16 16">
+                      <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146
+2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
+                    </svg>
+                    `label("BTN_SALIR", 1)`
+                </button>
+        </div>
+    </div>
+`end;
+
+
+if ( ( ~DYNPRO_COMPRESSION != "1" && ~DYNPRO_COMPRESSION != "X" ) ||
+     ( 'CC_TABLE_TRAS'[1].exists == "X" && 'CC_TABLE_TRAS'[1].visible == "X" ) ||
+     1 )
+`<!-- line 4 -->
+    <div class="table-responsive">
+    `
+        declare cust_control(name, width, height) in "some.html";
+        if ( ~itsmobileCustomControls != "" )
+            include(~service=~current_service, ~theme=~theme, ~name=~itsmobileCustomControls, ~style="x");
+        else
+            include(~service="itsmobile", ~theme="99", ~name=nonExt&"cust_controls", ~style="x");
+        end;
+        cust_control("CC_TABLE_TRAS", "100%", 17);`
+        `
+        <!-- content row end -->`
+    </div>
+`end;
+`</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>

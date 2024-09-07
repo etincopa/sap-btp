@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearchEtiqueta" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="false" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>addBuscar}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataFilterEtiqueta>/descripcion}" placeholder="{i18n>addBuscar}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearchLapso" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblEquipo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oFilters/equipo}" submit="onSearchLapso" placeholder="{i18n>phlblEquipo}" width="100%"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblCenterDistribution}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{
+                        path : 'modelGeneral>/MAESTRA',
+                        filters: [{
+                            path: 'oMaestraTipo_maestraTipoId',
+                            operator: 'EQ',
+                            value1: '18'
+                        }]
+                        }" 
+                        placeholder="{i18n>phlblCenterDistribution}" id="idCentro"  selectedKey="{modelGeneral>/oFilters/centro}"
+                        showSecondaryValues="true" filterSecondaryValues="true" forceSelected="true" change="onChangePlanta">
+                        <core:ListItem key="{modelGeneral>codigo}" text="{modelGeneral>contenido}" additionalText="{modelGeneral>codigo}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lblArea}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{modelGeneral>/aListaSecciones}" id="idArea" value="{modelGeneral>/oFilters/area}" placeholder="{i18n>phlblArea}" selectedKey="{modelGeneral>/oFilters/area}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="{=${modelGeneral>/aListaSecciones}.length === 0 ? true : true}">
+                        <core:ListItem key="{modelGeneral>Atwrt}" text="{modelGeneral>Atwrt}" additionalText="{modelGeneral>Atzhl}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>lblLote}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oFilters/lote}" submit="onSearchLapso" placeholder="{i18n>phlblLote}" width="100%"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="E" label="{i18n>lblProduct}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oFilters/producto}" submit="onSearchLapso" placeholder="{i18n>phlblProduct}" width="100%"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="F" label="{i18n>lblLapsos}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'modelGeneral>/motivosLapso'}" value="{modelGeneral>/oFilters/lapsoParada}" placeholder="{i18n>phlblLapsos}" selectedKey="{modelGeneral>/oFilters/lapsoParada}"
+                        showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>descripcion}" text="{modelGeneral>descripcion}" additionalText="{modelGeneral>codigo}"/>
+                    </ComboBox>
+					<!-- <Input value="{modelGeneral>/oFilters/lapsoParada}" submit="onSearchLapso" placeholder="{i18n>phlblLapsos}" width="100%"/> -->
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="G" label="{i18n>lblProductionOrder}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oFilters/ordenProduc}" submit="onSearchLapso" placeholder="{i18n>phlblProductionOrder}" width="100%"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="H" label="{i18n>lblDateHabi}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<DatePicker
+						placeholder="{i18n>phlblDateHabi}"
+						value="{modelGeneral>/oFilters/dateHabil}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="I" label="{i18n>lblDateCierre}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<DatePicker
+						placeholder="{i18n>phlblDateCierre}"
+						value="{modelGeneral>/oFilters/dateCierre}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="J" label="{i18n>lblTipoEquipo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'modelGeneral>/cmbTipoEquipo'}" placeholder="{i18n>phlblTipoEquipo}" selectedKey="{modelGeneral>/oFilters/tipoEquipo}" value="{modelGeneral>/oFilters/tipoEquipo}"
+                        showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>description}" text="{modelGeneral>description}" additionalText="{modelGeneral>id}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="K" label="{i18n>lblDescEquipo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oFilters/descEquipo}" submit="onSearchLapso" placeholder="{i18n>phlblDescEquipo}" width="100%"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

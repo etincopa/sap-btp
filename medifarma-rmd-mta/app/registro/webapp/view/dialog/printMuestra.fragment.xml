@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+>
+	<Dialog
+		title="{i18n>tltTicket}"
+		class="sapUiContentPadding sapUiSizeCompact"
+		contentWidth="30%"
+		afterClose="onCancelImprimirTicketMuestra"
+	>
+		<content>
+      <l:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+            <form:formContainers>
+                <form:FormContainer>
+                    <form:formElements>
+                        <form:FormElement>
+                            <form:label>
+                                <Label text="Impresora" design="Bold" width="100%"/>
+                            </form:label>
+                            <form:fields>
+                                <ComboBox items="{path: 'modelGeneral>/ImpresorasMuestra'}" selectedKey="{modelGeneral>/tipoDatoId_iMaestraId}" placeholder="Seleccione una Impresora" showSecondaryValues="true" filterSecondaryValues="true">
+                                    <core:ListItem key="{modelGeneral>impresoraId}" text="{modelGeneral>nombre}" additionalText="{modelGeneral>area}"/>
+                                </ComboBox>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer> 
+            </form:formContainers>
+            <form:layout>
+                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+            </form:layout>
+        </form:Form>
+			</l:VerticalLayout>
+		</content>
+		<buttons>
+			<Button
+				text="{i18n>btnImprimir}"
+				press="onImprimirTicketMuestra"
+				type="Accept"
+			/>
+			<Button
+				text="{i18n>btnClose}"
+				press="onCancelImprimirTicketMuestra"
+				type="Reject"
+			/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

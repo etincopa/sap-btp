@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{asociarDatos>/codigo} - {asociarDatos>/descripcion}" afterClose="onCancelEspecificacionResponsive">
+		<Table width="auto" id="idTblEspecificacion" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListEspecificacionAssignResponsive>/}" updateFinished="onUpdateFinish">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>addEspecificacion} ({=${aListEspecificacionAssignResponsive>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>TbEnsayoSAP}" enabled="{localModel>/flagEnsayoSAP}" tooltip="{i18n>TbEnsayoSAP}" icon="sap-icon://share" press="onGetEnsayoSAP" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>btnAgregar}" tooltip="{i18n>btnAgregar}" icon="sap-icon://add" press="onAddEspecificacionResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<OverflowToolbarButton text="{i18n>btnSave}" tooltip="{i18n>btnSave}" icon="sap-icon://save" press="onSaveEspecificacionResponsive" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" press="onDeleteEspecificacionResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="20%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbEDescripcion}" width="auto"/>
+				</Column>
+				<Column width="25%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbEEspecificacion}" width="auto"/>
+				</Column>
+				<Column width="15%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbETipoDato}" width="auto"/>
+				</Column>
+				<!-- <<Column width="15%" hAlign="Left" vAlign="Middle" visible="{=${aListEspecificacionAssignResponsive>campoHabilitador}=== true ? true: false}" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="NuevoCampo" width="auto"/>
+				</Column>> -->
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbEValInicial}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbEValFinal}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbCMargen}" width="auto"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Text text="{i18n>TbCDecimal}" width="auto"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<ObjectIdentifier title="{aListEspecificacionAssignResponsive>ensayoPadreId/contenido}" text="{aListEspecificacionAssignResponsive>ensayoHijo}"/>
+					<Text text="{aListEspecificacionAssignResponsive>especificacion}" width="auto"/>
+					<!-- <ObjectIdentifier visible="{=${aListEspecificacionAssignResponsive>campoHabilitador}=== true ? true: false}" title="{aListEspecificacionAssignResponsive>Verwmerkm}" text="{aListEspecificacionAssignResponsive>Kurztext}"/> -->
+					<ComboBox items="{path: 'mainModel>/MAESTRA', filters: [{path: 'oMaestraTipo_maestraTipoId', operator: 'EQ', value1: 5}, {path: 'campo1', operator: 'EQ', value1: 'ESPECIFICACION'}]}" 
+						placeholder="{i18n>phlblTipoDato}" selectedKey="{aListEspecificacionAssignResponsive>tipoDatoId_iMaestraId}"
+						showSecondaryValues="true" filterSecondaryValues="true" change="onChangeTipoDatoEspecificaionesMd">
+						<core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+					</ComboBox>
+					<Input value="{aListEspecificacionAssignResponsive>valorInicial}" enabled="{=${aListEspecificacionAssignResponsive>enabledValorInicial} === true ? true : false}" width="auto"/>
+					<Input value="{aListEspecificacionAssignResponsive>valorFinal}" enabled="{=${aListEspecificacionAssignResponsive>enabledValorFinal} === true ? true : false}" width="auto"/>
+					<Input value="{aListEspecificacionAssignResponsive>margen}" enabled="{=${aListEspecificacionAssignResponsive>enabledMargen} === true ? true : false}" width="auto"/>
+					<Input value="{aListEspecificacionAssignResponsive>decimales}" enabled="{=${aListEspecificacionAssignResponsive>enabledDecimales} === true ? true : false}" width="auto"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelEspecificacionResponsive" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

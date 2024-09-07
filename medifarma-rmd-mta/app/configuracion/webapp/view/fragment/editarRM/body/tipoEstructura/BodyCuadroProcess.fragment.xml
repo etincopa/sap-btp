@@ -1,0 +1,151 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" 
+xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  xmlns:dnd="sap.ui.core.dnd" >
+	<Dialog title="{asociarDatos>/codigo} - {asociarDatos>/descripcion}" afterClose="onCancelCuadroProcessResponsive">
+		<Table width="auto" id="idTblPasoCuadroProcess" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListPasoAssignResponsive>/}" updateFinished="onUpdateFinish">
+			<dragDropConfig>
+				<dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropResponsive"/>
+			</dragDropConfig>
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>adPPasos} ({=${aListPasoAssignResponsive>/}.length})"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+					<OverflowToolbarButton text="{i18n>add}" tooltip="{i18n>add}" icon="sap-icon://add" press="onAddPasosResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<OverflowToolbarButton text="{i18n>btnSave}" tooltip="{i18n>btnSave}" icon="sap-icon://save" press="onSavePasosResponsive('procesoCuadro')" type="Transparent"/>
+					<!-- <OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" app:component="procesoCuadro" press="onDeletePasosResponsive('procesoCuadro')" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/> -->
+					<OverflowToolbarButton text="{i18n>btnDelete}" tooltip="{i18n>btnDelete}" icon="sap-icon://delete" app:component="procesoCuadro" press="onDeletePasosResponsive" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCOrden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCDepende}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCCodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="15%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCDescripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCTipoDato}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle"  visible="{= ${localModel>/tipoDatoPasoMD}}" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCclvMod}" width="auto" />
+				</Column>
+				 <Column width="6%" hAlign="Left" vAlign="Middle" visible="{= ${localModel>/tipoDatoPasoMD}}"  minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>TbCJob}" width="auto" />
+				</Column>
+				<!-- <Column width="4%" hAlign="Left" vAlign="Middle" visible="{= ${localModel>/tipoDatoPasoMD}}"  minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>Auto}" width="auto" />
+				</Column> -->
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCValInicial}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCValFinal}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCMargen}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>TbCDecimal}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCEstadoCC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCEstadoMov}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCPmop}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCGenpp}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCEdit}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCRpor}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCVb}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCImagen}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="3%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCFormato}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="{i18n>TbCProcMen}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onEditPasoGeneral">
+					<!-- <Text text="{aListPasoAssignResponsive>orden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+					<Input value="{aListPasoAssignResponsive>orden}" change="onDropResponsive" width="auto" textAlign="Begin" textDirection="Inherit"/>
+					<!-- <Input value="{aListPasoAssignResponsive>depende}" width="auto"/> -->
+						<!-- valueHelpOnly="true" -->
+					<Input
+						showValueHelp="true"
+						valueHelpRequest="onShowPredecesores"
+						value="{aListPasoAssignResponsive>depende} {aListPasoAssignResponsive>ordenPredecesor}"
+						change="onChangeDataAutorization">
+						<core:Item key="{localModel>pasoId/codigo}" text="{localModel>pasoId/descripcion} ({localModel>pasoId/codigo})" />
+					</Input>
+					<Text text="{aListPasoAssignResponsive>pasoId/codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{aListPasoAssignResponsive>pasoId/descripcion}" width="auto" renderWhitespace="true" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+							filters: [{
+							path: 'oMaestraTipo_maestraTipoId',
+							operator: 'EQ',
+							value1: '5'
+						}]}" 
+						placeholder="Tipo de Dato" selectedKey="{aListPasoAssignResponsive>tipoDatoId_iMaestraId}" showSecondaryValues="true" change="onChangeTipoDatoMd">
+						<!-- placeholder="Tipo de Dato" selectedKey="{aListPasoAssignResponsive>tipoDatoId_iMaestraId}" showSecondaryValues="true" change="onChangeTipoDatoMd"> -->
+						<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+					</ComboBox>
+					<ComboBox items="{path: 'localModel>/dataClaveModelo'}" placeholder="{i18n>newPasoclv}"  
+						selectedKey="{aListPasoAssignResponsive>clvModelo}"  enabled="{= ${aListPasoAssignResponsive>isEnabledCell}? true : false}">
+						<core:ListItem key="{localModel>Vlsch}" text="{localModel>Txt}" />
+					</ComboBox>
+					<ComboBox items="{path: 'localModel>/dataPuestoTrabajo'}" placeholder="Puesto de Trabajo" 
+						selectedKey="{aListPasoAssignResponsive>puestoTrabajo}"  enabled="{= ${aListPasoAssignResponsive>isEnabledCell}? true : false}">
+						<core:ListItem key="{localModel>Arbpl}" text="{localModel>Arbpl}" />
+					</ComboBox>
+					<!-- <CheckBox selected="{aListPasoAssignResponsive>automatico}"  enabled="{= ${aListPasoAssignResponsive>isEnabledCell}? true : false}"/> -->
+					<Input value="{aListPasoAssignResponsive>valorInicial}" enabled="{aListPasoAssignResponsive>enabledValorInicial}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>valorFinal}" enabled="{aListPasoAssignResponsive>enabledValorFinal}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>margen}" enabled="{aListPasoAssignResponsive>enabledMargen}" width="auto" change="onChangeDataAutorization"/>
+					<Input value="{aListPasoAssignResponsive>decimales}" enabled="{aListPasoAssignResponsive>enabledDecimales}" width="auto" change="onChangeDataAutorization"/>
+					<CheckBox selected="{aListPasoAssignResponsive>estadoCC}" select="onChangeDataAutorization"/>
+					<CheckBox selected="{aListPasoAssignResponsive>estadoMov}" select="onChangeDataAutorization"/>
+					<CheckBox selected="{aListPasoAssignResponsive>pmop}" select="onChangeDataAutorization"/>
+					<CheckBox selected="{aListPasoAssignResponsive>genpp}" select="onChangeDataAutorization"/>
+					<CheckBox selected="{aListPasoAssignResponsive>edit}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<CheckBox selected="{aListPasoAssignResponsive>rpor}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<CheckBox selected="{aListPasoAssignResponsive>vb}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}" select="onChangeVB"/>
+					<Button icon="sap-icon://attachment-photo" tooltip="Imagen" press="openImagenCarga" type="{=${aListPasoAssignResponsive>imagen} === true ? 'Ghost' : 'Reject'}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<Button tooltip="{i18n>TbCFormato}" press="openFullColorSample" icon="sap-icon://palette" type="{=${aListPasoAssignResponsive>formato} === true ? 'Ghost' : 'Reject'}" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+					<HBox>
+						<Button icon="sap-icon://database" tooltip="{i18n>btnProMenor}" press="onObtenerProcMenores" type="{aListPasoAssignResponsive>procmenButtonColor}" visible="{aListPasoAssignResponsive>procmenButton}"/>
+						<Button icon="sap-icon://lab" tooltip="{i18n>btnFormula}" press="onOpenFormulas" type="Transparent" visible="{=${aListPasoAssignResponsive>formulaButton} ? true : false }"/>
+					</HBox>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelCuadroProcessResponsive" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

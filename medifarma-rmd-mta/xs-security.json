@@ -1,0 +1,82 @@
+{
+    "xsappname": "rmd",
+    "tenant-mode": "dedicated",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        }, {
+            "name": "$XSAPPNAME.RMDConfiguration",
+            "description": "RMDConfiguration"
+        }, {
+            "name": "$XSAPPNAME.RMDInitialCharge",
+            "description": "RMDInitialCharge"
+        }, {
+            "name": "$XSAPPNAME.RMDReport",
+            "description": "RMDReport"
+        }, {
+            "name": "$XSAPPNAME.RMDUseEquipment",
+            "description": "RMDUseEquipment"
+        }, {
+            "name": "$XSAPPNAME.RMDSolicitation",
+            "description": "RMDSolicitation"
+        }, {
+            "name": "$XSAPPNAME.RMDRegister",
+            "description": "RMDRegister"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA Token Exchange",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "RMDConfiguration",
+            "description": "Configuracion de RMD",
+            "scope-references": [
+                "$XSAPPNAME.RMDConfiguration"
+            ]
+        }, {
+            "name": "RMDInitialCharge",
+            "description": "App de Carga Inicial, RMD o Pasos Maestros",
+            "scope-references": [
+                "$XSAPPNAME.RMDInitialCharge"
+            ],
+            "attribute-references": []
+        }, {
+            "name": "RMDReport",
+            "description": "Reporte de RMD",
+            "scope-references": [
+                "$XSAPPNAME.RMDReport"
+            ],
+            "attribute-references": []
+        }, {
+            "name": "RMDUseEquipment",
+            "description": "Reporte de Uso de Equipos",
+            "scope-references": [
+                "$XSAPPNAME.RMDUseEquipment"
+            ],
+            "attribute-references": []
+        }, {
+            "name": "RMDSolicitation",
+            "description": "Solicitud para la creacion de un RMD",
+            "scope-references": [
+                "$XSAPPNAME.RMDSolicitation"
+            ],
+            "attribute-references": []
+        }, {
+            "name": "RMDRegister",
+            "description": "Registro de los datos de un RMD configurado",
+            "scope-references": [
+                "$XSAPPNAME.RMDRegister"
+            ],
+            "attribute-references": []
+        }
+    ],
+    "oauth2-configuration": {
+        "token-validity": 3600
+    }
+}

@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:dnd="sap.ui.core.dnd">
+	<ScrollContainer
+	height="100%"
+	width="100%"
+	horizontal="false"
+	vertical="true">	
+<Table width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="None" items="{aListVerifFirmasAssignResponsive>/}" updateFinished="onUpdateFinish" growing="true"
+		growingScrollToLoad="true">
+        <headerToolbar>
+				<OverflowToolbar>
+					<!-- <Title text="{i18n>tltEquipos} ({=${aListEquipoAssignResponsive>/}.length})"></Title> -->
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<Button text="{i18n>btnAddUsuarios}" tooltip="{i18n>btnAddUsuarios}" icon="sap-icon://add" press="onOpenAddUsers" type="Transparent" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/asignarUsuarioRMD} === true &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+		<columns>
+			<Column width="15%" hAlign="Center" vAlign="Middle" styleClass="cellBorderLeft cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Realizado por (R)" width="auto"/>
+			</Column>
+			<Column width="15%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Supervisado por (S)" width="auto"/>
+			</Column>
+			<Column width="15%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Reemplazo" width="auto"/>
+			</Column>
+			<Column width="40%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Nombres y Apellidos" width="auto"/>
+			</Column>
+			<Column width="15%" hAlign="Left" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="Firma" width="auto"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<CheckBox selected="{=${aListVerifFirmasAssignResponsive>rol} === 'RMD_JEFE_DE_PRODUCCION' || ${aListVerifFirmasAssignResponsive>rol} === 'RMD_SUPERVISOR' ? false : true}" enabled="false" valueState="{=${aListVerifFirmasAssignResponsive>rol} === 'RMD_CONTROL_CALIDAD' || ${aListVerifFirmasAssignResponsive>rol} === '' ? 'Error' : None}"/>
+                <CheckBox selected="{=${aListVerifFirmasAssignResponsive>rol} === 'RMD_JEFE_DE_PRODUCCION' || ${aListVerifFirmasAssignResponsive>rol} === 'RMD_SUPERVISOR' ? true : false}" enabled="false"/>
+				<CheckBox selected="{aListVerifFirmasAssignResponsive>bReemplazo}" enabled="false"/>
+				<ObjectStatus text="{aListVerifFirmasAssignResponsive>nombre} {aListVerifFirmasAssignResponsive>apellidoPaterno} {aListVerifFirmasAssignResponsive>apellidoMaterno}" state="{=${aListVerifFirmasAssignResponsive>rol} === 'RMD_CONTROL_CALIDAD' || ${aListVerifFirmasAssignResponsive>rol} === '' ? 'Indication01' : None}"/>
+                <!-- <Text text="{aListVerifFirmasAssignResponsive>usuarioId/nombre} {aListVerifFirmasAssignResponsive>usuarioId/apellidoPaterno} {aListVerifFirmasAssignResponsive>usuarioId/apellidoMaterno}" width="auto"/> -->
+				<ObjectStatus text="{=${aListVerifFirmasAssignResponsive>usuarioSap} ? ${aListVerifFirmasAssignResponsive>usuarioSap} : ${aListVerifFirmasAssignResponsive>usuario}}" state="{=${aListVerifFirmasAssignResponsive>rol} === 'RMD_CONTROL_CALIDAD' || ${aListVerifFirmasAssignResponsive>rol} === '' ? 'Indication01' : None}"/>
+				<!-- <Text text="{=${aListVerifFirmasAssignResponsive>usuarioSap} ? ${aListVerifFirmasAssignResponsive>usuarioSap} : ${aListVerifFirmasAssignResponsive>usuarioId/usuario}}" width="auto"/> -->
+			</ColumnListItem>
+		</items>
+	</Table>
+</ScrollContainer>
+</core:FragmentDefinition>

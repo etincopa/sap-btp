@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleSortDialogConfirm">
+		<!--<sortItems items="{ModelGlobal>/Sort}">
+			<ViewSettingsItem text="{ModelGlobal>Description}" key="{ModelGlobal>Key}" selected="{ModelGlobal>Selected}"/>
+		</sortItems>-->
+		<sortItems>
+			<ViewSettingsItem text="{i18n>clRequestingUser}" key="RequestingUser" selected="true"/>
+			<ViewSettingsItem text="{i18n>clRequestDate}" key="RequestDate"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

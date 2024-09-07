@@ -1,0 +1,1296 @@
+<!-- 
+
+	ORIGINAL HTML, CSS
+
+-->
+
+`   if ( ~itsmobileFuncInclude != "" )
+        declare width(i, a), w(i, a), pos(t, l), alignment(elem) in "some.html";
+        include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude & ".html", ~style="x");
+    else
+        include(~service="itsmobile", ~language="", ~theme="99", ~name="functions.html", ~style="x");;
+    end;
+if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`end`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"`
+  end` `
+`class="MobileHtml" `
+` style="" >`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;
+  if ( ~AttrMimeUrlService == "" ) ~AttrMimeUrlService = ~current_service; end;
+  if ( ~AttrMimeUrlTheme == "" ) ~AttrMimeUrlTheme = ~theme; end;`
+
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0401
+      DATE:   20220308
+      TIME:   171803
+      STYLE:  MOBILE5
+-->
+    `<head>`
+    if (  ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;
+        `<title>`~windowtitle`</title>
+`if (NOTIFY_BELL_SIGNAL > 0)
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="`NOTIFY_BELL_SIGNAL`">
+`end;
+if ( ( ~messageline != "" ) && ( ~itsmobilemsgsound == "1" ) || ( ~currdynpro.messagesound != "" ) )
+   if ( ~messagetype == "S" || ~currdynpro.messagesound == "S" )
+         <!-- sucess message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  elseif ( ~messagetype == "I" || ~currdynpro.messagesound == "I" )
+         <!-- information message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  elseif ( ~messagetype == "W" || ~currdynpro.messagesound == "W" )
+         <!-- warning message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="1" />
+`  elseif ( ~messagetype == "E" || ~currdynpro.messagesound == "E" )
+         <!-- error message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="3" />
+`  elseif ( ~currdynpro.messagesound != "" )
+         <!-- message type not set -->
+`        <bgsound src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~currdynpro.messagesound)`" loop="1" />
+`  else
+         <!-- message type not set -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  end;
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" />
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile_e.css")`" type="text/css" />
+` end;
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile_e.js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;
+    `</head>`
+    `<body `
+      if (~currdynpro.speechenabled != "")` ev:event="load" ev:handler="#sayOnPageLoad"` else
+      ` onload="setFocus('`~focusfield`')"` end;
+      ` onkeydown="return processKeyEvent(event);" onhelp="return false;"`
+      ` style="" `
+`class="MobileBody" `
+`id="MobileBody" `
+` >
+`
+        `<form method="post" action="`WGateURL()`" `
+`class="mobileform" `
+`id="mobileform" `
+`name="mobileform" `
+` onsubmit="return firstSend()" style="`
+`display:inline; `
+`">
+            <!-- hidden okcode field -->
+            <input type="hidden" id="~OkCode" name="~OkCode" value="/0" />
+            <!-- hidden fkey field -->
+            <input type="hidden" id="~FKey" name="~FKey" value="" />
+            <!-- hidden focus field -->
+            <input type="hidden" id="~Focusfield" name="~Focusfield" value="" />
+            <!-- already send flag -->
+            <input type="hidden" id="~ItsMobFirstSend" name="~ItsMobFirstSend" value="" />
+            `if (~SEC_SESSTOKEN != "")`<input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`" />`end;
+xFactorFromGenerator=1000`
+`yFactorFromGenerator=1000
+`<!-- main screen begin -->`
+`<div width="100%" >`
+    if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+    elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+       include(~service="itsmobile", ~language="", ~theme="99", ~name="include/cuaarea.html");
+    end
+`</div>`
+`<div `
+`class="MobileUserArea" `
+` style="`
+`height:`y_length("80")`; `
+`position:relative; `
+`width:`x_length("672")`; `
+` ">`
+if ( ( 'GWA_AUTORIZ-IDAUTORIZ'[1].exists == "X" ) && ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible == "X" ) )
+    `<span `
+    if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+        ``
+`class="MobileLabelHighlighted" `
+` `
+           `style=" `if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )` text-align: right; `end
+              ``
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("180")`; `
+``
+                `display:block; `
+                `" `
+    else
+        ``
+`class="MobileLabel" `
+` `
+           `style=" `if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )` text-align: right; `end
+              ``
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("180")`; `
+``
+                `display:block; `
+                `" `
+    end
+    `>`strmask('GWA_AUTORIZ-IDAUTORIZ'[1].label)`</span>`
+end;
+if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].exists == "X" )
+    if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].disabled == "X" )
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible != "X" )
+            `<input type="hidden" readonly="readonly" `
+            ``
+`class="MobileEditDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].type == "Password" )
+            `<input type="password" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobilePasswordHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobilePasswordDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" )
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobileEditRequiredHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobileEditRequiredDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        else
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobileEditHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobileEditDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        end;
+        `name="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" && 'GWA_AUTORIZ-IDAUTORIZ'[1] == "?" )
+             `value="" `
+        else
+             `value="`strmaskext('GWA_AUTORIZ-IDAUTORIZ'[1], 1)`" `
+        end;
+        `maxlength="`'GWA_AUTORIZ-IDAUTORIZ'[1].maxinputsize`"/>`
+    else                                     <!-- not disabled -->
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible != "X" )
+            `<input type="hidden" `
+`class="MobileEdit" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].type == "Password" )
+            `<input type="password" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobilePasswordHighlighted" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            else
+                ``
+`class="MobilePassword" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" )
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobileEditRequiredHighlighted" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+` " `
+            else
+                ``
+`class="MobileEditRequired" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+` " `
+            end;
+        else
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+`class="MobileEditHighlighted" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )`text-align: right; `end
+                     ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+` " `
+            else
+                ``
+`class="MobileEdit" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("0")`; `
+`width:`x_length("396")`; `
+` " `
+            end;
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].range != "" )
+            `its:range="`'GWA_AUTORIZ-IDAUTORIZ'[1].range`" `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].list != "" )
+            `its:list="`'GWA_AUTORIZ-IDAUTORIZ'[1].list`" `
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].next != "" )
+            `its:next="`'GWA_AUTORIZ-IDAUTORIZ'[1].next`[1]" `
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].okcode != "" )
+            `onchange="setOkCode('`'GWA_AUTORIZ-IDAUTORIZ'[1].okcode`');return false;" `
+        end;
+        `onfocus="setFocusField('`'GWA_AUTORIZ-IDAUTORIZ'[1].name`');" `
+        `onblur="leaveFocusField('`'GWA_AUTORIZ-IDAUTORIZ'[1].name`');" `
+        `name="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `
+        if ( ~currdynpro.speechenabled != "" )`id="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" && 'GWA_AUTORIZ-IDAUTORIZ'[1] == "?" )
+            `value="" `
+        else
+            `value="`strmaskext('GWA_AUTORIZ-IDAUTORIZ'[1], 1)`" `
+        end;
+        `maxlength="`'GWA_AUTORIZ-IDAUTORIZ'[1].maxinputsize`"/>`
+    end;
+end`
+`
+if ( ( 'GWA_AUTORIZ-CLAVE'[1].exists == "X" ) && ( 'GWA_AUTORIZ-CLAVE'[1].visible == "X" ) )
+    `<span `
+    if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+        ``
+`class="MobileLabelHighlighted" `
+` `
+           `style=" `if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )` text-align: right; `end
+              ``
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("180")`; `
+``
+                `display:block; `
+                `" `
+    else
+        ``
+`class="MobileLabel" `
+` `
+           `style=" `if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )` text-align: right; `end
+              ``
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("180")`; `
+``
+                `display:block; `
+                `" `
+    end
+    `>`strmask('GWA_AUTORIZ-CLAVE'[1].label)`</span>`
+end;
+if ( 'GWA_AUTORIZ-CLAVE'[1].exists == "X" )
+    if ( 'GWA_AUTORIZ-CLAVE'[1].disabled == "X" )
+        if ( 'GWA_AUTORIZ-CLAVE'[1].visible != "X" )
+            `<input type="hidden" readonly="readonly" `
+            ``
+`class="MobileEditDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].type == "Password" )
+            `<input type="password" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobilePasswordHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobilePasswordDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" )
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobileEditRequiredHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobileEditRequiredDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        else
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobileEditHighlightedDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            else;
+                ``
+`class="MobileEditDisabled" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        end;
+        `name="`'GWA_AUTORIZ-CLAVE'[1].name`" `
+        if ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" && 'GWA_AUTORIZ-CLAVE'[1] == "?" )
+             `value="" `
+        else
+             `value="`strmaskext('GWA_AUTORIZ-CLAVE'[1], 1)`" `
+        end;
+        `maxlength="`'GWA_AUTORIZ-CLAVE'[1].maxinputsize`"/>`
+    else                                     <!-- not disabled -->
+        if ( 'GWA_AUTORIZ-CLAVE'[1].visible != "X" )
+            `<input type="hidden" `
+`class="MobileEdit" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].type == "Password" )
+            `<input type="password" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobilePasswordHighlighted" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            else
+                ``
+`class="MobilePassword" `
+` `
+                   `style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+`" `
+            end;
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" )
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobileEditRequiredHighlighted" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+` " `
+            else
+                ``
+`class="MobileEditRequired" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+` " `
+            end;
+        else
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+`class="MobileEditHighlighted" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )`text-align: right; `end
+                     ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+` " `
+            else
+                ``
+`class="MobileEdit" `
+` `
+                   `style=" `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )`text-align: right; `end
+                    ``
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("20")`; `
+`width:`x_length("396")`; `
+` " `
+            end;
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].range != "" )
+            `its:range="`'GWA_AUTORIZ-CLAVE'[1].range`" `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].list != "" )
+            `its:list="`'GWA_AUTORIZ-CLAVE'[1].list`" `
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].next != "" )
+            `its:next="`'GWA_AUTORIZ-CLAVE'[1].next`[1]" `
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].okcode != "" )
+            `onchange="setOkCode('`'GWA_AUTORIZ-CLAVE'[1].okcode`');return false;" `
+        end;
+        `onfocus="setFocusField('`'GWA_AUTORIZ-CLAVE'[1].name`');" `
+        `onblur="leaveFocusField('`'GWA_AUTORIZ-CLAVE'[1].name`');" `
+        `name="`'GWA_AUTORIZ-CLAVE'[1].name`" `
+        if ( ~currdynpro.speechenabled != "" )`id="`'GWA_AUTORIZ-CLAVE'[1].name`" `end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" && 'GWA_AUTORIZ-CLAVE'[1] == "?" )
+            `value="" `
+        else
+            `value="`strmaskext('GWA_AUTORIZ-CLAVE'[1], 1)`" `
+        end;
+        `maxlength="`'GWA_AUTORIZ-CLAVE'[1].maxinputsize`"/>`
+    end;
+end`
+`
+if ( 'BTN_ACEPTAR'[1].exists == "X" && 'BTN_ACEPTAR'[1].visible == "X" )
+    `<input type="button"
+        `
+    if ( 'BTN_ACEPTAR'[1].disabled == "X" )
+        ``
+`class="MobileButtonDisabled" `
+` disabled="disabled" style="`
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("60")`; `
+`width:`x_length("168")`; `
+`" `
+    else
+        ``
+`class="MobileButton" `
+` style="`
+`height:`y_length("20")`; `
+`left:`x_length("0")`; `
+`position:absolute; `
+`top:`y_length("60")`; `
+`width:`x_length("168")`; `
+`" `
+    end;
+    `name="`'BTN_ACEPTAR'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" )`id="`'BTN_ACEPTAR'[1].name`" `end;
+    `value="`strmask('BTN_ACEPTAR'[1].label)`" `
+    if ( 'BTN_ACEPTAR'[1].onclick != "" )
+         `onclick="`'BTN_ACEPTAR'[1].onclick`;" `
+    elseif ( 'BTN_ACEPTAR'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_ACEPTAR'[1].name`');"
+        onblur="leaveFocusField('`'BTN_ACEPTAR'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_ACEPTAR'[1].okcode`');" `
+    end;
+    `/>`
+end;
+if ( 'BTN_CERRAR'[1].exists == "X" && 'BTN_CERRAR'[1].visible == "X" )
+    `<input type="button"
+        `
+    if ( 'BTN_CERRAR'[1].disabled == "X" )
+        ``
+`class="MobileButtonDisabled" `
+` disabled="disabled" style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("60")`; `
+`width:`x_length("168")`; `
+`" `
+    else
+        ``
+`class="MobileButton" `
+` style="`
+`height:`y_length("20")`; `
+`left:`x_length("180")`; `
+`position:absolute; `
+`top:`y_length("60")`; `
+`width:`x_length("168")`; `
+`" `
+    end;
+    `name="`'BTN_CERRAR'[1].name`" `
+    if ( ~currdynpro.speechenabled != "" )`id="`'BTN_CERRAR'[1].name`" `end;
+    `value="`strmask('BTN_CERRAR'[1].label)`" `
+    if ( 'BTN_CERRAR'[1].onclick != "" )
+         `onclick="`'BTN_CERRAR'[1].onclick`;" `
+    elseif ( 'BTN_CERRAR'[1].rfidenabled == "X" )
+        `onfocus="setFocusField('`'BTN_CERRAR'[1].name`');"
+        onblur="leaveFocusField('`'BTN_CERRAR'[1].name`');"
+        onclick="RfidButtonClick();" `
+    else
+        `onclick="setOkCode('`'BTN_CERRAR'[1].okcode`');" `
+    end;
+    `/>`
+end;
+`</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+	CUSTOM HTML, CSS
+
+-->
+
+`   if ( ~itsmobileFuncInclude != "" )
+        declare width(i, a), w(i, a), pos(t, l), alignment(elem) in "some.html";
+        include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileFuncInclude & ".html", ~style="x");
+    else
+        include(~service="itsmobile", ~language="", ~theme="99", ~name="functions.html", ~style="x");;
+    end;
+if (~currdynpro.speechenabled != "")
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+`end`
+<html`if (~currdynpro.speechenabled != "")
+    ` xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xv="http://www.voicexml.org/2002/xhtml+voice"`
+  end` `
+`class="MobileHtml" `
+` style="" >`
+  if ( ~itsmobileNameSpace != "" )
+    ~current_service = ~itsmobileNameSpace & ~service;
+  elseif ( strsub(~sources, 0, 1) == "/" )
+    ~current_service = strsub(~sources, 0, strchr(~sources, "/", 1)+1) & ~service;
+  else
+    ~current_service = ~service;
+  end;
+  if ( ~AttrMimeUrlService == "" ) ~AttrMimeUrlService = ~current_service; end;
+  if ( ~AttrMimeUrlTheme == "" ) ~AttrMimeUrlTheme = ~theme; end;`
+
+`
+<!-- Generated Template
+      NAME:   ZGEWMI_0002
+      SCREEN: 0401
+      DATE:   20220308
+      TIME:   171803
+      STYLE:  MOBILE5
+-->
+    `<head>`
+    if (  ~itsmobileDeviceInclude != "" )
+       include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileDeviceInclude & ".html");
+    end;
+        `<title>`~windowtitle`</title>
+`if (NOTIFY_BELL_SIGNAL > 0)
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="`NOTIFY_BELL_SIGNAL`">
+`end;
+if ( ( ~messageline != "" ) && ( ~itsmobilemsgsound == "1" ) || ( ~currdynpro.messagesound != "" ) )
+   if ( ~messagetype == "S" || ~currdynpro.messagesound == "S" )
+         <!-- sucess message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  elseif ( ~messagetype == "I" || ~currdynpro.messagesound == "I" )
+         <!-- information message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  elseif ( ~messagetype == "W" || ~currdynpro.messagesound == "W" )
+         <!-- warning message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="1" />
+`  elseif ( ~messagetype == "E" || ~currdynpro.messagesound == "E" )
+         <!-- error message -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsounderr.wav")`" loop="3" />
+`  elseif ( ~currdynpro.messagesound != "" )
+         <!-- message type not set -->
+`        <bgsound src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~currdynpro.messagesound)`" loop="1" />
+`  else
+         <!-- message type not set -->
+`        <bgsound src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="sounds/all/sapsoundmsg.wav")`" loop="1" />
+`  end;
+end;
+ if ( ~itsmobileCssInclude != "" ) <!-- customer include from gui settings -->`
+        <link rel="stylesheet" href="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileCssInclude & ".css")`" type="text/css" />
+` else <!-- default include from itsmobile --> `
+        <link rel="stylesheet" href="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="styles/all/mobile_e.css")`" type="text/css" />
+` end;
+
+`
+
+<!--link rel="shortcut icon" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/image/favicon.gif")`" type="image/png"-->
+<link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/bootstrap.css")`" type="text/css" />
+<link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/stylecustom.css")`" type="text/css" />
+<!--link rel="stylesheet" href="`mimeURL(~service="zgewmt_002", ~theme=99, ~language="", ~name="all/customcolors.css")`" type="text/css" /-->
+<!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"-->
+
+`
+
+ if ( ~itsmobileJsInclude != "" ) <!-- customer include specified in gui settings -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service=~current_service, ~theme=~theme, ~language="", ~name=~itsmobileJsInclude & ".js")`"></script>
+` else <!-- default include from itsmobile -->`
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="scripts/all/mobile_e.js")`"></script>
+` end;`
+        <script type="text/javascript" language="Javascript">
+           var itsmobile_eos = "`wgateurl(~okcode="/nex")`";
+        </script>
+` <!-- rfid values --------------------------- -->
+  if ( ~RfidEnabledFields != "" ) `
+        <script type="text/javascript" language="javascript" src="`mimeURL(~service="itsmobile", ~theme=99, ~language="", ~name="rfid/rfbutton.js")`"></script>
+        <script type="text/javascript" language="Javascript">
+           var rfid_fields = new Object;
+`   repeat with i from 1 to ~RfidEnabledFields.dim
+      <!-- get field name and index -->
+      rfidField = ~RfidEnabledFields[i];
+      rfidFieldIdx = ~RfidEnabledFields[i].idx;
+      rfidFieldParams = ~RfidEnabledFields[i].params; `
+           rfid_fields["`rfidField`[`rfidFieldIdx`]"] = { `rfidFieldParams` };
+`   end;`
+        </script>
+` end;`
+
+`       <!-- Check if screen supports voice integration -->
+        if ( ~currdynpro.speechenabled != "" )
+          <!-- include the htmlb functions for voice integration -->
+          if ( ~itsmobileVoiceInclude != "" ) <!-- customers voice generation html -->
+            include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileVoiceInclude & ".html");
+          else <!-- default its default voice include -->
+            include(~service="itsmobile", ~language="", ~theme="99", ~name="include/voice.html");
+          end;
+        end;
+    `</head>`
+    `<body class="text-center" `
+      if (~currdynpro.speechenabled != "")` ev:event="load" ev:handler="#sayOnPageLoad"` else
+      ` onload="setFocus('`~focusfield`')"` end;
+      ` onkeydown="return processKeyEvent(event);" onhelp="return false;"`
+      ` style="" `
+`id="MobileBody" `
+` >
+`
+`<!-- main screen begin -->`
+`<div>
+   `
+   if ( ~itsmobileCuaInclude != "" ) <!-- customers cua area -->
+   include(~service=~current_service, ~language="", ~theme=~theme, ~name=~itsmobileCuaInclude & ".html");
+   elseif ( ~itsmobileNoCuaInclude != "1" && ~itsmobileNoCuaInclude != "X" ) <!-- default cua area -->
+   include(~service="zgewmt_002", ~language="", ~theme="99", ~name="include/zcuaarea.html");
+   end
+   `</div>`
+
+        `<form method="post" action="`WGateURL()`" `
+`class="form-body" `
+`id="mobileform" `
+`name="mobileform" `
+` onsubmit="return firstSend()" >
+            <!-- hidden okcode field -->
+            <input type="hidden" id="~OkCode" name="~OkCode" value="/0" />
+            <!-- hidden fkey field -->
+            <input type="hidden" id="~FKey" name="~FKey" value="" />
+            <!-- hidden focus field -->
+            <input type="hidden" id="~Focusfield" name="~Focusfield" value="" />
+            <!-- already send flag -->
+            <input type="hidden" id="~ItsMobFirstSend" name="~ItsMobFirstSend" value="" />
+            `if (~SEC_SESSTOKEN != "")`<input type="hidden" name="~SEC_SESSTOKEN" value="`~SEC_SESSTOKEN`" />`end;
+xFactorFromGenerator=1000`
+`yFactorFromGenerator=1000
+
+`<div  class="confirmContent">
+<div class="clearfix mb-2 mt-2">`
+    if ( ( 'GWA_AUTORIZ-IDAUTORIZ'[1].exists == "X" ) && ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible == "X" ) )
+    `<label class="form-label w-30"`
+    if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+        ` `
+           if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+           `  `
+           end
+              ` `
+    else
+` `
+           if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+           `  `
+           end
+              `  `
+    end
+    `>`
+    strmask('GWA_AUTORIZ-IDAUTORIZ'[1].label)
+    `</label>`
+end;
+    ` `
+    if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].exists == "X" )
+    if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].disabled == "X" )
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible != "X" )
+            `<input type="hidden" readonly="readonly" `
+            ``
+
+` `
+                   ` `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].type == "Password" )
+            `<input type="password" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" )
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        else
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        end;
+        `name="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" && 'GWA_AUTORIZ-IDAUTORIZ'[1] == "?" )
+             `value="" `
+        else
+             `value="`strmaskext('GWA_AUTORIZ-IDAUTORIZ'[1], 1)`" `
+        end;
+        `maxlength="`
+        'GWA_AUTORIZ-IDAUTORIZ'[1].maxinputsize
+        `" class="form-control-line form-control-sm w-40" id="inputPassword3"/>`
+    else                                     <!-- not disabled -->
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].visible != "X" )
+            `<input type="hidden" `
+
+` `
+                   ` `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].type == "Password" )
+            `<input type="password" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else
+                ``
+
+` `
+                   ` `
+            end;
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" )
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+                ` `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            else
+                ` `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            end;
+        else
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].highlighted == "X" )
+` `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+                        ` `
+                        end
+                     `  `
+            else
+                `  `
+                        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            end;
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].range != "" )
+            `its:range="`'GWA_AUTORIZ-IDAUTORIZ'[1].range`" `
+        elseif ( 'GWA_AUTORIZ-IDAUTORIZ'[1].list != "" )
+            `its:list="`'GWA_AUTORIZ-IDAUTORIZ'[1].list`" `
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].next != "" )
+            `its:next="`'GWA_AUTORIZ-IDAUTORIZ'[1].next`[1]" `
+        end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].okcode != "" )
+            `onchange="setOkCode('`'GWA_AUTORIZ-IDAUTORIZ'[1].okcode`');return false;" `
+        end;
+        `onfocus="setFocusField('`'GWA_AUTORIZ-IDAUTORIZ'[1].name`');" `
+        `onblur="leaveFocusField('`'GWA_AUTORIZ-IDAUTORIZ'[1].name`');" `
+        `name="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `
+        if ( ~currdynpro.speechenabled != "" )`id="`'GWA_AUTORIZ-IDAUTORIZ'[1].name`" `end;
+        if ( 'GWA_AUTORIZ-IDAUTORIZ'[1].inputrequired == "X" && 'GWA_AUTORIZ-IDAUTORIZ'[1] == "?" )
+            `value="" `
+        else
+            `value="`strmaskext('GWA_AUTORIZ-IDAUTORIZ'[1], 1)`" `
+        end;
+        `maxlength="`
+        'GWA_AUTORIZ-IDAUTORIZ'[1].maxinputsize
+        `" class="form-control-line form-control-sm w-40" id="inputPassword3"/>`
+    end;
+end
+    `
+  </div>
+
+<div class="clearfix mb-2 mt-2">`
+    if ( ( 'GWA_AUTORIZ-CLAVE'[1].exists == "X" ) && ( 'GWA_AUTORIZ-CLAVE'[1].visible == "X" ) )
+    `<label class="form-label w-30"`
+    if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+        ` `
+           if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+           `  `
+           end
+              ` `
+    else
+` `
+           if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+           `  `
+           end
+              `  `
+    end
+    `>`
+    strmask('GWA_AUTORIZ-CLAVE'[1].label)
+    `</label>`
+end;
+    ` `
+    if ( 'GWA_AUTORIZ-CLAVE'[1].exists == "X" )
+    if ( 'GWA_AUTORIZ-CLAVE'[1].disabled == "X" )
+        if ( 'GWA_AUTORIZ-CLAVE'[1].visible != "X" )
+            `<input type="hidden" readonly="readonly" `
+            ``
+
+` `
+                   ` `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].type == "Password" )
+            `<input type="password" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" )
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        else
+            `<input type="text" readonly="readonly" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else;
+                ``
+
+` `
+                   ` `
+            end;
+        end;
+        `name="`'GWA_AUTORIZ-CLAVE'[1].name`" `
+        if ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" && 'GWA_AUTORIZ-CLAVE'[1] == "?" )
+             `value="" `
+        else
+             `value="`strmaskext('GWA_AUTORIZ-CLAVE'[1], 1)`" `
+        end;
+        `maxlength="`
+        'GWA_AUTORIZ-CLAVE'[1].maxinputsize
+        `" class="form-control-line form-control-sm w-40" id="inputPassword3"/>`
+    else                                     <!-- not disabled -->
+        if ( 'GWA_AUTORIZ-CLAVE'[1].visible != "X" )
+            `<input type="hidden" `
+
+` `
+                   ` `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].type == "Password" )
+            `<input type="password" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ``
+
+` `
+                   ` `
+            else
+                ``
+
+` `
+                   ` `
+            end;
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" )
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+                ` `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            else
+                ` `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            end;
+        else
+            `<input type="text" `
+            if ( 'GWA_AUTORIZ-CLAVE'[1].highlighted == "X" )
+` `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+                        ` `
+                        end
+                     `  `
+            else
+                `  `
+                        if ( 'GWA_AUTORIZ-CLAVE'[1].alignment == "right" )
+                        ` `
+                        end
+                    `  `
+            end;
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].range != "" )
+            `its:range="`'GWA_AUTORIZ-CLAVE'[1].range`" `
+        elseif ( 'GWA_AUTORIZ-CLAVE'[1].list != "" )
+            `its:list="`'GWA_AUTORIZ-CLAVE'[1].list`" `
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].next != "" )
+            `its:next="`'GWA_AUTORIZ-CLAVE'[1].next`[1]" `
+        end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].okcode != "" )
+            `onchange="setOkCode('`'GWA_AUTORIZ-CLAVE'[1].okcode`');return false;" `
+        end;
+        `onfocus="setFocusField('`'GWA_AUTORIZ-CLAVE'[1].name`');" `
+        `onblur="leaveFocusField('`'GWA_AUTORIZ-CLAVE'[1].name`');" `
+        `name="`'GWA_AUTORIZ-CLAVE'[1].name`" `
+        if ( ~currdynpro.speechenabled != "" )`id="`'GWA_AUTORIZ-CLAVE'[1].name`" `end;
+        if ( 'GWA_AUTORIZ-CLAVE'[1].inputrequired == "X" && 'GWA_AUTORIZ-CLAVE'[1] == "?" )
+            `value="" `
+        else
+            `value="`strmaskext('GWA_AUTORIZ-CLAVE'[1], 1)`" `
+        end;
+        `maxlength="`
+        'GWA_AUTORIZ-CLAVE'[1].maxinputsize
+        `" class="form-control-line form-control-sm w-40" id="inputPassword3"/>`
+    end;
+end
+    `
+  </div>
+  <div class="clearfix row mb-2">
+     <div class="col-12 justify-content-between">
+      <button type="button" class="btn btn-primary btn-lg mt-2 w-30" `
+      if ( 'BTN_ACEPTAR'[1].exists == "X" && 'BTN_ACEPTAR'[1].visible == "X" )
+        if ( 'BTN_ACEPTAR'[1].disabled == "X" )
+            `disabled="disabled" `
+        else
+            ` `
+        end;
+            `name="`'BTN_ACEPTAR'[1].name`" `
+        
+        if ( ~currdynpro.speechenabled != "" )
+            `id="`'BTN_ACEPTAR'[1].name`" `
+        end;
+            `value="` `" `
+        if ( 'BTN_ACEPTAR'[1].onclick != "" )
+             `onclick="`'BTN_ACEPTAR'[1].onclick`;" `
+        elseif ( 'BTN_ACEPTAR'[1].rfidenabled == "X" )
+            `onfocus="setFocusField('`'BTN_ACEPTAR'[1].name`');"
+            onblur="leaveFocusField('`'BTN_ACEPTAR'[1].name`');"
+            onclick="RfidButtonClick();" `
+        else
+            `onclick="setOkCode('`'BTN_ACEPTAR'[1].okcode`');" `
+        end;
+      end;
+      `><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+</svg> `
+      strmask('BTN_ACEPTAR'[1].label)
+      `</button>
+    
+    
+      <button type="button" class="btn btn-danger btn-lg mt-2 w-30" `
+      if ( 'BTN_CERRAR'[1].exists == "X" && 'BTN_CERRAR'[1].visible == "X" )
+        if ( 'BTN_CERRAR'[1].disabled == "X" )
+            `disabled="disabled" `
+        else
+            ` `
+        end;
+            `name="`'BTN_CERRAR'[1].name`" `
+        
+        if ( ~currdynpro.speechenabled != "" )
+            `id="`'BTN_CERRAR'[1].name`" `
+        end;
+            `value="` `" `
+        if ( 'BTN_CERRAR'[1].onclick != "" )
+             `onclick="`'BTN_CERRAR'[1].onclick`;" `
+        elseif ( 'BTN_CERRAR'[1].rfidenabled == "X" )
+            `onfocus="setFocusField('`'BTN_CERRAR'[1].name`');"
+            onblur="leaveFocusField('`'BTN_CERRAR'[1].name`');"
+            onclick="RfidButtonClick();" `
+        else
+            `onclick="setOkCode('`'BTN_CERRAR'[1].okcode`');" `
+        end;
+      end;
+      `><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg> `
+      strmask('BTN_CERRAR'[1].label)
+      `</button>
+      </div>
+  </div>
+
+`
+`
+`
+`
+`
+
+
+`</div>
+<!-- main screen end -->`
+        `</form>`
+    `</body>`
+`</html>
+

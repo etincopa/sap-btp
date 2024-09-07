@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notificación Proceso</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>${context.subject}</h3>
+        <p>${context.initiatorName},</p>
+        <p>${context.body}</p>
+        <!-- <p>Exitosamente.</p> -->
+        <p>Saludos cordiales. </p>
+        <p>${context.finalizatorName}</p>
+        <p></p>
+        <p>Esta dirección de correo electrónico es utilizada únicamente para enviar esta información, por lo que agradeceremos no responder.</p>
+    </body>
+</html>

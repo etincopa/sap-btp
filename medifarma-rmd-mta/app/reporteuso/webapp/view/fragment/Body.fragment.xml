@@ -1,0 +1,129 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+	<Table width="auto" id="tblLapsos" sticky="ColumnHeaders" items="{path:'modelGeneral>/aListaLapsos' }" growing="true" growingScrollToLoad="true" 
+	noDataText="{i18n>tblNoData}" contextualWidth="Tablet" popinLayout="GridSmall" 
+	class="sapUiResponsiveMargin">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title id="titHeader" text="{i18n>tltReportUse} ({= ${modelGeneral>/aListaLapsos}.length})"/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://action-settings" press="onPersoButtonPressed"/>
+				<!-- <OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnReportUseEquipment}" icon="sap-icon://excel-attachment" press="onExportGeneral"/> -->
+				<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnReportUseLapso}" icon="sap-icon://attachment-zip-file" press="onExportPorLapso"/>
+				<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnReportUseLapsoNoPrinc}" icon="sap-icon://excel-attachment" press="onExportGeneralNoPrincipal"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="column1" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clCenterDistribution}" maxLines="3"/>
+			</Column>
+			<Column id="column2" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clArea}" maxLines="3"/>
+			</Column>
+			<Column id="column3" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clEquipo}" maxLines="3"/>
+			</Column>
+			<Column id="column4" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clDescEquipo}" maxLines="3"/>
+			</Column>
+			<Column id="column5" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clTipoLapso}" maxLines="3"/>
+			</Column>
+			<Column id="column6" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clDateInit}" maxLines="3"/>
+			</Column>
+			<Column id="column7" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clHourInit}" maxLines="3"/>
+			</Column>
+			<Column id="column8" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clDateEnd}" maxLines="3"/>
+			</Column>
+			<Column id="column9" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clHourEnd}" maxLines="3"/>
+			</Column>
+			<Column id="column10" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clProceso}" maxLines="3"/>
+			</Column>
+			<Column id="column11" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clProcesoMin}" maxLines="3"/>
+			</Column>
+			<Column id="column12" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clProcesoHo}" maxLines="3"/>
+			</Column>
+			<Column id="column13" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clProductionOrder}" maxLines="3"/>
+			</Column>
+			<Column id="column14" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clEtapa}" maxLines="3"/>
+			</Column>
+			<Column id="column15" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clLote}" maxLines="3"/>
+			</Column>
+			<Column id="column16" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clProduct}" maxLines="3"/>
+			</Column>
+			<Column id="column17" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clUsuarioCreacion}" maxLines="3"/>
+			</Column>
+			<Column id="column18" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clFechaCreacion}" maxLines="3"/>
+			</Column>
+			<Column id="column19" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clComentario}" maxLines="3"/>
+			</Column>
+			<Column id="column20" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clFechaHabil}" maxLines="3"/>
+			</Column>
+			<Column id="column21" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clFechaCierre}" maxLines="3"/>
+			</Column>
+			<Column id="column22" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clTipoEquipo}" maxLines="3"/>
+			</Column>
+			<Column id="column23" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clTipoPuesto}" maxLines="3"/>
+			</Column>
+			<Column id="column24" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clFraccion}" maxLines="3"/>
+			</Column>
+			<Column id="column25" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clAvisoMant}" maxLines="3"/>
+			</Column>
+			<Column id="column26" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>clSintoma}" maxLines="3"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{modelGeneral>centro}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>seccion}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>codEquipo}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>descEquipo}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>tipoParada}" width="auto"/>
+				<Text text="{modelGeneral>fechaIni2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>horaIni2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>fechaFin2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>horaFin2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>procesoMins}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>procesoTransMin}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>procesoTransHora}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>ordenProduc}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>etapa}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>lote}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>producto}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>usuarioCreador}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>fechaCreacion}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>comentario}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>fechaInicio2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>fechaCierre2}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>tipoEquipo}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>puestoTrabajo}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>fraccion}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>AvisoMant}" width="auto" maxLines="5"/>
+				<Text text="{modelGeneral>sintoma}" width="auto" maxLines="5"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

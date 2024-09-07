@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:u="sap.uxap">
+	<Dialog title="Configuracion Maestra" afterClose="onCloseConfiguration" contentWidth="100%" contentHeight="100%" verticalScrolling="false">
+		<f:DynamicPage id="dynamicPageId" headerExpanded="true" preserveHeaderStateOnScroll="true">
+			<f:header>
+				<f:DynamicPageHeader>
+					<f:content>
+						<IconTabBar id="ictabIdFilter" select="onSearchIconTab" expandable="false" expanded="true" applyContentPadding="false" class="width100" selectedKey="1">
+							<items>
+								<IconTabFilter icon="sap-icon://building" iconColor="Positive" text="{i18n>icoStructure}" count="" design="Horizontal" showAll="false"
+									textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="1">
+									<content>
+										<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterStructure" type="XML"/>
+									</content>
+								</IconTabFilter>
+								<IconTabSeparator icon="" iconDensityAware="false"/>
+								<IconTabFilter icon="sap-icon://tags" iconColor="Neutral" text="{i18n>icoLabel}" count="" design="Horizontal" showAll="false"
+									textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="2">
+									<content>
+										<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterLabel" type="XML"/>
+									</content>
+								</IconTabFilter>
+								<IconTabSeparator icon="" iconDensityAware="false"/>
+								<IconTabFilter icon="sap-icon://step" iconColor="Critical" text="{i18n>icoStep}" count="" design="Horizontal"
+									showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="3">
+									<content>
+										<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterStep" type="XML"/>
+									</content>
+								</IconTabFilter>
+								<IconTabSeparator icon="" iconDensityAware="false"/>
+								<IconTabFilter icon="sap-icon://cause" iconColor="Negative" text="{i18n>icoReason}" count="" design="Horizontal" showAll="false"
+									textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="4">
+									<content>
+											<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterReason" type="XML"/>
+									</content>
+								</IconTabFilter>
+								<IconTabSeparator icon="" iconDensityAware="false"/>
+								<IconTabFilter icon="sap-icon://sys-monitor" iconColor="Critical" text="{i18n>icoEquipment}" count="" design="Horizontal" showAll="false"
+									textDirection="Inherit" enabled="true" visible="{timeLine>/state}" iconDensityAware="false" key="5">
+									<content>
+										<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterEquipment" type="XML"/>
+									</content>
+								</IconTabFilter>
+								<IconTabSeparator icon="" iconDensityAware="false"/>
+								<IconTabFilter icon="sap-icon://combine" iconColor="Neutral" text="{i18n>icoStepReason}" count="" design="Horizontal" showAll="false"
+									textDirection="Inherit" enabled="true" visible="{timeLine>/state}" iconDensityAware="false" key="6">
+									<content>
+										<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.filter.FilterStepReason" type="XML"/>
+									</content>
+								</IconTabFilter>
+							</items>
+						</IconTabBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<VBox>
+					<HBox visible="{sTabEstructura>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.Structure" type="XML"/>
+					</HBox>
+					<HBox visible="{sTabEtiqueta>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.Label" type="XML"/>
+					</HBox>
+					<HBox visible="{sTabPaso>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.Step" type="XML"/>
+					</HBox>
+					<HBox visible="{sTabMotivo>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.Reason" type="XML"/>
+					</HBox>
+					<HBox visible="{sTabEquipo>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.Equipment" type="XML"/>
+					</HBox>
+					<HBox visible="{sTabMotivoLapso>/state}">
+						<core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.configuration.StepReason" type="XML"/>
+					</HBox>
+				</VBox>
+			</f:content>
+		</f:DynamicPage>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCloseConfiguration" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

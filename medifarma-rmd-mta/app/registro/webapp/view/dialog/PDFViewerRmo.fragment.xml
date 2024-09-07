@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+  height="100%"
+	controllerName="sap.m.sample.MultiComboBox.controller.MultiComboBox"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+  <Dialog title="{i18n>tltPdfRMO}" class="sapUiContentPadding sapUiSizeCompact" contentWidth="65%" afterClose="onCancelPdfViewerRmo">
+		<content>
+      <ScrollContainer
+      height="100%"
+      width="100%"
+      horizontal="true"
+      vertical="true">
+      <FlexBox direction="Column" renderType="Div" class="sapUiSmallMargin">
+        <FlexBox>
+          <Button text="Correctly Displayed" press="onCorrectPathClick"/>
+          <Button text="Loading Error" press="onIncorrectPathClick"/>
+        </FlexBox>
+        <PDFViewer source="{/Source}" title="{/Title}" height="{/Height}">
+          <layoutData>
+            <FlexItemData growFactor="1" />
+          </layoutData>
+        </PDFViewer>
+      </FlexBox>
+    </ScrollContainer>
+    </content>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelPdfViewerRmo" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

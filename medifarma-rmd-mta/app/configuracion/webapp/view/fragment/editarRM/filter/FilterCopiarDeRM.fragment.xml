@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFiltersCopyDe" search="onSearchCopyDe" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="true">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>copyDeRMCod}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/filtroCopy/codigo}" placeholder="{i18n>copyDeRMCod}" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>copyDeRMDesc}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/filtroCopy/descripcion}" placeholder="{i18n>copyDeRMDesc}" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+      <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>copyDeRMNivel}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+                    <ComboBox items="{localModel>/aListaNiveles}" 
+                        selectedKey="{localModel>/filtroCopy/nivelTxt}" placeholder="{i18n>copyDeRMNivel}" editable="false">
+                        <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>copyDeRMSuc}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{
+                        path : 'mainModel>/MAESTRA',
+                            filters: [{
+                                path: 'oMaestraTipo_maestraTipoId',
+                                operator: 'EQ',
+                                value1: '18'
+                            }]
+                        }" 
+                        selectedKey="{localModel>/filtroCopy/sucursalId_iMaestraId}" placeholder="{i18n>copyDeRMSuc}">
+                        <core:ListItem key="{mainModel>iMaestraId}" text="{mainModel>descripcion}" additionalText="{mainModel>codigo}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+
+</core:FragmentDefinition>

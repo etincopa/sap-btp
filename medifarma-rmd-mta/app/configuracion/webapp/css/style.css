@@ -1,0 +1,7 @@
+/* Enter your custom styles here */
+.style1 {
+    background-color: rgb(73, 29, 0) !important;
+}
+tr[data-mydata="PROCESSED"]{
+    background: #DDF4FF !important;
+}

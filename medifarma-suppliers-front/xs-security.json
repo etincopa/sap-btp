@@ -1,0 +1,143 @@
+{
+    "xsappname": "medifarma-suppliers",
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.approvalmonitor",
+            "description": "Monitor"
+        },
+        {
+            "name": "$XSAPPNAME.bpcreationrequest",
+            "description": "Solicitar Business Partner"
+        },
+        {
+            "name": "$XSAPPNAME.bpupdaterequest",
+            "description": "Actualizar Business Partner"
+        },
+        {
+            "name": "$XSAPPNAME.invoiceregister",
+            "description": "Pre-registro con OC"
+        },
+        {
+            "name": "$XSAPPNAME.invoiceregisternotoc",
+            "description": "Pre-Registro sin OC"
+        },
+        {
+            "name": "$XSAPPNAME.potracking",
+            "description": "Seguimiento de OC"
+        },
+        {
+            "name": "$XSAPPNAME.tilepotracking",
+            "description": "Tile Seguimiento de OC"
+        },
+        {
+            "name": "$XSAPPNAME.quotationupdate",
+            "description": "Actualización de Cotización"
+        },
+        {
+            "name": "$XSAPPNAME.accountstatus",
+            "description": "Estado de Cuenta"
+        },
+        {
+            "name": "$XSAPPNAME.tileaccountstatus",
+            "description": "Tile Estado de cuenta"
+        },
+        {
+            "name": "$XSAPPNAME.suppliersinvitation",
+            "description": "Invitar Proveedor"
+        },
+        {
+            "name": "$XSAPPNAME.usersMassiveLoad",
+            "description": "Carga de Usuarios Masiva"
+        }
+    ],
+    "tenant-mode": "dedicated",
+    "description": "Security profile of Portal Proveedores",
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "SuppliersApprovalMonitor",
+            "description": "Monitor - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.approvalmonitor"
+            ]
+        },
+        {
+            "name": "SuppliersBpCreationRequest",
+            "description": "Solicitar Business Partner - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.bpcreationrequest"
+            ]
+        },
+        {
+            "name": "SuppliersBpUpdateRequest",
+            "description": "Actualizar Business Partner - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.bpupdaterequest"
+            ]
+        },
+        {
+            "name": "SuppliersInvoiceRegister",
+            "description": "Pre-registro con OC - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.invoiceregister"
+            ]
+        },
+        {
+            "name": "SuppliersInvoiceRegisterNotOc",
+            "description": "Pre-registro sin OC - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.invoiceregisternotoc"
+            ]
+        },
+        {
+            "name": "SuppliersPoTracking",
+            "description": "Seguimiento de OC - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.potracking",
+                "$XSAPPNAME.tilepotracking"
+            ]
+        },
+        {
+            "name": "SuppliersQuotationUpdate",
+            "description": "Actualización de Cotización - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.quotationupdate"
+            ]
+        },
+        {
+            "name": "SuppliersAccountStatus",
+            "description": "Estado de Cuenta - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.accountstatus",
+                "$XSAPPNAME.tileaccountstatus"
+            ]
+        },
+        {
+            "name": "SuppliersInvitation",
+            "description": "Invitación - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.suppliersinvitation"
+            ]
+        },
+        {
+            "name": "UsersMassiveLoad",
+            "description": "Creación de Usuarios Masiva - Portal de Proveedores",
+            "scope-references": [
+                "$XSAPPNAME.usersMassiveLoad"
+            ]
+        }
+    ],
+    "oauth2-configuration": {
+        "redirect-uris": [            
+            "http://localhost:5000/login/callback",
+            "https://medifarma-suppliers-approuter.cfapps.us10.hana.ondemand.com/login/callback",
+            "https://medifarmadevqas.cpp.cfapps.us10.hana.ondemand.com/**"
+        ]
+    }
+}

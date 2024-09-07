@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:dnd="sap.ui.core.dnd" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" 
+						xmlns:mvc="sap.ui.core.mvc" xmlns:ui="sap.ui.table" displayBlock="true">
+   <Dialog title="Fórmulas" class="sapUiSizeCompact" contentWidth="80%" afterClose="onCanceloOpenFormula">
+      <content>
+	  	<Panel width="100%" height="20em">
+			<Table id="table1" width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="SingleSelectLeft" 
+				items="{path: 'aListFormulaPasoDisponible>/', filters: {path: 'rank', operator: 'EQ', value1: '0'}}" >
+				<!-- items="{aListFormulaPasoDisponible>/}" growing="true"> -->
+				<!-- <dragDropConfig>
+					<dnd:DragDropInfo
+						sourceAggregation="items"
+						targetAggregation="items"
+						dropPosition="Between"
+						dropEffect="Move"
+						drop="onDropResponsive"/>
+				</dragDropConfig> -->
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="{i18n>stepAvailable}"></Title>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="30%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="true">
+						<Text text="{i18n>tbfEstructure}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+					<Column width="10%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbEOrden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+					<Column width="10%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbECodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+					<Column width="60%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbEDescripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<!-- <ObjectIdentifier title="{aListFormulaPasoDisponible>descrEstructura}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+						<Text text="{aListFormulaPasoDisponible>descrEstructura}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						<Text text="{aListFormulaPasoDisponible>orden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						<Text text="{aListFormulaPasoDisponible>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						<ObjectStatus state="{aListFormulaPasoDisponible>state}" text="{aListFormulaPasoDisponible>descrPaso}"/>
+						<!-- <Text text="{aListFormulaPasoDisponible>descrPaso}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+					</ColumnListItem>
+				</items>
+			</Table>
+		</Panel>
+		<HBox justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+			<Button class="sapUiTinyMarginBottom" icon="sap-icon://navigation-up-arrow" tooltip="Mover a disponibles" press="moveToTable1" />
+			<Button icon="sap-icon://navigation-down-arrow" tooltip="Mover a seleccionados" press="moveToTable2" />
+		</HBox>
+		<Panel width="100%" height="20em">
+			<Table id="table2" width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="SingleSelectLeft" 
+					items="{path: 'localModel>/aListFormulaPasoDisponibleSeleccionados', filters: {path: 'rank', operator: 'EQ', value1: '10'}}" growing="true">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="{i18n>stepAvailable}"></Title>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+						<Input placeholder="{i18n>inAddQuantity}" value="{localModel>/formulaInput}" submit="onIngresarCantidad($event, 1)" type="Number" width="50%"/>
+						<Select id="signos" change="onIngresarCantidad($event, 2)" selectedKey="{localModel>/formulaCombobox}">
+							<items>
+								<core:Item text="Seleccionar signo" key="000" width="50%"/>
+								<core:Item text="(" key="(" />
+								<core:Item text=")" key=")" />
+								<core:Item text="+" key="+" />
+								<core:Item text="-" key="-" />
+								<core:Item text="*" key="*" />
+								<core:Item text="/" key="/" />
+								<core:Item text="Cantidad Teorica" key="CT" />
+							</items>
+						</Select>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="30%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="true">
+						<Text text="{i18n>tbfEstructure}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+					<!-- <Column width="10%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbEOrden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column> -->
+					<Column width="10%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbECodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+					<Column width="60%" hAlign="Left" vAlign="Begin" minScreenWidth="Tablet" demandPopin="true" mergeDuplicates="false">
+						<Text text="{i18n>tbEDescripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<Text text="{localModel>descrEstructura}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						<Text text="{localModel>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						<Text text="{localModel>descrPaso}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</Panel>
+		<MessageStrip text="{localModel>/formulaText}" />
+		</content>
+		<beginButton>
+			<Button text="{i18n>btnSave}" press="onSaveOpenFormula" type="Emphasized" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCanceloOpenFormula" type="Transparent" />
+		</endButton>
+   	</Dialog>
+</core:FragmentDefinition>

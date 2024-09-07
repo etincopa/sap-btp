@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Lista De Utensilios">
+    <ScrollContainer width="100%" height="100%" horizontal="true" vertical="true" focusable="true">
+		<form:Form width="100%" editable="true">
+			<form:formContainers>
+				<form:FormContainer title="Datos Generales">
+					<form:formElements>
+						<form:FormElement>
+							<form:label>
+								<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+							</form:label>
+							<form:fields>
+								<Input value="{localModel>/agrupadorSeleccionado/descripcion}" placeholder="{i18n>clDescription}"/>
+								<Button icon="sap-icon://save" press="onSaveDescriptionAgrupador" width="20%"/>
+							</form:fields>
+						</form:FormElement>
+						<form:FormElement>
+							<form:label>
+								<Label text="{i18n>prodEUser}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+							</form:label>
+							<form:fields>
+								<Text text="{localModel>/agrupadorSeleccionado/usuarioRegistro}"/>
+							</form:fields>
+						</form:FormElement>              
+					</form:formElements>
+					<form:title/>
+				</form:FormContainer>
+			</form:formContainers>
+			<form:layout>
+				<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+			</form:layout>
+		</form:Form>
+		<Table id="tblUtensiliosAgrupador" width="auto" sticky="ColumnHeaders" 
+            items="{localModel>/aListUtensiliosAgrupador}" 
+            growing="true" growingScrollToLoad="true" mode="MultiSelect">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>aListUtensilios}"/>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton tooltip="{i18n>btnNew}" icon="sap-icon://add" press="onAddUtensilioAgrupador"/>
+					<OverflowToolbarButton tooltip="{i18n>btnDelete}" icon="sap-icon://delete" press="onDeleteUtensilioAgrupador"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+                <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>lblCodigo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>lblDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>estado}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>trazUsuario}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+                    <Text text="{localModel>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>estadoId/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>usuarioRegistro}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+    <endButton>
+			<Button text="{i18n>btnCerrar}" press="onCancelUtensilioAgrupador" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

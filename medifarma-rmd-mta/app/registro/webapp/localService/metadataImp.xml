@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Z_PP_IMPRESIONORD_SRV" xml:lang="es" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Orden" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Aufnr"/>
+                </Key>
+                <Property Name="Plnbez" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gstrp" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fe.inic.extrema" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ftrms" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Liberación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fevor" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="RespCtrlProd" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stlbez" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stlal" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="LMatAlt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stlan" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Utilización" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rsnum" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Reserva" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Idat2" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Cierre técnico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Auart" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Clase de orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fecha entrada" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Autyp" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Tipo de orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AutypTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Texto breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Objnr" Type="Edm.String" MaxLength="22" sap:unicode="false" sap:label="Nº objeto" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Istat" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Status sistema" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txt04" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Char80" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Atwrt" Type="Edm.String" MaxLength="70" sap:unicode="false" sap:label="Valor caract." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Charg" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Lote" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Psmng" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad total" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Verid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Versión fabr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vfdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="FeCadc/FePrfCns" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FevorTxt" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Supervisor producc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descrip1" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Carácter 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descrip2" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Carácter 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gmnga" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Ctd.buena conf." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Xmnga" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad de rechazo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Obtenido" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad de rechazo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rendimiento" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad de rechazo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Número material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dwerk" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Isdd" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Inicio ejec." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Iedd" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fin ejecución" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ktext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Pdf64" Type="Edm.String" sap:unicode="false" sap:label="Confirm.PDF" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="Z_PP_IMPRESIONORD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="OrdenSet" EntityType="Z_PP_IMPRESIONORD_SRV.Orden" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://s4hqas:8080/sap/opu/odata/sap/Z_PP_IMPRESIONORD_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://s4hqas:8080/sap/opu/odata/sap/Z_PP_IMPRESIONORD_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

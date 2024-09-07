@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+		<Table width="auto" sticky="ColumnHeaders" items="{mainModel>/UTENSILIO}" updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="true">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>icoUtensil}"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewRM}" icon="sap-icon://add-activity-2" press="onAddUtensil"/>
+					<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+					<!-- <OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/>
+					<OverflowToolbarButton text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://settings" press="onGetOptions"/> -->
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCodigo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clState}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clUserDo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDateDo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+        		<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clAction}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{mainModel>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModel>descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModel>estado}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModel>usuarioRegistro}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModel>fechaRegistro}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<HBox>
+						<Button tooltip="{i18n>openAsocRM}" icon="sap-icon://documents" press="onOpenRMAUtensilio" type="Transparent"/>
+						<Button tooltip="{i18n>editConfig}" icon="sap-icon://edit" press="onAddRegisterGroup" type="Transparent"/>
+						<Button tooltip="{i18n>deleteConfig}" icon="sap-icon://delete" press="onDeleteDataMaestra" type="Transparent"/>
+					</HBox>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+	<!-- <OverflowToolbar class="sapUiSmallMarginTop">
+		<ToolbarSpacer/>
+		<ToolbarSeparator/>
+		<Button icon="sap-icon://add" text="{i18n>btnNew}" type="Emphasized" press="onAddRegisterGroup"/>
+		<Button icon="sap-icon://edit" text="{i18n>btnEdit}" type="Emphasized" press="onAddRegisterGroup"/>
+		<Button icon="sap-icon://delete" text="{i18n>btnDelete}" type="Emphasized" press="onDeleteGroupService"/>
+	</OverflowToolbar> -->
+</core:FragmentDefinition>

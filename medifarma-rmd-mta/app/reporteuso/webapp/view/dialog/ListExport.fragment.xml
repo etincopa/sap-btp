@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form">
+  <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelExport">
+		<content>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:title>
+                    <core:Title text="{i18n>tltExports}" level="Auto"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                                </form:label>
+                                <form:fields>
+                                    <Button text="{i18n>btnReportUseEquipment}" press="onCancelExport" type="Emphasized"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                                </form:label>
+                                <form:fields>
+                                    <Button text="{i18n>btnReportUseLapso}" press="onCancelExport" type="Emphasized"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="2" labelSpanM="4" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelExport" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

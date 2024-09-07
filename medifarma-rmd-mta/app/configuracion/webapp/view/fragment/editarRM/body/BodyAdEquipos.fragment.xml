@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblEquipment" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListEquipoUtensilio>/}" growing="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Equipos ({=${aListEquipoUtensilio>/}.length})"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton text="{i18n>btnAgregarAgrupador}" tooltip="{i18n>btnAgregarAgrupador}" icon="sap-icon://add" press="onAddAgrupador"/>
+				<!-- <OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLS"/>
+				<OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/>
+				<OverflowToolbarButton text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://settings" press="onGetOptions"/> -->
+				<OverflowToolbarButton tooltip="{i18n>onRefresh}" icon="sap-icon://synchronize" press="onAddEquipoResponsive"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtCode}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtCodeGaci}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtEstado}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtSucursal}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtType}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>txtArea}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{aListEquipoUtensilio>equnr}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEquipoUtensilio>codigoGaci}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{=${aListEquipoUtensilio>eqtyp} === 'Q'? ${aListEquipoUtensilio>denom} : ${aListEquipoUtensilio>denom}}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEquipoUtensilio>estat}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEquipoUtensilio>werks}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEquipoUtensilio>tipo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEquipoUtensilio>pltxt}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

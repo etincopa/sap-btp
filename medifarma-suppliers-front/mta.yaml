@@ -1,0 +1,261 @@
+_schema-version: "2.1"
+ID: suppliers
+version: 1.1.0
+parameters:
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
+modules:
+- name: dest_content
+  type: com.sap.application.content
+  requires:
+  - name: dest_service
+    parameters:
+      content-target: true
+  - name: suppliers_html5_repo_host
+    parameters:
+      service-key:
+        name: suppliers_html5_repo_host_key
+  - name: uaa_service
+    parameters:
+      service-key:
+        name: uaa_service_key
+  - name: workflow_service
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: odata-sunat
+      url: ~{srv-url}
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: suppliers_repo_host
+          ServiceInstanceName: suppliers_html5_repo_host
+          ServiceKeyName: suppliers_html5_repo_host_key
+          sap.cloud.service: medifarma-apps-suppliers-bs
+        - Name: suppliers_uaa
+          Authentication: OAuth2UserTokenExchange
+          ServiceInstanceName: uaa_service
+          ServiceKeyName: uaa_service_key
+          sap.cloud.service: medifarma-apps-suppliers-bs
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: project_content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: suppliers_html5_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - name: accountstatus
+      artifacts:
+      - accountstatus.zip
+      target-path: resources/
+    - name: tileaccountstatus
+      artifacts:
+      - tileaccountstatus.zip
+      target-path: resources/
+    - name: ui5suppliersinvitation
+      artifacts:
+      - ui5suppliersinvitation.zip
+      target-path: resources/
+    - name: invoiceregister
+      artifacts:
+      - invoiceregister.zip
+      target-path: resources/
+    - name: invoiceregisternotoc
+      artifacts:
+      - invoiceregisternotoc.zip
+      target-path: resources/
+    - name: potracking
+      artifacts:
+      - potracking.zip
+      target-path: resources/  
+    - name: tilepotracking
+      artifacts:
+      - tilepotracking.zip
+      target-path: resources/
+    - name: quotationupdate
+      artifacts:
+      - quotationupdate.zip
+      target-path: resources/ 
+    - name: bpcreationrequest
+      artifacts:
+      - bpcreationrequest.zip
+      target-path: resources/ 
+    - name: bpupdaterequest
+      artifacts:
+      - bpupdaterequest.zip
+      target-path: resources/ 
+    - name: approvalmonitor
+      artifacts:
+      - approvalmonitor.zip
+      target-path: resources/
+    - name: ui5UsersMassiveLoad
+      artifacts:
+      - ui5UsersMassiveLoad.zip
+      target-path: resources/
+- name: accountstatus
+  type: html5
+  path: accountstatus
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: ui5suppliersinvitation
+  type: html5
+  path: ui5suppliersinvitation
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: invoiceregister
+  type: html5
+  path: invoiceregister
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: potracking
+  type: html5
+  path: potracking
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: tilepotracking
+  type: html5
+  path: tilepotracking
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: quotationupdate
+  type: html5
+  path: quotationupdate
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: bpcreationrequest
+  type: html5
+  path: bpcreationrequest
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: bpupdaterequest
+  type: html5
+  path: bpupdaterequest
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: invoiceregisternotoc
+  type: html5
+  path: invoiceregisternotoc
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: approvalmonitor
+  type: html5
+  path: approvalmonitor
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: tileaccountstatus
+  type: html5
+  path: tileaccountstatus
+  build-parameters: 
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: ui5UsersMassiveLoad
+  type: html5
+  path: ui5UsersMassiveLoad
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: suppliers_html5_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: uaa_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: dest_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+- name: conn_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: workflow_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: workflow
+    service-plan: standard
+- name: srv-api
+  type: configuration
+  parameters:
+    provider-id: suppliers_services_db:srv-api
+    provider-nid: mta
+    target:
+      org: ${org}
+      space: ${space}

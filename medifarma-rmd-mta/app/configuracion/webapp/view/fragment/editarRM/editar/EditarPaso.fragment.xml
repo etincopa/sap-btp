@@ -1,0 +1,187 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog title="{=${localModel>/editEquipo} === 1 ? 'Editar Equipo' : 'Editar Paso' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCanceloEditPasoRM">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editEquipo} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Depende" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/TxtIdnlfConcat}" placeholder="Depende" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Descripcion" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editarPaso/Status_Doc}" placeholder="Descripcion" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" />
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Tipo Dato" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Select id="tipodato1" selectedKey="{localModel>/editarPaso/Erdat}" >
+                                        <items>
+                                        <core:Item text="Texto" key="Texto"/>
+                                        <core:Item text="Cantidad" key="Cantidad"/>
+                                        <core:Item text="Fecha" key="Fecha"/>
+                                        <core:Item text="Fecha y Hora" key="Fecha y Hora"/>
+                                        <core:Item text="Hora" key="Hora"/>
+                                        <core:Item text="Números" key="Números"/>
+                                        <core:Item text="Realizado por" key="Realizado por"/>
+                                        <core:Item text="Visto bueno" key="Visto bueno"/>
+                                        <core:Item text="Realizado por y Visto bueno " key="Realizado por y Visto bueno"/>
+                                        <core:Item text="Verificación check" key="Verificación check"/>
+                                        <core:Item text="Múltiple check" key="Múltiple check"/>
+                                        <core:Item text="Rango" key="Rango"/>
+                                        <core:Item text="Dato Fijo" key="Dato Fijo"/>
+                                        <core:Item text="Fórmula" key="Fórmula"/>
+                                        </items>
+								    </Select>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Val. Inicial" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <Input value="{localModel>/editarPaso/Ernam}" placeholder="Val. Inicial" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Val. Final" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/Acciones}" placeholder="Val. Final" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Margen" vAlign="Middle" design="Bold" width="80%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/items2}" placeholder="Margen" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Decimal" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/items3}" placeholder="Decimal" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Estado CC" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox value="{localModel>/editarPaso/items4}" items="{path : 'listarSociedad>/'}" placeholder="Estado CC" selectedKey="{oDataGroup>/id_society}"
+										showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{listarSociedad>code}" text="{listarSociedad>clCountRMD}" additionalText="{listarSociedad>code}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Estado Mov" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox value="{localModel>/editarPaso/items5}" items="{path : 'listarSociedad>/'}" placeholder="Estado Mov" selectedKey="{oDataGroup>/id_society}"
+										showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{listarSociedad>code}" text="{listarSociedad>clCountRMD}" additionalText="{listarSociedad>code}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+                    <form:FormContainer visible="{=${localModel>/editEquipo} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Orden" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/Banfn}" placeholder="Depende" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="6"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Descripción" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editarPaso/TxtIdnlfConcat}" placeholder="Descripcion" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" />
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Código" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editarPaso/Txt_Werks}" placeholder="Descripcion" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Estado" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <Input value="{localModel>/editarPaso/Status_Doc}" placeholder="Val. Inicial" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Ubicación" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/Erdat}" placeholder="Val. Final" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Tipo Equipo" vAlign="Middle" design="Bold" width="80%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editarPaso/Ernam}" placeholder="Margen" type="Text" showValueHelp="false" visible="true"
+										width="100%" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+          
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{i18n>btnEdit}" press="onEditarPaso" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCanceloEditPasoRM" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notificacion de la Solicitud</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Solicitud</h3>
+        <p>${context.initiatorName},</p>
+        <p>${context.body}</p>
+        <p>${context.bpRequestData.DOCUMENTNUMBER}</p>
+        <p>Exitosamente.</p>
+    </body>
+</html>

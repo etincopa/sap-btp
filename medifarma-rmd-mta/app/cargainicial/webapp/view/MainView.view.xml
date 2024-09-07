@@ -1,0 +1,67 @@
+<mvc:View
+    controllerName="mif.rmd.cargainicial.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:l="sap.ui.layout"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+               <form:Form>
+               <form:layout>
+				<form:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanM="0"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</form:layout>
+                    <form:formContainers>
+                    <form:FormContainer>
+                    <form:formElements>
+                    <form:FormElement label="Adjuntar archivo">
+                    	<form:fields >
+                        	<l:VerticalLayout>
+								<!-- <Input value="" id="name"/> -->
+                                <u:FileUploader
+                                id="fileUploader"
+                                name="myFileUpload"
+                                sameFilenameAllowed="true" 
+                                change="handleUploadComplete"
+                                tooltip="Upload your file to the local server"
+                                fileType="XLSX,xlsx"
+                                />
+                                <!-- <Button
+			text="Upload File"
+			press="handleUploadPress"/> -->
+            	</l:VerticalLayout>
+							</form:fields>
+                    </form:FormElement>
+
+                    </form:formElements>
+                    </form:FormContainer>
+                    </form:formContainers>
+
+               </form:Form>
+                    </content>
+                    <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<!-- <Button type="Accept" text="Accept"/> -->
+				<Button type="Attention" id="btnShow" press="openDetails" text="Registros ({localModel>/count})"/>
+			</OverflowToolbar>
+		</footer>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

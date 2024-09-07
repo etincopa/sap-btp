@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFiltersEquipment" search="onSearchEquipment" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+            <fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblCodigo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/aFiltro/codeEquipment}" placeholder="{i18n>phlblCodigo}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblDescription}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{localModel>/aFiltro/descrpEquipment}" placeholder="{i18n>phlblDescription}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+	        <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lblTipo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+                    <ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                        filters: [{
+                            path: 'oMaestraTipo_maestraTipoId',
+                            operator: 'EQ',
+                            value1: '43'
+                        }]}" 
+                        placeholder="{i18n>phlblTipo}" selectedKey="{localModel>/aFiltro/oMaestraTipo_maestraTipoId}" showSecondaryValues="true">
+                        <core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>clState}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+	                <ComboBox items="{path: 'mainModelv2>/MAESTRA',
+						filters: [{
+							path: 'oMaestraTipo_maestraTipoId',
+							operator: 'EQ',
+							value1: '3'
+						}]}" 
+						placeholder="{i18n>clState}" selectedKey="{localModel>/aFiltro/estadoId_iMaestraId}" showSecondaryValues="true">
+						<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="E" label="Manufactura Digital" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+	                <ComboBox items="{localModel>/aListaMdFiltro}" placeholder="Manufactura Digital" selectedKey="{localModel>/aFiltro/mdId}" showSecondaryValues="true">
+						<core:ListItem key="{localModel>mdId}" text="{localModel>codigo}" additionalText="{localModel>descripcion}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

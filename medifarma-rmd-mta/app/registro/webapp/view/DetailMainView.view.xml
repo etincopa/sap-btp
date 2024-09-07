@@ -1,0 +1,195 @@
+<mvc:View
+    controllerName="mif.rmd.registro.controller.DetailMainView"
+    xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+    xmlns="sap.uxap"
+    xmlns:core="sap.ui.core"
+		xmlns:f="sap.f"
+		xmlns:layout="sap.ui.layout"
+		height="100%">
+    <m:App id="appDetail">
+      <m:pages>
+        <m:Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavPress">
+          <m:content>
+            <ObjectPageLayout id="ObjectPageLayout"
+            showTitleInHeaderContent="true"
+            showEditHeaderButton="true"
+            enableLazyLoading="true"
+            editHeaderButtonPress="handleEditBtnPress"
+            upperCaseAnchorBar="false" sectionChange="onChangeEstructura">
+            <headerTitle>
+              <ObjectPageDynamicHeaderTitle>
+                <!-- <breadcrumbs>
+                  <m:Breadcrumbs id="breadcrumbsId" currentLocationText="Object Page Example" >
+                    <m:Link text="Page 1 a very long link" press="handleLink1Press"/>
+                    <m:Link text="Page 2 long link" press="handleLink2Press"/>
+                  </m:Breadcrumbs>
+                </breadcrumbs> -->
+        
+                <expandedHeading>
+                  <m:HBox>
+                    <m:Title text="Registro de Manufactura - Fraccion Nº {asociarDatos>/aEstructura/results/0/fraccion}" wrapping="true"/>
+                    <!-- <m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/> -->
+                  </m:HBox>
+                </expandedHeading>
+        
+                <snappedHeading>
+                  <m:FlexBox  fitContainer="true" alignItems="Center">
+                    <!-- <m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+                     --><m:Title text="Registro de Manufactura - Fraccion Nº {asociarDatos>/aEstructura/results/0/fraccion}" wrapping="true"/>
+                  </m:FlexBox>
+                </snappedHeading>
+        
+                <expandedContent>
+                  <!-- <m:Text text="Senior UI Developer"/> -->
+                  <m:VBox>
+                    <m:Text text="{modelGeneral>/LineaActualRMD/Maktx}"/>
+                    <m:ObjectStatus title="Etapa" text="{asociarDatos>/mdId/nivelTxt}"/>
+                    <m:ObjectStatus title="Lote Alternativo" text="{asociarDatos>/loteVistaRMD}" visible="{=${asociarDatos>/loteVistaRMD} === '' ? false : true}"/>
+                  </m:VBox>
+                </expandedContent>
+        
+                <snappedContent>
+                  <!-- <m:Text text="Senior UI Developer"/> -->
+                  <m:VBox>
+                    <m:ObjectStatus title="Orden" text="{modelGeneral>/LineaActualRMD/Aufnr}"/>
+                    <m:ObjectStatus title="Lote" text="{modelGeneral>/LineaActualRMD/Charg}"/>
+                  </m:VBox>
+                </snappedContent>
+        
+                <!-- <snappedTitleOnMobile>
+                  <m:VBox>
+                    <m:ObjectStatus title="Orden" text="{modelGeneral>/LineaActualRMD/Aufnr}"/>
+                    <m:ObjectStatus title="Lote" text="{modelGeneral>/LineaActualRMD/Charg}"/>
+                  </m:VBox>
+                </snappedTitleOnMobile> -->
+        
+                <actions>
+                  <m:MenuButton icon="sap-icon://dimension" tooltip="{i18n>mnFraction}">
+                    <m:menu>
+                        <m:Menu>
+                            <m:MenuItem text="{i18n>mnAddFraction}" icon="sap-icon://add" press="onAddFraction" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/crearFraccion} === true &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+                            <m:MenuItem text="{i18n>mnListFraction}" icon="sap-icon://list" press="onListFraction" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroP} === true  ? true : false}"/>
+                            <m:MenuItem text="{i18n>mnListFractionDelete}" icon="sap-icon://delete" press="onListFractionDelete" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/crearFraccion} === true &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+                        </m:Menu>
+                    </m:menu>
+                  </m:MenuButton>
+                  <m:MenuButton icon="sap-icon://pending" tooltip="{i18n>mnLapso}" >
+                      <m:menu>
+                          <m:Menu>
+                              <m:MenuItem text="{i18n>mnAddLapso}" icon="sap-icon://add" press="onAddLapsoGeneral"  enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/crearLapso} === true  &amp;&amp; ${generalModelState>/state} === true ? true : false}" />
+                              <m:MenuItem text="{i18n>mnListLapso}" icon="sap-icon://list" press="onListLapsoGeneral" />
+                          </m:Menu>
+                      </m:menu>
+                  </m:MenuButton>
+                  <m:MenuButton icon="sap-icon://show" tooltip="{i18n>mnObservation}" >
+                      <m:menu>
+                          <m:Menu>
+                              <m:MenuItem text="{i18n>mnAddObservation}" icon="sap-icon://add" press="onAddObservationGeneral" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroLector}!==true &amp;&amp; ${generalModelState>/state} === true ? true : false}" />
+                              <m:MenuItem text="{i18n>mnListObservation}" icon="sap-icon://list" press="onListObservationGeneral" />
+                          </m:Menu>
+                      </m:menu>
+                  </m:MenuButton>
+                  <m:MenuButton icon="sap-icon://locked" tooltip="{i18n>mnClose}">
+                      <m:menu>
+                          <m:Menu>
+                              <m:MenuItem text="{i18n>mnEstado}" icon="sap-icon://palette" press="onOpenDialogEstado"/>
+                              <m:MenuItem text="{i18n>mnClose}" icon="sap-icon://locked" press="onCloseRMD" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/cierreRMD} &amp;&amp; ${generalModelState>/state}}"/>
+                              <m:MenuItem text="{i18n>mnReapertura}" icon="sap-icon://unlocked" press="onReaperturarRMD" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/reaperturaRMD} &amp;&amp; ${generalModelState>/state} === false ? true : false}"/>
+                          </m:Menu>
+                      </m:menu>
+                  </m:MenuButton>
+                  <m:MenuButton icon="sap-icon://create" tooltip="{i18n>mnCrearEtiqueta}" >
+                      <m:menu>
+                          <m:Menu>
+                              <m:MenuItem text="{i18n>mnConEnlaceHU}" icon="sap-icon://activity-2" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/generarEtiquetaHU} &amp;&amp; ${generalModelState>/state} ? true : false}">
+                                  <m:items>
+                                      <m:MenuItem text="{i18n>mnParihuela}" icon="sap-icon://cart-2" press="onOpenConEnlace(1)"/>
+                                      <m:MenuItem text="{i18n>mnMaterialEmbalaje}" icon="sap-icon://sap-box" press="onOpenConEnlace(2)"/>
+                                  </m:items>
+                              </m:MenuItem>
+                              <m:MenuItem text="{i18n>mnSinEnlace}" icon="sap-icon://activity-assigned-to-goal" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/imprimirEtiqueta} &amp;&amp; ${generalModelState>/state} ? true : false}">
+                                  <m:items>
+                                      <m:MenuItem text="{i18n>mnAGranel}" icon="sap-icon://basket" press="onOpenSinEnlace(1)"/>
+                                      <m:MenuItem text="{i18n>mnEAN13}" icon="sap-icon://bar-code" press="onOpenSinEnlace(2)"/>
+                                      <m:MenuItem text="{i18n>mnCajaEAN14}" icon="sap-icon://syntax" press="onOpenSinEnlace(3)"/>
+                                      <m:MenuItem text="{i18n>mnCajaSinEAN14}" icon="sap-icon://source-code" press="onOpenSinEnlace(4)"/>
+                                  </m:items>
+                              </m:MenuItem>
+                              <m:MenuItem text="{i18n>mnListEnlace}" icon="sap-icon://activities" enabled="{modelGeneral>/oInfoUsuario/funcionUsuario/generarEtiquetaHU}">
+                                  <m:items>
+                                      <m:MenuItem text="{i18n>mnConEnlaceHU}" icon="sap-icon://activity-2" press="onOpenListEtiquetaConEnlace"/>
+                                      <m:MenuItem text="{i18n>mnSinEnlace}" icon="sap-icon://activity-assigned-to-goal">
+                                          <m:items>
+                                              <m:MenuItem text="{i18n>mnAGranel}" icon="sap-icon://basket" press="onOpenListEtiquetaSinEnlace(1)"/>
+                                              <m:MenuItem text="{i18n>mnEAN13}" icon="sap-icon://bar-code" press="onOpenListEtiquetaSinEnlace(2)"/>
+                                              <m:MenuItem text="{i18n>mnCajaEAN14}" icon="sap-icon://syntax" press="onOpenListEtiquetaSinEnlace(3)"/>
+                                              <m:MenuItem text="{i18n>mnCajaSinEAN14}" icon="sap-icon://source-code" press="onOpenListEtiquetaSinEnlace(4)"/>
+                                          </m:items>
+                                      </m:MenuItem>
+                                      <m:MenuItem text="{i18n>mnCoProductoSubProducto}" icon="sap-icon://activity-2" press="onOpenListCoProductoSubProducto" visible="{modelGeneral>/ExisteCoProducto}"/>
+                                  </m:items>
+                              </m:MenuItem>
+                          </m:Menu>
+                      </m:menu>
+                  </m:MenuButton>
+                  <m:Button icon="sap-icon://document" tooltip="{i18n>mnNotasImportantes}" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroLector}!==true &amp;&amp; ${generalModelState>/state} === true ? true : false }" press="onSetNotasImportantes"/>
+                  <m:Button icon="sap-icon://vds-file" tooltip="{i18n>mnDocumentosAsociados}" press="onViewDocumentosMD"/>
+                  <m:MenuButton icon="sap-icon://ui-notifications" tooltip="{i18n>mnNotificaciones}" >
+                      <m:menu>
+                          <m:Menu>
+                              <m:MenuItem text="{i18n>mnNotif}" icon="sap-icon://ui-notifications" press="onPressNotificationsList" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroP}===true || ${modelGeneral>/oInfoUsuario/funcionUsuario/registroMuestreo}===true  ? true : false}"/>
+                              <m:MenuItem text="{i18n>mnMuestreo}" icon="sap-icon://clinical-tast-tracker" press="onShowListMuestreo" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroP}===true || ${modelGeneral>/oInfoUsuario/funcionUsuario/registroMuestreo}===true  ? true : false}"/>
+                          </m:Menu>
+                      </m:menu>
+                  </m:MenuButton>
+                  <!-- <m:OverflowToolbarButton icon="sap-icon://edit" text="edit header" type="Emphasized" tooltip="edit">
+                    <m:layoutData>
+                      <m:OverflowToolbarLayoutData priority="NeverOverflow"/>
+                    </m:layoutData>
+                  </m:OverflowToolbarButton> -->
+                  <!-- <m:OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+                  <m:OverflowToolbarButton icon="sap-icon://show" text="show state" tooltip="show"/>
+                  <m:Button text="Toggle Footer" press="toggleFooter"/> -->
+                </actions>
+              </ObjectPageDynamicHeaderTitle>
+            </headerTitle>
+        
+            <headerContent>
+              <m:FlexBox wrap="Wrap">
+                <!-- <m:Avatar class="sapUiSmallMarginEnd" src="./test-resources/sap/uxap/images/imageID_275314.png"  displaySize="L" /> -->
+        
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                  <m:ObjectStatus title="Nombre del Artículo" text="{modelGeneral>/LineaActualRMD/Text1}"/>
+                  <m:ObjectStatus title="Código del Artículo" text="{modelGeneral>/LineaActualRMD/Matnr}"/>
+                  <m:ObjectStatus title="Versión Fabricación / Alternativa (Alt.)" text="{modelGeneral>/LineaActualRMD/Verid} / {modelGeneral>/LineaActualMD/aReceta/results/0/recetaId/Stlal}"/>
+                  <m:ObjectStatus title="Versión RMD" text="{asociarDatos>/mdId/version}"/>
+              </layout:VerticalLayout>
+              <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                  <m:ObjectStatus title="Estado del RMD / Fecha de Aprobación / Usuario que aprueba" text="Autorizado / {path: 'asociarDatos>/mdId/fechaAutorizacion', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd HH:mm', UTC: false }} / {asociarDatos>/mdId/usuarioAutorizacion}"/>
+                  <m:ObjectStatus title="Emisión" text="{path: 'asociarDatos>/fechaInicio', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd HH:mm', UTC: false }}"/>
+                  <m:ObjectStatus title="Orden de Producción" text="{modelGeneral>/LineaActualRMD/Aufnr}"/>
+                  <m:ObjectStatus title="Lote" text="{modelGeneral>/LineaActualRMD/Charg}"/>
+              </layout:VerticalLayout>
+
+              <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                  <m:ObjectStatus title="Expira" text="{path: 'modelGeneral>/LineaActualRMD/VfdatBTP', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd', UTC: true }}"/>
+                  <m:ObjectStatus title="Cantidad Teórica" text="{asociarDatos>/vfmng} {asociarDatos>/Amein}"/>
+                  <m:ObjectStatus title="Inicio y fin de {asociarDatos>/mdId/nivelTxt}" text="{path: 'asociarDatos>/fechaInicioRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd HH:mm', UTC: false }} - {path: 'asociarDatos>/fechaFinRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd HH:mm', UTC: false }}"/>
+                  <m:ObjectStatus title="" text="{= ${asociarDatos>/mdId/rptaValidacion} ? 'PROCESO VALIDADO REPORTE DE VALIDACIÓN N° ' + ${asociarDatos>/mdId/rptaValidacion} : ''}"/>
+              </layout:VerticalLayout>
+              </m:FlexBox>
+            </headerContent>
+        
+            <sections>                                      
+            </sections>
+            <footer>
+            </footer>
+          </ObjectPageLayout>
+          
+           
+          </m:content>
+        </m:Page>
+      </m:pages>
+    </m:App>
+</mvc:View>

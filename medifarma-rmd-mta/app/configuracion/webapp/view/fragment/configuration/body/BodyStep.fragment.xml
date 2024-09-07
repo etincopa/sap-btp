@@ -1,0 +1,177 @@
+<!-- <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">	
+		<Table id="tblStep" width="auto" sticky="HeaderToolbar,ColumnHeaders" items="{path: 'localModel>/aListaPasos',
+				sorter: {
+					path: 'codigo'
+				}}" updateFinished="onUpdateFinish" growing="true" growingScrollToLoad="false">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>icoStep}"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewStep}" icon="sap-icon://add-activity-2" press="onAddPaso"/>
+					<OverflowToolbarButton text="{i18n>btnExportStep}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="24%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clStructure}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="9%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clLabel}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clState}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDataType}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="7%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clUserDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDateDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+
+                <Column width="9%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clTipoLapso}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                </Column>
+                <Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clTipoCond}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                </Column>
+                <Column width="12%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clAction}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+				<Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{localModel>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>descripcion}" width="auto" wrapping="true" textAlign="Begin" renderWhitespace="true" textDirection="Inherit"/>
+					<Text text="{localModel>estructuraId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>etiquetaId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>estadoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{localModel>tipoDatoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{localModel>usuarioRegistro}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{path: 'localModel>fechaRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd', UTC: false }}" width="auto" wrapping="true"/>
+                    <Text text="{localModel>tipoLapsoId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{localModel>tipoCondicionId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <HBox>
+                        <Button tooltip="{i18n>openAsocRM}" icon="sap-icon://documents" press="onOpenRMA" type="Transparent"/>
+                        <Button tooltip="{i18n>editConfig}" icon="sap-icon://edit" press="onEditarPasos" type="Transparent"/>
+                        <Button tooltip="{i18n>deleteConfig}" icon="sap-icon://delete" press="onDeleteDataMaestra" type="Transparent"/>
+                    </HBox>
+                    <Text text="{localModel>valorInicial}"/>
+                    <Text text="{localModel>valorFinal}"/>
+                    <Text text="{localModel>margen}"/>
+					<Text text="{localModel>decimales}"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+</core:FragmentDefinition> -->
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">	
+		<Table id="tblStep" width="auto" sticky="HeaderToolbar,ColumnHeaders" items="{path: 'mainModelv2>/PASO',
+				sorter: {
+					path: 'codigo'
+				},filters:[{path: 'activo',operator: 'EQ',value1: 'true' }],
+				parameters:{expand : 'estructuraId,etiquetaId,estadoId,tipoDatoId,tipoLapsoId,tipoCondicionId'}}" 
+				updateFinished="onUpdateFinish" growing="true" growingScrollToLoad="true">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>icoStep}"></Title>
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+                    <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewStep}" icon="sap-icon://add-activity-2" press="onAddPaso"/>
+					<OverflowToolbarButton text="{i18n>btnExportStep}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportExcel"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCodigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="24%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clStructure}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="9%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clLabel}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clState}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="8%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDataType}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="7%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clUserDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+				<Column width="6%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDateDo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+
+                <Column width="9%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clTipoLapso}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                </Column>
+                <Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clTipoCond}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                </Column>
+                <Column width="12%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clAction}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+                <Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+				<Column visible="false" width="0%">
+                    <Text text="" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{mainModelv2>codigo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>descripcion}" width="auto" wrapping="true" textAlign="Begin" renderWhitespace="true" textDirection="Inherit"/>
+					<Text text="{mainModelv2>estructuraId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>etiquetaId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>estadoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{mainModelv2>tipoDatoId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{mainModelv2>usuarioRegistro}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{path: 'mainModelv2>fechaRegistro', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd', UTC: false }}" width="auto" wrapping="true"/>
+                    <Text text="{mainModelv2>tipoLapsoId/descripcion}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <Text text="{mainModelv2>tipoCondicionId/contenido}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    <HBox>
+                        <Button tooltip="{i18n>openAsocRM}" icon="sap-icon://documents" press="onOpenRMA" type="Transparent"/>
+                        <Button tooltip="{i18n>editConfig}" icon="sap-icon://edit" press="onEditarPasos" type="Transparent"/>
+                        <Button tooltip="{i18n>deleteConfig}" icon="sap-icon://delete" press="onDeleteDataMaestra" type="Transparent"/>
+                    </HBox>
+                    <Text text="{mainModelv2>valorInicial}"/>
+                    <Text text="{mainModelv2>valorFinal}"/>
+                    <Text text="{mainModelv2>margen}"/>
+					<Text text="{mainModelv2>decimales}"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:cards="sap.f.cards"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:l="sap.ui.layout">
+    <Dialog class="sapUiContentPadding sapUiSizeCompact" afterClose="onCancelVisualizeEtiqueta" title="{i18n>tlVisualizeEtiqueta}" contentWidth="38%">
+        <content>
+            <Carousel height="auto" id="carouselData" loop="true">
+            <!-- <customLayout>
+                <CarouselLayout visiblePagesCount="2" />
+            </customLayout> -->
+
+            <!-- <f:Card>
+                    <f:content>
+                        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                            <Panel>
+                                <content>
+                                    <html:iframe src="{VisualizeEtiquetaModel>/text}" height="100%" width="100%"/>
+
+                                </content>
+                            </Panel>
+                        </l:VerticalLayout>
+                    </f:content>
+                </f:Card> -->
+            </Carousel>
+        </content>
+        <beginButton>
+            <Button text="{i18n>mnPrint}" press="onImprimirTicket" type="Accept"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>btnClose}" press="onCancelVisualizeEtiqueta" type="Reject"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

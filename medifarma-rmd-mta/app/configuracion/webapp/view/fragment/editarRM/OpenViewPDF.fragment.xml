@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog afterClose="onCancelVerPDF" showHeader="false">
+    <!-- <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.filter.FilterCopiarARM" type="XML"/> -->
+	  <!-- <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.body.BodyAscRecetas" type="XML"/> -->
+      <ScrollContainer
+      height="700px"
+      width="1300px"
+      horizontal="true"
+      vertical="true">
+      <FlexBox direction="Column" renderType="Div" width="100%" height="700px">
+        <PDFViewer source="{localModel>/pruebaPDF}" title="Preview PDF" height="700px">
+          <layoutData>
+            <FlexItemData growFactor="1" />
+          </layoutData>
+        </PDFViewer>
+      </FlexBox>
+    </ScrollContainer>
+  <beginButton>
+      <Button text="{i18n>btnConfirmar}" press="onCancelVerPDF" type="Emphasized"/>
+  </beginButton>
+  <endButton>
+			<Button text="{i18n>btnClose}" press="onCancelVerPDF" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

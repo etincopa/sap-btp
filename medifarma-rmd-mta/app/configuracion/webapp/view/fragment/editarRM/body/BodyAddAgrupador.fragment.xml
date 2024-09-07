@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table id="tblAgrupador" width="auto" sticky="ColumnHeaders" 
+		items="{path: 'mainModelv2>/UTENSILIO_CLASIFICACION',
+			filters: [{
+				path: 'activo',
+				operator: 'EQ',
+				value1: 'true'
+			}]}" 
+		growing="true" growingScrollToLoad="true" mode="MultiSelect">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>aListClasificacion}"/>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>lblDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>trazUsuario}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{mainModelv2>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{mainModelv2>usuarioRegistro}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

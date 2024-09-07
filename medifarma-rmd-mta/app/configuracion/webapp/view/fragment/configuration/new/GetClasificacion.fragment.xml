@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog id="dlgGetClasificacion" title="Clasificar Utensilios" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%">
+		<content>
+			<form:Form width="100%" editable="true">
+				<form:formContainers>
+					<form:FormContainer>
+						<form:formElements>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newClasificacion/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement>
+								<form:label>
+									<Label text="{i18n>icoUtensil}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+                                    <MultiComboBox items="{path: 'localModel>/aListaUtensilio'}" selectedKeys="{localModel>/newClasificacion/utensilioIds}" placeholder="{i18n>icoUtensil}" showSecondaryValues="true">
+                                        <core:ListItem key="{localModel>utensilioId}" text="{localModel>descripcion}" additionalText="{localModel>codigo}"/>
+                                    </MultiComboBox>
+								</form:fields>
+							</form:FormElement>              
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{i18n>btnSave}" press="onConfirmClasificacion" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelAddClasificacion" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

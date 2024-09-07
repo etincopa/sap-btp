@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Adicionar Etiquetas: PROCEDIMIENTO" afterClose="onCancelAddEtiquetaEditRM">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.filter.FilterAdEtiqueta" type="XML"/>
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.body.BodyAdEtiqueta" type="XML"/>
+        <beginButton>
+            <Button text="{i18n>btnAgregar}" press="onConfirmAddEtiquetaEditRM" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+			<Button text="{i18n>btnClose}" press="onCancelAddEtiquetaEditRM" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

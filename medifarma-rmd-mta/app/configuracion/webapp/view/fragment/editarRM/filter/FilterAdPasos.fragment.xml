@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearchMdPaso" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="false" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>adPCodigo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataMdEsPaso>/codigo}" placeholder="{i18n>adPCodigo}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			
+            <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>adPDesc}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{oDataMdEsPaso>/descripcion}" placeholder="{i18n>adPDesc}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>adPEst}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'mainModel>/ESTRUCTURA'}" placeholder="{i18n>phlblStructure}" selectedKey="{oDataMdEsPaso>/estructuraId_estructuraId}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="false">
+                        <core:ListItem key="{mainModel>estructuraId}" text="{mainModel>descripcion}" additionalText="{mainModel>estructuraId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>adPEtq}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox items="{path : 'mainModel>/ETIQUETA'}" placeholder="{i18n>phlblLabel}" selectedKey="{oDataMdEsPaso>/etiquetaId_etiquetaId}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="{etiqueta>/state}">
+                        <core:ListItem key="{mainModel>etiquetaId}" text="{mainModel>descripcion}" additionalText="{mainModel>etiquetaId}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="E" label="{i18n>adPFlag}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<CheckBox selected="{oDataMdEsPaso>/numeracion}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Cambiar Destinatarios para Revisión de Registro de Manufactura" contentWidth="40%">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.prodEstatus.onChangeDestinatarios" type="XML"/>
+        <beginButton>
+            <Button text="Guardar" press="onChangeDest" type="Accept"/>
+        </beginButton>
+        <endButton>
+			<Button text="Cancelar" press="onCancelChangeDest" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

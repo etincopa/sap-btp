@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="Ver Clasificaciones" afterClose="onCerrarAddAgrupador">
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.filter.FilterAddAgrupador" type="XML"/>
+        <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.editarRM.body.BodyAddAgrupador" type="XML"/>
+        <beginButton>
+            <Button text="{i18n>btnAgregar}" press="onConfirmAddAgrupador" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>btnCerrar}" press="onCerrarAddAgrupador" type="Transparent"/>
+        </endButton>
+	</Dialog>
+</core:FragmentDefinition>

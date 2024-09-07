@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:dnd="sap.ui.core.dnd">
+	<ScrollContainer
+	height="100%"
+	width="100%"
+	horizontal="false"
+	vertical="true">	
+	<Table width="auto" sticky="HeaderToolbar,ColumnHeaders" mode="None" items="{aListEquipoAssignResponsive>/}" updateFinished="onUpdateFinish">
+            <headerToolbar>
+				<OverflowToolbar>
+					<!-- <Title text="{i18n>tltEquipos} ({=${aListEquipoAssignResponsive>/}.length})"></Title> -->
+					<ToolbarSpacer/>
+					<ToolbarSeparator/>
+					<Button text="{i18n>btnAddAgrupador}" tooltip="{i18n>btnAddAgrupador}" icon="sap-icon://add-equipment" press="onOpenAgrupador" type="Transparent" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/registroP} === true &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+					<MenuButton width="auto" text="{i18n>btnApply}" icon="sap-icon://accept" tooltip="{i18n>btnApply}" buttonMode="Regular" type="Transparent" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/aplicaNoAplica} === true &amp;&amp; ${generalModelState>/state} === true ? true : false}">
+						<menu >
+							<Menu itemSelected="onMenuApplyAction">
+								<MenuItem text="{i18n>btnYesApply}" icon="sap-icon://add"/>
+								<MenuItem text="{i18n>btnNoApply}" icon="sap-icon://less"/>
+							</Menu>
+						</menu>
+					</MenuButton>
+					<Button text="{i18n>btnAgree}" tooltip="{i18n>btnAgree}" icon="sap-icon://add" press="onAddEquipoResponsive" type="Transparent" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/agregarEquipo} === true  &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="25%" hAlign="Left" vAlign="Middle" styleClass="cellBorderLeft cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clDescription}" width="auto"/>
+					<footer>
+						<Text text="{i18n>ftTVerificado}{aFooter>/usuario}" visible="{estructuraVerificado>/state}"/>
+					</footer>
+				</Column>
+				<Column width="10%" hAlign="Left" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clPrincipal}" width="auto"/>
+				</Column>
+				<Column width="15%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clType}" width="auto"/>
+				</Column>
+				<Column width="15%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCalification}" width="auto"/>
+                    <footer>
+						<Text text="{i18n>ftTFecha}{aFooter>/fecha}" visible="{estructuraVerificado>/state}"/>
+					</footer>
+				</Column>
+                <Column width="15%" hAlign="Left" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCode}" width="auto"/>
+				</Column>
+                <Column width="10%" hAlign="Center" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clCheck}" width="auto"/>
+				</Column>
+                <Column width="10%" hAlign="Left" vAlign="Middle" styleClass="cellBorderRight" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<Text text="{i18n>clOption}" width="auto"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{aListEquipoAssignResponsive>descripcion}" width="auto"/>
+                    <CheckBox selected="{= ${aListEquipoAssignResponsive>ctext} === '' ? false : true}" enabled="false"/>
+					<Text text="{aListEquipoAssignResponsive>tipo}" width="auto"/>
+                    <ObjectStatus text="{aListEquipoAssignResponsive>dateCalibracion}" state="{aListEquipoAssignResponsive>stateCalibracion}"/>
+                    <Text text="{aListEquipoAssignResponsive>codigo}" width="auto"/>
+					<VBox>
+						<CheckBox selected="{aListEquipoAssignResponsive>generalCheckBox}" select="onConfirmUpdateRmdCheckBoxValid" enabled="{=${aListEquipoAssignResponsive>aplica} &amp;&amp; ${aListEquipoAssignResponsive>generalEnabledSaveButton} &amp;&amp; ${generalModelState>/state}}"/>
+						<ObjectStatus text="{aListEquipoAssignResponsive>usuarioActualiza}" visible="{aListEquipoAssignResponsive>generalVisibleTextUsuario}" state="{path: 'aListEquipoAssignResponsive>styleUser',formatter: '.formatter.onGetUserStyles'}"/>
+						<ObjectStatus text="{parts: [{path: 'aListEquipoAssignResponsive>aplica'}, {path: 'aListEquipoAssignResponsive>flagEditado'}], formatter: '.formatter.onGetModifOrNoApply'}" visible="{aListEquipoAssignResponsive>generalVisibleTextAdic}" state="{parts: [{path: 'aListEquipoAssignResponsive>aplica'}, {path: 'aListEquipoAssignResponsive>flagEditado'}], formatter: '.formatter.onGetModifOrNoApplyStyles'}"/>
+					</VBox>
+					<HBox>
+						<MenuButton width="auto" icon="sap-icon://text-align-justified" tooltip="{i18n>lblOption}" buttonMode="Regular">
+							<menu >
+								<Menu itemSelected="onMenuAction">
+									<MenuItem text="{i18n>mnObservationXStep}" icon="sap-icon://show" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/observacionPaso} === true ? true : false &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+									<MenuItem text="{i18n>mnHistoryXStep}" icon="sap-icon://activity-items" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/observacionHistorialPaso} === true ? true : false &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+									<MenuItem text="{=${aListEquipoAssignResponsive>aplica} === true ? 'No aplica paso' : 'Si aplica paso'}" icon="{=${aListEquipoAssignResponsive>aplica} === true ? 'sap-icon://less' : 'sap-icon://add'}" enabled="{=${modelGeneral>/oInfoUsuario/funcionUsuario/aplicaNoAplica} === true  &amp;&amp; ${generalModelState>/state} === true ? true : false}"/>
+									<MenuItem text="{i18n>btnDeleteEquipment}" icon="sap-icon://delete" enabled="{=${aListEquipoAssignResponsive>flagRegistro} === true &amp;&amp; ${generalModelState>/state} ? true : false}"/>
+								</Menu>
+							</menu>
+						</MenuButton>
+					</HBox>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+	</core:FragmentDefinition>

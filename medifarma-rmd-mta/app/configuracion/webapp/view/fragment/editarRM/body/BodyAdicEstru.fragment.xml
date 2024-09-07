@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblMdEstructures" sticky="HeaderToolbar,ColumnHeaders" mode="MultiSelect" items="{aListEstructura>/}"  updateFinished="onUpdateFinish" growing="true">
+			<!-- items="{mainModel>/ESTRUCTURA}" -->
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>addEstructuras}"></Title>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+		<!-- <OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewRM}" icon="sap-icon://add-activity-2" press="onGetNewRM"/>
+				<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLS"/>
+				<OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/>
+				<OverflowToolbarButton text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://settings" press="onGetOptions"/> -->
+				<OverflowToolbarButton tooltip="{i18n>onRefresh}" icon="sap-icon://synchronize" press="onAddNewEstructure"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>addCod}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>addDesc}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clStructureType}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>addNum}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<!-- <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocRVer}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>asocREEst}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column> -->
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{aListEstructura>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEstructura>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEstructura>etapa}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{=${aListEstructura>numeracion} === true ? 'SI' : 'NO'}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<!-- <Text text="{aListEstructura>estado}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{aListEstructura>estado}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/> -->
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

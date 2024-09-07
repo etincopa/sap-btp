@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+    xmlns:unf="sap.ui.unified"
+  xmlns:layout="sap.ui.layout">
+  <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="auto">
+		<content>
+				<unf:ColorPicker id="cp" mode="HSL"/>
+		</content>
+    <beginButton>
+			<Button text="{i18n>btnConfirm}" press="onConfirmSelectColor" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelSelectColor" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

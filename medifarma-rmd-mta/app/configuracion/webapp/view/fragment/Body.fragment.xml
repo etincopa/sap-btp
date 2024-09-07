@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblConfigurationRmd" sticky="HeaderToolbar,ColumnHeaders" items="{path:'listMD>/'}" growing="true" growingThreshold="50" updateStarted="onGetDataInitial">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title id="titHeader" text="{i18n>tlManufacturaDigital}"></Title>
+				<!-- ({=${listMD>/MD}.length}) -->
+				<ToolbarSpacer/>
+				<!--<SearchField id="sfTabla" width="20%" search="onSearchFreeText">-->
+				<!--	<layoutData>-->
+				<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+				<!--	</layoutData>-->
+				<!--</SearchField>-->
+				<ToolbarSeparator/>
+				<OverflowToolbarButton text="{i18n>btnNewRM}" tooltip="{i18n>btnNewRM}" icon="sap-icon://add-activity-2" press="onGetNewRM" visible="{localModel>/oInfoUsuario/funcionUsuario/configurarMD}"/>
+				<OverflowToolbarButton text="{i18n>btnConfiguration}" tooltip="{i18n>btnConfiguration}" icon="sap-icon://wrench"
+					press="onGetConfigurationMaster" visible="{localModel>/oInfoUsuario/funcionUsuario/configurarMD}"/>
+				<OverflowToolbarButton text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment" press="onExportXLS" visible="{localModel>/oInfoUsuario/funcionUsuario/configurarMD}"/>
+				<OverflowToolbarButton text="{i18n>btnOPNoRM}" tooltip="{i18n>btnOPNoRM}" icon="sap-icon://action-settings" press="onOpSinRM" visible="{localModel>/oInfoUsuario/funcionUsuario/configurarMD}"/>
+				<!-- <OverflowToolbarButton text="{i18n>btnClasification}" tooltip="{i18n>btnClasification}" icon="sap-icon://sort" press="onGetClasification"/> -->
+				<!-- <OverflowToolbarButton text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}" icon="sap-icon://settings" press="onGetOptions"/> -->
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clCodigo}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clVersion}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clState}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clProductionState}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clProductionSend}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clProductionStatus}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="70px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clLevel}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clDateAuthorization}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clUserAuthorization}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clAF}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clCenter}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="170px" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>clAction}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column visible="false">
+				<Text text=""/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onGetEditarInfoRM">
+				<Text text="{listMD>codigo}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMD>version}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMD>estadoIdRmd/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<ObjectStatus text="{path: 'listMD>estadoIdProceso/iMaestraId', formatter: '.formatter.onGetStateProduction'}" state="{path: 'listMD>estadoIdProceso/iMaestraId', formatter: '.formatter.onGetState'}" textDirection="Inherit"/>
+				<!-- <ObjectStatus text="{listMD>estadoIdProceso/iMaestraId}" state="{=${listMD>estadoIdProceso/iMaestraId} === '461' ? 'Success' : 'Warning' }" textDirection="Inherit"/> -->
+				<HBox>
+					<Button icon="sap-icon://arrow-right" tooltip="{i18n>tltpSend}" press="onEnviarRMD" type="Transparent" visible="{=${listMD>estadoIdProceso/iMaestraId}===456? true:false}" textDirection="Inherit"/>
+					<Button icon="sap-icon://paper-plane" tooltip="{i18n>tltpReSend}" press="onPressReenvio" type="Transparent" visible="{=${listMD>estadoIdProceso/iMaestraId}===459 || ${listMD>estadoIdProceso/iMaestraId}===460 || ${listMD>estadoIdProceso/iMaestraId}===463 ? true:false}" textDirection="Inherit"/>
+					<Button icon="sap-icon://journey-change" tooltip="{i18n>tltpChangeDest}" press="onPressChangeDestinatario" type="Transparent" visible="{=${listMD>estadoIdProceso/iMaestraId} === 457 || ${listMD>estadoIdProceso/iMaestraId} === 458 || ${listMD>estadoIdProceso/iMaestraId} ===461 ? true:false}" textDirection="Inherit"/>
+				</HBox>
+				<Button  width="auto" icon="sap-icon://activity-2" tooltip="{i18n>tltpFlujo}" press="onProdEstatus" type="Transparent" visible="{=${listMD>estadoIdProceso/iMaestraId}===456 ? false:true}" textDirection="Inherit"/>
+				<Text text="{listMD>descripcion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMD>nivelTxt}" width="auto" maxLines="3" wrapping="true" textAlign="End" textDirection="Inherit"/>
+				<Text text="{path: 'listMD>fechaAutorizacion', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy hh:mm:ss', UTC: false }}" width="auto" maxLines="3" wrapping="true"/>
+				<Text text="{listMD>usuarioAutorizacion}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMD>af}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMD>sucursalId/contenido}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<MenuButton width="150px" text="{i18n>acciones}" buttonMode="Split" defaultAction="onDefaultAction" >
+					<menu >
+					<Menu itemSelected="onMenuAction">
+						<MenuItem text="{i18n>accVMaster}" icon="sap-icon://documents" />
+						<MenuItem text="{i18n>accDMaster}" icon="sap-icon://download" />
+						<MenuItem text="{i18n>accAddDocument}" icon="sap-icon://add-document" />
+						<MenuItem text="{i18n>accOP}" icon="sap-icon://document-text" />
+						<MenuItem text="{i18n>accForm}" icon="sap-icon://open-folder" />
+						<MenuItem text="{i18n>accConfRM}" icon="sap-icon://add-equipment" />
+						<MenuItem text="{i18n>accTrazabilidad}" icon="sap-icon://menu2"/>
+						<MenuItem text="{i18n>accverNotaImportante}" icon="sap-icon://document" />
+					</Menu>
+					</menu>
+				</MenuButton>
+				<Text text="{listMD>codigoSolicitud}"/>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

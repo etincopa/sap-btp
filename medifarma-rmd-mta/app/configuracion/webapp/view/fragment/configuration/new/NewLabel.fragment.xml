@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple">
+	<Dialog id="dlgLabel" title="{=${localModel>/editar} === 0 ? 'Nueva Etiqueta' : 'Editar Etiqueta' }" class="sapUiContentPadding sapUiSizeCompact" contentWidth="40%" afterClose="onCancelAddEtiqueta">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:formContainers>
+					<form:FormContainer visible="{=${localModel>/editar} === 0 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{mainModelv2>codigo}" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/newEtiqueta/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clStructure}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/ESTRUCTURA',
+                                        filters: [{
+                                            path: 'activo',
+                                            operator: 'EQ',
+                                            value1: 'true'
+                                        }]}" 
+                                        placeholder="{i18n>clStructure}" selectedKey="{localModel>/newEtiqueta/estructuraId_estructuraId}"
+										showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>estructuraId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>etapa} - {mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+
+					<form:FormContainer visible="{=${localModel>/editar} === 1 ? true : false }">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clCodigo}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input editable="false" value="{localModel>/editEtiqueta/codigo}" placeholder="{i18n>clCodigo}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clDescription}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{localModel>/editEtiqueta/descripcion}" placeholder="{i18n>clDescription}"/>
+								</form:fields>
+							</form:FormElement>              
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clStructure}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/ESTRUCTURA',
+                                        filters: [{
+                                            path: 'activo',
+                                            operator: 'EQ',
+                                            value1: 'true'
+                                        }]}" 
+                                        placeholder="{i18n>clStructure}" selectedKey="{localModel>/editEtiqueta/estructuraId_estructuraId}"
+										showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>estructuraId}" text="{mainModelv2>descripcion}" additionalText="{mainModelv2>etapa} - {mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>clState}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<ComboBox items="{path: 'mainModelv2>/MAESTRA',
+                                        filters: [{
+                                            path: 'oMaestraTipo_maestraTipoId',
+                                            operator: 'EQ',
+                                            value1: '3'
+                                        }]}" 
+                                        placeholder="{i18n>clState}" selectedKey="{localModel>/editEtiqueta/estadoId_iMaestraId}"
+										showSecondaryValues="true" filterSecondaryValues="true">
+										<core:ListItem key="{mainModelv2>iMaestraId}" text="{mainModelv2>contenido}" additionalText="{mainModelv2>codigo}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+          
+
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{=${localModel>/editar} === 0 ? 'Agregar' : 'Actualizar' }" press="onConfirmEtiqueta" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelEtiqueta" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

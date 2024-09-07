@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearchRMD" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="false" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblArticulo}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox id="idItemsArticulo" items="{path : 'modelGeneral>/cmbArticulo'}" placeholder="{i18n>phlblArticulo}"
+                       selectionChange="selectionArticuloFinish" showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>Matnr}" text="{modelGeneral>Maktx}" additionalText="{modelGeneral>Matnr}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblDescription}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oDataFilter/descripcion}" submit="onSearchRMD" placeholder="{i18n>phlblDescription}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="C" label="{i18n>lblOP}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oDataFilter/ordenSAP}" submit="onSearchRMD" placeholder="{i18n>phlblOP}" type="Number" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="D" label="{i18n>lblLote}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<Input value="{modelGeneral>/oDataFilter/lote}" submit="onSearchRMD" placeholder="{i18n>phlblLote}" type="Text" showValueHelp="false" visible="true" width="100%"
+						valueHelpOnly="false"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="E" label="{i18n>lblDateRmd}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<DateRangeSelection valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" dateValue="{modelGeneral>/oDataFilter/fechainiRMD}"
+						secondDateValue="{modelGeneral>/oDataFilter/fechafinRMD}"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="F" label="{i18n>lblStageProduction}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox id="idEtapaProd" items="{path : 'modelGeneral>/cmbStageProduction'}" placeholder="{i18n>phlblStageProduction}"
+                        selectionChange="selectionEstadoProFinish" showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>Atwrt}" text="{modelGeneral>Atwrt}" additionalText="{modelGeneral>Atzhl}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <!-- <fb:FilterGroupItem groupName="MANGROUP" name="G" label="{i18n>lblPlanta}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox id="idPlanta" items="{path : 'modelGeneral>/cmbPlanta'}" placeholder="{i18n>phlblPlanta}"
+                        selectionChange="selectionPlantaFinish" showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>iMaestraId}" text="{modelGeneral>contenido}" additionalText="{modelGeneral>codigo}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem> -->
+            <fb:FilterGroupItem groupName="MANGROUP" name="H" label="{i18n>lblArea}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<!-- <ComboBox editable="{=${modelGeneral>/cmbArea}.length === 0 ? false : true}" items="{path : 'modelGeneral>/cmbArea'}" placeholder="{i18n>phlblArea}"
+                        selectionChange="selectionAreaFinish" showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>Fevor}" text="{modelGeneral>Txt}" additionalText="{modelGeneral>Fevor}"/>
+                    </ComboBox> -->
+					<ComboBox id="idArea" items="{modelGeneral>/aListaSecciones}" placeholder="{i18n>phlblArea}" selectedKey="{modelGeneral>/oFilters/area}"
+                        showSecondaryValues="true" filterSecondaryValues="true" editable="{=${modelGeneral>/aListaSecciones}.length === 0 ? true : true}">
+                        <core:ListItem key="{modelGeneral>Atwrt}" text="{modelGeneral>Atwrt}" additionalText="{modelGeneral>Atzhl}"/>
+                    </ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+            <fb:FilterGroupItem groupName="MANGROUP" name="I" label="{i18n>lblState}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<MultiComboBox id="idEstadoFilter" items="{path : 'modelGeneral>/cmbState'}" placeholder="{i18n>lblState}"
+                        selectionFinish="selectionEstadoFinish" showSecondaryValues="true" filterSecondaryValues="true">
+                        <core:ListItem key="{modelGeneral>iMaestraId}" text="{modelGeneral>contenido}" additionalText="{modelGeneral>codigo}"/>
+                    </MultiComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

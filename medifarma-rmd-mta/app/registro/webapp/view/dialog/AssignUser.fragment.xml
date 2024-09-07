@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form">
+  <Dialog class="sapUiContentPadding sapUiSizeCompact" contentWidth="65%" afterClose="onCancelAddUser" title="{i18n>tltAuxiliares} ({= ${modelGeneral>/usuariosAbap}.length})">
+		<content>
+			<layout:VerticalLayout>
+                <Table id="idTableUsersABAP" items="{path:'modelGeneral>/usuariosAbap'}" width="100%" noDataText="{i18n>tblNoData}" mode="MultiSelect" showSeparators="All" growing="true"
+                growingThreshold="20" growingScrollToLoad="true">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <!-- <SearchField  width="auto" class="sapUiSmallMargin" search="onSearchUsers" placeholder="{i18n>searchNameUser}"/> -->
+                            <Input width="15%" class="sapUiTinyMargin" placeholder="{i18n>phlCodeUser}" value="{oDataFilter>/code}"/>
+                            <Input width="15%" class="sapUiTinyMargin" placeholder="{i18n>phlNameUser}" value="{oDataFilter>/name}"/>
+                            <ComboBox items="{
+                                path : 'mainModel>/MAESTRA',
+                                filters: [{
+                                    path: 'oMaestraTipo_maestraTipoId',
+                                    operator: 'EQ',
+                                    value1: '18'
+                                }]
+                                }" placeholder="{i18n>cboPlantUser}" selectedKey="{oDataFilter>/planta}" width="auto" 
+                                showSecondaryValues="true" filterSecondaryValues="true">
+                                <core:ListItem key="{mainModel>codigo}" text="{mainModel>contenido}" additionalText="{mainModel>codigo}"/>
+                            </ComboBox>
+                            <ComboBox items="{path : 'modelGeneral>/aListaSecciones'}" placeholder="{i18n>cboAreaUser}" selectedKey="{oDataFilter>/area}"
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${modelGeneral>/aListaSecciones}.length === 0 ? false : true}">
+                                <core:ListItem key="{modelGeneral>Atwrt}" text="{modelGeneral>Atwrt}" additionalText="{modelGeneral>Atzhl}"/>
+                            </ComboBox>
+                            <!-- <ComboBox items="{path : 'modelGeneral>/aListaSecciones'}" 
+                                placeholder="{i18n>cboAreaUser}" 
+                                selectedKey="{oDataFilter>/area}"
+                                width="auto" 
+                                showSecondaryValues="true" filterSecondaryValues="true" editable="{=${localModel>/aListaSecciones}.length === 0 ? false : true}">
+                                <core:ListItem key="{modelGeneral>Fevor}" text="{modelGeneral>Txt}" additionalText="{modelGeneral>Fevor}"/>
+                            </ComboBox> -->
+                            <ToolbarSpacer/>
+                            <Button	text="{i18n>btnSearchUser}" press="onSearchUsers" icon="sap-icon://search"/>
+                            <ToolbarSeparator/>
+                            <OverflowToolbarButton text="{i18n>btnRefresh}" tooltip="{i18n>btnRefresh}" icon="sap-icon://refresh" press="onRefreshUsers"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clCode}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Text text="{i18n>clName}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>clReemplazo}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <Text text="{modelGeneral>usuario}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                        <Text text="{modelGeneral>nombre}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                        <CheckBox selected="{modelGeneral>bReemplazo}"/>
+                    </ColumnListItem>
+                </items>
+                </Table>
+			</layout:VerticalLayout>
+		</content>
+        <beginButton>
+            <Button text="{i18n>btnAddUser}" tooltip="{i18n>btnAddUser}" type="Emphasized" press="onAddUsers"/>
+        </beginButton>
+		<endButton>
+			<Button text="{i18n>btnClose}" press="onCancelAddUser" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

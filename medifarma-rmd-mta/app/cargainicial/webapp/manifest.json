@@ -1,0 +1,188 @@
+{
+    "_version": "1.28.0",
+    "sap.app": {
+        "id": "mif.rmd.cargainicial",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "dataSources": {
+            "mainServicev2": {
+                "uri": "/srv_api/v2/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "mainServicev4": {
+                "uri": "/srv_api/v2/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "NECESIDADESRMD_SRV": {
+                "uri": "/saperp/sap/opu/odata/sap/Z_PP_NECESIDADESRMD_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/Z_PP_NECESIDADESRMD_SRV/metadata.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "mif-rmd-cargainicial-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "cargainicial",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "sap-icon://add-equipment"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.84.20",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "mif.rmd.cargainicial.i18n.i18n"
+                }
+            },
+            "mainModelv2": {
+                "dataSource": "mainServicev2",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupId": "$direct",
+                    "useBatch": true
+                }
+            },
+            "mainModelv4": {
+                "dataSource": "mainServicev4",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    
+                    "useBatch": true
+                }
+            },
+            "NECESIDADESRMD_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request",
+					"useBatch": false,
+                    "metadataUrlParams": {
+                        "sap-language": "ES"
+                    }
+				},
+				"dataSource": "NECESIDADESRMD_SRV",
+				"preload": true
+			}
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "mif.rmd.cargainicial.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMainView",
+                    "pattern": "RouteMainView",
+                    "target": [
+                        "TargetMainView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMainView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainView",
+                    "viewName": "MainView"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "mif.rmd.cargainicial.view.MainView",
+            "type": "XML",
+            "async": true,
+            "id": "MainView"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "mif-apps-rmd-bs"
+    },
+    "sap.platform.cf": {
+        "ui5VersionNumber": "1.84.20",
+        "oAuthScopes": [
+            "$XSAPPNAME.RMDInitialCharge"
+        ]
+    }
+}

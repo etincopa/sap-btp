@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" xmlns:ui="sap.ui.table"
+  xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" displayBlock="true" height="100%" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table width="auto" id="idTblEtiqueta" sticky="HeaderToolbar,ColumnHeaders" mode="None" items="{listMdEstructuraGeneral>/}" updateFinished="onUpdateFinish" growing="true"
+		growingScrollToLoad="true">
+		<dragDropConfig>
+				<dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    dropEffect="Move"
+                    drop="onDropResponsive"/>
+			</dragDropConfig>
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>estRegistro} ({=${listMdEstructuraGeneral>/}.length})" level="H2"/>
+				<ToolbarSpacer/>
+				<!-- <Button type="Transparent" icon="sap-icon://excel-attachment" press="onPressDescargarExcel" tooltip="Descargar Excel"/> -->
+				<OverflowToolbarButton text="{i18n>TbECompare}" tooltip="{i18n>TbECompare}" icon="sap-icon://compare" press="onGenerarComparacion" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>TbEVers}" tooltip="{i18n>TbEVers}" icon="sap-icon://sys-add" press="onGenerarNuevaVersion" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>TbEPaste}" tooltip="{i18n>TbEPaste}" icon="sap-icon://paste" press="onCopiarARM" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>TbECopy}" tooltip="{i18n>TbECopy}" icon="sap-icon://copy" press="onCopiarDeRM" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<OverflowToolbarButton text="{i18n>TbEPrint}" tooltip="{i18n>TbEPrint}" icon="sap-icon://print" press="onPrint" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>TbEExport}" tooltip="{i18n>TbEExport}" icon="sap-icon://excel-attachment" press="onExportXLS" type="Transparent"/>
+				<!-- <OverflowToolbarButton text="{i18n>TbEConfirm}" tooltip="{i18n>TbEConfirm}" icon="sap-icon://accept" press="onExportXLS"/> -->
+				<OverflowToolbarButton text="{i18n>TbEGenerate}" tooltip="{i18n>TbEGenerate}" icon="sap-icon://documents" press="onGenerarPredecesores" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<OverflowToolbarButton text="{i18n>TbEUpdate}" tooltip="{i18n>TbEUpdate}" icon="sap-icon://timesheet" press="onGenerarActualizarEnLinea" type="Transparent"/>
+				<OverflowToolbarButton text="{i18n>TbEConf}" tooltip="{i18n>TbEConf}" icon="sap-icon://settings" press="onGenerarConfiguracionInicial" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				<OverflowToolbarButton text="{i18n>add}" tooltip="{i18n>add}" icon="sap-icon://add" press="onAddNewEstructure" type="Transparent" enabled="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEOrder}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="40%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEDes}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbECod}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="5%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEItem}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbERep}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="10%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbENum}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+			<Column width="15%" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<Text text="{i18n>TbEAcc}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<Text text="{listMdEstructuraGeneral>orden}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEstructuraGeneral>descripcion_est}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEstructuraGeneral>codigo_est}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEstructuraGeneral>cantidad_mde}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{listMdEstructuraGeneral>estadoIdRmd}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<Text text="{=${listMdEstructuraGeneral>numeracion_est} === true ? 'SI' : 'NO'}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				<HBox visible="{listMdEstructuraGeneral>menuVisible}">
+					<OverflowToolbarButton tooltip="{i18n>accAddEtiqueta}" text="{i18n>accAddEtiqueta}" icon="sap-icon://document-text" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 487 ? true : false }"/>
+					<OverflowToolbarButton tooltip="{i18n>accAddPasos}" text="{i18n>accAddPasos}" icon="sap-icon://edit" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 484 ? true :  false }"/>
+					<OverflowToolbarButton tooltip="{i18n>accAddPasosCA}" text="{i18n>accAddPasosCA}" icon="sap-icon://heating-cooling" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 483 ? true :  false }"/>
+					<OverflowToolbarButton tooltip="{i18n>accAddEquipo}" text="{i18n>accAddEquipo}" icon="sap-icon://add-equipment" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 485 ? true : false }"/>
+					<OverflowToolbarButton tooltip="{i18n>accAddEspecification}" text="{i18n>accAddEspecification}" icon="sap-icon://lab" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 486 ? true : false }"/>
+					<OverflowToolbarButton tooltip="{i18n>accShowInsumos}" text="{i18n>accShowInsumos}" icon="sap-icon://show" press="onEditMenuActionResponsive"  type="Transparent" visible="{=${listMdEstructuraGeneral>tipoEstructuraId} === 488 &amp;&amp; (${listMdEstructuraGeneral>nivelTxt} === 'FABRICACION' || ${listMdEstructuraGeneral>nivelTxt} === 'RECUBRIMIENTO')}"/>
+					<OverflowToolbarButton tooltip="{i18n>accDeleteEstruct}" text="{i18n>accDeleteEstruct}" icon="sap-icon://delete" app:model="listMdEstructuraGeneral" press="onDelEstructura" type="Transparent" visible="{=${asociarDatos>/estadoIdRmd_iMaestraId}=== 465 ? false : true}"/>
+				</HBox>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

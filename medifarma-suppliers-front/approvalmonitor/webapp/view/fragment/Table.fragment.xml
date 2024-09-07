@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table id="tblReporteSolicitudes" items="{/}" growing="true" growingThreshold="50" app:fileName="Monitor" app:header="Solicitudes">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="{i18n>ttlRequests}" level="H2"/>
+					<ToolbarSpacer/>
+					<!--<Button text="Crear Solicitud prueba" press="createWFInstance"/>-->
+					<SearchField id="sfTabla" width="20%" search="onSearchRegister">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</SearchField>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="Clasificar" tooltip="Clasificar" icon="sap-icon://sort"
+						press="onSortButtonPressed"/>
+					<!--<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}"
+						icon="sap-icon://action-settings" press="onPersoButtonPressed"/>-->
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment"
+						press="onExportXLS"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column hAlign="Center" app:property="Application" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clApplication}"/>
+			</Column>
+			<Column hAlign="Center" app:property="RequestingUser" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clRequestingUser}"/>
+			</Column>
+			<Column hAlign="Center" app:property="RequestDate" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clRequestDate}"/>
+			</Column>
+			<Column hAlign="Center" app:property="LastApprover" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clLastApprover}"/>
+			</Column>
+			<Column hAlign="Center" app:property="CompletedDate" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clApprovalDate}"/>
+			</Column>
+			<Column hAlign="Center" app:property="State" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clState}"/>
+			</Column>
+			<Column hAlign="Center" app:property="Reason" popinDisplay="Inline" minScreenWidth="tablet">
+				<Text text="{i18n>clReason}"/>
+			</Column>
+			<!--<Column demandPopin="true" width="5%" popinDisplay="Inline" minScreenWidth="tablet"/>-->
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onPressRow" highlight="{Color}">
+				<cells>
+					<Text text="{Application}"/>
+					<Text text="{RequestingUser}"/>
+					<Text text="{RequestDate}"/>
+					<Text text="{LastApprover}"/>
+					<Text text="{CompletedDate}"/>
+					<Text text="{State}"/>
+					<Text text="{Reason}"/>
+					<!--<HBox>
+						<Button icon="sap-icon://customer-history" press="onPressHistory"/>
+					</HBox>-->
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

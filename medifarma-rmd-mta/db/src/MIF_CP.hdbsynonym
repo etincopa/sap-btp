@@ -1,0 +1,92 @@
+{
+    "MIF_RMD_MIF_CP_GRUPO_ORDEN_BULTO": {
+        "target": {
+            "object": "MIF_CP_GRUPO_ORDEN_BULTO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_GRUPO_ORDEN_FRAC": {
+        "target": {
+            "object": "MIF_CP_GRUPO_ORDEN_FRAC",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_GRUPO_ORDEN_CONSOLIDADO": {
+        "target": {
+            "object": "MIF_CP_GRUPO_ORDEN_CONSOLIDADO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_GRUPO_ORDEN_DET": {
+        "target": {
+            "object": "MIF_CP_GRUPO_ORDEN_DET",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_ORDEN": {
+        "target": {
+            "object": "MIF_CP_ORDEN",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_ORDEN_DETALLE": {
+        "target": {
+            "object": "MIF_CP_ORDEN_DETALLE",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_PEDIDO": {
+        "target": {
+            "object": "MIF_CP_PEDIDO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_PEDIDO_ORDEN": {
+        "target": {
+            "object": "MIF_CP_PEDIDO_ORDEN",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_IMPRESORA": {
+        "target": {
+            "object": "MIF_CP_IMPRESORA",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_COLA_IMPRESION_VARIABLES": {
+        "target": {
+            "object": "MIF_CP_COLA_IMPRESION_VARIABLES",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_COLA_IMPRESION": {
+        "target": {
+            "object": "MIF_CP_COLA_IMPRESION",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_PLANTILLA_IMPRESION": {
+        "target": {
+            "object": "MIF_CP_PLANTILLA_IMPRESION",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_ORDEN_FRACCION": {
+        "target": {
+            "object": "MIF_CP_ORDEN_FRACCION",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_TIPO_PEDIDO": {
+        "target": {
+            "object": "MIF_CP_TIPO_PEDIDO",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "MIF_RMD_MIF_CP_TIPO_PEDIDO_DETALLE": {
+        "target": {
+            "object": "MIF_CP_TIPO_PEDIDO_DETALLE",
+            "schema": "_PLACEHOLDER_"
+        }
+    }
+}

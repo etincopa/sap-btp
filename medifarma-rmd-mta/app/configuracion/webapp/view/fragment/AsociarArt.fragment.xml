@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>dlgMdAsociarFormula}: {asociarDatos>/codigo} - {asociarDatos>/descripcion}" afterClose="onCancelAsociarArticulos">
+    <core:Fragment fragmentName="mif.rmd.configuracion.view.fragment.asociarArt.InformacionRM" type="XML"/>
+         <beginButton>
+            <Button text="{i18n>btnGuardar}" press="onSaveAsociarArticulos" type="Emphasized"/>
+        </beginButton>
+        <endButton>
+			<Button text="{i18n>btnClose}" press="onCancelAsociarArticulos" type="Transparent"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
