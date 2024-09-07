@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notificacion de la Solicitud</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Solicitud</h3>
+        <p>${context.initiatorName},</p>
+        <p>${context.body}</p>
+        <p>${context.WFUserComment}</p>
+        <p>${context.prnRequestData.VOUCHERNUMBER}</p>
+        <p>Exitosamente.</p>
+        <p>Haga clic <a href="${context.inboxTilePortalURL}">aquí</a> para revisar el detalle.</p>
+    </body>
+</html>

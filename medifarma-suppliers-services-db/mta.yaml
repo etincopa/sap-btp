@@ -1,0 +1,79 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = suppliers
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: "3.1"
+ID: suppliers_services_db
+version: 1.0.0
+description: "Suppliers - Services & DB"
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  # --------------------- SERVER MODULE ------------------------
+  - name: suppliers-srv
+    # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
+    requires:
+      # Resources extracted from CAP configuration
+      - name: suppliers_hdi_service
+      - name: uaa_service
+      - name: dest_service
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        public : true  #Agregar el public para la visualización en el otro mta
+        properties:
+          srv-url: ${default-url}
+    #Se agrego el parameters, para que pueda ser detecta por otro proyecto a nivel de MTA
+    parameters:
+      host: 'medifarma-suppliers-srv' # host debe ser único entre subcuentas
+      disk-quota: 1024M
+      memory: 256M
+      visibility: 
+        - org: ${org}
+    # -------------------- SIDECAR MODULE ------------------------
+  - name: hana_cloud-db-deployer
+    # ------------------------------------------------------------
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      disk-quota: 512M
+      memory: 256M
+    requires:
+      # 'hana' and 'xsuaa' resources extracted from CAP configuration
+      - name: suppliers_hdi_service
+
+resources:
+  # services extracted from CAP configuration
+  # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+  # ------------------------------------------------------------
+  - name: suppliers_hdi_service
+    # ------------------------------------------------------------
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana # or 'hanatrial' on trial landscapes or hana is not trial
+      service-plan: hdi-shared
+      config: #Add config
+        database_id: "4b2d851d-1a61-445c-b40c-42f2ff5eba56" #Change DB
+      #   schema: "QAS_SUPPLIERS" #PRD_DEALER (PRD) #TEST_DEALER (DEV)
+    properties:
+      hdi-service-name: ${service-name}
+  - name: uaa_service
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+  - name: dest_service
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: destination
+      service-plan: lite

@@ -1,0 +1,38 @@
+# Dependency directories
+node_modules/
+
+# npm cache directory
+.npm
+
+# Compiled binary build directory
+dist/
+
+#snap generated files
+snap/parts
+snap/prime
+snap/snap
+snap/stage
+snap/*.snap
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+// osx garbage
+*.DS_Store
+.DS_Store
+
+# dotenv environment variables file
+.env
+
+# miscellaneous
+.idea
+config.gypi
+
+# Test generated files
+# tests/package.json
+
+.python-version

@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+
+    <head>
+
+        <title>Notificación de la Solicitud</title>
+
+        <style>
+
+            h3 {
+
+                font-family: serif;
+
+            }
+
+            p, dl, dd, dt {
+
+                font-family: sans-serif;
+
+            }
+
+            dt {
+
+                text-indent: 5em;
+
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h3>Solicitud registrada</h3>
+
+        <p>Estimados ${context.mailRequesterName},</p>
+
+        <p>Su solcitud <b>${context.prnRequestData.VOUCHERNUMBER}</b> ha sido registrada exitosamente.</p>
+
+    </body>
+
+</html>

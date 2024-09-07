@@ -1,0 +1,89 @@
+# Getting Started
+
+Welcome to your new project.
+
+It contains these folders and files, following our recommended project layout:
+
+| File or Folder | Purpose                              |
+| -------------- | ------------------------------------ |
+| `app/`         | content for UI frontends goes here   |
+| `db/`          | your domain models and data go here  |
+| `srv/`         | your service models and code go here |
+| `package.json` | project metadata and configuration   |
+| `readme.md`    | this getting started guide           |
+
+## Next Steps
+
+- Open a new terminal and run `cds watch`
+- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
+- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+
+## Learn More
+
+Learn more at https://cap.cloud.sap/docs/get-started/.
+
+## Links Referenciales
+
+[Authentication](https://blogs.sap.com/2020/07/20/cap-demystify-user-authentication/)
+
+## Librerias instaladas
+
+```console
+    > npm install passport
+    > cds compile srv/ --to xsuaa > xs-security.json
+    > npm install @sap/xssec@^2 @sap/xsenv
+```
+
+## Package Json
+
+Se agrego el uaa en el package.json
+
+```json
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "uaa": {
+                "kind": "xsuaa"
+            }
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        }
+    }
+```
+
+## Pre-requisitos del Módulo
+
+- Data en tabla 'Master'
+
+## Probar en Local
+
+```console
+> npm i
+> cf login
+...
+> cds build
+> cds watch
+```
+
+## Despliegue
+
+Entitlements necesarios:
+
+- SAP HANA Schemas & HDI Containers (hdi-shared)
+
+Comandos:
+
+```console
+> cds build
+> mbt build
+> cf deploy mta_archives/...mtar
+> cf create-service-key suppliers_hdi_service default   #just once
+> hana-cli serviceKey suppliers_hdi_service default #generate default-env.json
+```
+
+## OpenAPI / SwaggerUI
+
+> cds compile srv --service all -o docs --to openapi

@@ -1,0 +1,55 @@
+POST http://localhost:4004/Service/InvoiceDetailSet
+Content-Type: application/json
+
+{"amount_currency": "PEN",
+    "amount_value": "11,000.000",
+    "conceptCode": "C00001",
+    "invoiceDate": "2020-10-01",
+    "supplierFrom": 200000001,
+    "supplierTo": 200000002}
+
+POST http://localhost:4004/Service/ConceptSet
+Content-Type: application/json
+
+{
+    "conceptCode": "C00001",
+    "description" : "Concepto Descripción 01",
+    "accountant" : "1234567890123456"}
+
+POST https://406cfd6etrial-dev-dealer-portal-srv.cfapps.us10.hana.ondemand.com/Service/InvoiceHeaderSet
+Content-Type: application/json
+
+{
+    "invoiceNumber" : "F0000-01",
+    "supplierFrom": 200000002,
+    "supplierTo": 200000001,
+    "issueDate" : "2020-10-12",
+    "expiryDate" : "2020-10-12",
+    "ammountTotal_value" : 10000,
+    "ammountTotal_currency" : "PEN",
+    "statusHeader" : 1
+}
+
+POST http://localhost:4004/Service/MasterSet
+Content-Type: application
+
+{
+    "code": "STYPEINVOICE",
+    "tableName" : "TYPE_INVOICE",
+    "valueLow" : "Boleta",
+    "valueHigh" : "",
+    "description" : "",
+    "level" : 1,
+    "state" : 1}
+
+POST http://localhost:4004/Service/MasterSet
+Content-Type: application/json
+
+{ "id" : 1,
+    "code": "STATUS",
+    "tableName" : "HEADERSTATUS",
+    "valueLow" : "Creado",
+    "valueHigh" : "",
+    "description" : "Factura Match",
+    "level" : 1,
+    "state" : 1}

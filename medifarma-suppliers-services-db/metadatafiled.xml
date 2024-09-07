@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+	</Reference>
+	<Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Alias="Core" Namespace="Org.OData.Core.V1" />
+	</Reference>
+	<Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
+	</Reference>
+	<DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="InvoiceService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="ConceptSet" EntityType="InvoiceService.ConceptSet" />
+				<EntitySet Name="HistorySet" EntityType="InvoiceService.HistorySet" />
+				<EntitySet Name="InvoiceDetailSet" EntityType="InvoiceService.InvoiceDetailSet" />
+				<EntitySet Name="InvoiceHeaderSet" EntityType="InvoiceService.InvoiceHeaderSet" />
+				<EntitySet Name="MasterSet" EntityType="InvoiceService.MasterSet" />
+				<AssociationSet Name="HistorySet_InvoicetoHeader" Association="InvoiceService.HistorySet_InvoicetoHeader">
+					<End Role="HistorySet" EntitySet="HistorySet" />
+					<End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+				</AssociationSet>
+				<AssociationSet Name="HistorySet_HistoryToMaster" Association="InvoiceService.HistorySet_HistoryToMaster">
+					<End Role="HistorySet" EntitySet="HistorySet" />
+					<End Role="MasterSet" EntitySet="MasterSet" />
+				</AssociationSet>
+				<AssociationSet Name="InvoiceDetailSet_DetailToConcept" Association="InvoiceService.InvoiceDetailSet_DetailToConcept">
+					<End Role="InvoiceDetailSet" EntitySet="InvoiceDetailSet" />
+					<End Role="ConceptSet" EntitySet="ConceptSet" />
+				</AssociationSet>
+				<AssociationSet Name="InvoiceDetailSet_InvoicetoHeader" Association="InvoiceService.InvoiceDetailSet_InvoicetoHeader">
+					<End Role="InvoiceDetailSet" EntitySet="InvoiceDetailSet" />
+					<End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+				</AssociationSet>
+				<AssociationSet Name="InvoiceDetailSet_DetailToMaster" Association="InvoiceService.InvoiceDetailSet_DetailToMaster">
+					<End Role="InvoiceDetailSet" EntitySet="InvoiceDetailSet" />
+					<End Role="MasterSet" EntitySet="MasterSet" />
+				</AssociationSet>
+				<AssociationSet Name="InvoiceHeaderSet_TypeToMaster" Association="InvoiceService.InvoiceHeaderSet_TypeToMaster">
+					<End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+					<End Role="MasterSet" EntitySet="MasterSet" />
+				</AssociationSet>
+				<AssociationSet Name="InvoiceHeaderSet_StatusToMaster" Association="InvoiceService.InvoiceHeaderSet_StatusToMaster">
+					<End Role="InvoiceHeaderSet" EntitySet="InvoiceHeaderSet" />
+					<End Role="MasterSet" EntitySet="MasterSet" />
+				</AssociationSet>
+			</EntityContainer>
+			<EntityType Name="ConceptSet">
+				<Key>
+					<PropertyRef Name="conceptCode" />
+				</Key>
+				<Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="conceptCode" Type="Edm.String" Nullable="false" />
+				<Property Name="description" Type="Edm.String" />
+				<Property Name="accountant" Type="Edm.String" MaxLength="16" />
+			</EntityType>
+			<EntityType Name="HistorySet">
+				<Key>
+					<PropertyRef Name="historyId" />
+				</Key>
+				<Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="historyId" Type="Edm.Int32" Nullable="false" />
+				<Property Name="userP" Type="Edm.String" />
+				<Property Name="firstName" Type="Edm.String" />
+				<Property Name="lastName" Type="Edm.String" />
+				<Property Name="statusHistory" Type="Edm.Int32" />
+				<NavigationProperty Name="InvoicetoHeader" Relationship="InvoiceService.HistorySet_InvoicetoHeader" FromRole="HistorySet" ToRole="InvoiceHeaderSet" />
+				<NavigationProperty Name="HistoryToMaster" Relationship="InvoiceService.HistorySet_HistoryToMaster" FromRole="HistorySet" ToRole="MasterSet" />
+				<Property Name="InvoicetoHeader_invoiceNumber" Type="Edm.String" MaxLength="16" />
+			</EntityType>
+			<EntityType Name="InvoiceDetailSet">
+				<Key>
+					<PropertyRef Name="invoiceDetailId" />
+				</Key>
+				<Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="invoiceDetailId" Type="Edm.Int32" Nullable="false" />
+				<Property Name="supplierFrom" Type="Edm.Int32" />
+				<Property Name="supplierTo" Type="Edm.Int32" />
+				<Property Name="item" Type="Edm.String" MaxLength="5" />
+				<Property Name="conceptCode" Type="Edm.String" />
+				<Property Name="conceptXML" Type="Edm.String" />
+				<Property Name="amount_value" Type="Edm.Int32" />
+				<Property Name="amount_currency" Type="Edm.String" MaxLength="5" />
+				<Property Name="quantity" Type="Edm.String" MaxLength="5" />
+				<Property Name="tax" Type="Edm.String" MaxLength="2" />
+				<Property Name="taxIGV" Type="Edm.Int32" />
+				<Property Name="taxTotal" Type="Edm.Int32" />
+				<Property Name="statusDetail" Type="Edm.Int32" />
+				<NavigationProperty Name="DetailToConcept" Relationship="InvoiceService.InvoiceDetailSet_DetailToConcept" FromRole="InvoiceDetailSet" ToRole="ConceptSet" />
+				<NavigationProperty Name="InvoicetoHeader" Relationship="InvoiceService.InvoiceDetailSet_InvoicetoHeader" FromRole="InvoiceDetailSet" ToRole="InvoiceHeaderSet" />
+				<NavigationProperty Name="DetailToMaster" Relationship="InvoiceService.InvoiceDetailSet_DetailToMaster" FromRole="InvoiceDetailSet" ToRole="MasterSet" />
+				<Property Name="InvoicetoHeader_invoiceNumber" Type="Edm.String" MaxLength="16" />
+			</EntityType>
+			<EntityType Name="InvoiceHeaderSet">
+				<Key>
+					<PropertyRef Name="invoiceNumber" />
+				</Key>
+				<Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+				<Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+				<Property Name="invoiceNumber" Type="Edm.String" MaxLength="16" Nullable="false" />
+				<Property Name="supplierFrom" Type="Edm.Int32" />
+				<Property Name="supplierTo" Type="Edm.Int32" />
+				<Property Name="issueDate" Type="Edm.DateTime" sap:display-format="Date" />
+				<Property Name="invoiceDate" Type="Edm.DateTime" sap:display-format="Date" />
+				<Property Name="expiryDate" Type="Edm.DateTime" sap:display-format="Date" />
+				<Property Name="amountTotal_value" Type="Edm.Int32" />
+				<Property Name="amountTotal_currency" Type="Edm.String" MaxLength="5" />
+				<Property Name="typeInvoice" Type="Edm.Int32" />
+				<Property Name="statusHeader" Type="Edm.Int32" />
+				<NavigationProperty Name="TypeToMaster" Relationship="InvoiceService.InvoiceHeaderSet_TypeToMaster" FromRole="InvoiceHeaderSet" ToRole="MasterSet" />
+				<NavigationProperty Name="StatusToMaster" Relationship="InvoiceService.InvoiceHeaderSet_StatusToMaster" FromRole="InvoiceHeaderSet" ToRole="MasterSet" />
+				<NavigationProperty Name="LinktoDetail" Relationship="InvoiceService.InvoiceDetailSet_InvoicetoHeader" FromRole="InvoiceHeaderSet" ToRole="InvoiceDetailSet" />
+				<NavigationProperty Name="LinktoHistory" Relationship="InvoiceService.HistorySet_InvoicetoHeader" FromRole="InvoiceHeaderSet" ToRole="HistorySet" />
+			</EntityType>
+			<EntityType Name="MasterSet">
+				<Key>
+					<PropertyRef Name="id" />
+				</Key>
+				<Property Name="id" Type="Edm.Int32" Nullable="false" />
+				<Property Name="code" Type="Edm.String" MaxLength="30" />
+				<Property Name="tableName" Type="Edm.String" MaxLength="50" />
+				<Property Name="valueLow" Type="Edm.String" MaxLength="200" />
+				<Property Name="valueHigh" Type="Edm.String" MaxLength="200" />
+				<Property Name="description" Type="Edm.String" MaxLength="300" />
+				<Property Name="level" Type="Edm.Int32" />
+				<Property Name="state" Type="Edm.Int32" />
+			</EntityType>
+			<Association Name="HistorySet_InvoicetoHeader">
+				<End Role="HistorySet" Type="InvoiceService.HistorySet" Multiplicity="*" />
+				<End Role="InvoiceHeaderSet" Type="InvoiceService.InvoiceHeaderSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="InvoiceHeaderSet">
+						<PropertyRef Name="invoiceNumber" />
+					</Principal>
+					<Dependent Role="HistorySet">
+						<PropertyRef Name="InvoicetoHeader_invoiceNumber" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="HistorySet_HistoryToMaster">
+				<End Role="HistorySet" Type="InvoiceService.HistorySet" Multiplicity="*" />
+				<End Role="MasterSet" Type="InvoiceService.MasterSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="MasterSet">
+						<PropertyRef Name="id" />
+					</Principal>
+					<Dependent Role="HistorySet">
+						<PropertyRef Name="statusHistory" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceDetailSet_DetailToConcept">
+				<End Role="InvoiceDetailSet" Type="InvoiceService.InvoiceDetailSet" Multiplicity="*" />
+				<End Role="ConceptSet" Type="InvoiceService.ConceptSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="ConceptSet">
+						<PropertyRef Name="conceptCode" />
+					</Principal>
+					<Dependent Role="InvoiceDetailSet">
+						<PropertyRef Name="conceptCode" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceDetailSet_InvoicetoHeader">
+				<End Role="InvoiceDetailSet" Type="InvoiceService.InvoiceDetailSet" Multiplicity="*" />
+				<End Role="InvoiceHeaderSet" Type="InvoiceService.InvoiceHeaderSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="InvoiceHeaderSet">
+						<PropertyRef Name="invoiceNumber" />
+					</Principal>
+					<Dependent Role="InvoiceDetailSet">
+						<PropertyRef Name="InvoicetoHeader_invoiceNumber" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceDetailSet_DetailToMaster">
+				<End Role="InvoiceDetailSet" Type="InvoiceService.InvoiceDetailSet" Multiplicity="*" />
+				<End Role="MasterSet" Type="InvoiceService.MasterSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="MasterSet">
+						<PropertyRef Name="id" />
+					</Principal>
+					<Dependent Role="InvoiceDetailSet">
+						<PropertyRef Name="statusDetail" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceHeaderSet_TypeToMaster">
+				<End Role="InvoiceHeaderSet" Type="InvoiceService.InvoiceHeaderSet" Multiplicity="*" />
+				<End Role="MasterSet" Type="InvoiceService.MasterSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="MasterSet">
+						<PropertyRef Name="id" />
+					</Principal>
+					<Dependent Role="InvoiceHeaderSet">
+						<PropertyRef Name="statusHeader" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceHeaderSet_StatusToMaster">
+				<End Role="InvoiceHeaderSet" Type="InvoiceService.InvoiceHeaderSet" Multiplicity="*" />
+				<End Role="MasterSet" Type="InvoiceService.MasterSet" Multiplicity="0..1" />
+				<ReferentialConstraint>
+					<Principal Role="MasterSet">
+						<PropertyRef Name="id" />
+					</Principal>
+					<Dependent Role="InvoiceHeaderSet">
+						<PropertyRef Name="statusHeader" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Annotations Target="InvoiceService.ConceptSet/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.ConceptSet/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.ConceptSet/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.ConceptSet/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.HistorySet/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.HistorySet/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.HistorySet/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.HistorySet/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceDetailSet/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceDetailSet/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceDetailSet/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceDetailSet/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceHeaderSet/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceHeaderSet/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Created By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="Core.Immutable" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceHeaderSet/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed On" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+			<Annotations Target="InvoiceService.InvoiceHeaderSet/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Changed By" />
+				<Annotation Term="Core.Computed" Bool="true" />
+				<Annotation Term="Core.Description" String="User's unique ID" />
+				<Annotation Term="UI.HiddenFilter" Bool="true" />
+			</Annotations>
+		</Schema>
+	</DataServices>
+</Edmx>

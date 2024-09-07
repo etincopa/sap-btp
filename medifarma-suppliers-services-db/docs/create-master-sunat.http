@@ -1,0 +1,68 @@
+POST http://localhost:4004/Service/MasterSet
+Content-Type: application/json
+
+{ 
+  "id" : 1,
+  "code": "url_token",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "https://api-seguridad.sunat.gob.pe/v1/clientesextranet/a09352a1-ef52-475e-bf72-4d75c7c15d6f/oauth2/token/",
+  "valueHigh" : "",
+  "description" : "Token URL",
+  "level" : 1,
+  "state" : 1
+}
+
+{ 
+  "id" : 1,
+  "code": "scope",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "https://api.sunat.gob.pe/v1/contribuyente/contribuyentes",
+  "valueHigh" : "",
+  "description" : "",
+  "level" : 1,
+  "state" : 1
+}
+
+{ 
+  "id" : 1,
+  "code": "client_id",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "a09352a1-ef52-475e-bf72-4d75c7c15d6f",
+  "valueHigh" : "",
+  "description" : "",
+  "level" : 1,
+  "state" : 1
+}
+
+{ 
+  "id" : 1,
+  "code": "client_secret",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "f67ld0rFgGzgldlH0kWOqA==",
+  "valueHigh" : "",
+  "description" : "",
+  "level" : 1,
+  "state" : 1
+}
+
+{ 
+  "id" : 1,
+  "code": "uriSunatPart1",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/",
+  "valueHigh" : "",
+  "description" : "",
+  "level" : 1,
+  "state" : 1
+}
+
+{ 
+  "id" : 1,
+  "code": "uriSunatPart2",
+  "tableName" : "VARIABLES_SUNAT",
+  "valueLow" : "/validarcomprobante",
+  "valueHigh" : "",
+  "description" : "",
+  "level" : 1,
+  "state" : 1
+}

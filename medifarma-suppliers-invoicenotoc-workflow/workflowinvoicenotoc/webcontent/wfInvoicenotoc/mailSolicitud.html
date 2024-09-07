@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Notificacion de la Solicitud</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <p>La presente es para informarle que tiene una solicitud de aprobacion para el comprobante:</p>
+       
+        <b>Doc. Proveedor   :  </b>  ${context.CustomNumberValue} <br>
+        <b>Razon Social     :  </b>  ${context.mailRequesterName} <br>
+        <b>Nro Comprobante  :  </b>  ${context.prnRequestData.VOUCHERNUMBER}<br>
+        <b>Fecha Emision    :  </b>  ${context.prnRequestData.INVOICEDATE}<br>
+
+    <p>Para ejecutar la aprobacion ingresar al siguiente link:  <a href="${context.inboxTilePortalURL}">CLICK AQUI</a></p>
+    <p>Seguimiento Comprobante de compra.</p>
+    <p> <b>Este es un correo enviado automaticamente por nuestro sistema y el cual esta basado en la</b> </p>
+    <p> <b>informacion historica de los comprobantes aprobados por Ud. y/o la configuracion que lleva Ud. </b> </p>
+    <p> <b>para el modulo de comprobantes</b> Si Ud cree que no debe aprobar este comprobante haga <a href="${context.inboxTilePortalURL}">CLICK AQUI</a></p>
+    <p>para que nuestros usuarios contables redireccionen correctamente el comprobante.</p>
+
+   <p>MEDIFARMA S.A</p>
+</body>
+</html>

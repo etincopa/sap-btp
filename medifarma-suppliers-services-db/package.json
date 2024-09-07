@@ -1,0 +1,62 @@
+{
+  "name": "suppliers_services_db",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": "^16.13.1",
+    "npm": "^8.1.2"
+  },
+  "dependencies": {
+    "@sap/cds": "^5.9.1",
+    "@sap/cds-dk": "^4.9.1",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.11",
+    "@sap/hana-client": "^2.11.20",
+    "@sap/xsenv": "^3.2.1",
+    "@sap/xssec": "^3.2.13",
+    "atob": "^2.1.2",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "hana-cli": "^3.202203.3",
+    "morgan": "^1.10.0",
+    "morgan-body": "^2.5.2",
+    "passport": "^0.4.1",
+    "swagger-ui-express": "^4.1.6",
+    "btoa": "^1.2.1",
+    "sap-cf-destconn": "0.0.30"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "npx cds run",
+    "watch": "cds watch",
+    "build": "rm -rf mta_archives/ && mbt build",
+    "deploy": "cf deploy mta_archives/suppliers_services_db_1.0.0.mtar"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "uaa": {
+          "kind": "xsuaa"
+        }
+      },
+      "auth": {
+        "[production]": {
+          "strategy": "JWT"
+        },
+        "[development]": {
+          "strategy": "dummy"
+        }
+      },
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  }
+}

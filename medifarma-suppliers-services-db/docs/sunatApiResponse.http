@@ -1,0 +1,12 @@
+POST http://localhost:4004/api/v1/suppliers/sunatApiResponse
+Content-Type: application/json
+
+{
+    "numRuc": "20516484391",
+    "codComp": "01",
+    "numeroSerie": "E001",
+    "numero": "1452",
+    "fechaEmision": "13/01/2021",
+    "monto": "38.62",
+    "numRucAcreedor": "20538810682"
+}

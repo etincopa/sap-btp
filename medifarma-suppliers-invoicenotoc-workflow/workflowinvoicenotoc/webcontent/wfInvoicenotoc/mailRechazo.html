@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Notificacion de la Solicitud</title>
+        <style>
+            h3 {
+                font-family: serif;
+            }
+            p, dl, dd, dt {
+                font-family: sans-serif;
+            }
+            dt {
+                text-indent: 5em;
+            }
+        </style>
+    </head>
+    <body>
+        <p>La presente es para informarle que el usuario RECHAZO la solicitud de aprobacion del siguiente comprobante:</p>
+        <p>El motivo de rechazo:</p>
+        <p>${context.WFUserComment}</p>
+        <b>Doc. Proveedor   :  </b>  ${context.CustomNumberValue} <br>
+        <b>Razon Social     :  </b>  ${context.mailRequesterName} <br>
+        <b>Nro Comprobante  :  </b>  ${context.prnRequestData.VOUCHERNUMBER} <br>
+        <b>Fecha Emision    :  </b>  ${context.prnRequestData.INVOICEDATE}<br>
+    <p> <b>Por favor tomar las medidad necesarias para redireccionar correctamente el comprobante.</b> </p>
+
+   <p>MEDIFARMA S.A</p>
+</body>
+</html>
