@@ -1,0 +1,354 @@
+{
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "mif.cp.fraccionamiento",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.16"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "ach": "ach",
+    "dataSources": {
+			"SERVICE_SRV": {
+				"uri": "http://localhost:1337/odata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			},
+      "SERVICE_SRV_ONLINE_V2": {
+				"uri": "https://medifarmaprd-prd-cp-srv.cfapps.us10.hana.ondemand.com/v2/browse/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			} 
+		}
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "config":{
+      "service_url": "http://localhost:1337/",
+      "token": {
+        "ambiente": "PRD",
+        "DEV": {
+          "odata_url": "https://medifarmadevqas-dev-rmd-cp-cp-srv.cfapps.us10.hana.ondemand.com/v2/browse/",
+          "oauth": {
+            "url": "https://medifarmadevqas.authentication.us10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+              "client_id": "sb-mf-centralpesadas!t28639",
+              "client_secret": "+7rkNPnE7/BO/QC77NoXvsd3DfM="
+            }
+          }
+        },
+        "QAS": {
+          "odata_url": "https://medifarmaqas-qas-cp-srv.cfapps.us10.hana.ondemand.com/v2/browse/",
+          "oauth": {
+            "url": "https://medifarmaqas.authentication.us10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+              "client_id": "sb-mf-centralpesadas!t39312",
+              "client_secret": "1RHfkSGwttWso8xyn4Zi/ye9HVg="
+            }
+          }
+        },
+        "PRD": {
+          "odata_url": "https://medifarmaprd-prd-cp-srv.cfapps.us10.hana.ondemand.com/v2/browse/",
+          "oauth": {
+            "url": "https://medifarmaprd.authentication.us10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+              "client_id": "sb-mf-centralpesadas!t84490",
+              "client_secret": "SC3Nsdz3oxNvg7HO9LwWWniGmNQ="
+            }
+          }
+        }
+      }
+    },
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "mif.cp.fraccionamiento.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    },
+    
+    "dependencies": {
+      "minUI5Version": "1.66.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mif.cp.fraccionamiento.i18n.i18n"
+        }
+      },
+			"serviceModel": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+				"dataSource": "SERVICE_SRV",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+          "updateGroupId" : "updateGroup",
+          "groupId": "$direct"
+          
+				}        
+			},
+      "serviceModelOnlineV2": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "dataSource": "SERVICE_SRV_ONLINE_V2",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "updateGroupId" : "updateGroup",
+          "groupId": "$direct"
+        }
+      }       
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "mif.cp.fraccionamiento.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false,
+        "bypassed":{
+            "target": ["TargetHome"]
+        }
+      },
+      "routes": [
+        {
+          "name": "RouteApp",
+          "pattern": "RouteApp",
+          "target": ["TargetApp"]
+        },
+        {
+          "name": "RouteHome",
+          "pattern": "RouteHome",
+          "target": ["TargetHome"]
+        },
+        {
+          "name": "loginError",
+          "pattern": "loginError",
+          "target": ["loginError"]
+        },
+        {
+          "name": "menu",
+          "pattern": "menu",
+          "target": ["menu"]
+        },
+        {
+          "name": "atencion",
+          "pattern": "atencion",
+          "target": ["atencion"]
+        },
+        {
+          "name": "grupo",
+          "pattern": "grupo/{grupoOrdenId}",
+          "target": ["grupo"]
+        },
+        {
+          "name": "consolidado",
+          "pattern": "consolidado/{grupoOrdenId}/{salaPesajeId}",
+          "target": ["consolidado"]
+        },
+        {
+          "name": "detalle",
+          "pattern": "detalle/{grupoOrdenConsolidadoId}",
+          "target": ["detalle"]
+        },
+        {
+          "name": "editarDetalle",
+          "pattern": "editarDetalle",
+          "target": ["editarDetalle"]
+        },
+        {
+          "name": "pesaje",
+          "pattern": "pesaje/{grupoOrdenFraccionamientoId}",
+          "target": ["pesaje"]
+        },
+        {
+          "name": "consultaorden",
+          "pattern": "consultaorden",
+          "target": ["consultaorden"]
+        },
+        {
+          "name": "pesarbultosaldo",
+          "pattern": "pesarbultosaldo",
+          "target": ["pesarbultosaldo"]
+        },
+        {
+          "name": "trasladarhu",
+          "pattern": "trasladarhu",
+          "target": ["trasladarhu"]
+        },
+        {
+          "name": "configuracion",
+          "pattern": "configuracion",
+          "target": ["configuracion"]          
+        },
+        {
+          "name": "reembalajeHU",
+          "pattern": "reembalajeHU",
+          "target": ["reembalajeHU"]          
+        },
+        {
+          "name": "pesajeReembalajeHU",
+          "pattern": "pesajeReembalajeHU",
+          "target": ["pesajeReembalajeHU"]          
+        }
+        
+      ],
+      "targets": {
+        "TargetApp": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "App",
+          "viewName": "App"
+        },
+        "TargetHome": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "Home"
+        },
+        "loginError": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "LoginError"
+        },
+        "menu": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "Menu"
+        },
+        "atencion": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "Atencion"
+        },
+        "grupo": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "Grupo"
+        },
+        "consolidado": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "consolidado"
+        },
+        "detalle": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "detalle"
+        },
+        "editarDetalle": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "editarDetalle"
+        },
+        "pesaje": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "pesaje"
+        },
+        "consultaorden": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "consultaorden"
+        },
+        "pesarbultosaldo": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "pesarbultosaldo"
+        },
+        "trasladarhu": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "trasladarhu"
+        },
+        "configuracion": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "configuracion"
+        },
+        "reembalajeHU": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "ReembalajeHU"
+        },
+        "pesajeReembalajeHU": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,          
+          "viewName": "PesajeReembalajeHU"
+        }     
+        
+      }
+    }
+  }
+}

@@ -1,0 +1,270 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.Grupo"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>guardarGrupo}"
+					press="onGuardarGrupo"
+					type="Accept"
+				/>
+				<Button
+					text="{i18n>quitarOrder}"
+					press="onQuitarOrdenPress"
+					type="Reject"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					icon="sap-icon://undo"
+					press="onRegresarPress"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<t:Table
+			rows="{
+				path: 'localModel>/Grupo_OrdenesSinAsignar'
+			}"
+			selectionMode="Single"
+			visibleRowCount="4"
+			selectionBehavior="Row"
+			rowSelectionChange="onOrdenSinAsignarRowSelected"
+			ariaLabelledBy="title"
+			class="tblSinAsignar"
+		>
+			<t:extension>
+				<OverflowToolbar>
+					<Label text="{i18n>listadoOrdenesProduccion}"/>
+					<ToolbarSpacer/>
+					<Button
+						text="{i18n>agregarOrden}"
+						type="Emphasized"
+						press="onAgregarOrdenPress"
+					/>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="3rem">
+					<Label text="{i18n>nro}"/>
+					<t:template>
+						<Text
+							text="{localModel>codigo}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>ordenProduccion}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>numero}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="8rem">
+					<Label
+						text="{i18n>numeroPedido}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>pedidoNumero}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label text="{i18n>codigoArticulo}"/>
+					<t:template>
+						<Text
+							text="{localModel>codProdTerm}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="22rem">
+					<Label text="{i18n>nombreArticulo}"/>
+					<t:template>
+						<Text
+							text="{localModel>nomProdTerm}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label text="Frac.OP"/>
+					<t:template>
+						<Text
+							text="{localModel>numFraccion}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="7rem">
+					<Label text="{i18n>lote}"/>
+					<t:template>
+						<Text
+							text="{localModel>lote}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>fechaVencimiento}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaVencimiento',
+								formatter: '.formatter.getFormatShortDate'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+		<t:Table
+			rows="{
+				path: 'localModel>/Grupo_GrupoOrdenDetalle_Aux'
+			}"
+			id="tblGrupoOrdenDetalle"
+			selectionMode="Single"
+			selectionBehavior="Row"
+			visibleRowCount="4"
+			rowSelectionChange="onDetalleRowSelected"
+			ariaLabelledBy="title"
+			class="tblAsignadas"
+		>
+			<t:extension>
+				<OverflowToolbar>
+					<Label text="{i18n>ordenesProduccionSeleccionadas}"/>
+					<ToolbarSpacer/>
+					<Label text="{i18n>numeroGrupo}"/>
+					<Label text="{localModel>/Grupo_GrupoOrden/codigo}"/>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="3rem">
+					<Label text="{i18n>nro}"/>
+					<t:template>
+						<Text
+							text="{localModel>codigo}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				
+				<t:Column width="9rem">
+					<Label
+						text="{i18n>numeroPedido}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>pedidoNumero}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem">
+					<Label
+						text="{i18n>ordenProduccion}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>numero}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem">
+					<Label text="{i18n>estado}"/>
+					<t:template>
+						<Text
+							text="Pendiente"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label text="{i18n>codigoArticulo}"/>
+					<t:template>
+						<Text
+							text="{localModel>codProdTerm}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="21rem">
+					<Label text="{i18n>nombreArticulo}"/>
+					<t:template>
+						<Text
+							text="{localModel>nomProdTerm}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label text="Frac.OP"/>
+					<t:template>
+						<Text
+							text="{localModel>numFraccion}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="7rem">
+					<Label text="{i18n>lote}"/>
+					<t:template>
+						<Text
+							text="{localModel>lote}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>fechaVencimiento}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaVencimiento',
+								formatter: '.formatter.getFormatShortDate'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+	</Page>
+</mvc:View>

@@ -1,0 +1,105 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.Menu"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:d="mif.cp.fraccionamiento.util"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>atencionOrdenes}"
+			press="onAtencionPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://activity-2"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>consultaOrdenes}"
+			press="onConsultaOrdenesPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://detail-view"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>pesarBultoSaldo}"
+			press="onPesarBultoSaldoPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://compare"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>crearAdicionalBultoSaldo}"
+			press="onCrearAdicionalBultoSaldoPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://compare"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>crearNuevoBultoSaldo}"
+			press="onCrearNuevoBultoSaldoPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://compare"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>trasladarHu}"
+			press="onTrasladarHuPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://display-more"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>configuracion}"
+			press="onConfiguracionPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://settings"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+			header="{i18n>reembalajeHU}"
+			press="onReembalajeHUPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://journey-change"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile
+			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout exit-tile"
+			header="{i18n>salir}"
+			press="onSalirPress"
+		>
+			<TileContent>
+				<ImageContent src="sap-icon://visits"/>
+			</TileContent>
+		</GenericTile>
+	</Page>
+</mvc:View>

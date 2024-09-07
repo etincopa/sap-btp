@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceBalanza", "InterfaceBalanza\InterfaceBalanza.csproj", "{08BBB0D5-2671-4B98-955E-68E866107537}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstaladorInterface", "InstaladorInterface\InstaladorInterface.vdproj", "{686B9085-07DE-4727-A881-EAA3DC4CA701}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08BBB0D5-2671-4B98-955E-68E866107537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BBB0D5-2671-4B98-955E-68E866107537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BBB0D5-2671-4B98-955E-68E866107537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BBB0D5-2671-4B98-955E-68E866107537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{686B9085-07DE-4727-A881-EAA3DC4CA701}.Debug|Any CPU.ActiveCfg = Debug
+		{686B9085-07DE-4727-A881-EAA3DC4CA701}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB33319C-8E27-4320-A3EA-D69B7AF955D6}
+	EndGlobalSection
+EndGlobal

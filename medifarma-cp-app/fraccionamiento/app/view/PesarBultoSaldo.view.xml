@@ -1,0 +1,586 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.PesarBultoSaldo"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+	xmlns:tnt="sap.tnt"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					press="onGuardarPesaje"
+					tooltip="Guardar"
+					icon="sap-icon://save"
+					type="Accept"
+					class="sapMBtnLarge btnAccion"
+					enabled="{localModel>/Peso_Estable}"
+				/>
+				<Button
+					press="onChangeEmbalage"
+					visible="{=${localModel>/bInputManual} ? false : true}"
+					tooltip="Cambio Embalaje"
+					icon="sap-icon://journey-change"
+					type="Accept"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onDarDeBaja"
+					visible="{=${localModel>/bInputManual} ? false : true}"
+					tooltip="Dar de Baja"
+					icon="sap-icon://clear-all"
+					type="Reject"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onImprimirPress"
+					tooltip="Imprimir"
+					enabled="{localModel>/bImprimirPeso}"
+					icon="sap-icon://print"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					tooltip="Regresar"
+					press="onRegresarPress"
+					icon="sap-icon://undo"
+					type="Reject"
+					class="sapMBtnLarge"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<VBox class="sapUiSmallMargin">
+			<HBox visible="{=${localModel>/bInputManual} ? false : true}">
+				<Label
+					text="{i18n>balanza}:"
+					class="sapUiSmallMarginTop"
+					width="90px"
+					labelFor="cboBalanza"
+				/>
+				<Select
+					id="cboBalanza"
+					selectedKey="{localModel>/SelectBalanzaKey}"
+					width="350px"
+					change="onBalanzaChange"
+					items="{
+						path: 'localModel>/Pesaje_Balanzas'
+					}"
+				>
+					<c:Item
+						key="{localModel>balanzaId}"
+						text="{localModel>text}"
+					/>
+				</Select>
+				<Button
+					tooltip="{i18n>actualizar}"
+					icon="sap-icon://refresh"
+					width="50px"
+					press="onRefrescarDatos"
+					class="sapUiTinyMarginBegin sapMBtnLarge"
+				/>
+				<VBox class="sapUiSmallMarginBegin sapUiTinyMarginTop">
+					<HBox>
+						<Label
+							width="80px"
+							text="{i18n>serie}:"
+							textAlign="End"
+						/>
+						<Label
+							width="145px"
+							class="sapUiSmallMarginBegin"
+							text="{localModel>/Pesaje_Balanza/serie}"
+							textAlign="End"
+						/>
+						<Label
+							width="155px"
+							text="{i18n>parametros}:"
+							textAlign="End"
+						/>
+						<Label
+							width="100px"
+							class="sapUiSmallMarginBegin"
+							text="{localModel>/Pesaje_Balanza/oPuertoCom_contenido}"
+							textAlign="End"
+						/>
+						<Label
+							width="130px"
+							text="{i18n>unidad}:"
+							textAlign="End"
+						/>
+						<Label
+							width="80px"
+							class="sapUiSmallMarginBegin"
+							text="{localModel>/Pesaje_Balanza/oUnidad_contenido}"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							width="99px"
+							text="Codigo:"
+							textAlign="End"
+						/>
+						<Label
+							width="150px"
+							class="sapUiSmallMarginBegin"
+							text="{localModel>/Pesaje_Balanza/codigo}"
+						/>
+						<Label
+							width="175px"
+							text="{i18n>cantDecimales}:"
+							textAlign="End"
+						/>
+						<Label
+							width="54px"
+							class="sapUiSmallMarginBegin"
+							text="{localModel>/Pesaje_Balanza/cantidadDecimales}"
+							textAlign="End"
+						/>
+						<Label
+							width="128px"
+							text="{i18n>estado}:"
+							textAlign="End"
+						/>
+						<tnt:InfoLabel
+							text="{=${localModel>/Pesaje_Balanza/conexion} === 'X' ? 'SI' : 'NO'}"
+							displayOnly="true"
+							colorScheme="{=${localModel>/Pesaje_Balanza/conexion} === 'X' ? 0 : 3}"
+						/>
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 1 -->
+			<Label
+				design="Bold"
+				text="{i18n>bulto}"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Label>
+			<Input
+				id="inpBulto"
+				value="{localModel>/sScanQR}"
+				enabled="{localModel>/bEnableScan}"
+				submit="onScanSaldoHU"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L4 M4"/>
+				</layoutData>
+			</Input>
+			<Button
+				press="onMostrarTeclado"
+				icon="sap-icon://alphabetical-order"
+				class="sapUiTinyMarginBegin btnSmall"
+				enabled="{localModel>/EsLecturaManual}"
+				
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Button>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 1 -->
+			<Label
+				design="Bold"
+				text="{i18n>insumo}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Codigoinsumo}"
+				editable="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				app:action="MATERIAL"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Input
+				value="{localModel>/oBultoQr/DescripInsumo}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L7 M7"/>
+				</layoutData>
+			</Input>
+			<!-- FILA 2 -->
+			<!--<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>bulto}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{localModel>/oBultoQr/Hu}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>materialEmbalaje}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{localModel>/oBultoQr/Vhilm}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L5 M5"/>
+				</layoutData>
+			</Input>-->
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 3 -->
+			<Label
+				design="Bold"
+				text="{i18n>nroLote}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Loteinsumo}"
+				editable="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				app:action="LOTE"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>cantActual}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{
+					path: 'localModel>/oBultoQr/Vemng',
+					formatter: '.formatter.peso'
+				}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				design="Bold"
+				text="{i18n>unidadMedida}"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Vemeh}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 4 -->
+			<Label
+				visible="{localModel>/bInputManual}"
+				design="Bold"
+				text="{i18n>planta}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Centroinsumo}"
+				visible="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpRequest="onOpenMatchCode"
+				app:action="CENTRO"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				visible="{localModel>/bInputManual}"
+				design="Bold"
+				text="{i18n>almacen}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Almacen}"
+				visible="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpRequest="onOpenMatchCode"
+				app:action="ALMACEN"
+			>
+				<layoutData>
+					<layout:GridData span="L5 M5"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+		<HBox class="sapUiMediumMargin">
+			<VBox width="44%">
+				<HBox visible="{localModel>/bInputManual}">
+					<Button
+						text="{i18n>ingresoManual}"
+						width="250px"
+						press="onNewBultoManual"
+						app:action="P_NETO"
+						class="sapMBtnLarge"
+					/>
+					<Button
+						text="{i18n>taraManual}"
+						width="250px"
+						press="onNewBultoManual"
+						app:action="P_TARA"
+						class="sapMBtnLarge"
+					/>
+				</HBox>
+				<VBox visible="{=${localModel>/bInputManual} ? false : true}">
+					<Button
+						text="{i18n>ingresoManual}"
+						width="250px"
+						press="onIngresoManual"
+						visible="{= ${localModel>/EsPesoManual} === true &amp;&amp; ${localModel>/Pesaje_BalanzaId} === '0' ? true : false }"
+						class="sapMBtnLarge"
+					/>
+					<Button
+						text="{i18n>tarar}"
+						width="250px"
+						press="onTaraPress"
+						app:action="BALANZA"
+						class="sapMBtnLarge"
+						enabled="{localModel>/Peso_Estable}"
+					/>
+					<Button
+						text="{i18n>taraManual}"
+						width="250px"
+						press="onTaraPress"
+						app:action="MANUAL"
+						class="sapMBtnLarge"
+					/>
+				</VBox>
+				<VBox>
+					<Label
+						text="{i18n>materialEmbalaje}:"
+						design="Bold"
+						class="sapUiSmallMarginTop"
+					/>
+					<Input
+						value="{localModel>/oBultoQr/VhilmNew}"
+						editable="{localModel>/bInputManual}"
+						width="200px"
+						class="bultoPesaje inputQR"
+						valueHelpOnly="true"
+						showValueHelp="true"
+						valueHelpRequest="onChangeEmbalage"
+						app:action="EMBALAJE"
+					/>
+					<Input
+						value="{localModel>/oBultoQr/VhilmNewDesc}"
+						class="bultoPesaje inputQR"
+						editable="false"
+					/>
+				</VBox>
+				<HBox>
+					<Label
+						text="{i18n>factorConversion}:"
+						design="Bold"
+						class="sapUiSmallMarginTop"
+					/>
+					<Input
+						value="{localModel>/FactorConversion}"
+						editable="false"
+						width="200px"
+						class="bultoPesaje inputQR"
+					/>
+				</HBox>
+				<HBox visible="{localModel>/tieneFactorConversion}">
+					<Label
+						text="Peso kg:"
+						design="Bold"
+						width="193px"
+						class="sapUiSmallMarginTop"
+					/>
+					<Input
+						value="{localModel>/PesoConversion}"
+						editable="false"
+						width="200px"
+						class="bultoPesaje inputQR"
+					/>
+				</HBox>
+			</VBox>
+			<VBox
+				class="sapUiMediumMarginBegin"
+				width="40%"
+			>
+				<HBox alignItems="Center">
+					<Title
+						text="{i18n>pesoNeto}:"
+						titleStyle="H1"
+						width="169px"
+					/>
+					<Title
+						class="peso-box-2"
+						id="lblPesoBalanza"
+						text="{
+							path: 'localModel>/Pesaje_PesoBalanza',
+							formatter: '.formatter.peso'
+						}"
+						width="200px"
+						textAlign="Center"
+						titleStyle="H1"
+					/>
+					<Title
+						text="{localModel>/unidadMostrar}"
+						class="sapUiSmallMarginTop"
+						width="60px"
+						titleStyle="H1"
+					/>
+				</HBox>
+				<HBox alignItems="Center">
+					<Title
+						text="{i18n>tara}:"
+						titleStyle="H1"
+						width="169px"
+					/>
+					<Title
+						class="peso-box-2"
+						text="{
+							path: 'localModel>/TaraFrac',
+							formatter: '.formatter.peso'
+						}"
+						width="450px"
+						textAlign="Center"
+						titleStyle="H1"
+					/>
+					<Title
+						text="{localModel>/unidadMostrar}"
+						class="sapUiSmallMarginTop"
+						width="60px"
+						titleStyle="H1"
+					/>
+				</HBox>
+				<HBox alignItems="Center">
+					<Title
+						text="{i18n>pesoBruto}:"
+						titleStyle="H1"
+					/>
+					<Title
+						class="peso-box-2"
+						text="{
+							path: 'localModel>/Pesaje_TotalBalanza',
+							formatter: '.formatter.peso'
+						}"
+						width="200px"
+						textAlign="Center"
+						titleStyle="H1"
+					/>
+					<Title
+						text="{localModel>/unidadMostrar}"
+						class="sapUiSmallMarginTop"
+						width="60px"
+						titleStyle="H1"
+					/>
+				</HBox>
+				<HBox alignItems="Center">
+					<Label
+						text=""
+						width="170px"
+					/>
+					<Label
+						text="{
+							path: 'localModel>/PesajeTara_Mensaje'
+						}"
+						width="150px"
+					/>
+					<Label
+						text="{
+							path: 'localModel>/Pesaje_Mensaje'
+						}"
+						titleStyle="H1"
+						width="150px"
+					/>
+				</HBox>
+			</VBox>
+		</HBox>
+	</Page>
+</mvc:View>

@@ -1,0 +1,30 @@
+{
+  "ambiente": "PRD",
+  "DEV": {
+    "odata_url": "https://medifarmadevqas-dev-rmd-cp-cp-srv.cfapps.us10.hana.ondemand.com/browse/",
+    "oauth_url": "https://medifarmadevqas.authentication.us10.hana.ondemand.com/oauth/token",
+    "oauth_clientId": "sb-mf-centralpesadas!t28639",
+    "oauth_clientSecret": "+7rkNPnE7/BO/QC77NoXvsd3DfM=",
+    "oauth_usuario": "",
+    "oauth_password": "",
+    "llave_acceso": ""
+  },
+  "QAS": {
+    "odata_url": "https://medifarmaqas-qas-cp-srv.cfapps.us10.hana.ondemand.com/browse/",
+    "oauth_url": "https://medifarmaqas.authentication.us10.hana.ondemand.com/oauth/token",
+    "oauth_clientId": "sb-mf-centralpesadas!t39312",
+    "oauth_clientSecret": "1RHfkSGwttWso8xyn4Zi/ye9HVg=",
+    "oauth_usuario": "",
+    "oauth_password": "",
+    "llave_acceso": ""
+  },
+  "PRD": {
+    "odata_url": "https://medifarmaprd-prd-cp-srv.cfapps.us10.hana.ondemand.com/browse/",
+    "oauth_url": "https://medifarmaprd.authentication.us10.hana.ondemand.com/oauth/token",
+    "oauth_clientId": "sb-mf-centralpesadas!t84490",
+    "oauth_clientSecret": "SC3Nsdz3oxNvg7HO9LwWWniGmNQ=",
+    "oauth_usuario": "",
+    "oauth_password": "",
+    "llave_acceso": ""
+  }
+}

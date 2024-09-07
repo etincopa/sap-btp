@@ -1,0 +1,185 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.f"
+>
+	<Dialog
+		contentWidth="870px"
+		contentHeight="900px"
+		id="dialogEditarCantidad"
+		title="{i18n>editarDuplicar}"
+	>
+		<buttons>
+			<Button
+				text="{i18n>aceptar}"
+				press="onAceptarPress"
+				class="sapMBtnLarge"
+				width="130px"
+			/>
+			<Button
+				text="{i18n>cancelar}"
+				press="onCancelarPress"
+				class="sapMBtnLarge"
+				width="130px"
+			/>
+		</buttons>
+		<VBox class="sapUiSmallMargin">
+			<MessageStrip
+				text="{i18n>producto}: {localModel>/Detalle_Fraccionamiento/codigoProducto} - {localModel>/Detalle_Fraccionamiento/nombreProducto}"
+				class="contentInsumoPesaje message-strip-insumo"
+			/>
+			<HBox class="sapUiTinyMarginTop">
+				<Label text="{i18n>op}:"/>
+				<Label text="{localModel>/Detalle_Fraccionamiento/ordenNumero}"/>
+				<Label
+					class="sapUiSmallMarginBegin"
+					text="{i18n>lote}:"
+				/>
+				<Label text="{localModel>/Detalle_Fraccionamiento/ordenLote}"/>
+			</HBox>
+			<MessageStrip
+				text="{i18n>insumo}: {localModel>/Detalle_Fraccionamiento/codigoInsumo} - {localModel>/Detalle_Fraccionamiento/descripcionInsumo}"
+				class="sapUiSmallMarginTop contentInsumoPesaje message-strip-insumo"
+			/>
+			<HBox class="sapUiTinyMarginTop">
+				<Label text="{i18n>cantReq}:"/>
+				<Label text="{
+					path: 'localModel>/Detalle_Fraccionamiento/requerido',
+					formatter: '.formatter.peso'
+				}"/>
+				<Label
+					class="sapUiSmallMarginBegin"
+					text="{i18n>cantAten}:"
+				/>
+				<Label text="{
+					path: 'localModel>/Detalle_Fraccionamiento/atendido',
+					formatter: '.formatter.peso'
+				}"/>
+				<Label
+					class="sapUiSmallMarginBegin"
+					text="{i18n>nroLote}:"
+				/>
+				<Label text="{localModel>/Detalle_Fraccionamiento/loteInsumo}"/>
+				<Label
+					class="sapUiSmallMarginBegin"
+					text="{i18n>unidad}: {localModel>/Detalle_Fraccionamiento/unidad}"
+				/>
+			</HBox>
+			<HBox
+				class="sapUiSmallMarginTop"
+				justifyContent="Center"
+			>
+				<f:GridContainer width="275px">
+					<f:layout>
+						<f:GridContainerSettings
+							rowSize="85px"
+							columnSize="85px"
+							gap="8px"
+						/>
+					</f:layout>
+					<Button
+						class="keypad"
+						press="onKeyPadUndoPress"
+						icon="sap-icon://undo"
+					>
+						<layoutData>
+							<f:GridContainerItemLayoutData columns="3"/>
+						</layoutData>
+					</Button>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="7"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="8"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="9"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="4"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="5"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="6"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="1"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="2"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="3"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="0"
+					>
+						<layoutData>
+							<f:GridContainerItemLayoutData columns="2"/>
+						</layoutData>
+					</Button>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="."
+					/>
+				</f:GridContainer>
+				<VBox class="sapUiSmallMarginBegin">
+					<Label text="{i18n>cantidad}:"/>
+					<HBox>
+						<Title
+							class="peso-box-5"
+							text="{localModel>/Cantidad_Requerido}"
+							width="250px"
+							textAlign="Center"
+							titleStyle="H1"
+						/>
+					</HBox>
+					<HBox class="sapUiSmallMarginTop">
+						<Label text="{i18n>unidad}:"/>
+						<Select
+							class="sapUiSmallMarginBegin"
+							selectedKey="{localModel>/Cantidad_UnidadId}"
+							width="100px"
+							items="{
+								path: 'localModel>/Cantidad_UnidadesFilter'
+							}"
+						>
+							<c:Item
+								key="{localModel>contenido}"
+								text="{localModel>contenido}"
+							/>
+						</Select>
+					</HBox>
+					<CheckBox
+						selected="{localModel>/Cantidad_Duplicar}"
+						text="{i18n>duplicar}"
+						class="sapUiSmallMarginTop checkbox-large" enabled="{localModel>/duplicar}"
+					/>
+				</VBox>
+			</HBox>
+		</VBox>
+	</Dialog>
+</c:FragmentDefinition>

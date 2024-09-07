@@ -1,0 +1,115 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0-windows7.0": {
+      "CentralPesada.ColaImpresion.Aplicacion/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/CentralPesada.ColaImpresion.Aplicacion.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CentralPesada.ColaImpresion.Aplicacion.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CentralPesada.ColaImpresion.Aplicacion/1.0.0": {
+      "type": "project",
+      "path": "../CentralPesada.ColaImpresion.Aplicacion/CentralPesada.ColaImpresion.Aplicacion.csproj",
+      "msbuildProject": "../CentralPesada.ColaImpresion.Aplicacion/CentralPesada.ColaImpresion.Aplicacion.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0-windows7.0": [
+      "CentralPesada.ColaImpresion.Aplicacion >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\vmagnmor\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Proyectos\\medifarma-cp-app-dev\\medifarma-cp-app\\cola-impresion\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectName": "WinFormsApp1",
+      "projectPath": "C:\\Proyectos\\medifarma-cp-app-dev\\medifarma-cp-app\\cola-impresion\\WinFormsApp1\\WinFormsApp1.csproj",
+      "packagesPath": "C:\\Users\\vmagnmor\\.nuget\\packages\\",
+      "outputPath": "C:\\Proyectos\\medifarma-cp-app-dev\\medifarma-cp-app\\cola-impresion\\WinFormsApp1\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\vmagnmor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0-windows7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "C:\\Proyectos\\medifarma-cp-app-dev\\medifarma-cp-app\\cola-impresion\\CentralPesada.ColaImpresion.Aplicacion\\CentralPesada.ColaImpresion.Aplicacion.csproj": {
+              "projectPath": "C:\\Proyectos\\medifarma-cp-app-dev\\medifarma-cp-app\\cola-impresion\\CentralPesada.ColaImpresion.Aplicacion\\CentralPesada.ColaImpresion.Aplicacion.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

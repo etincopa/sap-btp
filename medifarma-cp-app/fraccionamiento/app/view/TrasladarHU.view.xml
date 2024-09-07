@@ -1,0 +1,310 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.TrasladarHU"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+	xmlns:tnt="sap.tnt"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<!--<Button
+					press="onTrasladarHu"
+					tooltip="Trasladar"
+					enabled="{localModel>/bGuardarPeso}"
+					icon="sap-icon://display-more"
+					type="Accept"
+					class="sapMBtnLarge btnAccion"
+				/>-->
+				<Button
+					press="onTrasladarHu"
+					tooltip="Trasladar"
+					icon="sap-icon://display-more"
+					type="Accept"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					tooltip="Regresar"
+					press="onRegresarPress"
+					icon="sap-icon://undo"
+					type="Reject"
+					class="sapMBtnLarge"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 1 -->
+			<Label
+				design="Bold"
+				text="{i18n>bulto}"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Label>
+			<Input
+				id="inpBulto"
+				value="{localModel>/sScanQR}"
+				enabled="{localModel>/bEnableScan}"
+				submit="onScanSaldoHU"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L4 M4"/>
+				</layoutData>
+			</Input>
+			<Button
+				press="onOpenTecladoAlfaNum"
+				app:action="QR"
+				app:titulo="QR Manual"
+				
+				icon="sap-icon://alphabetical-order"
+				class="sapUiTinyMarginBegin btnSmall"
+				enabled="{localModel>/EsLecturaManual}"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Button>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 1 -->
+			<Label
+				design="Bold"
+				text="{i18n>insumo}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Codigoinsumo}"
+				editable="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				app:action="MATERIAL"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Input
+				value="{localModel>/oBultoQr/DescripInsumo}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L7 M7"/>
+				</layoutData>
+			</Input>
+			<!-- FILA 2 -->
+			<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>bulto}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{localModel>/oBultoQr/Hu}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>materialEmbalaje}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{localModel>/oBultoQr/Vhilm}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L5 M5"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 3 -->
+			<Label
+				design="Bold"
+				text="{i18n>nroLote}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Loteinsumo}"
+				editable="{localModel>/bInputManual}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				app:action="LOTE"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				design="Bold"
+				text="{i18n>cantActual}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				visible="{=${localModel>/bInputManual} ? false : true}"
+				value="{
+					path: 'localModel>/oBultoQr/Vemng',
+					formatter: '.formatter.peso'
+				}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+			<Label
+				design="Bold"
+				text="{i18n>unidadMedida}"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Vemeh}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L1 M1"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<!-- FILA 4 -->
+			<Label
+				design="Bold"
+				text="{i18n>planta}"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/Centroinsumo}"
+				editable="false"
+				class="bultoPesaje inputQR"
+			>
+				<layoutData>
+					<layout:GridData span="L3 M3"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+		<form:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<Label
+				design="Bold"
+				text="{i18n>almacen} Origen"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/AlmacenOrigen}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				app:action="ALMACEN_ORI"
+				app:titulo="Almacen Origen"
+				app:defaultValue="{localModel>/oBultoQr/AlmacenOrigen}"
+			>
+				<layoutData>
+					<layout:GridData span="L4 M4"/>
+				</layoutData>
+			</Input>
+			<Label
+				design="Bold"
+				text="{i18n>almacen} Destino"
+			>
+				<layoutData>
+					<layout:GridData span="L2 M2"/>
+				</layoutData>
+			</Label>
+			<Input
+				value="{localModel>/oBultoQr/AlmacenDestino}"
+				class="bultoPesaje inputQR"
+				valueHelpOnly="true"
+				showValueHelp="true"
+				valueHelpRequest="onOpenTecladoAlfaNum"
+				valueHelpIconSrc="sap-icon://alphabetical-order"
+				app:action="ALMACEN_DES"
+				app:titulo="Almacen Destino"
+				app:defaultValue="{localModel>/oBultoQr/AlmacenDestino}"
+			>
+				<layoutData>
+					<layout:GridData span="L4 M4"/>
+				</layoutData>
+			</Input>
+		</form:SimpleForm>
+	</Page>
+</mvc:View>
