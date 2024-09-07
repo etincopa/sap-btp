@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.MenuDeRegistroDeArmadores"
+	xmlns:m="sap.m">
+	<m:Page id="menuRegistroArmadoresPage" navButtonPress="_onBackButtonPress" showHeader="false" title="Page Title" showFooter="true"
+		showNavButton="false" enableScrolling="false">
+			<m:TileContainer id="tileContainer" tiles="{path:'tiles>/TileCollection'}">
+				<m:StandardTile icon="{tiles>icon}" type="{tiles>type}" title="{tiles>title}" press="_onTilePress" infoState="{tiles>infoState}"/>
+			</m:TileContainer>
+		<m:footer>
+			<m:Bar design="Auto">
+				<m:contentRight>
+					<m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="_onBackButtonPress"/>
+				</m:contentRight>
+			</m:Bar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

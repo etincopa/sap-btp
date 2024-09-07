@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.sap.build.standard.proyectoScp.haydukapp",
+        "description": "Registro de Armadores",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#haydukapp-Display",
+        "navigationComponentName": "com.sap.build.standard.proyectoScp",
+        "intentSemanticObject": "haydukapp",
+        "intentAction": "Display",
+        "html5ApplicationName": "haydukapp",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "3045bb3e-0205-4585-a81d-73eb915afd80"
+        ],
+        "contentPackages": [
+            "05d1f42d-2e2b-42b6-805f-216d1165d270-1522972856809"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Gestión de Armadores",
+        "subtitle": "Solicitud y aprobación",
+        "searchKeywords": "Gestión de Armadores,Solicitud y aprobación",
+        "displayIconUrl": "sap-icon://add-contact",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

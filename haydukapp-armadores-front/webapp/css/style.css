@@ -1,0 +1,6 @@
+button[data-color=orange] span{
+  color: orange !important;
+}
+table[id*='tblRejected'] th {
+  padding: 0px!important;
+}

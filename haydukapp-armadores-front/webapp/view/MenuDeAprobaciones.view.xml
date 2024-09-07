@@ -1,0 +1,21 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.MenuDeAprobaciones" xmlns:m="sap.m">
+    <m:Page showHeader="true" title="Menú de Aprobaciones" showFooter="true" showNavButton="false" enableScrolling="false">
+        <m:content>
+            <m:StandardTile title="Documentos de Compra" number="3" numberUnit="" info="" infoState="None" icon="sap-icon://documents" press="_onStandardTilePress2"/>
+            <m:StandardTile title="Pedido de Ventas" number="0" numberUnit="" info="" infoState="None" icon="sap-icon://sales-document"/>
+            <m:StandardTile title="Entregas a rendir" number="0" numberUnit="" info="" infoState="None" icon="sap-icon://shipping-status"/>
+        </m:content>
+        <m:footer>
+            <m:Bar design="Auto">
+                <m:contentLeft/>
+                <m:contentMiddle/>
+                <m:contentRight>
+                    <m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress5"/>
+                </m:contentRight>
+            </m:Bar>
+        </m:footer>
+        <m:headerContent/>
+        <m:subHeader/>
+        <m:customHeader/>
+    </m:Page>
+</mvc:View>

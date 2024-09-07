@@ -1,0 +1,43 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.LogDeErroresEnSap" xmlns:m="sap.m">
+    <m:Page showHeader="true" title="LOG de Errores en SAP" showFooter="true" showNavButton="false">
+        <m:content>
+            <m:Table items="{path:'/Messages'}" width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+                <m:infoToolbar>
+                    <m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <m:content>
+                            <m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                        </m:content>
+                    </m:Toolbar>
+                </m:infoToolbar>
+                <m:headerToolbar/>
+                <m:columns>
+                    <m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <m:header>
+                            <m:Text text="Descripción" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+                        </m:header>
+                        <m:footer/>
+                    </m:Column>
+                </m:columns>
+                <m:items>
+                    <m:ColumnListItem type="Active">
+                        <m:cells>
+                            <m:ObjectIdentifier title="" text="{text}" titleActive="false" visible="true"/>
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </m:content>
+        <m:footer>
+            <m:Bar design="Auto">
+                <m:contentLeft/>
+                <m:contentMiddle/>
+                <m:contentRight>
+                    <m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+                </m:contentRight>
+            </m:Bar>
+        </m:footer>
+        <m:headerContent/>
+        <m:subHeader/>
+        <m:customHeader/>
+    </m:Page>
+</mvc:View>

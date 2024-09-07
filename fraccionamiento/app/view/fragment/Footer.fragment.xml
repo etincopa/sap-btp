@@ -1,0 +1,9 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<OverflowToolbar>
+		<Label text="{i18n>version}"/>
+		<Label text="{localModel>/version}"/>
+	</OverflowToolbar>
+</c:FragmentDefinition>

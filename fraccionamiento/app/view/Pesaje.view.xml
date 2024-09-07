@@ -1,0 +1,530 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.Pesaje"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+	xmlns:t="sap.ui.table"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					press="onIniciarPesaje"
+					visible="{= ${localModel>/bIniciarPesaje} === true ? false : true }"
+					enabled="{localModel>/bIniciar}"
+					icon="sap-icon://play"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onDetenerPesaje"
+					visible="{= ${localModel>/bIniciarPesaje} === true ? true : false }"
+					icon="sap-icon://stop"
+					enabled="{localModel>/bDetenerPesaje}"
+					type="Reject"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onGuardarPesaje"
+					enabled="{localModel>/bGuardarPeso}"
+					icon="sap-icon://save"
+					type="Accept"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onImprimirPress"
+					enabled="{localModel>/bImprimirPeso}"
+					icon="sap-icon://print"
+					class="sapMBtnLarge btnAccion"
+				/>
+				<Button
+					press="onEditPress"
+					enabled="{localModel>/bEditarPeso}"
+					icon="sap-icon://edit"
+					class="sapMBtnLarge btnAccion"
+				/>
+				
+				<Button
+					tooltip="{i18n>finalizarAtencion}"
+					enabled="{localModel>/bCancelarPeso}"
+					icon="sap-icon://decline"
+					press="onFinalizarPress"
+					class="sapMBtnLarge btnAccion"
+					type="Reject"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					press="onRegresarPress"
+					icon="sap-icon://undo"
+					type="Reject"
+					class="sapMBtnLarge"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<VBox
+			class="sapUiSmallMargin"
+			width="100%"
+		>
+			<MessageStrip
+				text="{i18n>producto}: {localModel>/Pesaje_Fraccionamiento/codigoProducto} - {localModel>/Pesaje_Fraccionamiento/nombreProducto}"
+				class="contentInsumoPesaje message-strip-insumo"
+			/>
+			<HBox class="sapUiTinyMarginTop">
+				<Label text="{i18n>op}:"/>
+				<Label text="{localModel>/Pesaje_Fraccionamiento/ordenNumero}"/>
+				<Label
+					text="{i18n>lote}:"
+					class="sapUiSmallMarginBegin"
+				/>
+				<Label text="{localModel>/Pesaje_Fraccionamiento/ordenLote}"/>
+			</HBox>
+			<MessageStrip
+				text="{i18n>insumo}: {localModel>/Pesaje_Fraccionamiento/codigoInsumo} - {localModel>/Pesaje_Fraccionamiento/descripcionInsumo}"
+				class="sapUiSmallMarginTop contentInsumoPesaje message-strip-insumo"
+			/>
+			<HBox class="sapUiTinyMarginTop">
+				<Label text="{i18n>cantReq}:"/>
+				<Label text="{
+					path: 'localModel>/Pesaje_Fraccionamiento/requerido',
+					formatter: '.formatter.peso'
+				}"/>
+				<Label
+					text="{i18n>cantAten}:"
+					class="sapUiSmallMarginBegin"
+				/>
+				<Label text="{
+					path: 'localModel>/Pesaje_Fraccionamiento/atendido',
+					formatter: '.formatter.peso'
+				}"/>
+				<Label
+					text="{i18n>nroLote}:"
+					class="sapUiSmallMarginBegin"
+				/>
+				<Label text="{localModel>/Pesaje_Fraccionamiento/loteInsumo}"/>
+				<Label
+					text="{i18n>unidad}: {localModel>/Pesaje_Fraccionamiento/unidadOrigen}"
+					class="sapUiSmallMarginBegin"
+				/>
+				<Label
+					text="Frac.OP: {localModel>/Pesaje_Fraccionamiento/numFraccion}"
+					class="sapUiSmallMarginBegin"
+				/>
+				<Label
+					text="Frac.Com: {localModel>/Pesaje_Fraccionamiento/numSubFraccion}"
+					class="sapUiSmallMarginBegin"
+				/>
+			</HBox>
+			<HBox class="sapUiSmallMarginTop">
+				<VBox width="50%">
+					<HBox>
+						<Label
+							text="{i18n>balanza}:"
+							labelFor="cboBalanza"
+							width="140px"
+							class="sapUiSmallMarginTop"
+						/>
+						<Select
+							id="cboBalanza"
+							selectedKey="{localModel>/Pesaje_BalanzaId}"
+							items="{
+								path: 'localModel>/Pesaje_Balanzas'
+							}"
+							change="onBalanzaChange"
+							width="420px"
+							enabled="{= ${localModel>/Pesaje_Fin} === false ? true : false }"
+						>
+							<c:Item
+								key="{localModel>balanzaId}"
+								text="{localModel>codigo}"
+							/>
+						</Select>
+						<Button
+							press="onRefrescarDatos"
+							tooltip="{i18n>actualizar}"
+							icon="sap-icon://refresh"
+							width="50px"
+							enabled="{= ${localModel>/Pesaje_Fin} === false ? true : false }"
+							class="sapUiTinyMarginBegin sapMBtnLarge"
+						/>
+					</HBox>
+					<HBox class="sapUiTinyMarginTop">
+						<Label
+							text="{i18n>serie}:"
+							width="92px"
+						/>
+						<Label
+							text="{localModel>/Pesaje_Balanza/serie}"
+							width="140px"
+						/>
+						<Label
+							text="{i18n>cantDecimal}:"
+							width="180px"
+						/>
+						<Label
+							text="{localModel>/Pesaje_Balanza/cantidadDecimales}"
+							width="53px"
+						/>
+						<Label
+							text="{i18n>estado}:"
+							width="105px"
+						/>
+						<tnt:InfoLabel
+							text="{= ${localModel>/Pesaje_Balanza/conexion} === 'X' ? 'ON' : 'OFF' }"
+							displayOnly="true"
+							colorScheme="{= ${localModel>/Pesaje_Balanza/conexion} === 'X' ? 0 : 3 }"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="Puerto:"
+							width="92px"
+						/>
+						<Label
+							text="{localModel>/Pesaje_Balanza/oPuertoCom_contenido}"
+							width="140px"
+						/>
+						<Label
+							text="Código:"
+							width="85px"
+						/>
+						<Label
+							text="{localModel>/Pesaje_Balanza/codigoBalanza}"
+							width="150px"
+						/>
+						<Label
+							text="{i18n>unidad}:"
+							width="110px"
+						/>
+						<Label
+							text="{localModel>/Pesaje_Balanza/oUnidad_contenido}"
+							width="40px"
+						/>
+					</HBox>
+					<HBox class="sapUiTinyMarginTop">
+						<VBox class="seccion-pesaje">
+							<Title
+								text="{i18n>detallePesaje}"
+								width="100%"
+								textAlign="Center"
+								class="bold-title"
+							/>
+							<HBox class="sapUiSmallMarginTop">
+								<Title
+									text="{i18n>pTara}:"
+									width="110px"
+									titleStyle="H2"
+								/>
+								<Title
+									text="{
+										path: 'localModel>/Pesaje_Fraccionamiento/taraFrac',
+										formatter: '.formatter.peso'
+									}"
+									width="130px"
+									textAlign="End"
+									titleStyle="H2"
+								/>
+							</HBox>
+							<HBox>
+								<Title
+									text="{i18n>pNeto}:"
+									width="110px"
+									titleStyle="H2"
+								/>
+								<Title
+									text="{
+										path: 'localModel>/Pesaje_PesoBalanzaNeto',
+										formatter: '.formatter.peso'
+									}"
+									width="130px"
+									textAlign="End"
+									titleStyle="H2"
+								/>
+							</HBox>
+							<HBox class="sapUiSmallMarginTop">
+								<Title
+									text="{i18n>total}:"
+									width="110px"
+									titleStyle="H2"
+								/>
+								<Title
+									text="{
+										path: 'localModel>/Pesaje_TotalBalanza',
+										formatter: '.formatter.peso'
+									}"
+									width="130px"
+									textAlign="End"
+									titleStyle="H2"
+								/>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiMediumMarginBegin">
+							<Button
+								text="{i18n>ingresoManual}"
+								press="onIngresoManual"
+								visible="{= ${localModel>/EsPesoManual} === true &amp;&amp; ${localModel>/Pesaje_BalanzaId} === '0' ? true : false }"
+								width="277px"
+								enabled="{= ${localModel>/Pesaje_Fin} === false ? true : false }"
+								class="sapMBtnLarge"
+							/>
+							<Button
+								text="{i18n>tarar}"
+								press="onTaraPress"
+								enabled="{= ${localModel>/Peso_Estable} === true &amp;&amp; ${localModel>/Pesaje_Fin} === false }"
+								width="277px"
+								class="sapMBtnLarge"
+							/>
+							<Button
+								text="{i18n>taraManual}"
+								press="onTaraManualPress"
+								enabled="{= ${localModel>/EsTaraManual} === true &amp;&amp; ${localModel>/Pesaje_Fin} === false }"
+								width="277px"
+								class="sapMBtnLarge"
+							/>
+						</VBox>
+					</HBox>
+					<t:Table
+						rows="{
+							path: 'localModel>/aBultoQr'
+						}"
+						visibleRowCount="4"
+						width="100%"
+						class="sapUiTinyMarginTop"
+					>
+						<t:columns>
+							<t:Column width="4rem">
+								<Label text="#"/>
+								<t:template>
+									<Text
+										text="{localModel>Sequence}"
+										wrapping="false"
+									/>
+								</t:template>
+							</t:Column>
+							<t:Column width="10rem">
+								<Label text="{i18n>bulto}"/>
+								<t:template>
+									<Text
+										text="{localModel>IdBulto}"
+										wrapping="false"
+									/>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem">
+								<Label text="{i18n>peso}"/>
+								<t:template>
+									<Text
+										text="{
+											path: 'localModel>Vemng',
+											formatter: '.formatter.peso'
+										}"
+										wrapping="false"
+									/>
+								</t:template>
+							</t:Column>
+							<t:Column width="5rem">
+								<Label text="Und"/>
+								<t:template>
+									<Text
+										text="{localModel>Vemeh}"
+										wrapping="false"
+									/>
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem">
+								<Label text="Eliminar"/>
+								<t:template>
+									<Button
+										press="onDeleteBulto"
+										tooltip="Eliminar Bulto"
+										icon="sap-icon://decline"
+										class="sapMBtnLarge btnAccion"
+									/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</VBox>
+				<VBox
+					width="50%"
+					class="sapUiMediumMarginBegin"
+				>
+					<HBox>
+						<Label
+							text="{i18n>bulto}:"
+							width="90px"
+							class="sapUiSmallMarginTop"
+						/>
+						<Input
+							id="inpBulto"
+							value="{localModel>/Pesaje_Bulto}"
+							enabled="{= ${localModel>/bEnableScan} === true &amp;&amp; ${localModel>/Pesaje_Fin} === false }"
+							submit="onScanSaldoHU"
+							width="350px"
+							class="bultoPesaje inputQR"
+						/>
+						<Button
+							press="onMostrarTeclado"
+							enabled="{localModel>/EsLecturaManual}"
+							icon="sap-icon://alphabetical-order"
+							class="sapUiTinyMarginBegin btnSmall"
+						/>
+					</HBox>
+					<HBox class="sapUiTinyMarginTop">
+						<Label
+							text="{i18n>Hu}:"
+							width="200px"
+						/>
+						<Label
+							text="{localModel>/oBultoQr/Hu}"
+							width="140px"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{i18n>fecVencimiento}:"
+							width="200px"
+						/>
+						<Label
+							text="{localModel>/oBultoQr/Fecaduc}"
+							width="140px"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{i18n>cntBulto}:"
+							width="200px"
+						/>
+						<Label
+							text="{
+								path: 'localModel>/oBultoQr/Vemng',
+								formatter: '.formatter.peso'
+							}"
+							width="140px"
+						/>
+						<Label
+							text="{localModel>/oBultoQr/Vemeh}"
+							width="140px"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{i18n>cntTotalBulto}:"
+							width="200px"
+						/>
+						<Label
+							text="{
+								path: 'localModel>/cantTotalBulto',
+								formatter: '.formatter.peso'
+							}"
+							width="140px"
+						/>
+						<Label
+							text="{localModel>/oBultoQr/Vemeh}"
+							width="140px"
+						/>
+					</HBox>
+					<Title
+						text="{i18n>pendienteAtender}:"
+						titleStyle="H3"
+						class="sapUiTinyMarginTop"
+					/>
+					<HBox>
+						<Title
+							text="{
+								path: 'localModel>/Pesaje_Pendiente2',
+								formatter: '.formatter.peso'
+							}"
+							width="355px"
+							textAlign="Center"
+							titleStyle="H1"
+							class="peso-box-2"
+						/>
+						<Title
+							text="{localModel>/Pesaje_Fraccionamiento/unidadMostrar}"
+							width="60px"
+							titleStyle="H1"
+							class="sapUiSmallMarginTop sapUiTinyMarginBegin"
+						/>
+					</HBox>
+					<Title
+						text="{i18n>pesoBalanza}:"
+						titleStyle="H3"
+						class="sapUiTinyMarginTop"
+					/>
+					<HBox>
+						<Title
+							text="{localModel>/Pesaje_PesoBalanza}"
+							id="lblPesoBalanza"
+							width="355px"
+							textAlign="Center"
+							titleStyle="H1"
+							class="peso-box-1 peso-r"
+						/>
+						<Title
+							text="{localModel>/Pesaje_Fraccionamiento/unidadMostrar}"
+							width="60px"
+							titleStyle="H1"
+							class="sapUiSmallMarginTop sapUiTinyMarginBegin"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{i18n>factorConversion}:"
+							width="225px"
+						/>
+						<Label
+							text="{
+								path: 'localModel>/Pesaje_FactorConversion'
+							}"
+							width="100px"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{i18n>materialEmbalaje}:"
+							class="sapUiSmallMarginTop"
+							width="183px"
+						/>
+						<Input
+							value="{localModel>/Pesaje_Fraccionamiento/MatEmbalajeDes}"
+							width="310px"
+							class="inputQR"
+							valueHelpOnly="true"
+							showValueHelp="true"
+							valueHelpRequest="onChangeEmbalage"
+						/>
+					</HBox>
+					<HBox>
+						<Label
+							text="{
+								path: 'localModel>/PesajeTara_Mensaje'
+							}"
+							width="190px"
+						/>
+						<Label
+							text="{
+								path: 'localModel>/Pesaje_Mensaje'
+							}"
+							width="150px"
+						/>
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+	</Page>
+</mvc:View>

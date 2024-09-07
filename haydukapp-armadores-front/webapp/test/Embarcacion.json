@@ -1,0 +1,19 @@
+{
+  "ZMR_EMBARCACIONES": [
+   {
+   	"matricula":"E0000002",
+   	"embarcacion":"Embarcacion2",
+   	"capacidad":"350.50"
+   },
+   {
+   	"matricula":"E0000001",
+   	"embarcacion":"Embarcacion1",
+   	"capacidad":"150.50"
+   },
+   {
+   	"matricula":"E0000003",
+   	"embarcacion":"Embarcacion3",
+   	"capacidad":"150.00"
+   }
+  ]
+}

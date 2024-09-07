@@ -1,0 +1,31 @@
+{
+  "ZMR_DOCUMENTS": [
+   {
+   	"fecha":"26/09/2017",
+   	"tipo": "OC",
+   	"descripcion":"Compra MD CHI",
+   	"numdoc":"1000000000",
+   	"proveedor":"1010421454",
+   	"importe":"150.00",
+   	"moneda":"USD"
+   },
+   {
+   	"fecha":"27/09/2017",
+   	"tipo": "OC",
+   	"descripcion":"Compra MD CHD",
+   	"numdoc":"1000000001",
+   	"proveedor":"1010421474",
+   	"importe":"300.00",
+   	"moneda":"USD"
+   },
+   {
+   	"fecha":"28/09/2017",
+   	"tipo": "SP",
+   	"descripcion":"Pedido Standard",
+   	"numdoc":"1000000002",
+   	"proveedor":"20200421472",
+   	"importe":"50.00",
+   	"moneda":"USD"
+   }
+   ]
+}

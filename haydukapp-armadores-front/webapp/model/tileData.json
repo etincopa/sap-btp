@@ -1,0 +1,19 @@
+{
+	"TileCollection": [{
+		"title": "Creación de armadores y embarcaciones",
+		"number": "",
+		"numberUnit": "",
+		"info": "",
+		"infoState": "Warning",
+		"icon": "sap-icon://employee",
+		"press": "_onTileAprobadorPress"
+	}, {
+		"title": "Solicitar creación de armadores",
+		"number": "",
+		"numberUnit": "",
+		"info": "",
+		"infoState": "Error",
+		"icon": "sap-icon://approvals",
+		"press": "_onTileSolicitantePress"
+	}]
+}

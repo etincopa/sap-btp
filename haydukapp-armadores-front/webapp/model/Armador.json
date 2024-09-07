@@ -1,0 +1,31 @@
+{
+	"Shipowner": {
+		"Ruc": "",
+		"Origin": "",
+		"Status": "",
+		"BusinessName": "",
+		"DestinationMp": "",
+		"Street": "",
+		"Industry": "",
+		"ToEmitDoc": "",
+		"Phone": "",
+		"CellPhone": "",
+		"Currency": "",
+		"Distric": "",
+		"Population": "",
+		"Region": "",
+		"Padron": "",
+		"Message": "",
+		"Ubigeo": "",
+		"Uname": "",
+		"TpTaxpayer": "",
+		"Estado": "",
+		"Condicion": "",
+		"Detraction": "",
+		"Comprobante": "",
+		"ShipownerBanksSet": [],
+		"ShipownerBoatsSet": [],
+		"ShipownerContactPersonsSet": [],
+		"ShipownerEmailSet": []
+	}
+}

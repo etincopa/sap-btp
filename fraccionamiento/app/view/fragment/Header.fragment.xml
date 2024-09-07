@@ -1,0 +1,137 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<VBox width="99%">
+		<HBox visible="{=${localModel>/tituloPagina} === '' ? false : true}">
+			<VBox
+				width="309px"
+				class="sapUiResponsiveMargin header-vbox"
+			>
+				<Label
+					text="{localModel>/tituloPagina}"
+					width="219px"
+					class="header-sala"
+					wrapping="true"
+				/>
+				<Label text="{i18n>version} {localModel>/version}"/>
+			</VBox>
+			<VBox
+				width="130px"
+				class="sapUiResponsiveMargin header-vbox"  alignItems="Center" justifyContent="Center"
+			>
+				<Label
+					text="{localModel>/Config/salaPesaje}"
+					class="header-sala"
+					wrapping="true"
+				/>
+			</VBox>
+			<VBox
+				width="311px"
+				class="sapUiResponsiveMargin header-vbox" alignItems="Center" justifyContent="Center"
+			>
+				<Label
+					text="{localModel>/InfoUsuario/apellidoPaterno} {localModel>/InfoUsuario/apellidoMaterno} {localModel>/InfoUsuario/nombre}"
+					tooltip="{localModel>/InfoUsuario/usuario}"
+					class="header-sala"
+					wrapping="true"
+				/>
+			</VBox>
+			<VBox
+				width="70px"
+				class="sapUiResponsiveMargin header-vbox" alignItems="Center" justifyContent="Center"
+			>
+				<ObjectStatus
+					active="true"
+					press="onLoadDB"
+					class="sapMObjectStatusLarge"
+					text="{=${localModel>/Online} ? ${i18n>online} : ${i18n>offline}}"
+					icon="{=${localModel>/Online} ? 'sap-icon://connected' : 'sap-icon://disconnected'}"
+					state="{=${localModel>/Online} ? 'Success' : 'Error'}"
+				/>
+			</VBox>
+			<VBox class="sapUiResponsiveMargin " alignItems="Center" justifyContent="Center" >
+				<Label
+					design="Bold"
+					text="{i18n>fecha}: {
+						path: 'localModel>/fecha',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}"
+				/>
+				<Label
+					design="Bold"
+					text="{i18n>hora}: {
+						path: 'localModel>/fecha',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							pattern: 'hh:mm:ss aaa'
+						}
+					}"
+				/>
+			</VBox>
+		</HBox>
+		<HBox visible="{=${localModel>/tituloPagina} === '' ? true : false}">
+			<VBox
+				width="409px"
+				class="sapUiResponsiveMargin" alignItems="flex-start" justifyContent="Center"
+			>
+				<Label
+					text="{i18n>appTitle}"
+					width="219px"
+					class="header-sala"
+					wrapping="true"
+				/>
+				<Label text="{i18n>version} {localModel>/version}"/>
+			</VBox>
+			<VBox
+				width="311px"
+				class="sapUiResponsiveMargin" alignItems="Center" justifyContent="Center"
+			>
+				<Label
+					text="{localModel>/InfoUsuario/apellidoPaterno} {localModel>/InfoUsuario/apellidoMaterno} {localModel>/InfoUsuario/nombre}"
+					tooltip="{localModel>/InfoUsuario/usuario}"
+					class="header-sala"
+					wrapping="true"
+				/>
+			</VBox>
+			<VBox
+				width="70px"
+				class="sapUiResponsiveMargin" alignItems="Center" justifyContent="Center"
+			>
+				<ObjectStatus
+					active="true"
+					press="onLoadDB"
+					class="sapMObjectStatusLarge"
+					text="{=${localModel>/Online} ? ${i18n>online} : ${i18n>offline}}"
+					icon="{=${localModel>/Online} ? 'sap-icon://connected' : 'sap-icon://disconnected'}"
+					state="{=${localModel>/Online} ? 'Success' : 'Error'}"
+				/>
+			</VBox>
+			<VBox class="sapUiResponsiveMargin" alignItems="Center" justifyContent="Center">
+				<Label
+					design="Bold"
+					text="{i18n>fecha}: {
+						path: 'localModel>/fecha',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}"
+				/>
+				<Label
+					design="Bold"
+					text="{i18n>hora}: {
+						path: 'localModel>/fecha',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							pattern: 'hh:mm:ss aaa'
+						}
+					}"
+				/>
+			</VBox>
+		</HBox>
+	</VBox>
+</c:FragmentDefinition>

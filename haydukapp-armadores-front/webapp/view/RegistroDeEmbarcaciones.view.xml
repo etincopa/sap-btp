@@ -1,0 +1,276 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.RegistroDeEmbarcaciones" xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<m:Page showHeader="true" title="Registro de Embarcaciones" showFooter="true" showNavButton="false">
+		<m:content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Datos de Armador:" level="H3" icon="sap-icon://basket"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="RUC" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input value="{armador>Ruc}" placeholder="..." type="Text" showValueHelp="false" enabled="false" visible="true" width="138px"
+										valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Razón Social" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input value="{armador>BusinessName}" placeholder="" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto"
+										valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<m:Table id="tblBanks" items="{path:'ShipownerBanksSet'}" width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true"
+				growingThreshold="20" growingScrollToLoad="true">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar>
+					<m:Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+						<m:content>
+							<m:Title text="Listado de Bancos:" titleStyle="Auto" width="auto" textAlign="Begin" visible="true"/>
+							<m:ToolbarSpacer width=""/>
+						</m:content>
+						<m:tooltip/>
+					</m:Toolbar>
+				</m:headerToolbar>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Banco" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="N° de cuenta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Moneda" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Tipo de cuenta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:ObjectIdentifier title="" text="{BankName}" titleActive="false" visible="true"/>
+							<m:Text text="{BankAccount}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							<m:ObjectNumber number="" unit="{Currency}" emphasized="true" state="None"/>
+							<m:Text text="{TpAccount}"/>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+			<m:Panel width="auto" visible="{=${Origin}==='S' ? true : false}"></m:Panel>
+			<m:Table id="tabEmbarc1" items="{path:'ShipownerBoatsSet'}" visible="{=${Origin}==='S' ? true : false}" width="100%" noDataText="No data" mode="None"
+				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar>
+					<m:Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+						<m:content>
+							<m:Title text="Listado de Embarcaciones:" titleStyle="Auto" width="auto" textAlign="Begin" visible="true"/>
+							<m:ToolbarSpacer width=""/>
+						</m:content>
+						<m:tooltip/>
+					</m:Toolbar>
+				</m:headerToolbar>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cod. Matrícula" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Nom. Embarcación" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cap. de bodega neta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<!--					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Destino" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>-->
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:Text text="{Matricula}"></m:Text>
+							<m:Text text="{Name}"></m:Text>
+							<m:Text text="{Capacity}"></m:Text>
+							<m:Text text="{Destination}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+			<m:Panel width="auto"></m:Panel>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Datos Embarcación:" level="H3" icon="sap-icon://basket"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Cod. Matrícula" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input showSuggestion="true" suggest="_suggestHandler" liveChange="_matriculaValidator" id="embMatricula" placeholder="AA-00000-BB"
+										type="Text" showValueHelp="false" enabled="true" visible="true" width="138px" valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Embarcación" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="embEmbarcacion" placeholder="..." type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
+										valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Cap. de bodega neta" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="embCapacidad" change="_validateDecimalInput" liveChange="_decimalLiveChange" placeholder="..." type="Text" showValueHelp="false" enabled="true" visible="true"
+										width="143px" valueHelpOnly="false" maxLength="15"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmDestination">
+								<form:label>
+									<m:Label text="Destino MP" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Select id="embDestination" items="{path:'/DestinationsMPSet'}" forceSelection="false" width="143px" maxWidth="100%">
+										<m:items>
+											<core:Item key="{DestinationMp}" text="{DestinationMp}" enabled="true"/>
+										</m:items>
+									</m:Select>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<m:Button press="onAddEmbarcacion" text="Agregar Embarcación" type="Emphasized" icon="sap-icon://add" iconFirst="true" width="auto"
+				enabled="true" visible="true" iconDensityAware="false"/>
+			<m:Button id="btnValidar" text="{=${Status}==='RECHAZADO' ? 'Reenviar validación' : 'Solicitar la validación' }" type="Accept"
+				iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onValidarPress"/>
+			<m:Table id="tblBoats" items="{path:'armador>ShipownerBoatsSet'}" width="100%" noDataText="No data" mode="None" showSeparators="All"
+				growing="true" growingThreshold="20" growingScrollToLoad="true">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar/>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cod. Matrícula" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Nom. Embarcación" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cap. de bodega neta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Destino MP" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Eliminar" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:Text text="{armador>Matricula}"></m:Text>
+							<m:Text text="{armador>Name}"></m:Text>
+							<m:Text text="{armador>Capacity}"></m:Text>
+							<m:Text text="{armador>Destination}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							<m:Button press="onDelete" icon="sap-icon://delete"/>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+		</m:content>
+		<m:footer>
+			<m:Bar design="Auto">
+				<m:contentLeft/>
+				<m:contentMiddle/>
+				<m:contentRight>
+					<m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onNavBack"/>
+				</m:contentRight>
+			</m:Bar>
+		</m:footer>
+		<m:headerContent/>
+		<m:subHeader/>
+		<m:customHeader/>
+	</m:Page>
+</mvc:View>

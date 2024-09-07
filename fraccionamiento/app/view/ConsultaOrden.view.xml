@@ -1,0 +1,389 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.ConsultaOrden"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:f="sap.f"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>imprimir}"
+					icon="sap-icon://print"
+					press="onImprimirPress"
+					class="sapMBtnLarge"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					icon="sap-icon://undo"
+					press="onRegresarPress"
+					class="sapMBtnLarge"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<t:Table
+			id="tblOrdenes"
+			rows="{
+				path: 'localModel>/Ordenes'
+			}"
+			rowSelectionChange="onGrupoOrdenRowSelected"
+			selectionMode="Single"
+			selectionBehavior="Row"
+			visibleRowCount="4"
+			ariaLabelledBy="title"
+		>
+			<t:extension>
+				<OverflowToolbar height="200px">
+					<VBox>
+						<HBox class="sapUiTinyMarginTop">
+							<Label
+								text="{i18n>fechaBusq}:"
+								wrapping="true"
+								class="labelConsulta"
+								width="190px"
+							/>
+							<DateRangeSelection
+								width="280px"
+								displayFormat="dd/MM/yyyy"
+								dateValue="{localModel>/fechaInicio}"
+								secondDateValue="{localModel>/fechaFin}"
+								valueFormat="yyyyMMdd"
+								placeholder="Seleccione un rango de fechas"
+								change="handleChange"
+								class="inputConsultaOrden datePicker"
+							/>
+							<Label
+								text="{i18n>estado}:"
+								class="sapUiTinyMarginBegin labelConsulta"
+								width="100px"
+							/>
+							<Select
+								change="onEstadoChange"
+								width="320px"
+								selectedKey="{localModel>/estadoId}"
+								items="{
+									path: 'localModel>/EstadosConsolidado'
+								}"
+							>
+								<c:Item
+									key="{localModel>iMaestraId}"
+									text="{localModel>contenido}"
+								/>
+							</Select>
+						</HBox>
+						<HBox class="sapUiTinyMarginTop">
+							<Label
+								text="{i18n>sala}:"
+								width="180px"
+								class="labelConsulta"
+							/>
+							<Select
+								id="cboSala"
+								width="280px"
+								class="sapUiTinyMarginBegin"
+								selectedKey="{localModel>/salaPesajeConsulta}"
+								items="{
+									path: 'localModel>/SalaPesajes'
+								}"
+							>
+								<c:Item
+									key="{localModel>sala}"
+									text="{localModel>sala}"
+								/>
+							</Select>
+							<Label
+								text="Orden:"
+								width="100px"
+								class="sapUiTinyMarginBegin labelConsulta"
+							/>
+							<Input
+								value="{localModel>/orden}"
+								width="320px"
+								class="bultoPesaje inputQR inputConsultaOrden"
+							/>
+							<Button
+								press="onOpenTecladoAlfaNum"
+								width="76px"
+								icon="sap-icon://alphabetical-order"
+								class="sapUiTinyMarginBegin  btnConsulta"
+							/>
+							<ToolbarSpacer/>
+							<Button
+								icon="sap-icon://search"
+								press="onSearch"
+								class="sapUiTinyMarginBegin btnConsulta"
+								width="76px"
+							/>
+						</HBox>
+					</VBox>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="10rem">
+					<Label
+						text="Orden Reserva"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>ordenNumero}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem">
+					<Label text="Código"/>
+					<t:template>
+						<Text
+							text="{localModel>codigoInsumo}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="20rem">
+					<Label text="{i18n>desInsumo}"/>
+					<t:template>
+						<Text
+							text="{localModel>descripcionInsumo}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label text="Frac.OP"/>
+					<t:template>
+						<Text
+							text="{localModel>numFraccion}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="8rem">
+					<Label text="Frac.Com"/>
+					<t:template>
+						<Text
+							text="{localModel>numSubFraccion}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem">
+					<Label
+						text="{i18n>cantRequerida}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							textAlign="End"
+							text="{
+								path: 'localModel>requerido',
+								formatter: '.formatter.peso'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem">
+					<Label
+						text="{i18n>cantPedida}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							textAlign="End"
+							text="{
+								path: 'localModel>sugerido',
+								formatter: '.formatter.peso'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>cantAtendida}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							textAlign="End"
+							text="{
+								path: 'localModel>atendido',
+								formatter: '.formatter.peso'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="5rem">
+					<Label
+						text="Und."
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>unidad}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="23rem">
+					<Label text="{i18n>nomProducto}"/>
+					<t:template>
+						<Text
+							text="{localModel>nombreProducto}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem">
+					<Label text="{i18n>fecha}"/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaRegistro',
+								formatter: '.formatter.getFormatShortDate'
+							}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="15rem">
+					<Label text="{i18n>estado}"/>
+					<t:template>
+						<Text
+							text="{localModel>InsumoEstado}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="12rem">
+					<Label text="{i18n>sala}"/>
+					<t:template>
+						<Text
+							text="{localModel>salaPesaje}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label text="{i18n>usuario}"/>
+					<t:template>
+						<Text
+							text="{localModel>usuarioRegistra}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+		<f:GridContainer
+			id="demoGrid"
+			class="sapUiSmallMargin"
+			columnsChange=".onGridColumnsChange"
+		>
+			<HBox class="sapUiTinyMargin">
+				<VBox>
+					<MessageStrip
+						text="Control de Calidad
+							{localModel>/ObsControl}"
+						enableFormattedText="true"
+						type="Information"
+						showIcon="true"
+						class="sapUiMediumMarginBottom message-strip-detalle message-strip-2"
+					/>
+				</VBox>
+				<VBox>
+					<HBox class="sapUiTinyMargin">
+						<t:Table
+							id="tblBultos"
+							rows="{
+								path: 'localModel>/aBulto'
+							}"
+							class="bultoConsulta"
+							selectionMode="Single"
+							visibleRowCount="1"
+							ariaLabelledBy="title"
+						>
+							<t:layoutData>
+								<f:GridContainerItemLayoutData
+									minRows="2"
+									columns="6"
+								/>
+							</t:layoutData>
+							<t:columns>
+								<t:Column width="7rem">
+									<Label text="{i18n>bulto}"/>
+									<t:template>
+										<Text
+											text="{localModel>B_bulto}"
+											wrapping="false"
+										/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="Lote"/>
+									<t:template>
+										<Text
+											text="{localModel>I_lote}"
+											wrapping="false"
+										/>
+									</t:template>
+								</t:Column>
+								<t:Column width="5rem">
+									<Label text="{i18n>peso}"/>
+									<t:template>
+										<Text
+											textAlign="End"
+											text="{
+												path: 'localModel>B_cantidadA',
+												formatter: '.formatter.peso'
+											}"
+											wrapping="false"
+										/>
+									</t:template>
+								</t:Column>
+								<t:Column width="5rem">
+									<Label text="Und."/>
+									<t:template>
+										<Text
+											text="{localModel>I_unidad}"
+											wrapping="false"
+										/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+					</HBox>
+				</VBox>
+				<VBox>
+					<MessageStrip
+						text="Información de la Orden
+							{localModel>/InfoOrden}"
+						enableFormattedText="true"
+						type="Information"
+						showIcon="true"
+						class="sapUiMediumMarginBottom message-strip-detalle message-strip-2"
+					/>
+				</VBox>
+			</HBox>
+		</f:GridContainer>
+	</Page>
+</mvc:View>

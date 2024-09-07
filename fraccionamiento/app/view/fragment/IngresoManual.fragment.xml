@@ -1,0 +1,216 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.f"
+>
+	<Dialog
+		contentWidth="550px"
+		contentHeight="650px"
+		id="dialogIngresoManual"
+		title="{i18n>ingresoManual} "
+	>
+		<beginButton>
+			<Button
+				text="{i18n>guardaPeso}"
+				press="onAceptarPress"
+				visible="{=${localModel>/VerPesaje}}"
+				width="180px"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="{i18n>cancelar}"
+				press="onCancelarPress"
+				width="130px"
+			/>
+		</endButton>
+		<VBox>
+			<VBox class="sapUiSmallMargin">
+				<MessageStrip
+					text="{i18n>insumo}: {localModel>/Pesaje_Fraccionamiento/codigoInsumo} - {localModel>/Pesaje_Fraccionamiento/descripcionInsumo}"
+					class="contentInsumoPesaje message-strip-insumo"
+				/>
+				<HBox class="sapUiTinyMarginTop">
+					<Label
+						text="{i18n>bulto}:"
+						visible="{= ${localModel>/oBultoQr} ? true : false }"
+					/>
+					<Label text="{localModel>/oBultoQr/IdBulto}"/>
+					<Label
+						class="sapUiSmallMarginBegin"
+						text="{i18n>fecVencimiento}:"
+						visible="{= ${localModel>/oBultoQr/Fecaduc} === '' ? false : true }"
+					/>
+					<Label text="{localModel>/oBultoQr/Fecaduc}"/>
+					<Label
+						class="sapUiSmallMarginBegin"
+						text="{i18n>cntBulto}:"
+						visible="{= ${localModel>/Pesaje_Bulto_Cantidad} === '' ? false : true }"
+					/>
+					<Label text="{localModel>/Pesaje_Bulto_Cantidad}"/>
+				</HBox>
+			</VBox>
+			<HBox
+				class="sapUiSmallMarginTop"
+				justifyContent="Center"
+				visible="{=${localModel>/VerPesaje}}"
+			>
+				<f:GridContainer
+					width="275px"
+					visible="false"
+				>
+					<f:layout>
+						<f:GridContainerSettings
+							rowSize="85px"
+							columnSize="85px"
+							gap="8px"
+						/>
+					</f:layout>
+					<Button
+						class="keypad"
+						press="onKeyPadUndoPress"
+						icon="sap-icon://undo"
+					>
+						<layoutData>
+							<f:GridContainerItemLayoutData columns="3"/>
+						</layoutData>
+					</Button>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="7"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="8"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="9"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="4"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="5"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="6"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="1"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="2"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="3"
+					/>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="0"
+					>
+						<layoutData>
+							<f:GridContainerItemLayoutData columns="2"/>
+						</layoutData>
+					</Button>
+					<Button
+						class="keypad"
+						press="onKeyPadPress"
+						text="."
+					/>
+				</f:GridContainer>
+				<VBox class="sapUiSmallMarginBegin">
+					<Title
+						text="{i18n>pendienteAtender}:"
+						titleStyle="H3"
+					/>
+					<HBox>
+						<Title
+							class="peso-box-5-im"
+							text="{
+								path: 'localModel>/Pesaje_Pendiente2',
+								formatter: '.formatter.peso'
+							}"
+							width="250px"
+							textAlign="Center"
+							titleStyle="H1"
+						/>
+						<Title
+							text="{localModel>/Pesaje_Fraccionamiento/unidadMostrar}"
+							class="sapUiSmallMarginTop sapUiTinyMarginBegin"
+							width="60px"
+							titleStyle="H1"
+						/>
+					</HBox>
+					<Title
+						text="{i18n>tara}:"
+						titleStyle="H3"
+					/>
+					<HBox>
+						<Title
+							id="lblTara"
+							class="peso-box-4-im"
+							text="{
+								path: 'localModel>/Pesaje_Fraccionamiento/taraFrac',
+								formatter: '.formatter.peso'
+							}"
+							width="250px"
+							textAlign="Center"
+							titleStyle="H1"
+						/>
+						<Title
+							text="{localModel>/Pesaje_Fraccionamiento/unidadMostrar}"
+							class="sapUiSmallMarginTop sapUiTinyMarginBegin"
+							width="60px"
+							titleStyle="H1"
+						/>
+						<Button
+							icon="sap-icon://simulate"
+							width="50px"
+							press="onTaraManualPress"
+						/>
+					</HBox>
+					<Title
+						text="{i18n>pesoNeto}:"
+						titleStyle="H3"
+					/>
+					<HBox>
+						<Title
+							class="peso-box-3-im"
+							text="{
+								path: 'localModel>/IngresoManual_PesoNeto',
+								formatter: '.formatter.peso'
+							}"
+							width="250px"
+							textAlign="Center"
+							titleStyle="H1"
+						/>
+						<Title
+							text="{localModel>/Pesaje_Fraccionamiento/unidadMostrar}"
+							enabled="false"
+							class="sapUiSmallMarginTop sapUiTinyMarginBegin"
+							width="60px"
+							titleStyle="H1"
+						/>
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+	</Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,22 @@
+{
+  "Shipowner": 
+   {
+     "Ruc": "111111",
+     "ShipownersName": "",
+     "DestinationMp": "",
+     "Street": "",
+     "Industry":"",
+     "ToEmitDoc":"",
+     "Phone":"",
+     "Cellphone":"",
+     "Currency": "",
+     "ShipownerEmail":[
+     ],
+     "ShipownerBanks":[
+     ],
+     "ShipownerContactPersons":[
+     ],
+     "ShipownerBoats":[
+     ]
+   }
+}

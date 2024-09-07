@@ -1,0 +1,398 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.sap.build.standard.proyectoScp.controller.DetalleDeSolicitudesDeAprobacionDeEmbarcaciones" xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<m:Page showHeader="true" title="Detalle de Solicitudes de Aprobación" showFooter="true" showNavButton="false">
+		<m:content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Datos Cabecera" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true" id="frmSunat">
+								<form:label>
+									<m:Label text="" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Button press="getRUC" text="Verificar datos SUNAT" textAlign="Begin" width="200px" target="_blank" wrapping="false" enabled="true"
+										visible="true" emphasized="true" subtle="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="RUC" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="rucArmador" value="{Ruc}" placeholder="" type="Text" showValueHelp="false" enabled="false" visible="true" width="110px"
+										valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Nombre" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" id="nombreArmador" value="{requested>BusinessName}" maxLength="100"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmState">
+								<form:label>
+									<m:Label text="Estado" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="estado" value="{requested>Estado}" placeholder="" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto"
+										valueHelpOnly="false" maxLength="15" fieldGroupIds="editableGroup"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmCond">
+								<form:label>
+									<m:Label text="Condición" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="condicion" value="{requested>Condicion}" placeholder="" type="Text" showValueHelp="false" enabled="false" visible="true"
+										width="auto" valueHelpOnly="false" maxLength="0" fieldGroupIds="editableGroup"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmDestino">
+								<form:label>
+									<m:Label text="Destino MP" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Select items="{path:'/DestinationsMPSet'}" editable="false" enabled="false" width="100px" maxWidth="100%"
+										selectedKey="{requested>DestinationMp}">
+										<m:items>
+											<core:Item key="{DestinationMp}" text="{DestinationMp}" enabled="true"/>
+										</m:items>
+									</m:Select>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmRubro">
+								<form:label>
+									<m:Label text="Rubro" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" id="rubro" value="{requested>Industry}" enabled="true" visible="true" width="auto"
+										valueHelpOnly="false" maxLength="50"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmPerson">
+								<form:label>
+									<m:Label text="Persona Natural" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:CheckBox id="check" text="" select="_onCheckUpdate" selected="{= ${TpTaxpayer} === '' ? false : true}" editable="true" enabled="true"
+										visible="true" width="auto" textDirection="Inherit" fieldGroupIds="editableGroup"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmTpDoc">
+								<form:label>
+									<m:Label text="Tip. doc. a Emitir" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<!--<m:ComboBox fieldGroupIds="editableGroup" value="{requested>ToEmitDoc}" items="{path:'/TpsEmitDocSet'}" editable="true" enabled="true"-->
+									<!--	visible="true" width="100%" valueState="None" maxWidth="100%">-->
+									<!--	<m:items>-->
+									<!--		<core:Item text="{ToEmitDoc}" enabled="true"/>-->
+									<!--	</m:items>-->
+									<!--</m:ComboBox>-->
+									<m:Select items="{path:'/TpsEmitDocSet'}" editable="true" width="100%" maxWidth="100%" selectedKey="{requested>ToEmitDoc}">
+										<m:items>
+											<core:Item key="{ToEmitDoc}" text="{ToEmitDoc}" enabled="true"/>
+										</m:items>
+									</m:Select>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmCompPago">
+								<form:label>
+									<m:Label text="Comp. de pago" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input id="idComprobante" value="{requested>Comprobante}" placeholder="" type="Text" description="" showValueHelp="false" enabled="false"
+										visible="true" width="auto" valueHelpOnly="false" fieldGroupIds="editableGroup"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="frmDetraction">
+								<form:label>
+									<m:Label text="Ind. Detracción" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Select id="selectDetraction" forceSelection="true" items="{ path: '/DetractionIndicatorSet' }" fieldGroupIds="editableGroup"
+										width="145px" enabled="true" change="onSelectChange" selectedKey="{requested>Detraction}">
+										<core:Item key="{ID}" text="{Text}"/>
+									</m:Select>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true" id="frmDireccion">
+				<form:title>
+					<core:Title text="Datos Dirección:" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Teléfono" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" value="{requested>Phone}" type="Text" placeholder="Ingresar Teléfono..."
+										liveChange="onNumericLiveChange" width="150px" valueHelpOnly="false" maxLength="15"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Celular" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" value="{requested>CellPhone}" type="Text" placeholder="Ingresar Celular..."
+										liveChange="onNumericLiveChange" width="150px" valueHelpOnly="false" maxLength="15"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Moneda" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<!--<m:ComboBox fieldGroupIds="editableGroup" value="{requested>Currency}" items="{path:'/TpsCurrencySet'}" editable="true" enabled="true"-->
+									<!--	visible="true" width="150px" valueState="None" maxWidth="100%">-->
+									<!--	<m:items>-->
+									<!--		<core:Item text="{Currency}" enabled="true"/>-->
+									<!--	</m:items>-->
+									<!--</m:ComboBox>-->
+									<m:Select items="{path:'/TpsCurrencySet'}" editable="true" forceSelection="false" visible="true" width="150px" maxWidth="100%"
+										selectedKey="{requested>Currency}">
+										<m:items>
+											<core:Item key="{Currency}" text="{Currency}"/>
+										</m:items>
+									</m:Select>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Padrón" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" id="padron" value="{requested>Padron}" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Dirección" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:TextArea fieldGroupIds="editableGroup" id="direccion" value="{requested>Direccion}" visible="true" width="auto" valueHelpOnly="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Calle / N°" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" value="{requested>Street}" visible="true" width="300px" valueHelpOnly="false" maxLength="35"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Interior o Dept" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" value="{requested>IntDep2}" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Calle 4" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" value="{requested>Street4}" visible="true" width="auto" valueHelpOnly="false" maxLength="40"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Distrito" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" id="distrito" value="{requested>Distric}" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="0" required="true"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Población" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Input fieldGroupIds="editableGroup" id="poblacion" value="{requested>Population}" visible="true" width="auto" valueHelpOnly="false"
+										maxLength="0" required="true"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<m:Label text="Región" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<m:Select id="IdSelectRegion" items="{path:'/RegionSet'}" selectedKey="{requested>Region}" forceSelection="true" width="143px" maxWidth="100%">
+										<m:items>
+											<core:Item key="{bland}" text="{bezei}" enabled="true"/>
+										</m:items>
+									</m:Select>	
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<m:Table id="tblRequested" items="{path:'requested>ShipownerBoatsSet'}" width="100%" noDataText="No hay datos" mode="None"
+				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar>
+					<m:Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+						<m:content>
+							<m:Title text="Embarcaciones:" titleStyle="Auto" width="auto" textAlign="Begin" visible="true"/>
+							<m:ToolbarSpacer width=""/>
+							<m:Button text="" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="false"
+								iconDensityAware="false"/>
+						</m:content>
+						<m:tooltip/>
+					</m:Toolbar>
+				</m:headerToolbar>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cod. Matrícula" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Nom. Embarcación" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Cap. Bodega Neta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Destino" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Enlace" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:ObjectIdentifier title="" text="{requested>Matricula}" titleActive="false" visible="true"/>
+							<m:Input type="Text" value="{requested>Name}" enabled="true" maxLength="25"></m:Input>
+							<m:Input type="Text" value="{requested>Capacity}" change="_validateDecimalInput" liveChange="_decimalLiveChange" enabled="true" maxLength="15"></m:Input>
+							<m:Text text="{requested>Destination}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							<m:Link href="https://consultasenlinea.produce.gob.pe/ConsultasEnLinea/consultas.web/embarcacion" text="Produce" textAlign="Begin"
+								width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="true" subtle="false"/>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+			<m:Panel width="auto"></m:Panel>
+			<m:Table id="tblBancos" items="{path:'ShipownerBanksSet'}" width="100%" noDataText="No hay datos" mode="None" showSeparators="All"
+				growing="true" growingThreshold="20" growingScrollToLoad="true">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar>
+					<m:Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+						<m:content>
+							<m:Title text="Bancos:" titleStyle="Auto" width="auto" textAlign="Begin" visible="true"/>
+							<m:ToolbarSpacer width=""/>
+							<m:Button text="" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="false"
+								iconDensityAware="false"/>
+						</m:content>
+						<m:tooltip/>
+					</m:Toolbar>
+				</m:headerToolbar>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Banco" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="N° de cuenta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Moneda" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Tipo de cuenta" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:ObjectIdentifier title="" text="{BankName}" titleActive="false" visible="true"/>
+							<m:Text text="{BankAccount}"></m:Text>
+							<m:Text text="{Currency}"/>
+							<m:Text text="{TpAccount}"/>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+		</m:content>
+		<m:footer>
+			<m:Bar design="Auto">
+				<m:contentLeft/>
+				<m:contentMiddle/>
+				<m:contentRight>
+					<m:Button text="{i18n>btnApproveText}" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="onApprovePress"/>
+					<m:Button text="Rechazar" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="onRejectPress"/>
+					<m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onNavBack"/>
+				</m:contentRight>
+			</m:Bar>
+		</m:footer>
+		<m:headerContent/>
+		<m:subHeader/>
+		<m:customHeader/>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,11 @@
+{
+	"TileCollection": [{
+		"title": "Solicitar creación de armadores",
+		"number": "",
+		"numberUnit": "",
+		"info": "",
+		"infoState": "Error",
+		"icon": "sap-icon://approvals",
+		"press": "_onTileSolicitantePress"
+	}]
+}

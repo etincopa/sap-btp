@@ -1,0 +1,21 @@
+{
+    "ambiente": "QAS",
+    "DEV":{
+        "oauth_url": "https://medifarmadevqas.authentication.us10.hana.ondemand.com",
+        "oauth_clientId": "sb-central-pesadas!t25089",
+        "oauth_clientSecret": "66f1210c-f3a0-4b6e-851d-2b5bf24d2709$FR3utwf0eByTQb6HC9JdEt2icY5osxhgspf66ZuYc8Y=",
+        "oauth_usuario": "eder.matienzo@hotmail.com",
+        "oauth_password": "cio2020$$",
+        "odata_url": "https://medifarmadevqas-dev-rmd-cp-cp-srv.cfapps.us10.hana.ondemand.com/browse/",
+        "llave_acceso": "1ee52a65"
+    },
+    "QAS":{
+        "oauth_url": "https://medifarmadevqas.authentication.us10.hana.ondemand.com/oauth/token",
+        "oauth_clientId": "sb-central-pesadas!t25089",
+        "oauth_clientSecret": "311kOgFUtuHUVxwRHhxMZDR5+FY=",
+        "oauth_usuario": "eder.matienzo@hotmail.com",
+        "oauth_password": "cio2020$$",
+        "odata_url": "https://medifarmaqas-qas-cp-srv.cfapps.us10.hana.ondemand.com/browse/",
+        "llave_acceso": "1ee52a65"
+    }
+}

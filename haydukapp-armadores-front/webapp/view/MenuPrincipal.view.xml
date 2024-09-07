@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.MenuPrincipal" xmlns:m="sap.m">
+	<m:Page showHeader="false" title="Page Title" showFooter="true" showNavButton="false" enableScrolling="false">
+		<m:content>
+			<m:TileContainer id="principalTileContainer">
+				<m:StandardTile title="Registro de Data Maestra" number="" numberUnit="" info="" infoState="Warning" icon="sap-icon://employee"
+					press="_onTilePress"/>
+			</m:TileContainer>
+		</m:content>
+		<!--<m:footer>-->
+		<!--	<m:Bar design="Auto">-->
+		<!--		<m:contentLeft>-->
+		<!--			<m:Switch id="userCheckSwitch" state="false" change="_onSwitchChange"/>-->
+		<!--		</m:contentLeft>-->
+		<!--	</m:Bar>-->
+		<!--</m:footer>-->
+	</m:Page>
+</mvc:View>

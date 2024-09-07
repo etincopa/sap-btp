@@ -1,0 +1,210 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:f="sap.f"
+>
+	<Dialog
+		contentWidth="100%"
+		contentHeight="600px"
+		id="dialogBultoEntero"
+		title="{i18n>bultosEnteros} "
+	>
+		<buttons>
+			<Button
+				tooltip="{i18n>usarSaldo}"
+				enabled="{=${localModel>/Online}}"
+				press="onUsarComoSaldoPress"
+				visible="{=${localModel>/VerGestionGrupo}}"
+				icon="sap-icon://product"
+				class="sapMBtnLarge btnAccion"
+			/>
+			<Button
+				tooltip="{i18n>imprimir}"
+				icon="sap-icon://print"
+				press="onImprimirPress"
+				class="sapMBtnLarge btnAccion"
+			/>
+			<Button
+				tooltip="{i18n>tarar}"
+				enabled="{=${localModel>/Online}}"
+				visible="{=${localModel>/VerGestionGrupo}}"
+				icon="sap-icon://compare"
+				press="onTararEnteroPress"
+				class="sapMBtnLarge btnAccion"
+			/>
+			<Button
+				tooltip="{i18n>actualizar}"
+				enabled="{=${localModel>/Online}}"
+				icon="sap-icon://refresh"
+				press="onRefrescarPress"
+				class="sapMBtnLarge btnAccion"
+			/>
+			<Button
+				tooltip="{i18n>regresar}"
+				icon="sap-icon://undo"
+				press="onCancelarPress"
+				class="sapMBtnLarge btnAccion"
+			/>
+		</buttons>
+		<MessageStrip
+			class="sapUiSmallMargin contentInsumo"
+			text="{i18n>insumo}: {localModel>/Detalle_Fraccionamiento/codigoInsumo} - {localModel>/Detalle_Fraccionamiento/descripcionInsumo} {i18n>nroLote}: {localModel>/Detalle_Fraccionamiento/loteInsumo}"
+		/>
+		<HBox class="sapUiSmallMargin">
+			<Label text="{i18n>nroDoc}:"/>
+			<Label text="{localModel>/Detalle_Fraccionamiento/ordenNumero}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="{i18n>nroLote}:"
+			/>
+			<Label text="{localModel>/Detalle_Fraccionamiento/ordenLote}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="Frac.OP:"
+			/>
+			<Label text="{localModel>/Detalle_Fraccionamiento/numFraccion}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="Frac.Com:"
+			/>
+			<Label text="{localModel>/Detalle_Fraccionamiento/numSubFraccion}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="{i18n>sugerida}:"
+			/>
+			<Label text="{
+				path: 'localModel>/Detalle_Fraccionamiento/cantSugerida',
+				formatter: '.formatter.peso'
+			}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="{i18n>enteros}:"
+			/>
+			<Label text="{
+				path: 'localModel>/Detalle_Fraccionamiento/entero',
+				formatter: '.formatter.peso'
+			}"/>
+			<Label
+				class="sapUiSmallMarginBegin"
+				text="{i18n>unidad}:"
+			/>
+			<Label text="{localModel>/Detalle_Fraccionamiento/unidad}"/>
+		</HBox>
+		<t:Table
+			id="idTableBultoEntero"
+			rows="{
+				path: 'localModel>/BultoEntero_Bultos'
+			}"
+			selectionMode="Single"
+			selectionBehavior="Row"
+			rowSelectionChange="onBultoEnteroRowSelected"
+			visibleRowCount="{=${localModel>/BultoEntero_Bultos}.length}"
+			ariaLabelledBy="title"
+		>
+			<t:columns>
+				<t:Column width="3rem">
+					<Label text="{i18n>nro}"/>
+					<t:template>
+						<Text
+							text="{localModel>NroItem}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem">
+					<Label text="{i18n>etiqueta}"/>
+					<t:template>
+						<Text
+							text="{localModel>Etiqueta}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label text="{i18n>bulto}"/>
+					<t:template>
+						<Text
+							text="{localModel>IdBulto}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="7rem">
+					<Label text="P. Total"/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>CantidadA',
+								formatter: '.formatter.peso'
+							}"
+							textAlign="End"
+							width="100%"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="5rem">
+					<Label text="{i18n>tara}"/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>Tara',
+								formatter: '.formatter.peso'
+							}"
+							textAlign="End"
+							width="100%"
+							wrapping="false"
+							visible="{= ${localModel>UnidadM} === 'KG' || ${localModel>UnidadM} === 'G' || ${localModel>UnidadM} === 'kg' || ${localModel>UnidadM} === 'g' ? true : false}"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label text="P. Bruto"/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>bruto',
+								formatter: '.formatter.peso'
+							}"
+							textAlign="End"
+							width="100%"
+							wrapping="false"
+							visible="{= ${localModel>UnidadM} === 'KG' || ${localModel>UnidadM} === 'G' || ${localModel>UnidadM} === 'kg' || ${localModel>UnidadM} === 'g' ? true : false}"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label text="{i18n>unidad}"/>
+					<t:template>
+						<Text
+							text="{localModel>UnidadM}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="12rem">
+					<Label text="{i18n>registradoPor}"/>
+					<t:template>
+						<Text
+							text="{localModel>UsuarioAte}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="12rem">
+					<Label text="{i18n>fechaRegistro}"/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>FechaAte',
+								formatter: '.formatter.getTimestampToDMY'
+							}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+	</Dialog>
+</c:FragmentDefinition>

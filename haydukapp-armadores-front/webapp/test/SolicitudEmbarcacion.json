@@ -1,0 +1,22 @@
+{
+  "ZMR_SOLICITUD_EMBARCACION": [
+   {
+   	"ruc":"10214521421",
+   	"nombre":"Armador1",
+   	"destino":"CHI",
+   	"estado":""
+   },
+   {
+   	"ruc":"10214521474",
+   	"nombre":"Armador2",
+   	"destino":"CHD",
+   	"estado":""
+   },
+   {
+   	"ruc":"10214527565",
+   	"nombre":"Armador3",
+   	"destino":"CHI",
+   	"estado":""
+   }
+   ]
+}

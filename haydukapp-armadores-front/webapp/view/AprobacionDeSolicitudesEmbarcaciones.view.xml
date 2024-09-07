@@ -1,0 +1,99 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.proyectoScp.controller.AprobacionDeSolicitudesEmbarcaciones"
+	xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:layout1="sap.ui.layout">
+	<m:Page id="aprobacionSolicitudesEmbPage" showHeader="true" title="Creación de armadores y embarcaciones" showFooter="true"
+		showNavButton="false">
+		<m:subHeader>
+			<m:Toolbar visible="true" enabled="true" width="" design="Solid">
+				<m:content>
+					<m:SearchField id="searchField" placeholder="Buscar" showSearchButton="true" visible="true" width="100%" search="onSearchRequested"/>
+				</m:content>
+			</m:Toolbar>
+		</m:subHeader>
+		<m:content>
+			<m:Table id="tblRequested" items="{path:'/ShipownerRequestSet'}" width="100%" noDataText="No data" mode="MultiSelect" showSeparators="All"
+				growing="true" growingThreshold="20" growingScrollToLoad="true" itemPress="onItemPress">
+				<m:infoToolbar>
+					<m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<m:content>
+							<m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</m:content>
+					</m:Toolbar>
+				</m:infoToolbar>
+				<m:headerToolbar/>
+				<m:columns>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="RUC" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Solicitud" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Radio-Op." width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Nombres de armadores" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Destino MP" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+					<m:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<m:header>
+							<m:Text text="Estado" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+						</m:header>
+						<m:footer/>
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem type="Active">
+						<m:cells>
+							<m:ObjectIdentifier title="" text="{Ruc}" titleActive="false" visible="true"/>
+							<m:ObjectIdentifier title="" text="{Request}" titleActive="false" visible="true"/>
+							<m:Text text="{Uname}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+							<m:Text text="{BusinessName}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+							<m:Text text="{DestinationMp}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+							<m:Button press="onIconPress" icon="sap-icon://warning" type="Transparent" tooltip="Ver detalles"
+								visible="{=${Message}==='' ? false : true}">
+								<m:customData>
+									<core:CustomData key="color" value="orange" writeToDom="true"/>
+								</m:customData>
+							</m:Button>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+		</m:content>
+		<m:footer>
+			<m:Bar design="Auto">
+				<m:contentLeft>
+					<m:Button id="popoverButton" icon="sap-icon://message-popup" text="Mensajes" type="Emphasized" press="_handleMessagePopoverPress"/>
+				</m:contentLeft>
+				<m:contentMiddle/>
+				<m:contentRight>
+					<m:Button text="{i18n>btnApproveText}" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="onApprovePress"/>
+					<m:Button text="Rechazar" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="onRejectPress"/>
+					<m:Button text="" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onNavBack"/>
+				</m:contentRight>
+			</m:Bar>
+		</m:footer>
+		<m:headerContent/>
+		<m:subHeader/>
+		<m:customHeader/>
+	</m:Page>
+</mvc:View>

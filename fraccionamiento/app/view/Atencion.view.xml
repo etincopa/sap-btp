@@ -1,0 +1,378 @@
+<mvc:View
+	controllerName="mif.cp.fraccionamiento.controller.Atencion"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Page>
+		<customHeader>
+			<Toolbar>
+				<content>
+					<c:Fragment
+						fragmentName="mif.cp.fraccionamiento.view.fragment.Header"
+						type="XML"
+					/>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>nuevoGrupo}"
+					visible="{=${localModel>/VerGestionGrupo}}"
+					enabled="{=${localModel>/Online}}"
+					press="onNuevoGrupoPress"
+					class="sapMBtnLarge"
+					width="130px"
+				/>
+				<Button
+					text="{i18n>editarGrupo}"
+					visible="{=${localModel>/VerGestionGrupo}}"
+					enabled="{=${localModel>/Online}}"
+					press="onEditarGrupoPress"
+					class="sapMBtnLarge"
+					width="130px"
+				/>
+				<Button
+					text="{i18n>verConsolidado}"
+					press="onVerConsolidadoPress"
+					class="sapMBtnLarge"
+					width="190px"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>regresar}"
+					icon="sap-icon://undo"
+					press="onRegresarPress"
+					class="sapMBtnLarge"
+				/>
+			</OverflowToolbar>
+		</footer>
+		<t:Table
+			id="tblGrupoOrden"
+			rows="{
+				path: 'localModel>/GrupoOrdenes',
+				sorter: {
+					path: 'codigo',
+					descending: true
+				}
+			}"
+			rowSelectionChange="onGrupoOrdenRowSelected"
+			selectionMode="Single"
+			selectionBehavior="Row"
+			visibleRowCount="5"
+			ariaLabelledBy="title"
+		>
+			<t:extension>
+				<OverflowToolbar>
+					<Label text="{i18n>listadoGrupoOrdenes}"/>
+					<ToolbarSpacer/>
+					<Label text="{i18n>sala}:"/>
+					<Select
+						width="200px"
+						selectedKey="{localModel>/SalaPesajeId}"
+						change="onSalaPesajeChange"
+						items="{
+							path: 'localModel>/SalaPesajes',
+							sorter: {
+								path: 'sala'
+							}
+						}"
+					>
+						<c:Item
+							key="{localModel>salaPesajeId}"
+							text="{localModel>sala}"
+						/>
+					</Select>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="3.5rem">
+					<Label
+						text="{i18n>nro}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>codigo}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="6rem">
+					<Label
+						text="{i18n>cntOrden}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>total}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="5rem">
+					<Label
+						text="{i18n>cntOrdenIniciadas}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>totalIniciada}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="5rem">
+					<Label
+						text="{i18n>cntOrdenPendientes}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>totalPendiente}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="3.5rem">
+					<Label
+						text="{i18n>cntOrdenFinalizados}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>totalFinalizado}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem">
+					<Label
+						text="{i18n>usuarioCrea}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>usuarioRegistro}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="16rem">
+					<Label
+						text="{i18n>fechaCrea}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaRegistro',
+								formatter: '.formatter.fechaHora'
+							}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>usuarioModi}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>usuarioActualiza}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="15rem">
+					<Label
+						text="{i18n>fechaModi}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaActualiza',
+								formatter: '.formatter.fechaHora'
+							}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="Sala creación"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>grupoSala}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column
+					width="4rem"
+					visible="false"
+				>
+					<Label text=""/>
+					<t:template>
+						<Button press="onRegenerarConsolidado"/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+		<t:Table
+			rows="{
+				path: 'localModel>/GrupoOrdenDetalle',
+				sorter: {
+					path: 'codigo'
+				}
+			}"
+			selectionMode="None"
+			visibleRowCount="{=${localModel>/GrupoOrdenDetalle}.length}"
+			ariaLabelledBy="title"
+		>
+			<t:extension>
+				<OverflowToolbar>
+					<Label text="{i18n>ordenesProduccionSeleccionadas}"/>
+					<ToolbarSpacer/>
+					<Label text="{i18n>numeroGrupo}:"/>
+					<Label text="{localModel>/GrupoOrdenCodigo}"/>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="3rem">
+					<Label
+						text="{i18n>nro}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>codigo}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem">
+					<Label
+						text="{i18n>numeroPedido}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>pedidoNumero}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>ordenProduccion}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>ordenNumero}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>codProducto}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>codigoProducto}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="19rem">
+					<Label
+						text="{i18n>nomProducto}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>nombreProducto}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				
+				<t:Column width="6rem">
+					<Label
+						text="Frac.OP"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>numFraccion}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="8rem">
+					<Label
+						text="{i18n>lote}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>ordenLote}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="10rem">
+					<Label
+						text="{i18n>fechaVencimiento}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{
+								path: 'localModel>fechaVencimiento',
+								formatter: '.formatter.getFormatShortDate'
+							}"
+							wrapping="true"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="7rem">
+					<Label
+						text="{i18n>tamanoLote}"
+						wrapping="true"
+					/>
+					<t:template>
+						<Text
+							text="{localModel>tamanoLote}"
+							wrapping="false"
+						/>
+					</t:template>
+				</t:Column>
+				<t:Column width="4rem">
+					<Label text=""/>
+					<t:template>
+						<Button
+							icon="sap-icon://print"
+							tooltip="Imprimir"
+							press="onImprimirPress"
+							enabled="{localModel>pesajeFinalizado}"
+						/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+	</Page>
+</mvc:View>

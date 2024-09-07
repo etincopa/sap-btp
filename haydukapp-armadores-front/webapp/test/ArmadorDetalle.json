@@ -1,0 +1,56 @@
+{
+  "ZMR_BANCOS": [
+   {
+     "name":   "BCP",
+     "cuenta": "123-454545-787",
+     "moneda": "SOLES",
+     "tipo": "AHORROS"
+   },
+   {
+     "name": "INTERBANK",
+     "cuenta":  "123-454545-798",
+     "moneda": "SOLES",
+     "tipo": "DETRACCIÓN"
+   },
+   {
+     "name": "BANCO DE LA NACIÓN",
+     "cuenta":  "123-454545-656",
+     "moneda": "SOLES",
+     "tipo": "AHORROS"
+   }
+  ],
+  "ZMR_CORREOS":[
+  {
+  	"correo":"correo1@gmail.com"
+  },	
+  {
+  	"correo":"correo2@gmail.com"
+  },	
+  {
+  	"correo":"correo3@gmail.com"
+  }	
+  ],
+  "ZMR_CONTACTOS":[
+  {
+  	"nombre":"Contacto1",
+  	"telefono":"4121454",
+  	"celular":"987454774",
+  	"fax":"1452146",
+  	"mail":"mail1@gmail.com"
+  },
+    {
+  	"nombre":"Contacto2",
+  	"telefono":"4178455",
+  	"celular":"987454775",
+  	"fax":"1452147",
+  	"mail":"mail3@gmail.com"
+  },
+    {
+  	"nombre":"Contacto3",
+  	"telefono":"4121456",
+  	"celular":"987454776",
+  	"fax":"1452148",
+  	"mail":"mail3@gmail.com"
+  }
+  ]
+}

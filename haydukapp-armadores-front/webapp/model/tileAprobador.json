@@ -1,0 +1,11 @@
+{
+	"TileCollection": [{
+		"title": "Creación de armadores y embarcaciones",
+		"number": "",
+		"numberUnit": "",
+		"info": "",
+		"infoState": "Warning",
+		"icon": "sap-icon://employee",
+		"press": "_onTileAprobadorPress"
+	}]
+}

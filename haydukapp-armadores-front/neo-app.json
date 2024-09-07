@@ -1,0 +1,52 @@
+{
+	"welcomeFile": "webapp/index.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"preferLocal": true,
+			"entryPath": "/resources",
+			"version": "1.48.5"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources",
+			"version": "1.48.5"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/saperp_pp",
+		"target": {
+			"type": "destination",
+			"name": "s4h_pp_moviles"
+		},
+		"description": "Propagacion Principal"
+	}, {
+		"path": "/saperp",
+		"target": {
+			"type": "destination",
+			"name": "s4h_ba_moviles"
+		},
+		"description": "Basic Authentication"
+	}, {
+		"path": "/sunat",
+		"target": {
+			"type": "destination",
+			"name": "sunat"
+		},
+		"description": "sunat"
+	}, {
+		"path": "/userapi/",
+		"target": {
+			"type": "service",
+			"name": "userapi"
+		}
+	}],
+	"authenticationMethod": "saml",
+	"sendWelcomeFileRedirect": true
+}
