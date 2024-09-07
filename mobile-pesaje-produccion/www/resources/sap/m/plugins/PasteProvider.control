@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>plugins/PasteProvider</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>Provides cross-platform paste capabilities for the &lt;code&gt;sap.m.Button&lt;/code&gt; control which allows the user to initiate a paste action.</documentation>
+    <since>1.91</since>
+    <events>
+        <event name="paste" allowPreventDefault="true">
+            <documentation>This event gets fired when the user pastes content from the clipboard or when the Paste button is pressed if the clipboard access has already been granted.
+Pasting can be done via the paste feature of the mobile device or the standard paste keyboard shortcut while the popover is open.
+By default, a synthetic &lt;code&gt;Clipboard&lt;/code&gt; event that represents the paste data gets dispatched for the control defined in the &lt;code&gt;pasteFor&lt;/code&gt; association.
+To avoid this, call &lt;code&gt;preventDefault&lt;/code&gt; on the event instance.</documentation>
+            <parameters>
+                <parameter name="data" type="sap.ui.core/string[][]">
+                    <documentation>Two-dimentional array of strings with data from the clipboard. The first dimension represents the rows,
+and the second dimension represents the cells of the tabular data.</documentation>
+                </parameter>
+                <parameter name="text" type="sap.ui.core/string">
+                    <documentation>The text data, with all special characters, from the clipboard.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+    <associations>
+        <association name="pasteFor" type="sap.ui.core/Control" cardinality="0..1">
+            <documentation>Defines the control which the paste is associated with.</documentation>
+        </association>
+    </associations>
+</control>

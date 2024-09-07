@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>plugins/ColumnResizer</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>Enables column resizing for the &lt;code&gt;sap.m.Table&lt;/code&gt;.
+This plugin can be added to the control via its &lt;code&gt;dependents&lt;/code&gt; aggregation
+and there must only be 1 instance of the plugin per control.</documentation>
+    <since>1.91</since>
+    <events>
+        <event name="columnResize" allowPreventDefault="true">
+            <documentation>This event is fired when the column is resized.</documentation>
+            <parameters>
+                <parameter name="column" type="sap.ui.core/Element">
+                    <documentation>The column being resized.</documentation>
+                </parameter>
+                <parameter name="width" type="sap.ui.core/CSSSize">
+                    <documentation>The new width of the column.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+</control>

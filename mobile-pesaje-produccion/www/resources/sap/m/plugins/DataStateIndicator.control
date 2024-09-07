@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>plugins/DataStateIndicator</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>This plugin implements a message strip used to show binding-related messages.</documentation>
+    <since>1.73</since>
+    <properties>
+        <property name="filter" type="sap.ui.core/any">
+            <documentation>Defines a predicate to test each message of the data state.
+
+This callback gets called using the {@link sap.ui.core.message.Message message} and {@link sap.ui.core.Control related control} parameters.
+Return &lt;code&gt;true&lt;/code&gt; to keep the message, &lt;code&gt;false&lt;/code&gt; otherwise.</documentation>
+        </property>
+        <property name="enableFiltering" type="sap.ui.core/boolean" defaultValue="false" since="1.89">
+            <documentation>Enables filtering for data state messages if this property is set to &lt;code&gt;true&lt;/code&gt;. A link is provided to the user that allows them to filter.
+After the binding-related messages have been filtered by the user, all the existing filters are only taken into account once the message filter has been cleared again.
+
+&lt;b&gt;Note:&lt;/b&gt; This feature must be enabled for OData models only.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="dataStateChange" allowPreventDefault="true">
+            <documentation>This event is fired when the {@link sap.ui.model.DataState data state} of the plugin parent is changed.</documentation>
+            <parameters>
+                <parameter name="dataState" type="any">
+                    <documentation>The data state object.</documentation>
+                </parameter>
+                <parameter name="filteredMessages" type="sap.ui.core/object[]">
+                    <documentation>The messages (@see sap.ui.core.message.Message) from the current &lt;code&gt;dataState&lt;/code&gt; object filtered by the given &lt;code&gt;filter&lt;/code&gt; function.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="applyFilter" since="1.89" allowPreventDefault="true">
+            <documentation>This event is fired when the user filters data state messages and if the &lt;code&gt;enableFiltering&lt;/code&gt; property is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+            <parameters>
+                <parameter name="filter" type="any">
+                    <documentation>The filter object representing the entries with messages.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="clearFilter" since="1.89" allowPreventDefault="true">
+            <documentation>This event is fired when the user clears the data state message filter and if the &lt;code&gt;enableFiltering&lt;/code&gt; property is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+        </event>
+    </events>
+</control>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>Menu</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The &lt;code&gt;sap.m.Menu&lt;/code&gt; control represents a hierarchical menu.
+When opened on mobile devices it occupies the whole screen.
+
+&lt;b&gt;Note:&lt;/b&gt; The application developer should add dependency to &lt;code&gt;sap.ui.unified&lt;/code&gt; library
+on application level to ensure that the library is loaded before the module dependencies will be required.
+If the &lt;code&gt;sap.ui.unified&lt;/code&gt; library is not loaded in advance, this
+could lead to CSP compliance issues and adds an additional waiting time.
+To prevent this, ensure that the &lt;code&gt;sap.ui.unified&lt;/code&gt; library is loaded in advance.</documentation>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="title" type="sap.ui.core/string" group="Misc">
+            <documentation>Defines the &lt;code&gt;Menu&lt;/code&gt; title.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="itemSelected" allowPreventDefault="false">
+            <documentation>Fired when a &lt;code&gt;MenuItem&lt;/code&gt; is selected.</documentation>
+            <parameters>
+                <parameter name="item" type="sap.m/MenuItem">
+                    <documentation>The &lt;code&gt;MenuItem&lt;/code&gt; which was selected.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="closed" allowPreventDefault="false">
+            <documentation>Fired when the menu is closed.</documentation>
+        </event>
+    </events>
+    <aggregations default="items">
+        <aggregation name="items" type="sap.m/MenuItem" cardinality="0..n" bindable="bindable">
+            <documentation>Defines the items contained within this control.</documentation>
+        </aggregation>
+        <aggregation name="_dialog" type="sap.m/Dialog" cardinality="0..1" visibility="hidden">
+            <documentation>Internal aggregation that contains the inner &lt;code&gt;sap.m.Dialog&lt;/code&gt; for mobile.</documentation>
+        </aggregation>
+        <aggregation name="_menu" type="sap.ui.unified/Menu" cardinality="0..1" visibility="hidden">
+            <documentation>Internal aggregation that contains the inner &lt;code&gt;sap.ui.unified.Menu&lt;/code&gt; for desktop and tablet.</documentation>
+        </aggregation>
+    </aggregations>
+</control>
