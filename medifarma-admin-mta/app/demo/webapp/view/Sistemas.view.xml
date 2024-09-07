@@ -1,0 +1,207 @@
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	controllerName="administrador.controller.Sistemas"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+>
+	<m:Page showHeader="false">
+		<m:content>
+			<Table
+				rows="{SistemListModel>/}"
+				id="tbSystemList"
+				visibleRowCount="15"
+				ariaLabelledBy="title"
+				selectionMode="Single"
+			>
+				<extension>
+					<m:OverflowToolbar>
+						<m:Title
+							id="title"
+							text="{i18n>tltSistemas}"
+						/>
+						<m:ToolbarSpacer/>
+						<m:Button
+							icon="sap-icon://add"
+							tooltip="Add"
+							press="onNewRegister"
+							enabled="{=${UserInfoModel>/sistema} === 'ADMIN' ? true : false}"
+						/>
+						<m:ToolbarSeparator/>
+						<m:SearchField
+							placeholder="Filter"
+							value="{CriteriaModel>/queryText}"
+							search="onSearch"
+							width="15rem"
+						/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="10%">
+						<m:Label text="{i18n>tcCodigo}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'SistemListModel>codigo',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 2
+										}
+									}"
+									enabled="{= ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${CriteriaModel>/isNew} }"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+								/>
+								<m:Text
+									text="{
+										path: 'SistemListModel>codigo'
+									}"
+									visible="{
+										path: 'SistemListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="30%">
+						<m:Label text="{i18n>tcNombre}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'SistemListModel>nombre',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 2
+										}
+									}"
+									enabled="{
+										path: 'SistemListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									width="100%"
+								/>
+								<m:Text
+									text="{
+										path: 'SistemListModel>nombre'
+									}"
+									visible="{
+										path: 'SistemListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="30%">
+						<m:Label text="{i18n>tcDescripcion}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'SistemListModel>descripcion',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 2
+										}
+									}"
+									enabled="{
+										path: 'SistemListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'SistemListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									width="100%"
+								/>
+								<m:Text
+									text="{
+										path: 'SistemListModel>descripcion'
+									}"
+									visible="{
+										path: 'SistemListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="10%">
+						<m:Label text="{i18n>tcFechaRegistro}"/>
+						<template>
+							<m:Text text="{
+								path: 'SistemListModel>fechaRegistro',
+								formatter: '.formatter.getDateDMYFormat'
+							}"/>
+						</template>
+					</Column>
+					<Column width="10%">
+						<m:Label text="Accion"/>
+						<template>
+							<m:HBox>
+								<m:Button
+									icon="sap-icon://save"
+									press="onSave"
+									visible="{
+										path: 'SistemListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://sys-cancel"
+									press="onCancel"
+									visible="{
+										path: 'SistemListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://edit"
+									press="onEdit"
+									visible="{
+										path: 'SistemListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://delete"
+									press="onDelete"
+									visible="{
+										path: 'SistemListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

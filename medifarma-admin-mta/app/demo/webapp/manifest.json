@@ -1,0 +1,268 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "administrador",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "resources": "resources.json",
+        "dataSources": {
+            "mainServiceV2": {
+                "uri": "srv_api/v2/ADMINISTRADOR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "NECESIDADESRMD_SRV": {
+                "uri": "/saperp/sap/opu/odata/sap/Z_PP_NECESIDADESRMD_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/Z_PP_NECESIDADESRMD_SRV/metadata.xml"
+                }
+            },
+            "mainServiceV4": {
+                "uri": "srv_api/ADMINISTRADOR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "sapErp": {
+                "uri": "/saperp/sap/opu/odata/sap/Z_PP_CENTRALPESADAS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "administracionSemantic",
+                    "action": "display",
+                    "title": "Gestion de Usuarios",
+                    "icon": "sap-icon://account",
+                    "subTitle": "Ingresar",
+                    "info": "Administracion"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "administrador.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.94.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "administrador.i18n.i18n"
+                }
+            },
+            "capService": {
+                "dataSource": "mainServiceV4",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true
+                }
+            },
+            "": {
+                "dataSource": "mainServiceV2",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true
+                }
+            },
+            "sapErp": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "sapErp",
+                "preload": true
+            },
+            "NECESIDADESRMD_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "NECESIDADESRMD_SRV",
+                "preload": true
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "administrador.view",
+                "controlId": "mainContents",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "MenuRol",
+                    "target": [
+                        "detailMenuRol",
+                        "masterMenuRol"
+                    ]
+                },
+                {
+                    "pattern": "MasterMenuRol",
+                    "name": "masterMenuRol",
+                    "target": [
+                        "detailMenuRol",
+                        "masterMenuRol"
+                    ]
+                },
+                {
+                    "pattern": "MenuApp",
+                    "name": "MenuApp",
+                    "target": [
+                        "detailMenuApp",
+                        "masterMenuApp"
+                    ]
+                },
+                {
+                    "pattern": "MasterMenuApp",
+                    "name": "masterMenuApp",
+                    "target": [
+                        "detailMenuApp",
+                        "masterMenuApp"
+                    ]
+                },
+                {
+                    "pattern": "MenuUsuario",
+                    "name": "MenuUsuario",
+                    "target": "MenuUsuario"
+                },
+                {
+                    "pattern": "MenuSistema",
+                    "name": "MenuSistema",
+                    "target": "MenuSistema"
+                },
+                {
+                    "pattern": "MenuMaestra",
+                    "name": "MenuMaestra",
+                    "target": "MenuMaestra"
+                }
+            ],
+            "targets": {
+                "MenuRol": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewName": "MenuRol.AppMenuRol",
+                    "viewId": "appMenuRol"
+                },
+                "masterMenuRol": {
+                    "viewId": "masterMenuRol",
+                    "viewName": "MenuRol.MasterMenuRol",
+                    "controlId": "appMenuRol",
+                    "controlAggregation": "masterPages",
+                    "parent": "MenuRol"
+                },
+                "detailMenuRol": {
+                    "viewId": "detailMenuRol",
+                    "viewName": "MenuRol.DetailMenuRol",
+                    "controlId": "appMenuRol",
+                    "controlAggregation": "detailPages",
+                    "parent": "MenuRol"
+                },
+                "MenuApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewName": "MenuApp.AppMenuApp",
+                    "viewId": "appMenuApp"
+                },
+                "masterMenuApp": {
+                    "viewId": "masterMenuApp",
+                    "viewName": "MenuApp.MasterMenuApp",
+                    "controlId": "appMenuApp",
+                    "controlAggregation": "masterPages",
+                    "parent": "MenuApp"
+                },
+                "detailMenuApp": {
+                    "viewId": "detailMenuApp",
+                    "viewName": "MenuApp.DetailMenuApp",
+                    "controlId": "appMenuApp",
+                    "controlAggregation": "detailPages",
+                    "parent": "MenuApp"
+                },
+                "MenuUsuario": {
+                    "viewType": "XML",
+                    "viewName": "Usuarios",
+                    "transition": "slide"
+                },
+                "MenuSistema": {
+                    "viewType": "XML",
+                    "viewName": "Sistemas",
+                    "transition": "slide"
+                },
+                "MenuMaestra": {
+                    "viewType": "XML",
+                    "viewName": "Maestras",
+                    "transition": "slide"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "mif-apps-admin-bs"
+      }
+}

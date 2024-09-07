@@ -1,0 +1,74 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/saperp",
+      "target": {
+        "type": "destination",
+        "name": "CP_S4H_HTTP_BASIC"
+      },
+      "description": "SAP ERP basic authentication"
+    },
+    {
+      "path": "srv_api",
+      "target": {
+        "type": "destination",
+        "name": "srv_api"
+      },
+      "description": "Dummy destination to be mapped to a real destination when running the application (hc_destmapping URL parameter)"
+    },
+    {
+      "path": "/scimApi",
+      "target": {
+        "type": "destination",
+        "name": "MIF_IAS"
+      },
+      "description": "IAS"
+    },
+    {
+      "path": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC",
+      "target": {
+        "type": "destination",
+        "name": "TEST_ES5_ODATA_SRV"
+      },
+      "description": "SAP Gateway Demo System"
+    },
+    {
+      "path": "/webapp/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/webapp/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

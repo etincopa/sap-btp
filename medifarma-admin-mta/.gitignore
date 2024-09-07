@@ -1,0 +1,61 @@
+# CAP mif_admin
+_out
+*.db
+connection.properties
+default-*.json
+gen/
+node_modules/
+target/
+
+# Web IDE, App Studio
+.che/
+.gen/
+
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+
+# Other
+.DS_Store
+*.orig
+*.log
+
+*.iml
+*.flattened-pom.xml
+
+# IDEs
+.vscode
+.idea
+
+# CAP
+_out
+.cds_gen.log
+*.db
+connection.properties
+#default-*.json
+gen/
+node_modules/
+package-lock.json
+target/
+db/src/gen/
+srv/gen/
+# Web IDE, App Studio
+.che/
+.gen/
+dist/
+app/resources/
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+# Other
+.DS_Store
+*.orig
+
+# Config files
+#local.json
+
+# auto generated wildcard
+medifarma-admin-mta/.env
+.vscode/settings.json

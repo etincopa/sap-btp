@@ -1,0 +1,106 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.Login"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+	class="myBackgroundStyle"
+>
+	<Page
+		id="muPage"
+		showHeader="true"
+		title="{i18n>tltLogin}"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="false"
+		navButtonPress="onNavBack"
+	>
+		<!--customHeader>
+			<Toolbar>
+				<content>
+					<ToolbarSpacer/>
+				</content>
+			</Toolbar>
+		</customHeader-->
+		<content>
+			<HBox
+				class="sapUiMediumMarginTop"
+				justifyContent="Center"
+			>
+				<VBox width="275px">
+					<HBox visible="{LoginModel>/oAction/inputUser}">
+						<c:Icon
+							src="sap-icon://customer"
+							class="login-icon"
+							width="50px"
+							color="#031E48"
+						/>
+						<Input
+							id="txtUsuario"
+							value=""
+							placeholder="Ingrese su usuario"
+							class=""
+							width="220px"
+						/>
+					</HBox>
+					<HBox visible="{LoginModel>/oAction/inputPass}">
+						<c:Icon
+							src="sap-icon://key"
+							class="login-icon"
+							width="50px"
+							color="#031E48"
+						/>
+						<Input
+							id="txtPassword"
+							value=""
+							type="Password"
+							placeholder="Ingrese su contraseña"
+							class=""
+							width="220px"
+						/>
+					</HBox>
+					<HBox visible="{LoginModel>/oAction/inputPin}">
+						<c:Icon
+							src="sap-icon://two-keys"
+							class="login-icon"
+							width="50px"
+							color="#031E48"
+						/>
+						<Input
+							id="txtPin"
+							type="Number"
+							value="12345678"
+							placeholder="Ingrese un PIN"
+							class=""
+							width="220px"
+						/>
+					</HBox>
+					<Button
+						text="{i18n>Acceder}"
+						width="100%"
+						press="onIngresarPress"
+					/>
+					<Button
+						text="{i18n>Re-iniciar}"
+						press="onResetPress"
+						type="Reject"
+						width="100%"
+					/>
+					<Button
+						text="{i18n>Salir}"
+						press="onSalirPress"
+						type="Reject"
+						width="100%"
+					/>
+				</VBox>
+			</HBox>
+		</content>
+		<!--footer>
+			<OverflowToolbar>
+				<Label text="{i18n>version}"/>
+				<Label text="1.0.0"/>
+			</OverflowToolbar>
+		</footer-->
+	</Page>
+</mvc:View>

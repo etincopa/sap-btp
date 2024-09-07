@@ -1,0 +1,115 @@
+{
+    "name": "mif_admin",
+    "version": "1.0.0",
+    "description": "MIF ADMIN CAP",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/audit-logging": "^5.6.3",
+        "@sap/cds": "^5.9.8",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.17",
+        "@sap/hana-client": "^2.15.19",
+        "@sap/xsenv": "^3.1.1",
+        "@sap/xssec": "^3.2.15",
+        "browser-detect": "^0.2.28",
+        "btoa": "^1.2.1",
+        "debug": "^4.3",
+        "express": "^4.18.2",
+        "express-device": "^0.4.2",
+        "handlebars": "^4.7.6",
+        "hdb": "^0.18.3",
+        "nodemailer": "^6.7.2",
+        "passport": "^0.4.1",
+        "request-promise": "^4.2.6",
+        "sap-cf-axios": "^0.2.37",
+        "sap-cf-destconn": "0.0.30",
+        "sap-cf-mailer": "0.0.5"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.102.2",
+        "sqlite3": "^5.0.11"
+    },
+    "optionalDependencies": {
+        "@sap/ui5-builder-webide-extension": "^1.1.9"
+    },
+    "ui5": {
+        "dependencies": [
+            "@sap/ui5-builder-webide-extension",
+            "ui5-middleware-livereload",
+            "ui5-middleware-cfdestination",
+            "ui5-task-zipper"
+        ]
+    },
+    "scripts": {
+        "start": "cds run",
+        "watch": "cds watch",
+        "undeploy": "cf undeploy mif_admin --delete-services --delete-service-keys",
+        "start2": "ui5 serve --config=app/demo/ui5.yaml --open /",
+        "serve:demo": "ui5 serve --config=app/demo/ui5.yaml",
+        "build:demo": "ui5 build --config=app/demo/ui5.yaml --clean-dest --dest app/demo/dist --include-task=generateManifestBundle",
+        "watch:demo": "cds watch --open demo/webapp/index.html#fe-lrop-v4"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "db": {
+                "model": [
+                    "db",
+                    "srv"
+                ],
+                "kind": "hana",
+                "pool": {
+                    "max": 1400,
+                    "min": 100
+                }
+            },
+            "[production]": {
+                "uaa": {
+                    "kind": "xsuaa"
+                }
+            },
+            "auth": {
+                "[production]": {
+                    "strategy": "JWT"
+                },
+                "[development]": {
+                    "strategy": "mock"
+                }
+            }
+        },
+        "odata": {
+            "version": "v4"
+        }
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "sapux": [
+        "app/demo"
+    ]
+}

@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<SelectDialog
+		noDataText="{i18n>noDataText}"
+		confirmButtonText="Seleccionar"
+		title="Usuarios"
+		search="onDialogUserSearch"
+		confirm="onDialogUserConfirm"
+		cancel="onDialogClose"
+		items="{
+			path: 'UserListModel>/',
+			sorter: [{
+				path: 'usuario',
+				descending: false
+			}]
+		}"
+	>
+		<StandardListItem
+			title="{UserListModel>usuario} ({UserListModel>nombre})"
+			description="{UserListModel>correo}"
+			iconInset="false"
+			highlight="{= ${UserListModel>oSistema/codigo} === 'CP' ? 'Success' : 'Information'}"
+			info="{UserListModel>oSistema/nombre}"
+			infoState="{= ${UserListModel>oSistema/codigo} === 'CP' ? 'Success' : 'Information'}"
+			infoStateInverted="true"
+			type="Active"
+		/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,95 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.Inicio"
+>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Configuración"
+		subheader=""
+		press="onNav('Configuracion')"
+	>
+		<TileContent>
+			<ImageContent src="sap-icon://overview-chart"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>hedTraslados}"
+		subheader=""
+		press="onNav('EntregaPrd')"
+	>
+		<TileContent
+			footer="ALM  -  PRO"
+		>
+			<ImageContent src="sap-icon://shipping-status"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Verificación de Etiquetas IFA"
+		subheader="" visible="false"
+		press="onNav('VerificaEtiqIFA')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://activity-2"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>ifa.tltpesajeProdIFA}"
+		subheader=""
+		press="onNav('PesajeproduccionIFA')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://measure"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>ifa.tltbultoSaldo}"
+		subheader=""
+		press="onNav('BultoSaldoIFA')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://compare"/>
+		</TileContent>
+	</GenericTile>
+	<!--
+		<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Impresión de Bulto Saldo"
+		subheader=""
+		press="onNav('ImpreBultoSaldo')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://activity-2"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Reporte Bulto Pend. Confirmar"
+		subheader=""
+		press="onNav('ReportBultoPendConfirm')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://clinical-tast-tracker"/>
+		</TileContent>
+	</GenericTile>
+	-->
+</mvc:View>

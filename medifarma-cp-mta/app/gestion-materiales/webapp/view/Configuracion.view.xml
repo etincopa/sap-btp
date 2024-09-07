@@ -1,0 +1,85 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.Configuracion"
+	xmlns="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:f="sap.ui.layout.form"
+>
+	<m:Page
+		showHeader="true"
+		title="{i18n>tltConfiguracion}"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+	>
+		<m:content>
+			<ObjectPageLayout>
+				<sections>
+					<ObjectPageSection title="General">
+						<subSections>
+							<ObjectPageSubSection title="General">
+								<blocks>
+									<f:SimpleForm
+										columnsL="2"
+										columnsM="2"
+										editable="true"
+										layout="ResponsiveGridLayout"
+									>
+										<f:content>
+											<m:Label text=""/>
+											<m:ObjectStatus
+												title="Requerido"
+												text="Por favor, complete todos los campos del formulario de configuración."
+												state="Information"
+												icon="sap-icon://information"
+											/>
+											<m:Label text="Planta"/>
+											<m:ComboBox
+												placeholder="{i18n>dphlblCentro}"
+												selectedKey="{ParamsSelectModel>/oGeneral/centro}"
+												items="{
+													path: 'CentroModel>/'
+												}"
+												change="onChangeCentro"
+											>
+												<core:Item
+													key="{CentroModel>iMaestraId}"
+													text="{CentroModel>contenido}"
+												/>
+											</m:ComboBox>
+											<m:Label text="Impresora"/>
+											<m:ComboBox
+												placeholder="Selecione Impresora"
+												selectedKey="{ParamsSelectModel>/oGeneral/impresora}"
+												items="{
+													path: 'ImpresoraModel>/'
+												}"
+											>
+												<core:Item
+													key="{ImpresoraModel>impresoraId}"
+													text="{ImpresoraModel>nombre} - {ImpresoraModel>direccion}"
+												/>
+											</m:ComboBox>
+										</f:content>
+									</f:SimpleForm>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+		</m:content>
+		<m:footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button
+					press="onSaveConfig"
+					icon="sap-icon://add"
+					type="Accept"
+					text="Guardar"
+				/>
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

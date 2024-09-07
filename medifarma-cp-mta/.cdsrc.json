@@ -1,0 +1,11 @@
+{
+      "requires": {
+        "OpenWeatherApi": {
+          "kind": "rest",
+          "impl": "srv/external/validate.js",
+          "credentials": {
+            "url": "https://ao1k9k5jk.accounts.ondemand.com/service/users/password"
+          }
+        }
+      }
+}

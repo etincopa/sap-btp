@@ -1,0 +1,106 @@
+{
+    "name": "medifarma-jobs-mta",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^5.9.4",
+        "express": "^4.17.1",
+        "hdb": "^0.18.3",
+        "@sap/cds-dk": "^4.9.3",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.8.16",
+        "@sap/hana-client": "^2.12.22",
+        "@sap/xsenv": "^3.2.2",
+        "@sap/xssec": "^3.2.13",
+        "axios": "^0.27.2",
+        "body-parser": "^1.20.0",
+        "btoa": "^1.2.1",
+        "cdse": "^1.1.12",
+        "cors": "^2.8.5",
+        "cron": "^1.8.2",
+        "passport": "^0.5.2",
+        "sap-cf-axios": "^0.3.5",
+        "sap-cf-destconn": "0.0.33",
+        "url": "^0.11.0",
+        "uuid": "^8.3.2",
+        "atob": "^2.1.2",
+        "hana-cli": "^3.202204.1",
+        "morgan": "^1.10.0",
+        "morgan-body": "^2.6.6",
+        "swagger-ui-express": "^4.3.0"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.100.1",
+        "sqlite3": "^5.0.6"
+    },
+    "scripts": {
+        "start": "cds run",
+        "undeploy": "cf undeploy cp-mta --delete-services --delete-service-keys"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "Z_PP_CENTRALPESADAS_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/Z_PP_CENTRALPESADAS_SRV",
+                "credentials": {
+                    "destination": "S4H_HTTP_BASIC_CP",
+                    "path": "/sap/opu/odata/sap/Z_PP_CENTRALPESADAS_SRV",
+                    "requestTimeout": 30000
+                },
+                "pool": {
+                    "min": 1,
+                    "max": 10
+                }
+            },
+            "OpenWeatherApi": {
+                "kind": "rest",
+                "impl": "srv/external/validate.js",
+                "credentials": {
+                    "url": "https://ao1k9k5jk.accounts.ondemand.com/service/users/password"
+                }
+            }
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "uaa": {
+            "kind": "xsuaa",
+            "credentials": {}
+        },
+        "auth": {
+            "passport": {
+                "strategy": "JWT"
+            }
+        }
+    }
+}

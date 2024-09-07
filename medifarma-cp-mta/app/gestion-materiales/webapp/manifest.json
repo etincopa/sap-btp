@@ -1,0 +1,271 @@
+{
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "com.medifarma.cp.pesajeimpresionbultosaldo",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.28"
+    },
+    "resources": "resources.json",
+    "dataSources": {
+      "mainService": {
+        "uri": "/srv_api/v2/browse/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml",
+          "metadataUrlParams":{
+            "sap-language":"ES"
+          }
+        }
+      },
+      "sapErp": {
+        "uri": "/saperp/sap/opu/odata/sap/Z_PP_CENTRALPESADAS_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/Z_PP_CENTRALPESADAS_SRV/metadata.xml",
+          "metadataUrlParams":{
+            "sap-language":"ES"
+          }
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "pesajeimpresionbultosaldo",
+          "action": "display",
+          "title": "pesaje impresion bulto saldo",
+          "icon": "sap-icon://sales-document",
+          "subTitle": "Central Pesada",
+          "info": "App"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "config": {
+      "destinations": true
+    },
+    "rootView": {
+      "viewName": "com.medifarma.cp.pesajeimpresionbultosaldo.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.94.1",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.medifarma.cp.pesajeimpresionbultosaldo.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "groupId": "$direct",
+          "synchronizationMode": "None",
+          "autoExpandSelect": true
+        }
+      },
+      "sapErp": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Request",
+          "useBatch": false
+        },
+        "dataSource": "sapErp",
+        "preload": true
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ],
+      "js": [
+        {
+          "uri": "lib/quagga.min.js"
+        },
+        {
+          "uri": "lib/qr-scanner.umd.min.js"
+        },
+        {
+          "uri": "lib/zxingjs0153.min.js"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "com.medifarma.cp.pesajeimpresionbultosaldo.view",
+        "controlId": "mainContents",
+        "controlAggregation": "pages",
+        "bypassed": {
+          "target": ["notFound"]
+        },
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "Inicio",
+          "target": "Inicio"
+        },
+        {
+          "pattern": "Configuracion",
+          "name": "Configuracion",
+          "target": "Configuracion"
+        },
+        {
+          "pattern": "VerificaEtiqIFA",
+          "name": "VerificaEtiqIFA",
+          "target": "VerificaEtiqIFA"
+        },
+        {
+          "pattern": "ImpreBultoSaldo",
+          "name": "ImpreBultoSaldo",
+          "target": "ImpreBultoSaldo"
+        },
+        {
+          "pattern": "EntregaPrd",
+          "name": "EntregaPrd",
+          "target": "EntregaPrd"
+        },
+        {
+          "pattern": "ReportBultoPendConfirm",
+          "name": "ReportBultoPendConfirm",
+          "target": "ReportBultoPendConfirm"
+        },
+        {
+          "pattern": "ReportBultoPendConfirm",
+          "name": "ReportBultoPendConfirm",
+          "target": "ReportBultoPendConfirm"
+        },
+        {
+          "pattern": "ReportBultoPendConfirm",
+          "name": "ReportBultoPendConfirm",
+          "target": "ReportBultoPendConfirm"
+        },
+        {
+          "pattern": "PesajeproduccionIFA",
+          "name": "PesajeproduccionIFA",
+          "target": "PesajeproduccionIFA"
+        },
+        {
+          "pattern": "BultoSaldoIFA",
+          "name": "BultoSaldoIFA",
+          "target": "BultoSaldoIFA"
+        }
+      ],
+      "targets": {
+        "Login": {
+          "viewType": "XML",
+          "viewName": "Login",
+          "transition": "slide"
+        },
+        "Inicio": {
+          "viewType": "XML",
+          "viewName": "Inicio",
+          "transition": "slide"
+        },
+        "Configuracion": {
+          "viewType": "XML",
+          "viewName": "Configuracion",
+          "transition": "slide"
+        },
+        "ImpreBultoSaldo": {
+          "viewType": "XML",
+          "viewName": "ImpreBultoSaldo",
+          "transition": "slide"
+        },
+        "VerificaEtiqIFA": {
+          "viewType": "XML",
+          "viewName": "VerificaEtiqIFA",
+          "transition": "slide"
+        },
+        "EntregaPrd": {
+          "viewType": "XML",
+          "viewName": "EntregaPrd",
+          "transition": "slide"
+        },
+        "ReportBultoPendConfirm": {
+          "viewType": "XML",
+          "viewName": "ReportBultoPendConfirm",
+          "transition": "slide"
+        },
+        "objectNotFound": {
+          "viewName": "ObjectNotFound",
+          "viewId": "objectNotFound"
+        },
+        "notFound": {
+          "viewName": "NotFound",
+          "viewId": "notFound"
+        },
+        "PesajeproduccionIFA": {
+          "viewType": "XML",
+          "viewName": "PesajeproduccionIFA",
+          "transition": "slide"
+        },
+        "BultoSaldoIFA": {
+          "viewType": "XML",
+          "viewName": "BultoSaldoIFA",
+          "transition": "slide"
+        }
+      }
+    }
+  },
+  "sap.mobile": {
+    "definingRequests": {},
+    "stores": []
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "centralpesadas_apps_bs"
+  },
+  "sap.platform.cf": {
+      "ui5VersionNumber": "1.84.20"
+  }
+}

@@ -1,0 +1,254 @@
+_schema-version: "3.1"
+ID: cp-mta
+description: A simple CAP project.
+version: 1.0.2
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
+    - npx cds build
+modules:
+- name: cp-srv
+  type: nodejs
+  path: gen/srv
+  properties:
+    EXIT: 1
+  requires:
+  - name: cp-hdi
+  - name: centralPesadas_uaa
+  - name: centralPesadas_connectivity
+  - name: centralPesadas_logging
+  - name: centralPesadas_destination
+  provides:
+  - name: srv_api
+    properties:
+      url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 512M
+    memory: 512M
+- name: cp-db
+  type: hdb
+  path: gen/db
+  properties:
+    TARGET_CONTAINER: cp-hdi
+  requires:
+  - name: cp-hdi
+  - name: centralPesadas_uaa
+  - name: mif_admin-hdi
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.70/nodejs-buildpack-cflinuxfs3-v1.7.70.zip
+- name: centralPesadas_dest_content
+  type: com.sap.application.content
+  requires:
+  - name: centralPesadas_destination
+    parameters:
+      content-target: true
+  - name: centralPesadas_html5_repo_host
+    parameters:
+      service-key:
+        name: centralPesadas_html5_repo_host_key
+  - name: centralPesadas_uaa
+    parameters:
+      service-key:
+        name: centralPesadas_uaa_key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: cp_repo_host
+          ServiceInstanceName: centralPesadas_html5_repo_host
+          ServiceKeyName: centralPesadas_html5_repo_host_key
+          sap.cloud.service: centralpesadas_apps_bs
+        - Name: cp_uaa
+          Authentication: OAuth2UserTokenExchange
+          ServiceInstanceName: centralPesadas_uaa
+          ServiceKeyName: centralPesadas_uaa_key
+          sap.cloud.service: centralpesadas_apps_bs
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: centralPesadas_project_content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: centralPesadas_html5_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: app/resources
+    requires:
+    - artifacts:
+      - commedifarmacpmanejopedidos.zip
+      name: commedifarmacpmanejopedidos
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacppesajeimpresionbultosaldo.zip
+      name: commedifarmacppesajeimpresionbultosaldo
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpbalanza.zip
+      name: commedifarmacpbalanza
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpimpresora.zip
+      name: commedifarmacpimpresora
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpsalapesaje.zip
+      name: commedifarmacpsalapesaje
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpsalapesajetaramanual.zip
+      name: commedifarmacpsalapesajetaramanual
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpsalapesajepesomanual.zip
+      name: commedifarmacpsalapesajepesomanual
+      target-path: app/resources/
+    - artifacts:
+      - commedifarmacpsalapesajelecturaetiqueta.zip
+      name: commedifarmacpsalapesajelecturaetiqueta
+      target-path: app/resources/
+- name: commedifarmacpmanejopedidos
+  type: html5
+  path: app/manejo-pedidos
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacppesajeimpresionbultosaldo
+  type: html5
+  path: app/gestion-materiales
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpbalanza
+  type: html5
+  path: app/balanza
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpimpresora
+  type: html5
+  path: app/impresora
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpsalapesaje
+  type: html5
+  path: app/sala-pesaje
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpsalapesajetaramanual
+  type: html5
+  path: app/sala-pesaje-tara-manual
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpsalapesajepesomanual
+  type: html5
+  path: app/sala-pesaje-peso-manual
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: commedifarmacpsalapesajelecturaetiqueta
+  type: html5
+  path: app/sala-pesaje-lectura-etiqueta
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cp-hdi
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      database_id: 4b2d851d-1a61-445c-b40c-42f2ff5eba56
+#      schema: "DEV_MIF_CP"
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: mif_admin-hdi
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: mif_admin-hdi
+- name: centralPesadas_html5_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: centralPesadas_html5_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: centralPesadas_uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: centralPesadas_logging
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: application-logs
+    service-plan: lite
+- name: centralPesadas_destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+- name: centralPesadas_portal
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: portal
+    service-plan: standard
+- name: centralPesadas_theming
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard
+- name: centralPesadas_connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite

@@ -1,0 +1,95 @@
+{
+  "role": {
+    "name": "MIF_ADMIN_HDI_EXTERNAL_ACCESS_G#",
+    "object_privileges": [
+      {
+        "name": "MIF_ADMIN_HDI_MAESTRA",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT",
+          "INSERT",
+          "UPDATE"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_MAESTRA_TIPO",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_SISTEMA",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_APLICACION",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_ROL_APP_WF",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_USUARIO_ROL",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_USUARIO_SISTEMA",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_USUARIO",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_ROL",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_ROL_APP_ACCIONES",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_VIEW_USER_ROL_APP_ACCION",
+        "type": "VIEW",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "MIF_ADMIN_HDI_AUDITORIA",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT",
+          "INSERT",
+          "UPDATE"
+        ]
+      }
+    ]
+  }
+}

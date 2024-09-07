@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="dialogoDetalleBulto" title="Detalle de Bultos" state="Success" contentHeight="auto" contentWidth="auto">
+		 <Table width="auto" id="tbHistorial" noDataText="No data"  items="{path: 'FormVerificationModel>/oBultoEscaneadoLista'}" showSeparators="All" growing="true" 
+				growingThreshold="20" growingScrollToLoad="true"  alternateRowColors="false">
+                <infoToolbar>
+                    <Toolbar width="auto" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar>
+                    <OverflowToolbar width="auto" height="auto" design="Transparent" visible="false" enabled="true">
+                        <content>
+                            <Title text="" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                            <ToolbarSpacer width=""/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                     <Column width="2rem" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="HU" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                   
+                    <Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Cantidad" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="5rem" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Unidad" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="4rem" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column visible="false" width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Temporal" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                   </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                         <Text text="{FormVerificationModel>NroItem}" wrapping="true" maxLines="4"  tooltip=""/>
+                        	<Text text="{FormVerificationModel>IdBulto}" wrapping="true" maxLines="4"  tooltip=""/>
+                            <ObjectNumber number="{path: 'FormVerificationModel>CantidadHU',formatter: '.peso'}" unit="" emphasized="true" state="None"/>
+                            <Text text="{FormVerificationModel>UnidadM}" wrapping="true" maxLines="4"  tooltip=""/>
+                            <Button icon="sap-icon://delete" press="_eliminarBultoLista"></Button>
+                            <Text text="{FormVerificationModel>IdTemporal}" wrapping="true" maxLines="4"  tooltip=""/>
+                            
+                        	<!-- <ObjectStatus title="" text="{modelHistorialCotizacion>ID_QUOTATION_STATE} - {modelHistorialCotizacion>QUOTATION_STATE_NAME}" state="{modelHistorialCotizacion>QUOTATION_STATE_COLOR}" visible="true"/> -->
+                        	<!-- <ObjectIdentifier title="{modelHistorialCotizacion>COMPANY_NAME}"/> -->
+                        	<!-- <Text text="{modelHistorialCotizacion>DESCRIPTION}" wrapping="true" maxLines="6"  tooltip="{modelHistorialCotizacion>DESCRIPTION}"/> -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <beginButton/>
+        <buttons>
+            <Button text="Cerrar" type="Reject" icon="sap-icon://sys-cancel" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_cerrarDialogoBultoLista"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

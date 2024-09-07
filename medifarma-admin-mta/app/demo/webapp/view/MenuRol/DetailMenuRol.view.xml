@@ -1,0 +1,135 @@
+<mvc:View
+	xmlns="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:t="sap.ui.table"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="administrador.controller.MasterMenuRol"
+>
+	<m:Page
+		title="{ParamsSelectModel>/sNombre}"
+		id="detailMenuRol"
+		backgroundDesign="Solid"
+		showHeader="true"
+		showNavButton="true"
+		navButtonPress="onPressDetailBack"
+	>
+		<m:headerContent>
+			<m:Button
+				text="{i18n>save}"
+				press=".onSavePressed"
+				type="Emphasized"
+			/>
+		</m:headerContent>
+		<ObjectPageLayout id="objectPageLayout">
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection
+							title="Definicion"
+							id="definicionPageSub"
+						>
+							<blocks>
+								<f:SimpleForm
+									columnsL="2"
+									columnsM="2"
+									editable="true"
+									layout="ResponsiveGridLayout"
+								>
+									<f:content>
+										<m:Label text="Sistema"/>
+										<m:Input
+											editable="false"
+											value="{ParamsSelectModel>/Sistema}"></m:Input>
+										<m:Label text="Rol"/>
+										<m:Input
+											editable="false"
+											value="{ParamsSelectModel>/Rol}"></m:Input>
+										<!--<m:Label text="Activo"/>
+                                        <m:CheckBox selected="{ParamsSelectModel>/activo}" select="onChangeState"/> -->
+									</f:content>
+								</f:SimpleForm>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection
+					title="Usuarios"
+					id="usuariosSection"
+				>
+					<subSections>
+						<ObjectPageSubSection id="userSectionSS1">
+							<blocks>
+								<t:Table
+									id="idTableUserRolModel"
+									rows="{
+										path: 'UserRolModel>/',
+										sorter: [{
+											path: 'oUsuario/usuario',
+											descending: false
+										}]
+									}"
+									selectionMode="Single"
+								>
+									<t:extension>
+										<m:OverflowToolbar>
+											<m:ToolbarSpacer/>
+											<m:Button
+												icon="sap-icon://add"
+												tooltip="Adicionar Usuario"
+												press="onOpenDialogUsuario"
+											/>
+											<m:Button
+												icon="sap-icon://delete"
+												tooltip="Remover Usuario"
+												press="onDelUsuario"
+											/>
+										</m:OverflowToolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="9rem">
+											<m:Label text="{i18n>tcUsuario}"/>
+											<t:template>
+												<m:Text text="{UserRolModel>oUsuario/usuario}"/>
+											</t:template>
+										</t:Column>
+										<t:Column>
+											<m:Label text="{i18n>tcNombre}"/>
+											<t:template>
+												<m:Text text="{UserRolModel>oUsuario/nombre} {UserRolModel>oUsuario/apellidoPaterno} {UserRolModel>oUsuario/apellidoMaterno}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="20rem">
+											<m:Label text="{i18n>tcMail}"/>
+											<t:template>
+												<m:Text text="{UserRolModel>oUsuario/correo}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="4rem">
+											<m:Label text="{i18n>tcEstado}"/>
+											<t:template>
+												<m:ObjectStatus
+													icon="{
+														path: 'UserRolModel>activo',
+														formatter: '.formatter.stateIconFormatter'
+													}"
+													state="{
+														path: 'UserRolModel>activo',
+														formatter: '.formatter.stateFormatter'
+													}"
+													text=""
+												/>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

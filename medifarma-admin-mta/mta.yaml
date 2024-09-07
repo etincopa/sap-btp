@@ -1,0 +1,191 @@
+_schema-version: "3.2"
+ID: mif_admin
+description: MIF ADMIN
+version: 1.0.1
+modules:
+- name: mif_admin-approuter
+  type: approuter.nodejs
+  path: approuter
+  properties:
+    destinations: '[{"name": "sdibackend", "url": "https://api-sdm-di.cfapps.eu10.hana.ondemand.com",
+      "forwardAuthToken": true}]'
+  requires:
+  - name: mif_admin-run
+  - name: srv_api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv_api
+      url: ~{url}
+  - name: mif_admin-uaa
+  - name: mif_admin-des
+  - name: mif_admin-con
+  - name: portal_resources_medifarma-admin-mta
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.25/nodejs-buildpack-cflinuxfs3-v1.7.25.zip
+    disk-quota: 256M
+    memory: 256M
+- name: mif_admin-db
+  type: hdb
+  path: gen/db
+  requires:
+  - name: mif_admin-uaa
+  - name: mif_admin-hdi
+  parameters:
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.7.25/nodejs-buildpack-cflinuxfs3-v1.7.25.zip
+    app-name: mif_admin-db
+    disk-quota: 512M
+    memory: 256M
+- name: mif_admin-srv
+  type: nodejs
+  path: gen/srv
+  properties:
+    EXIT: 1
+  requires:
+  - name: mif_admin-uaa
+  - name: mif_admin-des
+  - name: mif_admin-con
+  - name: mif_admin-hdi
+  provides:
+  - name: srv_api
+    properties:
+      url: ${default-url}
+  parameters:
+    disk-quota: 512M
+    memory: 280M
+- name: mif_admin-dest_content
+  type: com.sap.application.content
+  requires:
+  - name: mif_admin-des
+    parameters:
+      content-target: true
+  - name: mif_admin-host
+    parameters:
+      service-key:
+        name: mif_admin-host_key
+  - name: mif_admin-uaa
+    parameters:
+      service-key:
+        name: mif_admin-uaa_key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: admin_repo_host
+          ServiceInstanceName: mif_admin-host
+          ServiceKeyName: mif_admin-host_key
+          sap.cloud.service: mif-apps-admin-bs
+        - Authentication: OAuth2UserTokenExchange
+          Name: admin_uaa
+          ServiceInstanceName: mif_admin-uaa
+          ServiceKeyName: mif_admin-uaa_key
+          sap.cloud.service: mif-apps-admin-bs
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: mif_admin-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: mif_admin-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: app/resources
+    requires:
+    - artifacts:
+      - mifadmindemo.zip
+      name: mifadmindemo
+      target-path: app/resources/
+- name: mifadmindemo
+  type: html5
+  path: app/demo
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: flp
+  type: com.sap.application.content
+  path: flp
+  requires:
+  - name: portal_resources_medifarma-admin-mta
+    parameters:
+      content-target: true
+      service-key:
+        config:
+          content-endpoint: developer
+        name: content-deploy-key
+  - name: mif_admin-uaa
+  - name: mif_admin-host
+  - name: mif_admin-con
+  - name: mif_admin-app-content
+resources:
+- name: mif_admin-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: mif_admin-hdi
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      database_id: 4b2d851d-1a61-445c-b40c-42f2ff5eba56
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: mif_admin-run
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: mif_admin-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: mif_admin-con
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: centralPesadas_theming
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard    
+- name: mif_admin-des
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-plan: lite
+- name: portal_resources_medifarma-admin-mta
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: portal
+    service-plan: standard
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production

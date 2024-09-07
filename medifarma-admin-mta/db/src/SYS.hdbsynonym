@@ -1,0 +1,8 @@
+{
+    "MIF_ADMIN_HDI_DUMMY": {
+        "target": {
+            "object": "DUMMY",
+            "schema": "SYS"
+        }
+    }
+}

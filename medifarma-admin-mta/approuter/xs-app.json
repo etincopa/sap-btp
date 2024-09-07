@@ -1,0 +1,27 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "^/srv_api/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "srv_api",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/saperp/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "ADM_S4H_HTTP_BASIC",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/iasscim/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "IAS_SCIM_API",
+            "csrfProtection": false
+        }
+    ],
+    "welcomeFile": "/cp.portal"
+}

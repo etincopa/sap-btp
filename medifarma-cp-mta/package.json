@@ -1,0 +1,116 @@
+{
+    "name": "cp-mta",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds" : "^5.9.8", 
+        "@sap/cds-odata-v2-adapter-proxy" : "^1.9.17", 
+        "@sap/hana-client" : "^2.15.19", 
+        "@sap/xsenv" : "^3.4.0", 
+        "@sap/xssec" : "^3.2.15", 
+        "atob" : "^2.1.2", 
+        "axios" : "^0.27.2", 
+        "body-parser" : "^1.20.1", 
+        "btoa" : "^1.2.1", 
+        "cors" : "^2.8.5", 
+        "cron" : "^1.8.2", 
+        "express" : "^4.18.2", 
+        "morgan" : "^1.10.0", 
+        "morgan-body" : "^2.6.8", 
+        "passport" : "^0.5.3", 
+        "sap-cf-axios" : "^0.3.6", 
+        "sap-cf-destconn" : "^0.0.33", 
+        "swagger-ui-express" : "^4.6.0", 
+        "url" : "^0.11.0", 
+        "uuid" : "^8.3.2",
+        "request": "^2.88.2",
+        "browser-detect": "^0.2.28"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.102.2",
+        "sqlite3": "^5.0.11"
+    },
+    "scripts": {
+        "start": "cds run",
+        "watch-manejo-pedidos": "cds watch --open manejo-pedidos/webapp/index.html#fe-lrop-v4",
+        "undeploy": "cf undeploy cp-mta --delete-services --delete-service-keys"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "Z_PP_CENTRALPESADAS_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/Z_PP_CENTRALPESADAS_SRV",
+                "credentials": {
+                    "destination": "CP_S4H_HTTP_BASIC",
+                    "path": "/sap/opu/odata/sap/Z_PP_CENTRALPESADAS_SRV",
+                    "requestTimeout": 30000
+
+                },
+                "pool": {
+                    "min": 1,
+                    "max": 10
+                }
+            },
+            "OpenWeatherApi": {
+                "kind": "rest",
+                "impl": "srv/external/validate.js",
+                "credentials": {
+                    "url": "https://ao1k9k5jk.accounts.ondemand.com/service/users/password"
+                }
+            },   
+            "[production]":{                    
+                    "uaa": {
+                        "kind":"xsuaa"
+                    }                    
+            },         
+            "auth": {
+                "[production]":{                    
+                    "strategy": "JWT"                    
+                },
+                "[development]":{                    
+                    "strategy": "mock"                    
+                }
+            }
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        }
+    },
+    "sapux": [
+        "app/sala-pesaje",
+        "app/balanza",
+        "app/manejo-pedidos",
+        "app/gestion-materiales"
+    ]
+}

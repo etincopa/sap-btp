@@ -1,0 +1,10 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="administrador.controller.AppMenuApp"
+>
+	<SplitApp
+		id="appMenuApp"
+		mode="HideMode"
+	/>
+</mvc:View>

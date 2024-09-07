@@ -1,0 +1,124 @@
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="administrador.controller.MasterMenuApp"
+>
+	<Page
+		id="masterMenuApp"
+		showHeader="{oGeneralForm>/PageHeadVisible}"
+		backgroundDesign="List"
+		class="sapUiTinyMarginBeginEnd"
+	>
+		<customHeader>
+			<Bar>
+				<contentRight>
+					<Button
+						id="save"
+						text="Save"
+						type="Emphasized"
+						visible="true"
+						press="onSaveForm"
+					/>
+					<Button
+						id="cancel"
+						text="Cancel"
+						visible="true"
+						press="onConcelForm"
+					/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Title
+				text="{i18n>ttlSistema}"
+				class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"
+			/>
+			<ComboBox
+				id="idCboSistema"
+				items="{
+					path: 'SistemaList>/',
+					sorter: [{
+						path: 'nombre',
+						descending: true
+					}]
+				}"
+				change="onCBoxChange('idCboSistema','idLstResult')"
+				width="90%"
+				class="sapUiTinyMarginBeginEnd"
+			>
+				<core:ListItem
+					key="{SistemaList>sistemaId}"
+					text="{SistemaList>nombre}"
+				/>
+			</ComboBox>
+			<VBox
+				id="vbIdListRol"
+				class="sapUiSmallMargin"
+				visible="{oGeneralForm>/ListVisible}"
+			>
+				<List
+					id="idLstResult"
+					mode="SingleSelectMaster"
+					noDataText="{i18n>noDataText}"
+					itemPress=".onListItemPress"
+				>
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="{i18n>tltAplicaciones}"/>
+							<ToolbarSpacer/>
+							<Button
+								icon="sap-icon://add"
+								tooltip="Nuevo Registro"
+								press="onShowFormRegister"
+							/>
+						</OverflowToolbar>
+					</headerToolbar>
+				</List>
+			</VBox>
+		</content>
+		<content>
+			<VBox
+				id="vbIdNewRolForm"
+				class="sapUiSmallMargin"
+				visible="{oGeneralForm>/FormVisible}"
+			>
+				<f:SimpleForm
+					id="SimpleFormChange354"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="Datos opcionales"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false"
+				>
+					<f:content>
+						<Label text="Codigo"/>
+						<Input
+							value="{oParameters>/codigo}"
+							maxLength="20"
+						/>
+						<Label text="Nombre"/>
+						<Input value="{oParameters>/nombre}"/>
+						<Label text="Descripcion"/>
+						<Input value="{oParameters>/descripcion}"/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

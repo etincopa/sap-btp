@@ -1,0 +1,735 @@
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	controllerName="administrador.controller.Usuarios"
+>
+	<m:Page showHeader="false">
+		<m:content>
+			<!-- <m:ScrollContainer
+				height="100%"
+				width="100%"
+				vertical="true"
+				focusable="true"
+			> -->
+				<Table
+					visibleRowCountMode="Auto"
+					rows="{UserListModel>/}"
+					id="tbUserList"
+					ariaLabelledBy="title"
+					selectionMode="Single"
+				>
+					<extension>
+						<m:OverflowToolbar>
+							<m:Title
+								id="title"
+								text="{i18n>tltUsuarios}"
+							/>
+							<m:ToolbarSpacer/>
+							<m:Button
+								icon="sap-icon://add"
+								tooltip="Add"
+								press="onNewRegister"
+							/>
+							<m:ToolbarSeparator/>
+							<m:ComboBox
+								placeholder="Planta"
+								selectedKey="{CriteriaModel>/plantaId}"
+								items="{
+									path: 'MaestraModel>/PLANTA'
+								}"
+								valueStateText="{i18n>msgRequerido}"
+								showSecondaryValues="true"
+								filterSecondaryValues="true"
+							>
+								<c:ListItem
+									key="{MaestraModel>codigo}"
+									text="{MaestraModel>contenido}"
+									additionalText="{MaestraModel>codigo}"
+								/>
+							</m:ComboBox>
+							<m:ComboBox
+								placeholder="Nivel"
+								selectedKey="{CriteriaModel>/nivelId}"
+								items="{
+									path: 'MaestraModel>/NIVEL'
+								}"
+								valueStateText="{i18n>msgRequerido}"
+								showSecondaryValues="true"
+								filterSecondaryValues="true"
+							>
+								<c:ListItem
+									key="{MaestraModel>contenido}"
+									text="{MaestraModel>contenido}"
+									additionalText="{MaestraModel>codigo}"
+								/>
+							</m:ComboBox>
+							<!-- <m:ComboBox
+								placeholder="Tipo Usuario"
+								selectedKey="{CriteriaModel>/TypeUserId}"
+								items="{
+									path: 'MaestraModel>/TIPO_USUARIO'
+								}"
+								valueStateText="{i18n>msgRequerido}"
+								showSecondaryValues="true"
+								filterSecondaryValues="true"
+							>
+								<c:ListItem
+									key="{MaestraModel>codigo}"
+									text="{MaestraModel>contenido}"
+									additionalText="{MaestraModel>codigo}"
+								/>
+							</m:ComboBox> -->
+							<m:ComboBox
+								placeholder="Estado"
+								selectedKey="{CriteriaModel>/EstadoId}"
+								valueStateText="{i18n>msgRequerido}"
+								showSecondaryValues="true"
+								filterSecondaryValues="true"
+							>
+								<c:Item
+									key="true"
+									text="Vigente"
+								/>
+								<c:Item
+									key="false"
+									text="No Vigente"
+								/>
+							</m:ComboBox>
+							<m:SearchField
+								placeholder="Filter"
+								value="{CriteriaModel>/queryText}"
+								search="onSearch"
+								width="15rem"
+							/>
+							<m:OverflowToolbarButton
+								text="{i18n>btnExport}"
+								tooltip="{i18n>btnExport}"
+								icon="sap-icon://excel-attachment"
+								press="onExportXLSReport"
+							/>
+						</m:OverflowToolbar>
+					</extension>
+					<columns>
+						<!-- Usuario Tecnico-->
+						<Column
+							width="12em"
+							filterProperty="usuario"
+						>
+							<m:Label text="{i18n>tcUsuario}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>usuario',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${CriteriaModel>/isNew} }"
+										valueStateText="{i18n>msgRequerido}"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>usuario'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- DNI -->
+						<Column
+							width="13em"
+							filterProperty="numeroDocumento"
+						>
+							<m:Label text="{i18n>tcDni}"/>
+							<template>
+								<m:HBox>
+									<m:SearchField
+										placeholder="Buscar"
+										value="{
+											path: 'UserListModel>numeroDocumento',
+											type: 'sap.ui.model.type.String'
+										}"
+										search="onSearchDocument"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+										enabled="{
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										}"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>numeroDocumento'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Usuario IAS-->
+						<Column
+							width="12em"
+							filterProperty="usuarioIas"
+						>
+							<m:Label text="{i18n>tcUsuarioIas}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>usuarioIas',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="true"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>usuarioIas'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Sistema -->
+						<Column
+							width="15em"
+							filterProperty="oSistema/nombre"
+						>
+							<m:Label text="{i18n>tcSistema}"/>
+							<template>
+								<m:MultiComboBox
+									selectedKeys="{UserListModel>sSistemas}"
+									selectionChange="handleSistemaSelectionChange"
+									editable="{= ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									showSecondaryValues="true"
+									items="{SistemaModel>/}"
+									valueStateText="{i18n>msgRequerido}"
+								>
+									<c:ListItem
+										key="{SistemaModel>sistemaId}"
+										text="{SistemaModel>nombre}"
+										additionalText="{SistemaModel>codigo}"
+									/>
+								</m:MultiComboBox>
+							</template>
+						</Column>
+						<!-- Planta -->
+						<Column width="15em">
+							<m:Label text="{i18n>tcPlanta}"/>
+							<template>
+								<m:ComboBox
+									editable="{= ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									selectedKey="{UserListModel>oMaestraSucursal_codigo}"
+									items="{
+										path: 'MaestraModel>/PLANTA'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									showSecondaryValues="true"
+									filterSecondaryValues="true"
+									change="onChangePlanta"
+								>
+									<c:ListItem
+										key="{MaestraModel>codigo}"
+										text="{MaestraModel>contenido}"
+										additionalText="{MaestraModel>codigo}"
+									/>
+								</m:ComboBox>
+							</template>
+						</Column>
+						<!-- Nivel -->
+						<Column width="15em">
+							<m:Label text="{i18n>tcNivel}"/>
+							<template>
+								<m:MultiComboBox
+									selectedKeys="{UserListModel>oMaestraNivel}"
+									editable="{= ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									showSecondaryValues="true"
+									items="{
+										path: 'aListaNiveles>/'
+									}"
+								>
+									<c:ListItem
+										key="{aListaNiveles>Atwrt}"
+										text="{aListaNiveles>Atwrt}"
+										additionalText="{aListaNiveles>Atzhl}"
+									/>
+								</m:MultiComboBox>
+							</template>
+						</Column>
+						<!-- Tipo Usuario -->
+						<Column width="15em">
+							<m:Label text="{i18n>tcTipoUsuario}"/>
+							<template>
+								<m:ComboBox
+									editable="{= ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									selectedKey="{UserListModel>oMaestraTipoUsuario_codigo}"
+									items="{
+										path: 'MaestraModel>/TIPO_USUARIO'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									showSecondaryValues="true"
+									filterSecondaryValues="true"
+								>
+									<c:ListItem
+										key="{MaestraModel>codigo}"
+										text="{MaestraModel>contenido}"
+										additionalText="{MaestraModel>codigo}"
+									/>
+								</m:ComboBox>
+							</template>
+						</Column>
+						<!-- Vigencia Fecha Inicio-->
+						<Column
+							width="15em"
+							sorted="true"
+							sortProperty="fechaVigInicio"
+						>
+							<m:Label text="{i18n>tcFechaVigInicio}"/>
+							<template>
+								<m:DatePicker
+									enabled="false"
+									value="{
+										path: 'UserListModel>fechaVigInicio',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											pattern: 'dd/MM/yyyy'
+										}
+									}"
+									displayFormat="dd/MM/yyyy"
+								/>
+							</template>
+						</Column>
+						<!-- Vigencia Fecha Fin-->
+						<Column
+							width="15em"
+							sorted="true"
+							sortProperty="fechaVigFin"
+						>
+							<m:Label text="{i18n>tcFechaVigFin}"/>
+							<template>
+								<m:DatePicker
+									enabled="false"
+									value="{
+										path: 'UserListModel>fechaVigFin',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											pattern: 'dd/MM/yyyy'
+										}
+									}"
+									displayFormat="dd/MM/yyyy"
+								/>
+							</template>
+						</Column>
+						<!-- Vigencia-->
+						<Column width="8em">
+							<m:Label text="{i18n>tcVigente}"/>
+							<template>
+								<m:ObjectStatus
+									visible="true"
+									title=""
+									text="{=${UserListModel>activo} === true ?  ${UserListModel>vigente} === true ? 'Vigente' : 'No Vigente' : 'De Baja'}"
+									state="{=${UserListModel>activo} === true ?  ${UserListModel>vigente} === true ? 'Success' : 'Error' : 'Error'}"
+									icon="{=${UserListModel>activo} === true ?  ${UserListModel>vigente} === true ? 'sap-icon://sys-enter-2' : 'sap-icon://error' : 'sap-icon://error'}"
+								/>
+							</template>
+						</Column>
+						<!-- Sección Producción -->
+						<Column
+							width="15em"
+							visible="{ShowColumn>/seccionProduccion}"
+							filterProperty="seccionTxt"
+						>
+							<m:Label text="{i18n>tcSeccion}"/>
+							<template>
+								<m:ComboBox
+									enabled="{UserListModel>editSeccion}"
+									editable="{= ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									selectedKey="{UserListModel>seccionId}"
+									value="{UserListModel>seccionTxt}"
+									items="{aListArea>/}"
+									valueStateText="{i18n>msgRequerido}"
+									showSecondaryValues="true"
+									filterSecondaryValues="true"
+								>
+									<c:ListItem
+										key="{aListArea>Atwrt}"
+										text="{aListArea>Atwrt}"
+										additionalText="{aListArea>Atzhl}"
+									/>
+								</m:ComboBox>
+							</template>
+						</Column>
+						<!-- Mail -->
+						<Column
+							width="23em"
+							filterProperty="correo"
+						>
+							<m:Label text="{i18n>tcMail}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>correo',
+											type: '.customEMailType'
+										}"
+										enabled="false"
+										valueStateText="{i18n>msgRequerido}"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="20em"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>correo'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Nombre Usuario-->
+						<Column
+							width="12em"
+							filterProperty="nombre"
+						>
+							<m:Label text="{i18n>tcNombre}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>nombre',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="false"
+										valueStateText="{i18n>msgRequerido}"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>nombre'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Apellido Paterno Usuario-->
+						<Column
+							width="10em"
+							filterProperty="apellidoPaterno"
+						>
+							<m:Label text="{i18n>tcApellidoPaterno}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>apellidoPaterno',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="false"
+										valueStateText="{i18n>msgRequerido}"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>apellidoPaterno'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Apellido Materno Usuario-->
+						<Column
+							width="10em"
+							filterProperty="apellidoMaterno"
+						>
+							<m:Label text="{i18n>tcApellidoMaterno}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+										value="{
+											path: 'UserListModel>apellidoMaterno',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="false"
+										valueStateText="{i18n>msgRequerido}"
+										visible="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+									<m:Text
+										text="{
+											path: 'UserListModel>apellidoMaterno'
+										}"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Teléfono Contacto-->
+						<Column
+							width="8em"
+							filterProperty="telefono"
+						>
+							<m:Label text="{i18n>tcTelefonoContacto}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+                                        liveChange = "onLiveChange($event, 'telefono')"
+										value="{
+											path: 'UserListModel>telefono',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="{
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										}"
+										editable="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Móvil Contacto-->
+						<Column
+							width="8em"
+							filterProperty="Movil"
+						>
+							<m:Label text="{i18n>tcMovilContacto}"/>
+							<template>
+								<m:HBox>
+									<m:Input
+                                        liveChange = "onLiveChange($event, 'Movil')"
+										value="{
+											path: 'UserListModel>Movil',
+											type: 'sap.ui.model.type.String',
+											constraints: {
+												minLength: 2
+											}
+										}"
+										enabled="{
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										}"
+										editable="{= ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} &amp;&amp; ${
+												path: 'UserListModel>edit',
+												formatter: '.formatter.getBoleanEdit'
+											} }"
+										width="100%"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+						<!-- Fecha Registro-->
+						<Column
+							width="8em"
+							sorted="true"
+							sortProperty="fechaRegistro"
+						>
+							<m:Label text="{i18n>tcFechaRegistro}"/>
+							<template>
+								<m:Text text="{
+									path: 'UserListModel>fechaRegistro',
+									formatter: '.formatter.getDateDMYFormat'
+								}"/>
+							</template>
+						</Column>
+						<!-- Acciones -->
+						<Column width="10em">
+							<m:Label text="Accion"/>
+							<template>
+								<m:HBox>
+									<m:Button
+										icon="sap-icon://save"
+										press="onSave"
+										tooltip="Guardar"
+										visible="{
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										}"
+									/>
+									<m:Button
+										icon="sap-icon://sys-cancel"
+										press="onCancel"
+										tooltip="Cancelar"
+										visible="{
+											path: 'UserListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										}"
+									/>
+									<m:Button
+										icon="sap-icon://edit"
+										tooltip="Modificar"
+										press="onEdit"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+									<m:Button
+										icon="sap-icon://unlocked"
+										tooltip="Desbloquear"
+										press="onResetPass"
+										visible="{
+											path: 'UserListModel>del',
+											formatter: '.formatter.getBoleanDel'
+										}"
+									/>
+									<m:Button
+										icon="sap-icon://display"
+										tooltip="Log"
+										press="onPressLog"
+									/>
+									<!--m:Button icon="sap-icon://delete" press="onDelete" visible="{path: 'UserListModel>del', formatter:'.formatter.getBoleanDel' }"/-->
+									<m:Button
+										visible="{= ${UserListModel>activo} ? true : false }"
+										icon="sap-icon://delete"
+										tooltip="Eliminar"
+										type="Reject"
+										press="onDelete"
+									/>
+									<m:Button
+										visible="{= ${UserListModel>activo} ? false : true }"
+										icon="sap-icon://kpi-managing-my-area"
+										tooltip="Activar"
+										type="Accept"
+										press="onDelete"
+									/>
+								</m:HBox>
+							</template>
+						</Column>
+					</columns>
+				</Table>
+			<!-- </m:ScrollContainer> -->
+		</m:content>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,81 @@
+<mvc:View
+	controllerName="administrador.controller.App"
+	displayBlock="false"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<tnt:ToolPage id="app">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button
+					id="idSideNavigationToggleButton"
+					icon="sap-icon://menu2"
+					type="Transparent"
+					press=".onSideNavButtonPress"
+				>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer/>
+				<Title
+					text="{i18n>appTitle}"
+					level="H2"
+				/>
+				<ToolbarSpacer/>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<Button
+					text="{UserInfoModel>/sistema}"
+					type="Transparent"
+					press=".handleUserNamePress"
+				>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation
+				expanded="true"
+				selectedKey=""
+				itemSelect=".onItemSelect"
+			>
+				<tnt:NavigationList items="{
+					path: 'menu>/navigation',
+					templateShareable: false
+				}">
+					<tnt:NavigationListItem
+						text="{menu>title}"
+						icon="{menu>icon}"
+						enabled="{menu>enabled}"
+						expanded="{menu>expanded}"
+						key="{menu>key}"
+					/>
+				</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList items="{
+						path: 'menu>/fixedNavigation',
+						templateShareable: false
+					}">
+						<tnt:NavigationListItem
+							text="{menu>title}"
+							icon="{menu>icon}"
+							key="{menu>key}"
+						/>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<App id="mainContents"/>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

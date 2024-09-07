@@ -1,0 +1,77 @@
+_schema-version: '3.1'
+ID: medifarma-jobs-mta
+version: 1.0.0
+description: A simple CAP project.
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build
+modules:
+  - name: medifarma-jobs-mta-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      disk-quota: 800M
+      memory: 512M
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: '${default-url}'
+    requires:
+      - name: cp-hdi
+      - name: mif_admin-hdi
+      - name: centralPesadas_logging
+      - name: centralPesadas_connectivity
+      - name: centralPesadas_destination
+resources:
+  - name: cp-hdi
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: cp-hdi
+  #- name: cp-hdi
+  #  type: com.sap.xs.hdi-container
+  #  parameters:
+  #    config:
+  #      database_id: 4b2d851d-1a61-445c-b40c-42f2ff5eba56
+  #      schema: "DEV_MIF_CP"
+  #    service: hana
+  #    service-plan: hdi-shared
+  #  properties:
+  #    hdi-service-name: ${service-name}
+  - name: mif_admin-hdi
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: mif_admin-hdi
+  - name: centralPesadas_logging
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: application-logs
+      service-plan: lite
+  - name: centralPesadas_connectivity
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: centralPesadas_destination
+    type: org.cloudfoundry.existing-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: 'https://ui5.sap.com'
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-plan: lite

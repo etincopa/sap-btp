@@ -1,0 +1,312 @@
+<mvc:View
+	xmlns="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:t="sap.ui.table"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="administrador.controller.MasterMenuApp"
+>
+	<m:Page
+		title="{ParamsSelectModel>/sNombre}"
+		id="detailMenuApp"
+		backgroundDesign="Solid"
+		showHeader="true"
+		showNavButton="true"
+		navButtonPress="onPressDetailBack"
+	>
+		<m:headerContent>
+			<!-- <m:Button text="{i18n>save}" press=".onSavePressed" type="Emphasized"/> -->
+		</m:headerContent>
+		<f:SimpleForm
+			columnsL="2"
+			columnsM="2"
+			editable="true"
+			layout="ResponsiveGridLayout"
+		>
+			<f:content>
+				<m:Label text="Sistema"/>
+				<m:ComboBox
+					change="onChange"
+					editable="false"
+					items="{
+						path: '/Sistema',
+						filters: [{
+							path: 'activo',
+							operator: 'EQ',
+							value1: 'true'
+						}],
+						sorter: [{
+							path: 'nombre',
+							descending: true
+						}]
+					}"
+					selectedKey="{ParamsSelectModel>/oSistema_sistemaId}"
+					valueStateText="{i18n>msjsTipo}"
+				>
+					<core:Item
+						key="{sistemaId}"
+						text="{codigo} - {nombre}"
+					/>
+				</m:ComboBox>
+				<m:Label text="Aplicación"/>
+				<m:ComboBox
+					id="cboTipoId"
+					change="onChange"
+					editable="false"
+					items="{
+						path: '/Aplicacion',
+						filters: [{
+							path: 'activo',
+							operator: 'EQ',
+							value1: 'true'
+						}],
+						sorter: [{
+							path: 'nombre',
+							descending: true
+						}]
+					}"
+					selectedKey="{ParamsSelectModel>/aplicacionId}"
+					valueStateText="{i18n>msjsTipo}"
+				>
+					<core:Item
+						key="{aplicacionId}"
+						text="{codigo} - {nombre}"
+					/>
+				</m:ComboBox>
+				<m:Label text="Activo"/>
+				<m:CheckBox
+					selected="{ParamsSelectModel>/activo}"
+					editable="false"
+				/>
+			</f:content>
+		</f:SimpleForm>
+		<ObjectPageLayout id="objectPageLayout">
+			<sections>
+				<ObjectPageSection
+					title="Acciones"
+					id="usuariosSection"
+				>
+					<subSections>
+						<ObjectPageSubSection id="userSectionSS1">
+							<blocks>
+								<t:Table
+									id="usuariosTable"
+									rows="{
+										path: 'RolAppAccListModel>/'
+									}"
+									selectionMode="Single"
+								>
+									<t:extension>
+										<m:OverflowToolbar>
+											<m:ToolbarSpacer/>
+											<m:Button
+												icon="sap-icon://add"
+												tooltip="Adicionar Rol"
+												press="onAddRol"
+											/>
+										</m:OverflowToolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column>
+											<m:Label text="{i18n>tcRol}"/>
+											<t:template>
+												<m:ComboBox
+													showSecondaryValues="true"
+													selectedKey="{RolAppAccListModel>oRol_rolId}"
+													editable="{
+														path: 'RolAppAccListModel>edit',
+														formatter: '.formatter.getBoleanEdit'
+													}"
+													valueStateText="{i18n>msgRequerido}"
+													items="{RolSystemList>/}"
+													width="100%"
+													class="sapUiTinyMarginBeginEnd"
+												>
+													<core:ListItem
+														key="{RolSystemList>rolId}"
+														text="{RolSystemList>nombre}"
+													/>
+												</m:ComboBox>
+											</t:template>
+										</t:Column>
+										<t:Column>
+											<m:Label text="{i18n>tcAcccion}"/>
+											<t:template>
+												<m:ComboBox
+													showSecondaryValues="true"
+													selectedKey="{RolAppAccListModel>oMaestraAccion_iMaestraId}"
+													editable="{
+														path: 'RolAppAccListModel>edit',
+														formatter: '.formatter.getBoleanEdit'
+													}"
+													valueStateText="{i18n>msgRequerido}"
+													items="{
+                                                        path: 'ActionList>/',
+                                                        sorter: [{
+                                                            path: 'orden',
+                                                            descending: false
+                                                        },{
+                                                            path: 'contenido',
+                                                            descending: false
+                                                        }]
+                                                    }"
+													width="100%"
+													class="sapUiTinyMarginBeginEnd"
+												>
+													<core:ListItem
+														key="{ActionList>iMaestraId}"
+														text="{ActionList>contenido}"
+													/>
+												</m:ComboBox>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<m:Label text="Accion"/>
+											<t:template>
+												<m:HBox>
+													<m:Button
+														icon="sap-icon://save"
+														press="onSave"
+														visible="{
+															path: 'RolAppAccListModel>edit',
+															formatter: '.formatter.getBoleanEdit'
+														}"
+													/>
+													<m:Button
+														icon="sap-icon://sys-cancel"
+														press="onCancel"
+														visible="{
+															path: 'RolAppAccListModel>edit',
+															formatter: '.formatter.getBoleanEdit'
+														}"
+													/>
+													<!-- <m:Button icon="sap-icon://edit" press="onEdit" visible="{path: 'RolAppAccListModel>del', formatter:'.formatter.getBoleanDel' }"/> -->
+													<m:Button
+														icon="sap-icon://delete"
+														press="onDelete"
+														visible="{
+															path: 'RolAppAccListModel>del',
+															formatter: '.formatter.getBoleanDel'
+														}"
+													/>
+												</m:HBox>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection
+					title="Workflow"
+					id="conceptSection"
+				>
+					<subSections>
+						<ObjectPageSubSection id="conceptSectionSS1">
+							<blocks>
+								<t:Table
+									id="subConceptosTable"
+									rows="{RolAppWfListModel>/}"
+									width="100%"
+									selectionMode="Single"
+								>
+									<t:extension>
+										<m:OverflowToolbar>
+											<m:ToolbarSpacer/>
+											<m:Button
+												icon="sap-icon://add"
+												tooltip="Adiciones Subconceptos"
+												press="onAddRolWf"
+											/>
+										</m:OverflowToolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column>
+											<m:Label text="{i18n>tcRolPadre}"/>
+											<t:template>
+												<m:ComboBox
+													showSecondaryValues="true"
+													selectedKey="{RolAppWfListModel>oRolWorkflow_rolId}"
+													editable="{
+														path: 'RolAppWfListModel>edit',
+														formatter: '.formatter.getBoleanEdit'
+													}"
+													valueStateText="{i18n>msgRequerido}"
+													items="{RolSystemList>/}"
+													width="100%"
+													class="sapUiTinyMarginBeginEnd"
+												>
+													<core:ListItem
+														key="{RolSystemList>rolId}"
+														text="{RolSystemList>nombre}"
+													/>
+												</m:ComboBox>
+											</t:template>
+										</t:Column>
+										<t:Column>
+											<m:Label text="{i18n>tcRol}"/>
+											<t:template>
+												<m:ComboBox
+													showSecondaryValues="true"
+													selectedKey="{RolAppWfListModel>oRol_rolId}"
+													editable="{
+														path: 'RolAppWfListModel>edit',
+														formatter: '.formatter.getBoleanEdit'
+													}"
+													valueStateText="{i18n>msgRequerido}"
+													items="{RolSystemList>/}"
+													width="100%"
+													class="sapUiTinyMarginBeginEnd"
+												>
+													<core:ListItem
+														key="{RolSystemList>rolId}"
+														text="{RolSystemList>nombre}"
+													/>
+												</m:ComboBox>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<m:Label text="Accion"/>
+											<t:template>
+												<m:HBox>
+													<m:Button
+														icon="sap-icon://save"
+														press="onSaveWf"
+														visible="{
+															path: 'RolAppWfListModel>edit',
+															formatter: '.formatter.getBoleanEdit'
+														}"
+													/>
+													<m:Button
+														icon="sap-icon://sys-cancel"
+														press="onCancelWf"
+														visible="{
+															path: 'RolAppWfListModel>edit',
+															formatter: '.formatter.getBoleanEdit'
+														}"
+													/>
+													<!-- <m:Button icon="sap-icon://edit" press="onEditWf" visible="{path: 'RolAppWfListModel>del', formatter:'.formatter.getBoleanDel' }"/> -->
+													<m:Button
+														icon="sap-icon://delete"
+														press="onDeleteWf"
+														visible="{
+															path: 'RolAppWfListModel>del',
+															formatter: '.formatter.getBoleanDel'
+														}"
+													/>
+												</m:HBox>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

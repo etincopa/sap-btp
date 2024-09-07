@@ -1,0 +1,481 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.PesajeproduccionIFA"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Page
+		showHeader="true"
+		title="{i18n>ifa.tltpesajeProdIFA}"
+		enableScrolling="true"
+		id="idPageEtiqueta"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+	>
+		<content>
+			<!-- LECTURA IFA -->
+			<f:SimpleForm
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="3"
+				labelSpanM="4"
+				labelSpanS="3"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="4"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="1"
+				columnsM="1"
+				singleContainerFullSize="false"
+				visible="true"
+			>
+				<f:content>
+					<!-- ORDEN DE PRODUCCION -->
+					<!-- QR Etiquetas -->
+					<core:Title text="{i18n>ifa.SecOrdenP}"/>
+					<Label text="{i18n>ifa.lblEtiqIFA}"/>
+					<SearchField
+						id="sfEtiqueta"
+						placeholder="{i18n>lblSearch}"
+						value="{StandardModel>/oQR/oEtiqueta/text}"
+						showSearchButton="true"
+						search="onQRSearch($event, 'IFA')"
+						enabled="true"
+					/>
+					<Button
+						icon="sap-icon://qr-code"
+						press="onQRScan($event, 'IFA')"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M2 S2"/>
+						</layoutData>
+					</Button>
+					<Label text="{i18n>ifa.lblcodigo}"/>
+					<Input
+						value="{FormVerificationModel>/oOrden/codigo}"
+						editable="false"
+					/>
+					<Label text="{i18n>ifa.lblProducto}"/>
+					<TextArea
+						cols="2"
+						value="{FormVerificationModel>/oOrden/descProd}"
+						editable="false"
+					/>
+					<Label text="{i18n>ifa.lblNumeroOp}"/>
+					<Input
+						value="{FormVerificationModel>/oOrden/numero}"
+						editable="false"
+					/>
+					<Label text="{i18n>ifa.lblLote}"/>
+					<Input
+						value="{FormVerificationModel>/oOrden/lote}"
+						editable="false"
+					>
+						<!-- <layoutData>
+								<l:GridData span="XL2 L2 M4 S4"/>
+							</layoutData> -->
+					</Input>
+					<Text
+						text="{i18n>ifa.lblFraccionBrv}:"
+						textAlign="End"
+						class="customLabel"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Text>
+					<Input
+						value="{FormVerificationModel>/oOrden/fraccion}"
+						editable="false"
+					>
+						<!-- <layoutData>
+							<l:GridData span="XL2 L2 M4 S4"/>
+						</layoutData> -->
+					</Input>
+					<!-- COMPONENTE -->
+					<core:Title text="{i18n>ifa.SecComponente}"/>
+					<Label text="{i18n>ifa.lblcodigo}"/>
+					<Input
+						value="{FormVerificationModel>/oInsumo/codigo}"
+						editable="false"
+					/>
+					<Label text="{i18n>ifa.lblDescripcion}"/>
+					<TextArea
+						cols="2"
+						value="{FormVerificationModel>/oInsumo/descripcion}"
+						editable="false"
+					/>
+					<Label text="{i18n>ifa.lblLote}"/>
+					<Input
+						value="{FormVerificationModel>/oInsumo/lote}"
+						editable="false"
+					/>
+					<Label
+						text="{i18n>ifa.lblCantReqBrv}"
+						labelFor="intCantSugerida"
+					/>
+					<Input
+						id="intCantRequerida"
+						type="Number"
+						value="{FormVerificationModel>/oOrdenDetalle/requerido}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S3"/>
+						</layoutData>
+					</Input>
+					<Input
+						value="{FormVerificationModel>/oInsumo/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Text
+						text="{i18n>ifa.lblSubFraccionBrv}:"
+						textAlign="End"
+						class="customLabel"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Text>
+					<Input
+						value="{FormVerificationModel>/oInsumo/fraccion}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Label
+						text="{i18n>ifa.lblPotTeoricaBrv}"
+						labelFor="potTeorico"
+					/>
+					<Input
+						value="{FormVerificationModel>/oOrdenDetalle/potenTeorica}"
+						editable="false"
+					>
+						<!-- <layoutData>
+                                    <l:GridData span="XL2 L2 M4 S4"/>
+                                </layoutData> -->
+					</Input>
+					<Text
+						text="{i18n>ifa.lblPotPractBrv}:"
+						textAlign="End"
+						class="customLabel"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Text>
+					<Input
+						value="{FormVerificationModel>/oOrdenDetalle/potenPractica}"
+						editable="false"
+					>
+						<!-- <layoutData>
+                                <l:GridData span="XL2 L2 M4 S4"/>
+                            </layoutData> -->
+					</Input>
+					<!-- BULTO -->
+					<!-- QR Bultos -->
+					<core:Title text="{i18n>ifa.SecBulto}"/>
+					<Label
+						text="{i18n>ifa.lblBulto}"
+						labelFor="bulto"
+					/>
+					<SearchField
+						placeholder="{i18n>lblSearch}"
+						value="{StandardModel>/oQR/oSaldo/text}"
+						showSearchButton="true"
+						search="onQRSearch($event, 'SALDO')"
+						width="100%"
+						enabled="{StandardModel>/oControl/scanBulto}"
+					>
+						<!-- <layoutData>
+                                <l:GridData span="XL10 L10 M8 S6"/>
+                            </layoutData> -->
+					</SearchField>
+					<Button
+						icon="sap-icon://qr-code"
+						press="onQRScan($event, 'SALDO')"
+						enabled="{StandardModel>/oControl/scanBulto}"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L1 M2 S2"/>
+						</layoutData>
+					</Button>
+					<Button
+						tooltip="{i18n>ifa.btnDetalle}"
+						text=""
+						icon="sap-icon://detail-view"
+						press="onDetalleBulto($event, 'SALDO')"
+						enabled="{StandardModel>/oControl/detalle}"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L1 M2 S2"/>
+						</layoutData>
+					</Button>
+					<Label
+						text="{i18n>ifa.lblCanBulto}"
+						labelFor="cantBultos"
+					/>
+					<Input
+						id="cantBultos"
+						value="{FormVerificationModel>/oBultoEscaneado/cantBultos}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Text
+						text="{i18n>ifa.lblCanTotal}:"
+						textAlign="End"
+						class="customLabel"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Text>
+					<Input
+						value="{FormVerificationModel>/oBultoEscaneado/cantTotal}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S3"/>
+						</layoutData>
+					</Input>
+					<Input
+						value="{FormVerificationModel>/oBultoEscaneado/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L1 M2 S2"/>
+						</layoutData>
+					</Input>
+					<!-- PESAJE COMPONENTE -->
+					<core:Title text="{i18n>ifa.Secpesajee}"/>
+					<Label
+						text="{i18n>ifa.lblActEstado}"
+						labelFor="actEstado"
+						visible="{StandardModel>/oControl/visibleEstEtiqueta}"
+					/>
+					<ComboBox
+						placeholder="Estado de Etiqueta"
+						editable="{StandardModel>/oControl/realizado}"
+						visible="{StandardModel>/oControl/visibleEstEtiqueta}"
+						selectedKey="{FormVerificationModel>/estadoCerrado}"
+						change="cambiarEstadoEtiqueta"
+					>
+						<items>
+							<core:ListItem
+								text="ETIQUETA NO PESADA"
+								key="C"
+							/>
+							<!-- <core:ListItem text="SI" key="1"/> -->
+						</items>
+					</ComboBox>
+					<Label
+						text="{i18n>ifa.lblCanAPesar}"
+						labelFor="cantPesar"
+					/>
+					<Input
+						type="Tel"
+						id="cantPesar"
+						value="{FormVerificationModel>/oPeso/neto}"
+						change="_cambiarCantidadPesar"
+						editable="{StandardModel>/oControl/secPesaje}"
+					/>
+					<Input
+						value="{FormVerificationModel>/oPeso/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Label
+						text="{i18n>ifa.lblTara}"
+						labelFor="cantTara"
+					/>
+					<Input
+						type="Tel"
+						id="cantTara"
+						value="{
+							path: 'FormVerificationModel>/oPeso/tara'
+						}"
+						change="_cambiarTara"
+						editable="{StandardModel>/oControl/secPesaje}"
+					/>
+					<Input
+						value="{FormVerificationModel>/oPeso/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Label
+						text="{i18n>ifa.lblPesoBruto}"
+						labelFor="pesoBruto"
+					/>
+					<Input
+						id="pesoBruto"
+						value="{FormVerificationModel>/oPeso/bruto}"
+						editable="false"
+					/>
+					<Input
+						value="{FormVerificationModel>/oPeso/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"/>
+						</layoutData>
+					</Input>
+					<Label
+						text="{i18n>ifa.lblAjustar}"
+						labelFor="checkAjustar"
+					/>
+					<Switch
+						id="swAjustar"
+						state="{FormVerificationModel>/oAjuste/ajuste}"
+						change="_cambiarAjustar($event)"
+						enabled="{StandardModel>/oControl/secPesaje}"
+						customTextOn="Si"
+						customTextOff="No"
+					>
+						<layoutData>
+							<FlexItemData growFactor="1"/>
+						</layoutData>
+					</Switch>
+					<Text
+						text="{i18n>ifa.lblAgotamiento}:"
+						textAlign="End"
+						class="customLabel"
+					>
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S4"/>
+						</layoutData>
+					</Text>
+					<FlexBox
+						direction="Column"
+						height="2rem"
+						alignItems="Start"
+						justifyContent="End"
+					>
+						<core:Icon
+							size="20px"
+							src="{StandardModel>/oAgotar/icon}"
+							color="{StandardModel>/oAgotar/color}"
+						/>
+					</FlexBox>
+					<!-- <CheckBox text="Error disabled" valueState="Error" enabled="false" selected="true">
+							<layoutData>
+									<l:GridData span="XL2 L1 M2 S2"/>
+								</layoutData>
+						</CheckBox> -->
+					<Label
+						text="{i18n>ifa.lblEmbalaje}"
+						labelFor="embalaje"
+						visible="{StandardModel>/oControl/visibleMatEmb}"
+					/>
+					<ComboBox
+						placeholder="Lista de Materiales"
+						items="{
+							path: 'MaterialEmbalajeListModel>/',
+							sorter: {
+								path: 'contenido',
+								descending: false
+							}
+						}"
+						editable="{StandardModel>/oControl/secPesaje}"
+						selectedKey="{FormVerificationModel>/oPeso/embalaje}"
+						visible="{StandardModel>/oControl/visibleMatEmb}"
+					>
+						<items>
+							<core:ListItem
+								text="{MaterialEmbalajeListModel>descripcion}"
+								key="{MaterialEmbalajeListModel>contenido}"
+							/>
+						</items>
+					</ComboBox>
+					<Label
+						text="{i18n>ifa.realizado}"
+						labelFor="realizado"
+					/>
+					<!--<ComboBox placeholder="Lista de Usuarios" items="{path: '/Usuario', filters: [{path: 'oMaestraSucursal_codigo', operator: 'EQ', value1: '1021'}]}"-->
+					<ComboBox
+						placeholder="Lista de Usuarios"
+						items="{
+							path: 'UsuariosPlanta>/'
+						}"
+						editable="{StandardModel>/oControl/realizado}"
+						selectedKey="{FormVerificationModel>/oUsuario/realizado}"
+					>
+						<items>
+							<core:ListItem
+								text="{UsuariosPlanta>nombre} {UsuariosPlanta>apellidoPaterno}"
+								key="{UsuariosPlanta>usuario}"
+							/>
+						</items>
+					</ComboBox>
+					<Label
+						text="{i18n>ifa.verificado}"
+						labelFor="usuario"
+					/>
+					<Input
+						value="{FormVerificationModel>/oUsuario/verificadoNombre}"
+						editable="false"
+					/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<!-- OPCIONES DEL MÓDULO -->
+		<footer>
+			<OverflowToolbar>
+				<Button
+					id="messagePopoverBtn"
+					icon="sap-icon://information"
+					type="Default"
+					text=""
+					press=".handleMessagePopoverPress"
+				/>
+				<!-- <Button text="{i18n>ifa.imprimir}" icon="sap-icon://print" type="Ghost" press="onPrint" visible="true"/> -->
+				<Button
+					text=""
+					icon="sap-icon://print"
+					type="Ghost"
+					press="onPrint"
+					visible="true"
+				/>
+				<!-- <Button text="test print"  press="testPrint" visible="true"/> -->
+				<ToolbarSpacer/>
+				<Button
+					id="btnGuardar"
+					text="{i18n>ifa.guardar}"
+					icon=""
+					type="Accept"
+					press="_guardarEtiquetaIFA"
+					visible="true"
+					enabled="{StandardModel>/oControl/guardar}"
+				/>
+				<!-- <Button text="Confirmar" icon="" type="Accept" press="onConfirm" visible="{FormVerificationModel>/oAction/confirm}" /> -->
+				<!-- <Button text="Guardar/Confirmar" icon="" type="Accept" press="onSaveAndConfirm" visible="{FormVerificationModel>/oAction/saveAndConfirm}" /> -->
+				<!-- <Button text="Resetear" icon="" type="Accept" press="onReset" visible="{FormVerificationModel>/oAction/reset}" /> -->
+				<Button
+					text="{i18n>ifa.cancelar}"
+					type="Reject"
+					press="cancelarEtiquetaIFA"
+				/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

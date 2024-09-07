@@ -1,0 +1,99 @@
+{
+    "role": {
+        "name": "MIF_CP_EXTERNAL_ACCESS_G#",
+        "object_privileges": [
+            {
+                "name": "MIF_CP_GRUPO_ORDEN_BULTO",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_GRUPO_ORDEN_CONSOLIDADO",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_GRUPO_ORDEN_DET",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_PEDIDO",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_PEDIDO_ORDEN",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_ORDEN",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_ORDEN_DETALLE",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_GRUPO_ORDEN_FRAC",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "MIF_CP_PLANTILLA_IMPRESION",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT",
+                    "INSERT",
+                    "UPDATE"
+                ]
+            },
+            {
+                "name": "MIF_CP_IMPRESORA",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT",
+                    "INSERT",
+                    "UPDATE"
+                ]
+            },
+            {
+                "name": "MIF_CP_COLA_IMPRESION",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT",
+                    "INSERT",
+                    "UPDATE"
+                ]
+            },
+            {
+                "name": "MIF_CP_COLA_IMPRESION_VARIABLES",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT",
+                    "INSERT",
+                    "UPDATE"
+                ]
+            }
+        ]
+    }
+}

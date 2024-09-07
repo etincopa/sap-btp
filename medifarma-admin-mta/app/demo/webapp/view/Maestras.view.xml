@@ -1,0 +1,300 @@
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	controllerName="administrador.controller.Maestras"
+>
+	<m:Page showHeader="false">
+		<m:content>
+			<Table
+				rows="{
+					path: 'MasterListModel>/',
+					parameters: {
+						expand: 'oMaestraTipo,oAplicacion'
+					},
+					sorter: {
+						path: 'oMaestraTipo_maestraTipoId'
+					}
+				}"
+				visibleRowCountMode="Auto"
+				ariaLabelledBy="title"
+				selectionMode="Single"
+			>
+				<extension>
+					<m:OverflowToolbar>
+						<m:Title
+							id="title"
+							text="{i18n>tltMaestras}"
+						/>
+						<m:ToolbarSpacer/>
+						<m:Button
+							icon="sap-icon://add"
+							tooltip="Add"
+							press="onNewRegister"
+						/>
+						<m:ToolbarSeparator/>
+						<m:SearchField
+							placeholder="Filter"
+							value="{CriteriaModel>/queryText}"
+							search="onSearch"
+							width="15rem"
+						/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="10%">
+						<m:Label text="{i18n>tcCodigo}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'MasterListModel>codigo',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 1
+										}
+									}"
+									enabled="{= ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${CriteriaModel>/isNew} }"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+								/>
+								<m:Text
+									text="{
+										path: 'MasterListModel>codigo'
+									}"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="30%">
+						<m:Label text="{i18n>tcContenido}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'MasterListModel>contenido',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 2
+										}
+									}"
+									enabled="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									width="100%"
+								/>
+								<m:Text
+									text="{
+										path: 'MasterListModel>contenido'
+									}"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="30%">
+						<m:Label text="{i18n>tcDescripcion}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'MasterListModel>descripcion',
+										type: 'sap.ui.model.type.String',
+										constraints: {
+											minLength: 2
+										}
+									}"
+									enabled="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									width="100%"
+								/>
+								<m:Text
+									text="{
+										path: 'MasterListModel>descripcion'
+									}"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="10%">
+						<m:Label text="{i18n>tcOrden}"/>
+						<template>
+							<m:HBox>
+								<m:Input
+									value="{
+										path: 'MasterListModel>orden',
+										type: 'sap.ui.model.type.Integer'
+									}"
+									enabled="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									visible="{= ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} &amp;&amp; ${
+											path: 'MasterListModel>edit',
+											formatter: '.formatter.getBoleanEdit'
+										} }"
+									width="100%"
+								/>
+								<m:Text
+									text="{
+										path: 'MasterListModel>orden'
+									}"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column
+						width="20%"
+						showSortMenuEntry="true"
+						sortProperty="oMaestraTipo_maestraTipoId"
+						sorted="true"
+					>
+						<m:Label text="{i18n>tcTipo}"/>
+						<template>
+							<m:HBox>
+								<m:ComboBox
+									showSecondaryValues="true"
+									selectedKey="{MasterListModel>oMaestraTipo_maestraTipoId}"
+									editable="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									items="{MasterTypeListModel>/}"
+									change="onSociedadChange('cboRol','idCboSistema')"
+									width="100%"
+									class="sapUiTinyMarginBeginEnd"
+								>
+									<c:ListItem
+										key="{MasterTypeListModel>maestraTipoId}"
+										text="{MasterTypeListModel>tabla}"
+									/>
+								</m:ComboBox>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="20%">
+						<m:Label text="{i18n>tcAplicacion}"/>
+						<template>
+							<m:HBox>
+								<m:ComboBox
+									showSecondaryValues="true"
+									selectedKey="{MasterListModel>oAplicacion_aplicacionId}"
+									editable="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+									valueStateText="{i18n>msgRequerido}"
+									items="{AplicacionListModel>/}"
+									width="100%"
+									class="sapUiTinyMarginBeginEnd"
+								>
+									<c:ListItem
+										key="{AplicacionListModel>aplicacionId}"
+										text="{AplicacionListModel>nombre}"
+									/>
+								</m:ComboBox>
+							</m:HBox>
+						</template>
+					</Column>
+					<Column width="10%">
+						<m:Label text="{i18n>tcFechaRegistro}"/>
+						<template>
+							<m:Text text="{
+								path: 'MasterListModel>fechaRegistro',
+								formatter: '.formatter.getDateDMYFormat'
+							}"/>
+						</template>
+					</Column>
+					<Column width="10%">
+						<m:Label text="Accion"/>
+						<template>
+							<m:HBox>
+								<m:Button
+									icon="sap-icon://save"
+									press="onSave"
+									visible="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://sys-cancel"
+									press="onCancel"
+									visible="{
+										path: 'MasterListModel>edit',
+										formatter: '.formatter.getBoleanEdit'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://edit"
+									press="onEdit"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+								<m:Button
+									icon="sap-icon://delete"
+									press="onDelete"
+									visible="{
+										path: 'MasterListModel>del',
+										formatter: '.formatter.getBoleanDel'
+									}"
+								/>
+							</m:HBox>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

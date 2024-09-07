@@ -1,0 +1,56 @@
+{
+    "MIF_CP_MIF_ADMIN_HDI_MAESTRA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_MAESTRA",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_MAESTRA_TIPO": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_MAESTRA_TIPO",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_USUARIO": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_USUARIO",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_USUARIO_ROL": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_USUARIO_ROL",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_SISTEMA": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_SISTEMA",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_APLICACION": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_APLICACION",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL_APP_WF": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL_APP_WF",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    },
+    "MIF_CP_MIF_ADMIN_HDI_ROL_APP_ACCIONES": {
+        "target": {
+            "object": "MIF_ADMIN_HDI_ROL_APP_ACCIONES",
+            "schema.configure": "mif_admin-hdi/schema"
+        }
+    }
+}

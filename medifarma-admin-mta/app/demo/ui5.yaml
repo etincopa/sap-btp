@@ -1,0 +1,91 @@
+specVersion: "2.4"
+metadata:
+  name: "demo"
+type: application
+
+#framework:
+#  name: SAPUI5
+#  version: 1.84.0
+#  libraries:
+#    - name: sap.ui.core
+#    - name: sap.m
+#    - name: sap.ui.layout
+#    - name: themelib_sap_fiori_3
+server:
+  customMiddleware:
+    - name: requestProxy
+      beforeMiddleware: serveResources
+#    - name: ui5-middleware-livereload
+#      afterMiddleware: compression
+#      configuration:
+#        port: 35729
+#        path: app/demo/webapp
+#    - name: ui5-middleware-cfdestination
+#      afterMiddleware: compression
+#      configuration:
+#        debug: true
+#        port: 1091
+#        xsappJson: app/demo/xs-app.json
+#        destinations: []
+
+#  customMiddleware:
+#  - name: fiori-tools-proxy
+#    afterMiddleware: compression
+#    configuration:
+#      ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+#      backend:
+#      - path: /browse
+#        url: http://localhost:4004
+#      ui5:
+#        path:
+#        - /resources
+#        - /test-resources
+#        url: https://ui5.sap.com
+#        version:  # The UI5 version, for instance, 1.78.1. Empty means latest version
+#  - name: fiori-tools-appreload
+#    afterMiddleware: compression
+#    configuration:
+#     port: 35729
+#     path: webapp
+
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8
+#    paths:
+#      webapp: app/demo/webapp
+
+builder:
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: uglify
+      configuration:
+        includeDependencies: false
+        archiveName: demo
+    - name: webide-extension-task-updateManifestJson
+      afterTask: generateVersionInfo
+      configuration:
+        appFolder: webapp
+        destDir: dist
+    - name: webide-extension-task-resources
+      afterTask: webide-extension-task-updateManifestJson
+      configuration:
+        nameSpace: demo
+    - name: webide-extension-task-copyFile
+      afterTask: webide-extension-task-resources
+      configuration:
+        srcFile: "/xs-app.json"
+        destFile: "/xs-app.json"
+#    - name: webide-extension-task-lint
+#      afterTask: webide-extension-task-copyFile
+#      configuration:
+#        destDir: dist
+#        appFolder: webapp
+#        nameSpace: demo
+---
+specVersion: "1.0"
+kind: extension
+type: server-middleware
+metadata:
+  name: requestProxy
+middleware:
+  path: lib/middleware/requestProxy.js
