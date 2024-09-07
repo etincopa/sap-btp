@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "nodemon app/server.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {},
+  "dependent_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-corelibs": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-apppreferences": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-i18n": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-authproxy": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-attachmentviewer": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-calendar": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-xhook": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-ui5": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-logon": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-e2etrace": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-encryptedstorage": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-logger": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-odata": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-settings": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    },
+    "kapsel-plugin-usage": {
+      "PACKAGE_NAME": "com.medifarma.cp.pesajeimpresionbultosaldo.prd"
+    }
+  }
+}
