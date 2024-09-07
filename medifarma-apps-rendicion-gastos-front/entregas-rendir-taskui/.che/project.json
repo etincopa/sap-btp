@@ -1,0 +1,1 @@
+{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"hcpdeploy\":{\"account\":\"v6e7cn03uq\",\"name\":\"detalleentregarendirworkflow\",\"lastVersionWeTriedToDeploy\":\"1.0.32\"},\"projectType\":[\"sap.watt.uitools.ide.web\",\"sap.watt.uitools.ide.fiori\"]}"]},"description":"","mixinTypes":[]}

@@ -1,0 +1,207 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "com.everis.apps.cajachicaff",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "sourceTemplate": {
+      "id": "servicecatalog.connectivityComponentForManifest",
+      "version": "0.0.0"
+    },
+    "dataSources": {
+      "iasScimService": {
+        "uri": "iasscim/Users",
+        "type": "http"
+      },
+      "OD_MM_UTILIDADES_SRV": {
+        "uri": "saperp/eper/OD_MM_UTILIDADES_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "CAJACHICAFF_SRV": {
+        "uri": "saperp/eper/CAJACHICAFF_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "UTILS_SRV": {
+        "uri": "saperp/eper/UTILS_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "fondofijo",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "icon": "sap-icon://monitor-payments"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "com.everis.apps.cajachicaff.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    },
+    "dependencies": {
+      "minUI5Version": "1.60.1",
+      "libs": {
+        "sap.ui.layout": {},
+        "sap.ui.core": {},
+        "sap.m": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.everis.apps.cajachicaff.i18n.i18n"
+        }
+      },
+      "IasScimModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "iasScimService",
+        "preload": false
+      },
+      "oRegistroModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "preload": true,
+        "uri": "model/emptyTableModel.json"
+      },
+      "Config": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/Config.json",
+        "preload": true
+      },
+      "oUtilitiesModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "OD_MM_UTILIDADES_SRV",
+        "preload": true
+      },
+      "oCajaChicaFFModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "CAJACHICAFF_SRV",
+        "preload": true
+      },
+      "UtilsModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "OneWay",
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+        },
+        "dataSource": "UTILS_SRV",
+        "preload": true
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.everis.apps.cajachicaff.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "home",
+          "pattern": "",
+          "target": "home"
+        },
+        {
+          "name": "masterDetalleFF",
+          "pattern": "masterDetalleFF",
+          "target": "masterDetalleFF"
+        }
+      ],
+      "targets": {
+        "home": {
+          "path": "com.everis.apps.cajachicaff.view",
+          "viewName": "Home",
+          "viewId": "viewHome",
+          "viewLevel": 1
+        },
+        "masterDetalleFF": {
+          "path": "com.everis.apps.cajachicaff.view",
+          "viewName": "MasterDetalleFF",
+          "viewId": "viewMasterDetalleFF",
+          "viewLevel": 2
+        }
+      }
+    }
+  },
+  "sap.platform.hcp": {
+    "uri": "",
+    "_version": "1.1.0"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "medifarma-apps-rendicion-gastos-bs"
+  }
+}

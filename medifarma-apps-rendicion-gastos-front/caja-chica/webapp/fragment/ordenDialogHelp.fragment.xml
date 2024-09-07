@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>appTituloDialogoOrdenHelp}"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{oRegistroModel>/ordenes}"
+		search="_handleValueHelpSearch_or"
+		confirm="onCloseDialogCentroCosto"
+		cancel="onCloseDialogCentroCosto"
+		noDataText="{i18n>appNoDataHelp}">
+		<StandardListItem 
+			title="{oRegistroModel>Ktext}"  
+			info="{oRegistroModel>Aufnr}"
+			/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttachment">
+		<content>
+			<UploadCollection id="UploadCollection"
+				maximumFilenameLength="{settings>/maximumFilenameLength}"
+				multiple="true"
+				fileDeleted="onDeleteSelectedItems"
+				filenameLengthExceed="onFilenameLengthExceed"
+				fileRenamed="onFileRenamed"
+				fileSizeExceed="onFileSizeExceed"
+				fileType="{fileTypes>/selected}"
+				selectionChange="onSelectionChange"
+				typeMissmatch="onTypeMissmatch"
+				beforeUploadStarts="onBeforeUploadStarts"
+				uploadTerminated="onUploadTerminated"
+				items="{DocumentosSolicitud>/Files}"
+				showSeparators="{settings>/showSeparators}"
+				uploadButtonInvisible="false"
+				mode="None"
+				change="onAddFile"
+				uploadEnabled="{oEdicion>/edit}">
+				<items >
+					<UploadCollectionItem documentId="{DocumentosSolicitud>UniqueId}" fileName="{DocumentosSolicitud>Name}"
+						press="onDownloadFile" deletePress="onFileDeleted" visibleEdit="false" visibleDelete="{oEdicion>/edit}">
+						<attributes>
+							<ObjectAttribute title="{title}" text="{text}" active="{active}" press="onAttributePress"/>
+						</attributes>
+						<statuses>
+							<ObjectStatus title="{title}" text="{text}" state="{state}"/>
+						</statuses>
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<buttons>
+			<Button text="Cerrar" press="onCloseDialogAttachment" icon="sap-icon://decline" type="Accept"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,113 @@
+{
+	"isConsignacion":false,
+	"centros": [],
+	"almacenes": [],
+	"equiposPM": [],
+	"tiposObjetosCosto": [],
+	"objetosCosto": [],
+	"ordenens":[],
+	"tiposMaterial": [],
+	"materiales": [],
+	"items": [],
+	"delivery": [],
+	"materials": [],
+	"ubicaciones": [],
+	"asignacion": [],
+	"aprobadorPrimerNivel":[],
+	"aprobadorSegundoNivel":[],
+	"Status": {
+		"value": "Planificado"
+	},
+	"Umlgo": {
+		"code": "",
+		"value":""
+	},
+	"Sobkz": {
+		"code": "",
+		"value":""
+	},
+	"countmat": {
+		"value": "0"
+	},
+	"ErdatTxt": {
+		"value": ""
+	},
+	"countdeliv": {
+		"value": "0"
+	},
+	"counttrans": {
+		"value": "0"
+	},
+	"countubic": {
+		"value": "0"
+	},
+	"Lnumt": {
+		"value": ""
+	},
+	"Name1": {
+		"value": ""
+	},
+	"Name": {
+		"value": ""
+	},
+	"Vtext": {
+		"value": ""
+	},
+	"Vbeln": {
+		"value": ""
+	},
+	"Posnr": {
+		"value": ""
+	},
+	"Matnr": {
+		"value": ""
+	},
+	"Lfimg": {
+		"value": ""
+	},
+	"Observacion":"",
+	"Equnr": {
+		"code": "",
+		"value": ""
+	},
+	"Aufnr": { 
+		"code": "",
+		"value": ""
+	},
+	"Kostl": {
+		"code": "",
+		"value": ""
+	},
+	"ObjetoDesc":{
+		"code": "",
+		"value":""
+	},
+	"Rstyp": {
+		"code": "",
+		"value": ""
+	},
+	"Bwart": {
+		"code": "",
+		"value":""
+	},
+	"Lgort": {
+		"code": "",
+		"value": ""
+	},
+	"Werks": {
+		"code": "",
+		"value": ""
+	},
+	"Bukrs": {
+		"code": "",
+		"value": ""
+	},
+	"CantSelect": {
+		"value": "0"
+	},
+	"Rsnum":"",
+	"UsuarioSolicitante":"",
+	"EmailCorporativoSolicitante":"",
+	"EmailPersonalSolicitante":"",
+	"SociedadSolicitante":""
+}

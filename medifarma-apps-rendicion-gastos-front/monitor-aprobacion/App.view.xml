@@ -1,0 +1,154 @@
+<mvc:View controllerName="UISolicitudFF.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" busy="{appModel>/isBusy}">
+	<App id="idAppControl" class="sapUiSizeCompact">
+		<pages>
+			<Page title="{data>/task/title}" showHeader="false" showFooter="false">
+				<content>
+					<!--<ObjectHeader title="{=${data>/context/identificadorAplicacion} === 'FF'? 'Fondo Fijo' : 'Entregas a Rendir'} - {data>/task/title}" backgroundDesign="Solid">-->
+					<!--	<attributes>-->
+					<!--		<ObjectAttribute title="{i18n>GENERIC_CREATEDON}" text="{path: 'data>/task/createdOn', formatter: '.formatDate'}"/>-->
+					<!--	</attributes>-->
+					<!--	<statuses>-->
+					<!--		<ObjectStatus title="{i18n>GENERIC_STATUS}" text="{data>/task/statusText}"/>-->
+					<!--		<ObjectStatus title="{i18n>GENERIC_PRIORITY}" text="{data>/task/priorityText}"/>-->
+					<!--	</statuses>-->
+					<!--</ObjectHeader>-->
+					<!--		<ObjectHeader title="{data>/context/identificadorAplicacion} - {data>/task/title}" backgroundDesign="Solid">
+						<attributes>
+							<ObjectAttribute title="{i18n>GENERIC_USER_FULLNAME}" text="{data>/context/Usuario} - {data>/context/Pname}"/>
+							<ObjectAttribute title="{i18n>GENERIC_COMPANY}" text="{data>/context/SociedadTxt} ({data>/context/Bukrs})"/>
+						</attributes>
+					</ObjectHeader>!-->
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Operación">
+										<Input editable="false" value="{data>/context/Operacion}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Cuenta de Mayor">
+										<Input editable="false" value="{data>/context/CuentaDeMayor}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Fondo Fijo">
+										<Input editable="false" value="{data>/context/FondoFijo}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Fecha de Solicitud">
+										<DatePicker editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" value="{data>/context/Fecha}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</DatePicker>
+									</f:FormElement>
+									<f:FormElement label="Importe Total">
+										<Input value="{data>/context/ImporteTotal}" editable="false">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Fecha contable">
+										<DatePicker editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" value="{data>/context/Fecha}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</DatePicker>
+									</f:FormElement>
+									<f:FormElement label="Moneda">
+										<Input editable="false" value="{data>/context/Moneda}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Referencia General">
+										<Input editable="false" value="{data>/context/ReferenciaGeneral}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Tipo de Objeto de costo">
+										<Input editable="false" enabled="true" type="Text" value="{data>/context/Kstrg}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Objeto de costo">
+										<Input editable="false" enabled="true" type="Text" width="100%"
+											value="{= ${data>/context/Kostl} ? ${data>/context/Kostl} : ${data>/context/Aufnr}}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+									<f:FormElement label="Observaciones">
+										<TextArea editable="false" enabled="true" rows="4" value="{data>/context/Zobserv}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</TextArea>
+									</f:FormElement>
+									<f:FormElement label="Adjunto">
+										<Button id="btnAdjuntoSolicitud" press="onPressSolAttachment" icon="sap-icon://attachment" tooltip="Visualizar archivo" width="2em"/>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+					<Panel expandable="false" expanded="false" width="auto" height="100%" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="Detalle de Solicitud"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<Table items="{path: 'data>/context/DetalleSol'}" visible="{=${data>/context/identificadorAplicacion} === 'Fondo Fijo'}">
+								<columns>
+									<Column width="2rem">
+										<Text text="N°"/>
+									</Column>
+									<Column hAlign="Left">
+										<Text text="Descripción"/>
+									</Column>
+									<Column hAlign="Left">
+										<Text text="Importe"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{data>Nrpos}"/>
+											<Text text="{data>Detalle}"/>
+											<ObjectNumber class="sapUiSmallMarginBottom" number="{data>Wrbtr}" unit="{data>Waers}" state="Success"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</Panel>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

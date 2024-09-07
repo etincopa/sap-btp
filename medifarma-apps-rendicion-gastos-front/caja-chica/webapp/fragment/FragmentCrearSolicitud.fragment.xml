@@ -1,0 +1,184 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
+	<f:Form editable="true" id="frmCrearSoli">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Operación">
+						<Input id="idOperacion" editable="false" value="{/sZcatCompleto}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Cuenta de Mayor">
+
+						<Input id="idCuentaMyr" editable="false" value="{/Hkont}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Fondo Fijo">
+						<Input id="idfondo" editable="false" value="{/sZfondoCompleto}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Fecha de Solicitud">
+						<DatePicker id="idFecha" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha de solicitud...">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<f:FormElement label="Importe Total">
+						<Input id="idImporteTotal" value="0.00" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Fecha contable">
+						<DatePicker id="idFechaCont" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha contable...">
+<!-->>>>>>> refs/heads/master-->
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<f:FormElement label="Moneda">
+						<Input editable="false" value="{/Waers}" id="idWaers">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Referencia General">
+						<Input id="idReferencia" editable="true" maxLength="16" required="true">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Tipo de Objeto de costo">
+						<Input id="inputTipImp" enabled="true" type="Text" required="true" showValueHelp="true" valueHelpRequest="handleValueHelp_ti"
+							value="{path:'oRegistroModel>/Rstyp/value',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}" valueHelpOnly="true" >
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Objeto de costo">
+						<Input id="inputCeCo" enabled="true" type="Text" required="true" showValueHelp="true" valueHelpRequest="handleValueHelp_obj" width="100%"
+							value="{path:'oRegistroModel>/ObjetoDesc/value',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}" valueHelpOnly="true" >
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Observaciones">
+						<TextArea id="inputObser" enabled="true" rows="4" value="{oRegistroModel>/Observacion}" maxLength="250">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</TextArea>
+					</f:FormElement>
+					<f:FormElement label="Adjunto">
+						<Button id="btnAdjuntoSolicitud" press="onOpenDialogAttachSolicitud" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+	<f:Form editable="true">
+		<f:title>
+			<core:Title text="Ingrese los siguientes datos:"/>
+		</f:title>
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Descripción">
+						<Input id="idDes" placeholder="Ingrese descripción..." editable="true" maxLength="40">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Importe Detalle">
+						<Input id="idImporteDetalle" editable="true" change="onChangeImportes" app:nameControl="idFragCrearSolicitud--idImporteDetalle" maxLength="40">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+	
+
+	
+	
+	<f:Form>
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:toolbar>
+					<Toolbar>
+						<Title text="Detalle de solicitud" level="H5" titleStyle="H5"/>
+						<ToolbarSpacer/>
+						<Button id="idButtonAdd" press="fnAgregarDetalleSolicitud" visible="{/VisibleFieldsFalse}" icon="sap-icon://sys-add"/>
+					</Toolbar>
+				</f:toolbar>
+				<f:formElements>
+					<f:FormElement>
+						<Table id="idTableCrearSolicitud" items="{path: '/'}">
+							<columns>
+								<Column width="2rem">
+									<Text text="N°"/>
+								</Column>
+								<Column hAlign="Left">
+									<Text text="Descripción"/>
+								</Column>
+								<Column hAlign="Left">
+									<Text text="Importe"/>
+								</Column>
+								<Column hAlign="Left" width="4rem">
+									<Text text="Acción"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Nrpos}"/>
+										<Text text="{Detalle}"/>
+										<ObjectNumber number="{ parts: [ { path: 'Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }"
+											unit="{Waers}" state="Success"/>
+										<core:Icon src="sap-icon://delete" class="size1" color="#b20f1d" width="1.5rem" press="fnBorraFila" app:nameControl="idFragCrearSolicitud--idTableCrearSolicitud"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</core:FragmentDefinition>

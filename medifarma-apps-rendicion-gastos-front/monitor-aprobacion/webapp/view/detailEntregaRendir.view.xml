@@ -1,0 +1,237 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="com.everis.monitorDocumentos.controller.detailEntregaRendir"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title" id="idPagDetSolicitud">
+				<content>
+					<Panel width="auto" class="sapUiMarginResponsive">
+						<headerToolbar>
+							<OverflowToolbar>
+								<ToolbarSpacer/>
+								<Button text="{i18n>txtDocumentoAnterior}" press="onVisualizarDocumentoAnterior" icon="sap-icon://copy" visible="{oEdicion>/existeDocumentoAnterior}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<f:Form editable="true" id="frmDetailEntregaRendir">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Operación">
+												<Input id="idOperacion" editable="false" value="{/sZcatCompleto}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Cuenta de Mayor" visible="false">
+												<Input id="idCuentaMyr" editable="true" value="{/Hkont}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Fecha de Solicitud">
+												<DatePicker id="idFecha" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{path: '/Bldat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Importe Total">
+												<Input id="idImporteTotal" editable="false"
+													value="{ parts: [ { path: '/Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Entrega a Rendir Adicional" >
+												<CheckBox selected="{/FlagAdicional}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</CheckBox>
+											</f:FormElement>
+											<f:FormElement label="Opción" visible="{/FlagAdicional}">
+												<ComboBox id="idAdicionales" items="{ path: 'oAdicionalModel>/', sorter: { path: 'Eratx' } }" editable="false">
+													<core:ListItem key="{oAdicionalModel>Eratx}" text="{oAdicionalModel>Conca}"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</ComboBox>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Fecha contable">
+												<DatePicker id="idFechaCont" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{ path: '/Budat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Moneda">
+												<Input editable="false" value="{/Waers}" id="idWaers">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Referencia General">
+												<Input id="idReferencia" editable="{oEdicion>/edit}" maxLength="16" value="{/Xblnr}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Tipo de Objeto de costo">
+												<Input id="inputTipImp" editable="{oEdicion>/edit}" showValueHelp="true" valueHelpRequest="handleValueHelp_ti"
+													value="{path:'/Kstrg',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}" valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Objeto de costo">
+												<Input id="inputCeCo" editable="{oEdicion>/edit}" showValueHelp="true" valueHelpRequest="handleValueHelp_obj" width="100%" type="Text"
+													valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Observaciones">
+												<TextArea id="inputObser" editable="{oEdicion>/edit}" rows="4" value="{/Zobserv}" maxLength="250">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</TextArea>
+											</f:FormElement>
+											<f:FormElement label="Adjunto">
+												<Button id="btnAdjuntoSolicitud" press="onOpenDialogAttachSolicitud" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>
+												<!--<Button press="fnSubirObservacionDS" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>-->
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+							<f:Form visible="{oEdicion>/edit}">
+								<f:title>
+									<core:Title text="Ingrese los siguientes datos:"/>
+								</f:title>
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Descripción">
+												<Input id="idDes" placeholder="Ingrese descripción..." editable="true" maxLength="40">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Concepto">
+												<Input id="idConcepto" placeholder="Ingrese concepto..." editable="true" type="Text" showSuggestion="true" showValueHelp="true"
+													valueHelpOnly="true" valueHelpRequest="handleConceptValueHelp" suggestionItems="">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Importe Detalle">
+												<Input id="idImporteDetalle" editable="true" liveChange="onChangeImportes" change="onFormatDecimal" app:nameControl="idImporteDetalle">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+							<f:Form>
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<Table id="idTablaDetalleSolicitud" items="{path: '/'}" inset="false">
+													<headerToolbar>
+														<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+															<content>
+																<Title text="Detalle de solicitud" level="H5" titleStyle="H5"/>
+																<ToolbarSpacer width=""/>
+																<Button id="idButtonAdd" press="fnAgregarDetalleSolicitud" visible="{oEdicion>/edit}" icon="sap-icon://sys-add"/>
+															</content>
+															<tooltip/>
+														</Toolbar>
+													</headerToolbar>
+													<columns>
+														<Column width="10%">
+															<header><Text text="N°"/></header>
+														</Column>
+														<Column vAlign="Middle" hAlign="Center" width="20%">
+															<header><Text text="Descripción"/></header>
+														</Column>
+														<Column vAlign="Middle" hAlign="Center" width="20%">
+															<header><Text text="Concepto"/></header>
+														</Column>
+														<Column vAlign="Middle" hAlign="Center" width="20%">
+															<header><Text text="Importe"/></header>
+														</Column>
+														<Column vAlign="Middle" visible="{oEdicion>/edit}" hAlign="Center" width="20%">
+															<header><Text text="Acción"/></header>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem vAlign="Middle" type="Active">
+															<cells>
+																<Text text="{Nrpos}"/>
+																<Text text="{Detalle}"/>
+																<Text text="{Zconc}"/>
+																<ObjectNumber number="{ parts: [ { path: 'Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }" unit="{Waers}" state="Success" textAlign="Center"/>
+																<core:Icon src="sap-icon://delete" class="size1" visible="{oEdicion>/edit}" color="#b20f1d" width="1.5rem" press="fnBorraFila"
+																	app:nameControl="idTablaDetalleSolicitud"/>
+																<!--{oEdicion>/edit}-->
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</content>
+					</Panel>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Reject" text="Cancelar" press="onIrMain" icon="sap-icon://refresh"/>
+						<Button id="btnGrabar" visible="{oEdicion>/edit}" type="Accept" text="Guardar" press="onUpdateSolicitud" icon="sap-icon://save"/>
+						<Button id="idCrearGastoxSol" type="Accept" text="Gasto" press="onValidarLiquidacion" icon="sap-icon://add" visible="true"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

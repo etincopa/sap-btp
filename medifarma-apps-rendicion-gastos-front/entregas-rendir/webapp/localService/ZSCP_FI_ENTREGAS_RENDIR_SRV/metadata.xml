@@ -1,0 +1,18 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSCP_FI_ENTREGAS_RENDIR_SRV" xml:lang="es" sap:schema-version="1">
+			<EntityType Name="Ias" sap:content-version="1">
+				<Key><PropertyRef Name="Sysid"/></Key><Property Name="Sysid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ID sistema" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CorporativeEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="ID larga/número"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonalEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="ID larga/número"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Centro coste" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Butxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Nombre empresa"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº personal" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nom.empl./cand."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZSCP_FI_ENTREGAS_RENDIR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="IasSet" EntityType="ZSCP_FI_ENTREGAS_RENDIR_SRV.Ias" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSCP_FI_ENTREGAS_RENDIR_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSCP_FI_ENTREGAS_RENDIR_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

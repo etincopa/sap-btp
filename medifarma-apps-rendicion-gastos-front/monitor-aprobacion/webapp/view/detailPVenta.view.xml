@@ -1,0 +1,103 @@
+<mvc:View controllerName="com.everis.monitorDocumentos.controller.detailPVenta" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+	<App id="idAppControl">
+		<Page title="{i18n>appTitulo}" showNavButton="true" navButtonPress="onBackHome">
+			<content>
+				<f:Form id="FormDisplayHousingD" editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:title>
+						<core:Title text="N° Solicitud {Head>/NroSolicitud}" level="Auto" icon="sap-icon://activity-items"/>
+					</f:title>
+					<f:formContainers>
+						<f:FormContainer title="">
+							<f:formElements>
+								<f:FormElement label="{i18n>appSociedad}">
+									<f:fields>
+										<Text id="txtSociedad" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>appCentro}">
+									<f:fields>
+										<Text id="inputCentro" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>appAlmacen}">
+									<f:fields>
+										<Text id="TextAlmacen" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						
+					</f:formContainers>
+				</f:Form>
+				<Table id="tb_Intercompany" mode="None" backgroundDesign="Translucent" items="{oDetallePV>/PosicionSet/results}" inset="false">
+					<headerToolbar>
+						<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+							<content>
+								<!--<Button text="" type="Default" icon="sap-icon://grid" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+								<Title text="{i18n>appTablaTitulo}" titleStyle="H4" width="auto" textAlign="Begin" visible="true"/>
+								<ToolbarSpacer width=""/>
+							</content>
+							<tooltip/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column vAlign="Middle" hAlign="Center" width="70px">
+							<header><Label text="{i18n>appPosicion}"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="15%" minScreenWidth="Tablet" demandPopin="true">
+							<header><Label text="{i18n>appMaterial}"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+							<header><Label text="{i18n>appDesc}"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true">
+							<header><Label text="{i18n>appCant}"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true">
+							<header><Label text="Cantidad Aprob"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true">
+							<header><Label text="{i18n>appUm}"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true" visible="true">
+							<header><Label text="Solped"/></header>
+						</Column>
+						<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true" visible="true">
+							<header><Label text="Estado"/></header>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+								<ObjectIdentifier title="{oDetallePV>Pos}" class="sapMTableContentMargin"/>
+								<Text text="{oDetallePV>NroMaterial}"/>
+								<Text text="{oDetallePV>Descripcion}"/>
+								<Text text="{oDetallePV>Cantidad}"/>
+								<Text text="{oDetallePV>CantAprobada}"/>
+								<Text text="{oDetallePV>Unidad}"/>
+								<Text text="{oDetallePV>Solped}"/>
+								<ObjectStatus
+										class="sapUiSmallMarginBottom"
+										text="{oDetallePV>TextEstado}"
+										icon="{oDetallePV>Icon}"
+										state="{oDetallePV>State}" />
+								
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<!--Button id="btnSave" icon="sap-icon://save" type="Accept" press="onSave" text="{i18n>appGuardar}"/-->
+				</Toolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>

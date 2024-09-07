@@ -1,0 +1,50 @@
+{
+	"welcomeFile": "/index.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/sap/opu/odata",
+		"target": {
+			"type": "destination",
+			"name": "S4H_HTTP_BASIC",
+			"entryPath": "/sap/opu/odata"
+		},
+		"description": "S4HANA"
+	}, {
+		"path": "/services/userapi",
+		"target": {
+			"type": "service",
+			"name": "userapi"
+		}
+	}, {
+		"path": "/cmis",
+		"target": {
+			"type": "destination",
+			"name": "dsproxybridge"
+		},
+		"description": "CMIS Connection Document Service"
+	}, {
+		"path": "bpmworkflowruntime",
+		"target": {
+			"type": "destination",
+			"name": "bpmworkflowruntime",
+			"entryPath": "/workflow-service"
+		},
+		"description": "Workflow Service Runtime"
+	} ],
+	"sendWelcomeFileRedirect": true
+}

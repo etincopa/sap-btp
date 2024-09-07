@@ -1,0 +1,29 @@
+<core:FragmentDefinition controllerName="everis.apps.entregasRendir.controller.main" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog class="sapUiSizeCompact " title="Opciones de Filtrado">
+		<content>
+			<f:SimpleForm>
+				<Label labelFor="filterCategorySelect" text="Categoría de filtrado"/>
+				<Select id="idFilterPrincipal" change="onChangePrincipal">
+					<core:Item key="0" text="N° de Documento"/>
+					<core:Item key="1" text="Tipo de documento"/>
+					<core:Item key="2" text="Fecha"/>
+				</Select>
+				<Label labelFor="idValorFil" text="Valor"/>
+				<Input id="idNumDoc"/>
+				<Label labelFor="idTipo" text="Tipo"/>
+				<Select id="idTipo" visible="false">
+					<core:Item key="A" text="Aprobado"/>
+					<core:Item key="P" text="Pendiente"/>
+					<core:Item key="R" text="Rechazado"/>
+				</Select>
+				<DatePicker id="idFecha" editable="true" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha del documento" visible="false"/>
+				<Input id="idConstante" visible="false"/>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button press="onFiltrar" type="Emphasized" text="Filtrar"/>
+			<Button press="onCancelar" text="Cancelar"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="idTableObjectCosto"
+		noDataText="No existe data"
+		title="Seleccione un objeto de costo"
+		search="onSearch"
+		confirm=".onConfirmObjet"
+		cancel=".onDialogClose"
+		items="{
+			path: 'oDataApp>/objcostoSet'
+		}">
+		<StandardListItem
+			title="{oDataApp>Ktext}"
+			description="{= ${oDataApp>Kostl} ? ${oDataApp>Kostl} : ${oDataApp>Aufnr} }"
+			icon="sap-icon://business-objects-mobile"
+			iconDensityAware="true"
+			iconInset="true"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

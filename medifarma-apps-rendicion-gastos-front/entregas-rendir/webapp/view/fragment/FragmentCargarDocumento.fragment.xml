@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>Devolucion}" contentWidth="25%" class="sapUiContentPadding">
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<Label text="{i18n>Archivo}" required="true"/>
+				<u:FileUploader  change=".file.onSelectFile" buttonText="Buscar" fileType="xlsx,xls,pdf,doc,docx" icon="sap-icon://search"/>
+			</f:content>
+		</f:SimpleForm>
+		<buttons>
+			<Button type="Emphasized" text="{i18n>UploadFile}" press=".file.onUploadConfirm"/>
+			<Button text="{i18n>Cancelar}" press=".file.handleUploadClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>appConceptos}"
+		class="sapUiPopupWithPadding"
+		items="{path: 'oModelConcepto>/', sorter: {path: 'Zconc'}}"
+		search="handleConceptValueHelpSearch"
+		confirm="handleConceptValueHelpClose"
+		cancel="handleConceptValueHelpClose">
+		<StandardListItem title="{oModelConcepto>Zconc}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

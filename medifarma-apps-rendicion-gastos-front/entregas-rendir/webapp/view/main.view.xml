@@ -1,0 +1,75 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="everis.apps.entregasRendir.controller.main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.ui.layout.form" displayBlock="true" xmlns:l="sap.ui.layout">
+	<Shell id="idShell" appWidthLimited="false">
+		<!--<SplitApp id="idSplitFondoFijo" initialDetail="idPagDetSolicitud" initialMaster="idListaSolicitud" orientationChange="onOrientationChange">-->
+		<!--	<detailPages>-->
+		<!--Detalle de solicitud-->
+		<!--<Page title="Detalle Solicitud" id="idPagDetSolicitud" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaMSolicitud">-->
+		<!--	<core:Fragment id="idFragDetSolicitud" fragmentName="everis.apps.entregasRendir.fragment.FragmentDetalleSolicitud" type="XML"/>-->
+		<!--	<footer>-->
+		<!--		<Toolbar>-->
+		<!--			<ToolbarSpacer/>-->
+		<!--			<Button id="idCrearGastoxSol" type="Accept" text="Gasto" press="onCrearGasto" icon="sap-icon://add" visible="true"/>-->
+		<!--		</Toolbar>-->
+		<!--	</footer>-->
+		<!--</Page>-->
+		<!--Crear Solicitud-->
+		<Page title="Crear Solicitud" id="idPagCrearSolicitud" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaMSolicitud">
+			<core:Fragment id="idFragCrearSolicitud" fragmentName="everis.apps.entregasRendir.view.fragment.FragmentCrearSolicitud" type="XML"/>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Grabar" press="onCrearNuevaSolicitud" icon="sap-icon://save"/>
+					<Button type="Default" text="Reiniciar" press="fnLimpiarCamposCrearSolicitud" icon="sap-icon://refresh"/>
+					<!--<Button type="Reject" text="Cancelar" press="onIrListaDSolicitud" icon="sap-icon://refresh"/>-->
+				</Toolbar>
+			</footer>
+		</Page>
+		<!--Detalle de gasto-->
+		<!--<Page title="Detalle" id="idPagDetGasto" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaMGasto">-->
+		<!--	<core:Fragment id="idFragDetGasto" fragmentName="everis.apps.entregasRendir.fragment.FragmentDetalleGasto" type="XML"/>-->
+		<!--</Page>-->
+		<!--Crear Gasto-->
+		<!--	<Page title="Crear Gasto" id="idPagCrearGasto" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaDSolicitud">-->
+		<!--		<core:Fragment id="idFragCrearGasto" fragmentName="everis.apps.entregasRendir.fragment.FragmentCrearGasto" type="XML"/>-->
+		<!--		<footer>-->
+		<!--			<Toolbar>-->
+		<!--				<ToolbarSpacer/>-->
+		<!--				<Button id="btnGrabar" type="Accept" text="Grabar" press="onCrearNuevoGasto" icon="sap-icon://add" />-->
+		<!--				<Button type="Accept" text="Reiniciar" press="fnLimpiarCamposCrearGastos" icon="sap-icon://refresh"/>-->
+		<!--				<Button type="Reject" text="Cancelar" press="onIrListaDSolicitud" icon="sap-icon://refresh"/>-->
+		<!--	<Button type="Accept" text="Subir imagen" press="fnAbrir"/> -->
+		<!--			</Toolbar>-->
+		<!--		</footer>-->
+		<!--	</Page>-->
+		<!--</detailPages>-->
+		<!--<masterPages>-->
+		<!--lista de solicitudes-->
+		<!--<Page id="idListaSolicitud" title="Historial de Solicitudes" floatingFooter="true" showNavButton="false" navButtonPress="onIrHome">-->
+		<!--	<headerContent>-->
+		<!--		<Button icon="sap-icon://navigation-right-arrow" press="onIrListaMGasto"/>-->
+		<!--	</headerContent>-->
+		<!--		<core:Fragment id="idFragListaSolicitud" fragmentName="everis.apps.entregasRendir.fragment.FragmentListaSolicitud" type="XML"/>-->
+		<!--	<footer>-->
+		<!--		<Toolbar>-->
+		<!--			<ToolbarSpacer/>-->
+		<!--			<Button type="Accept" text="Solicitud" press="onCrearSolicitud" icon="sap-icon://add"/>-->
+		<!--			<Button type="Accept" press="onFilterS" icon="sap-icon://filter"/>-->
+		<!--		</Toolbar>-->
+		<!--	</footer>-->
+		<!--</Page>-->
+		<!--lista de gastos-->
+		<!--<Page id="idListaGastos" title="Historial de Gastos" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaMSolicitud">-->
+		<!--	<core:Fragment id="idFragListaGastos" fragmentName="everis.apps.entregasRendir.fragment.FragmentListaGastos" type="XML"/>-->
+		<!--	<footer>-->
+		<!--		<Toolbar>-->
+		<!--			<ToolbarSpacer/>-->
+		<!--			<Button type="Accept" press="onFilterG" icon="sap-icon://filter"/>-->
+		<!--		</Toolbar>-->
+		<!--	</footer>-->
+		<!--</Page>-->
+		<!--	</masterPages>-->
+		<!--</SplitApp>-->
+	</Shell>
+</mvc:View>

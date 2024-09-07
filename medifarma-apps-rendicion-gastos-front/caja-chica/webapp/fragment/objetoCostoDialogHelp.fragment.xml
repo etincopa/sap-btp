@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>appTituloDialogoObjetoCostoHelp}"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{oRegistroModel>/objetosCosto}"
+		search="_handleValueHelpSearch_cc"
+		confirm="onCloseDialogCentroCosto"
+		cancel="onCloseDialogCentroCosto"
+		noDataText="{i18n>appNoDataHelp}">
+		<StandardListItem  
+			title="{oRegistroModel>Ktext}"  
+			info="{oRegistroModel>Kostl}"
+			/>
+	</SelectDialog>
+</core:FragmentDefinition>

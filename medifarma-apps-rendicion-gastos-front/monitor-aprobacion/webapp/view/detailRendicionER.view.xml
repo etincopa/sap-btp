@@ -1,0 +1,510 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="com.everis.monitorDocumentos.controller.detailRendicionER"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title" id="idPagDetRendicionER">
+				<content>
+					<Panel width="auto" class="sapUiMarginResponsive">
+						<headerToolbar>
+							<OverflowToolbar>
+								<ToolbarSpacer/>
+								<Button text="{i18n>txtDocumentoAnterior}" press="onVisualizarDocumentoAnterior" icon="sap-icon://copy" visible="{oEdicion>/existeDocumentoAnterior}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<f:Form editable="true" id="frmDetRendicionER">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Operación">
+												<Input id="idOperacion" change="fnChangeTxt" editable="false" value="{/sZcatCompleto}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Cuenta de Mayor" visible="false">
+												<Input id="idCuentaMyr" editable="true" value="{/Hkont}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Fecha de Solicitud">
+												<DatePicker id="idFecha" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{path: '/Bldat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Importe Total">
+												<Input id="idImporteTotal" editable="false"
+													value="{ parts: [ { path: '/Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Entrega a Rendir Adicional" >
+												<CheckBox selected="{/FlagAdicional}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</CheckBox>
+											</f:FormElement>
+											<f:FormElement label="Opción" visible="{/FlagAdicional}">
+												<ComboBox id="idAdicionales" items="{ path: 'oAdicionalModel>/', sorter: { path: 'Eratx' } }" editable="false">
+													<core:ListItem key="{oAdicionalModel>Eratx}" text="{oAdicionalModel>Conca}"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</ComboBox>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Fecha contable">
+												<DatePicker id="idFechaCont" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{ path: '/Budat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Moneda">
+												<Input editable="false" value="{/Waers}" id="idWaers">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Referencia General">
+												<Input id="idReferencia" editable="false" maxLength="16" value="{/Xblnr}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Tipo de Objeto de costo">
+												<Input id="inputTipImp" editable="false" showValueHelp="true" valueHelpRequest="handleValueHelp_ti"
+													value="{path:'/Kstrg',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}" valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Objeto de costo">
+												<Input id="inputCeCo" editable="false" showValueHelp="true" valueHelpRequest="handleValueHelp_obj" width="100%" type="Text"
+													valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Observaciones">
+												<TextArea id="inputObser" editable="false" rows="4" value="{/Zobserv}" maxLength="250">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</TextArea>
+											</f:FormElement>
+											<!--<f:FormElement label="Adjunto">-->
+											<!--	<Button id="btnAdjuntoSolicitud" press="onOpenDialogAttachSolicitud" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>-->
+											<!--<Button press="fnSubirObservacionDS" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>-->
+											<!--</f:FormElement>-->
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</content>
+					</Panel>
+					<Panel expandable="true" headerText="Crear Gasto" visible="{oEdicion>/edit}">
+						<content>
+							<f:Form editable="{oEditFormGasto>/edit}" visible="true">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Operación">
+												<Select id="idOperacionDetER" change="fnChangeTxt" items="{ path: '/' }" forceSelection="true">
+													<core:Item key="{Zcat}" text="{Zcat} - {Txt50}"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Select>
+											</f:FormElement>
+											<f:FormElement label="Cuenta de Mayor">
+												<Input id="idCuentaMyrDetER" editable="false" value="{/oCuenMayor}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="RUC">
+												<Input placeholder="Ingrese N° RUC" id="idRUCDetER" change="onValidRucRetencion" maxLength="11" required="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Razón Social">
+												<Input id="idRazSocDetER" maxLength="40" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="{oModdelValueName>/NameIndImp}">
+												<Select id="idIndImpDetER" change="addImporteTotal" selectedKey="01" enabled="{oModdelValueName>/EditableIndImp}">
+													<core:Item key="C7" text="0%"/>
+													<core:Item key="CC" text="10%"/>
+													<core:Item key="C1" text="8%"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Select>
+											</f:FormElement>
+											<f:FormElement label="Importe Gravado" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportGravadoDetER" maxLength="40" change="onChangeImportesGravado" liveChange="addImporteTotalGravado"
+													visible="{oModelHelp>/ImportGrav}" app:nameControl="idImportGravadoDetER">
+													<layoutData>
+														<l:GridData span="L4 M4 S6"/>
+													</layoutData>
+												</Input>
+												<Label text="IGV:" visible="{oModelHelp>/ImportGrav}" textAlign="End" textDirection="Inherit">
+													<layoutData>
+														<l:GridData span="L2 M2 S4"/>
+													</layoutData>
+												</Label>
+												<Input id="IGV" maxLength="40" visible="{oModelHelp>/ImportGrav}" enabled="false">
+													<layoutData>
+														<l:GridData span="L2 M2 S4"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe No Gravado" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportNoGravadoDetER" maxLength="40" change="onChangeImportesGravado" liveChange="addImporteTotalGravado" visible="{oModelHelp>/ImportGrav}"
+													app:nameControl="idImportNoGravadoDetER">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<!--se agrego un metodo para validar la cantidad de numero sea 8-->
+											<f:FormElement label="Importe" visible="{oModelHelp>/Importe}">
+												<Input id="idImporteDDetER" change="onChangeImportes" liveChange="addImporteTotal" app:nameControl="idImporteDDetER"
+													visible="{oModelHelp>/Importe}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe Total" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportTotalDetER" maxLength="40" change="onFormatDecimal" app:nameControl="idImportTotalDetER"
+													visible="{oModelHelp>/ImportGrav}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe Total" visible="{oModelHelp>/Importe}">
+												<Input id="idImportTotalRecHonDetER" maxLength="40"  change="onFormatDecimal"
+													app:nameControl="idImportTotalRecHon" visible="{oModelHelp>/Importe}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement label="Tipo Doc. SUNAT">
+											<Select id="idTipoDocSDetER" change="onFilterSunat" selectedKey="" items="{ path: '/' }" required="true">
+												<core:Item key="{Pkey}" text="{Pvalue}"/>
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Select>
+										</f:FormElement>
+										<f:FormElement label="Serie">
+											<Input id="idSerieDetER" maxLength="4" placeholder="XXXX" change="onSerieChange" liveChange="onSerieLiveChange" required="true">
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Input>
+										</f:FormElement>
+										<!--se agrego un metodo para validar la cantidad de numero sea 8-->
+										<f:FormElement label="Correlativo">
+											<Input id="idCorrDetER" maxLength="8" placeholder="XXXXXXXX" change="onCorrelativoChange" liveChange="onCorrelativoLiveChange" required="true">
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Input>
+										</f:FormElement>
+										<f:formElements>
+											<f:FormElement label="Fecha Doc.Sunat">
+												<DatePicker id="idFechaFacturaDetER" value="{formatter: '.setFormatterDate'}" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													placeholder="Ingrese fecha de factura" change="onChangeFechaFact">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Adjunto">
+												<!--<u:FileUploader buttonText="Añadir adjunto" buttonOnly="true" id="fileUploader" name="myFileUpload" uploadUrl="upload/"-->
+												<!--	tooltip="Subir archivo" change="onChangeDoc" uploadComplete="handleUploadComplete"/>-->
+												<Button press="onOpenDialogAttach" icon="sap-icon://attachment" text="{i18n>adjunto}" width="10rem"/>
+											</f:FormElement>
+											<f:FormElement visible="true">
+												<VBox>
+													<RadioButton id="idRadButRetDetER" groupName="GroupA" text="Retencion IGV" visible="{oModelIndicadores>/VisibleIndicadorRet}"
+														select="onSelectRadButRet"/>
+													<RadioButton id="idRadButDetDetER" groupName="GroupA" text="Detraccion CxP" visible="{oModelIndicadores>/VisibleIndicadorDet}"
+														select="onSelectRadButDet"/>
+												</VBox>
+											</f:FormElement>
+											<f:FormElement label="Porc. Retencion" visible="{oModelIndicadores>/VisiblePorcRet}">
+												<Select id="idPorcRetencionDetER" change="onSelectPorcRet"
+													items="{ path: 'oDataModelEntregasRendir>/IndicadorRetencionSet', filters: [{ path:'Witht', operator:'EQ', value1:'RP' }] }"
+													visible="{oModelIndicadores>/VisiblePorcRet}">
+													<core:Item key="{oDataModelEntregasRendir>WtWithcd}" text="{oDataModelEntregasRendir>Text40}"/>
+													<layoutData>
+														<l:GridData span="L3 M8 S12"/>
+													</layoutData>
+												</Select>
+												<Label text="Importe Retencion:" textAlign="End" textDirection="Inherit" vAlign="Middle" visible="{oModelIndicadores>/VisibleImporteRet}">
+													<layoutData>
+														<l:GridData span="L3 M4 S6"/>
+													</layoutData>
+												</Label>
+												<Input id="idImporteRetencionDetER" maxLength="40" visible="{oModelIndicadores>/VisibleImporteRet}" valueHelpOnly="true" enabled="false">
+													<layoutData>
+														<l:GridData span="L2 M2 S4"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Porc. Detraccion" visible="{oModelIndicadores>/VisiblePorcDet}">
+												<Select id="idPorcDetraccionDetER" change="onSelectPorcDet"
+													items="{ path: 'oDataModelEntregasRendir>/IndicadorRetencionSet', filters: [{ path:'Witht', operator:'EQ', value1:'DE' }] }">
+													<core:Item key="{oDataModelEntregasRendir>WtWithcd}" text="{oDataModelEntregasRendir>Text40}"/>
+													<layoutData>
+														<l:GridData span="L3 M8 S12"/>
+													</layoutData>
+												</Select>
+												<Label text="Importe Detraccion:" textAlign="End" textDirection="Inherit" vAlign="Middle" visible="{oModelIndicadores>/VisibleImporteDet}">
+													<layoutData>
+														<l:GridData span="L3 M4 S6"/>
+													</layoutData>
+												</Label>
+												<Input id="idImporteDetraccionDetER" maxLength="40" visible="{oModelIndicadores>/VisibleImporteDet}" valueHelpOnly="true" enabled="false">
+													<layoutData>
+														<l:GridData span="L2 M2 S4"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Fecha Detraccion" visible="{oModelIndicadores>/VisibleFechaDet}">
+												<DatePicker id="idFechaDetracccionDetER" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha de factura"
+													visible="{oModelIndicadores>/VisibleFechaDet}">
+													<layoutData>
+														<l:GridData span="L3 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+												<Label text="Numero Constancia:" textAlign="End" textDirection="Inherit" vAlign="Middle" visible="{oModelIndicadores>/VisibleConstancia}">
+													<layoutData>
+														<l:GridData span="L3 M4 S6"/>
+													</layoutData>
+												</Label>
+												<Input id="idNumConstanciaDetER" maxLength="10" visible="{oModelIndicadores>/VisibleConstancia}" liveChange="valideNumber">
+													<layoutData>
+														<l:GridData span="L2 M2 S4"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement></f:FormElement>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement>
+											<ToolbarSpacer></ToolbarSpacer>
+											<ToolbarSpacer></ToolbarSpacer>
+											<Button id="btnAgregarDet" type="Default" press="validarSunat" text="Agregar Gasto" icon="sap-icon://save" width="11em"/>
+										</f:FormElement>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</content>
+					</Panel>
+					<f:Form>
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement>
+										<Table id="idTablaDetalleRendicionER" items="{path: '/'}" itemPress="editFragmentDetail" inset="false">
+											<headerToolbar>
+												<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+													<content>
+														<Title text="Detalle de Gastos" level="H5" titleStyle="H5"/>
+														<ToolbarSpacer/>
+														<!--<Button id="idButtonAdd" press="activeCrearGasto" icon="sap-icon://sys-add"/>-->
+													</content>
+													<tooltip/>
+												</Toolbar>
+											</headerToolbar>
+											<columns>
+												<Column width="5%">
+													<header><Text text="N°POS"/></header>
+												</Column>
+												<Column width="9%">
+													<header><Text text="Operacion"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="Fech.Doc.Sunat"/></header>
+												</Column>
+												<Column width="9%" visible="false">
+													<header><Text text="CeCo"/></header>
+												</Column>
+												<Column width="13%">
+													<header><Text text="Rz.Social"/></header>
+												</Column>
+												<Column width="9%">
+													<header><Text text="RUC"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Serie"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="Correlativo"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Importe"/></header>
+												</Column>
+												<!-- <Column demandPopin="true" popinDisplay="Inline" minScreenWidth="Tablet" width="7%">
+													<Text text="Ret"/>
+												</Column>
+												<Column demandPopin="true" popinDisplay="Inline" minScreenWidth="Tablet" width="7%">
+													<Text text="Det"/>
+												</Column> -->
+												<Column >
+													<header><Text text="Ind.Imp"/></header>
+												</Column>
+												<Column width="5%">
+													<Text text="Total"/>
+												</Column>
+												<Column width="4%">
+													<header><Text text="Adj."/></header>
+												</Column>
+												<Column >
+													<header><Text text="Aprob"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Accion"/></header>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem vAlign="Middle" type="{oEdicion>/type}">
+													<cells>
+														<Text text="{Nrpos}"/>
+														<Text text="{path:'ZCat', formatter:'.formatOperacion'}"/>
+														<Text text="{path:'FechadocSunat',formatter:'.utils.fnFormatearFechaVista'}"/>
+														<Text text="{Aufnr}{Kostl}"/>
+														<Text text="{Sgtxt}"/>
+														<Text text="{Dzuonr}"/>
+														<Text text="{Serie}"/>
+														<Text text="{Correlativo}"/>
+														<ObjectNumber class="sapUiSmallMarginBottom" number="{Wrbtr}" unit="{Waers}" state="Success"/>
+														<!-- <ObjectNumber class="sapUiSmallMarginBottom" number="{path:'',formatter:'.utils.fnFormatearRetencion'}" unit="{Waers}" state="Success"/>
+														<ObjectNumber class="sapUiSmallMarginBottom" number="{path:'',formatter:'.utils.fnFormatearDetraccion'}" unit="{Waers}" state="Success"/> -->
+														<Text text="{path:'Mwskz', formatter:'.formatIndImp'}"/>
+														<ObjectNumber number="{ parts: [ { path: 'Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }" unit="{Waers}" state="Success"/>
+														<Button id="btnAdjuntoDetalleGasto" press="onOpenDialogRencicionPosicion" icon="sap-icon://attachment" tooltip="Adjuntar archivo"
+															width="2em"/>
+														<VBox>
+															<Switch type="AcceptReject" state="{ path: 'FlagAprob', formatter: '.formatSwitch' }" change="onChangeSwitch" enabled="{oEdicion>/edit}"/>
+															<!--<Button icon="sap-icon://show" press="onOpenViewText" visible="{= ${modelDetalle>FlagAprob} === '' ? true : false }"  />-->
+														</VBox>
+														<Button id="btnDeleteDetalleGasto" press="onPressDeletePos" icon="sap-icon://delete" visible="{oEdicion>/edit}" width="2em"/>
+														<!--<Text text="{Detalle}"/>-->
+														<!--<Text text="{Zconc}"/>-->
+														<!--<ObjectNumber number="{Wrbtr}" unit="{Waers}" state="Success" textAlign="Center"/>-->
+														<!--<core:Icon src="sap-icon://delete" class="size1" visible="{oEdicion>/edit}" color="#b20f1d" width="1.5rem" press="fnBorraFila"-->
+														<!--	app:nameControl="idTablaDetalleSolicitud"/>-->
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+					<f:Form editable="true">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements></f:formElements>
+							</f:FormContainer>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Importe">
+										<Input id="idImporteTotalsinIGV" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Input>
+										<Label text="IGV">
+											<layoutData>
+												<l:GridData span="L1 M1 S4"/>
+											</layoutData>
+										</Label>
+										<Input id="IGVTOTAL" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Input>
+										<Label text="Importe Total">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Label>
+										<Input id="idImporteTotalIGV" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Reject" text="Cancelar" press="onIrMain" icon="sap-icon://refresh"/>
+						<Button id="btnGrabar" visible="{oEdicion>/edit}" type="Accept" text="Guardar" press="onCrearNuevoGastoPreliminar" icon="sap-icon://save"/>
+						<Button id="idCrearGastoxSol" type="Accept" text="Gasto" press="onCrearGasto" icon="sap-icon://add" visible="false"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

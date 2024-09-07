@@ -1,0 +1,432 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="com.everis.monitorDocumentos.controller.detailRendicionFF" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title" id="idPagDetRendicionFF" class="sapUiSizeCompact">
+				<content>
+					<Panel width="auto" class="sapUiMarginResponsive">
+						<headerToolbar>
+							<OverflowToolbar>
+								<ToolbarSpacer/>
+								<Button text="{i18n>txtDocumentoAnterior}" press="onVisualizarDocumentoAnterior" icon="sap-icon://copy" visible="{oEdicion>/existeDocumentoAnterior}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<f:Form editable="true" id="frmRendicionFF">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Operación">
+												<Input id="idOperacion" editable="false" value="{/sZcatCompleto}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Cuenta de Mayor">
+												<Input id="idCuentaMyr" editable="false" value="{/Hkont}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Fondo Fijo">
+												<Input id="idfondo" editable="false" value="{/sZfondoCompleto}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Fecha de Solicitud">
+												<DatePicker id="idFecha" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{path: '/Bldat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Importe Total">
+												<Input id="idImporteTotal" editable="false"
+													value="{ parts: [ { path: '/Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Fecha contable">
+												<DatePicker id="idFechaCont" editable="false" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy"
+													value="{ path: '/Budat', formatter: '.setFormatterDate'}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</DatePicker>
+											</f:FormElement>
+											<f:FormElement label="Moneda">
+												<Input editable="false" value="{/Waers}" id="idWaers">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Referencia General">
+												<Input id="idReferencia" editable="false" value="{/Xblnr}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Tipo de Objeto de costo">
+												<Input id="inputTipImp" editable="false" showValueHelp="true" valueHelpRequest="handleValueHelp_ti"
+													value="{path:'/Kstrg',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}" valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Objeto de costo">
+												<Input id="inputCeCo" editable="false" showValueHelp="true" valueHelpRequest="handleValueHelp_obj" width="100%" type="Text"
+													valueHelpOnly="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Observaciones">
+												<TextArea id="inputObser" editable="false" rows="4" value="{/Zobserv}" maxLength="250">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</TextArea>
+											</f:FormElement>
+											<!--<f:FormElement label="Adjunto">-->
+											<!--	<Button id="btnAdjuntoSolicitud" press="onOpenDialogAttachSolicitud" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>-->
+											<!--<Button press="fnSubirObservacionDS" icon="sap-icon://attachment" tooltip="Adjuntar archivo" width="2em"/>-->
+											<!--</f:FormElement>-->
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</content>
+					</Panel>
+					<Panel expandable="true" headerText="Crear Gasto" visible="{oEdicion>/edit}">
+						<content>
+							<f:Form id="idFormDetalleGasto" editable="{oEditFormGasto>/edit}">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+										emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Operación">
+												<Select id="idOperacionDet" change="fnChangeTxt" items="{ path: '/' }" forceSelection="true">
+													<core:Item key="{Zcat}" text="{Zcat} - {Txt50}"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Select>
+												<!--<Input id="idOperacion2" editable="false" value="">-->
+												<!--	<layoutData>-->
+												<!--		<l:GridData span="L5 M8 S12"/>-->
+												<!--	</layoutData>-->
+												<!--</Input>-->
+											</f:FormElement>
+											<f:FormElement label="Cuenta de Mayor">
+												<Input id="idCuentaMyrDet" editable="false" value="{/oCuenMayor}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<!--<f:FormElement label="Centro de Coste" visible="false">
+										<Input id="idCeco_" editable="true" value="{/Kostl}">
+											<layoutData>
+												<l:GridData span="L8 M8 S12"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>-->
+											<!--<f:FormElement label="{oGeneral>/labelObjetoCosto}">-->
+											<!--	<f:fields>-->
+											<!--		<Input id="idCeco" enabled="{oGeneral>/enableObjetoCosto}" type="Text" showValueHelp="true" valueHelpOnly="true"-->
+											<!--			valueHelpRequest="handleValueHelp_obj" change="onChangeInput"-->
+											<!--			value="{path:'/KostlKtext',type : 'sap.ui.model.type.String', constraints : { minLength : 1 }}">-->
+											<!--			<layoutData>-->
+											<!--				<l:GridData span="L8 M8 S12"/>-->
+											<!--			</layoutData>-->
+											<!--		</Input>-->
+											<!--	</f:fields>-->
+											<!--</f:FormElement>-->
+											<f:FormElement label="RUC">
+												<Input placeholder="Ingrese N° RUC" id="idRUCDet" change="onValidRuc" maxLength="11" required="true">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Razón Social">
+												<Input id="idRazSocDet" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Ind. Impuesto">
+												<Select id="idIndImpDet" change="addImporteTotal" selectedKey="01">
+													<core:Item key="C7" text="0%"/>
+													<core:Item key="CC" text="10%"/>
+													<core:Item key="C1" text="18%"/>
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Select>
+											</f:FormElement>
+											<f:FormElement label="Importe" visible="{oModelHelp>/Importe}">
+												<Input id="idImporteDDet" change="onChangeImportes" liveChange="addImporteTotal" app:nameControl="idImporteDDet"
+													visible="{oModelHelp>/Importe}">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe Gravado" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportGravadoDet" maxLength="40" change="onChangeImportes" liveChange="addImporteTotal"
+													app:nameControl="idImportGravadoDet">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe No Gravado" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportNoGravadoDet" maxLength="40" change="onChangeImportes" liveChange="addImporteTotal" visible="{oModelHelp>/ImportGrav}"
+													app:nameControl="idImportNoGravadoDet">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe Total" visible="{oModelHelp>/ImportGrav}">
+												<Input id="idImportTotalDet" maxLength="40" change="onFormatDecimal" app:nameControl="idImportTotalDet"
+													visible="{oModelHelp>/ImportGrav}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+											<f:FormElement label="Importe Total" visible="{oModelHelp>/Importe}">
+												<Input id="idImportTotalRecHonDet" maxLength="40" change="onFormatDecimal"
+													app:nameControl="idImportTotalRecHonDet" visible="{oModelHelp>/Importe}" editable="false">
+													<layoutData>
+														<l:GridData span="L8 M8 S12"/>
+													</layoutData>
+												</Input>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement label="Tipo Doc. SUNAT">
+											<Select id="idTipoDocSDet" change="onFilterSunat" selectedKey="" items="{ path: '/' }" required="true">
+												<core:Item key="{Pkey}" text="{Pvalue}"/>
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Select>
+										</f:FormElement>
+										<f:FormElement label="Serie">
+											<Input id="idSerieDet" maxLength="4" placeholder="XXXX" change="onSerieChange" liveChange="onSerieLiveChange" required="true">
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Input>
+										</f:FormElement>
+										<f:FormElement label="Correlativo">
+											<Input id="idCorrDet" maxLength="8" change="onCorrelativoChange" placeholder="XXXXXXXX" liveChange="onCorrelativoLiveChange" required="true">
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</Input>
+										</f:FormElement>
+										<f:FormElement label="Fecha Doc. Sunat">
+											<DatePicker id="idFechaFacturaDet" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha de factura">
+												<layoutData>
+													<l:GridData span="L8 M8 S12"/>
+												</layoutData>
+											</DatePicker>
+										</f:FormElement>
+										<f:formElements>
+											<f:FormElement label="Adjunto">
+												<Button press="onOpenDialogAttach" icon="sap-icon://attachment" text="Adjuntar" width="10rem"/>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement></f:FormElement>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:FormElement>
+											<ToolbarSpacer></ToolbarSpacer>
+											<ToolbarSpacer></ToolbarSpacer>
+											<Button id="btnGrabarDet" type="Default" press="validarSunat" text="Agregar Gasto" icon="sap-icon://save" width="11em"/>
+										</f:FormElement>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</content>
+					</Panel>
+					<f:Form>
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement>
+										<Table id="idTablaDetalleRendicionFF" items="{path: '/'}" itemPress="editFragmentDetail">
+											<headerToolbar>
+												<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+													<content>
+														<Title text="Detalle de Gasto" level="H5" titleStyle="H5"/>
+														<ToolbarSpacer width=""/>
+													</content>
+													<tooltip/>
+												</Toolbar>
+											</headerToolbar>
+											<columns>
+												<Column width="7%">
+													<header><Text text="N°POS"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="Operacion"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="Fech.Doc.Sunat"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="CeCo"/></header>
+												</Column>
+												<Column width="15%">
+													<header><Text text="Rz.Social"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="RUC"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Serie"/></header>
+												</Column>
+												<Column width="10%">
+													<header><Text text="Correlativo"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Importe"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Ind.Imp"/></header>
+												</Column>
+												<Column width="4%">
+													<header><Text text="Adj."/></header>
+												</Column>
+												<Column >
+													<header><Text text="Aprob"/></header>
+												</Column>
+												<Column >
+													<header><Text text="Accion"/></header>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem vAlign="Middle" type="{oEdicion>/type}">
+													<cells>
+														<Text text="{Nrpos}"/>
+														<Text text="{path:'ZCat', formatter:'.formatOperacion'}"/>
+														<Text text="{path:'FechadocSunat',formatter:'.utils.fnFormatearFechaVista'}"/>
+														<Text text="{Aufnr}{Kostl}"/>
+														<Text text="{Sgtxt}"/>
+														<Text text="{Dzuonr}"/>
+														<Text text="{Serie}"/>
+														<Text text="{Correlativo}"/>
+														<ObjectNumber class="sapUiSmallMarginBottom" number="{ parts: [ { path: 'Wrbtr' }, 'PEN' ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }" unit="{Waers}" state="Success"/>
+														<Text text="{path:'Mwskz', formatter:'.formatIndImp'}"/>
+														<Button id="btnAdjuntoDetalleGasto" press="onOpenDialogRencicionPosicion" icon="sap-icon://attachment" tooltip="Adjuntar archivo"
+															width="2em"/>
+														<VBox>
+															<Switch type="AcceptReject" state="{ path: 'FlagAprob', formatter: '.formatSwitch' }" change="onChangeSwitch" enabled="{oEdicion>/edit}"/>
+															<!--<Button icon="sap-icon://show" press="onOpenViewText" visible="{= ${modelDetalle>FlagAprob} === '' ? true : false }"  />-->
+														</VBox>
+														<Button id="btnDeleteDetalleGasto" press="onPressDeletePos" icon="sap-icon://delete" visible="{oEdicion>/edit}" width="2em"/>
+														<!--<Text text="{Detalle}"/>-->
+														<!--<Text text="{Zconc}"/>-->
+														<!--<ObjectNumber number="{Wrbtr}" unit="{Waers}" state="Success" textAlign="Center"/>-->
+														<!--<core:Icon src="sap-icon://delete" class="size1" visible="{oEdicion>/edit}" color="#b20f1d" width="1.5rem" press="fnBorraFila"-->
+														<!--	app:nameControl="idTablaDetalleSolicitud"/>-->
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+					<f:Form editable="true">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements></f:formElements>
+							</f:FormContainer>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Importe">
+										<Input id="idImporteTotalsinIGV" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S6"/>
+											</layoutData>
+										</Input>
+										<Label text="IGV">
+											<layoutData>
+												<l:GridData span="L1 M1 S4"/>
+											</layoutData>
+										</Label>
+										<Input id="IGVTOTAL" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Input>
+										<Label text="Importe Total">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Label>
+										<Input id="idImporteTotalIGV" editable="false" value="0" change="onFormatDecimal">
+											<layoutData>
+												<l:GridData span="L2 M2 S4"/>
+											</layoutData>
+										</Input>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Reject" text="Cancelar" press="onIrMain" icon="sap-icon://refresh"/>
+						<Button id="btnGrabar" visible="{oEdicion>/edit}" press="onCrearNuevoGastoPreliminar" type="Accept" text="Guardar" icon="sap-icon://save"/>
+						<Button id="idCrearGastoxSol" type="Accept" text="Gasto" press="onValidarGasto" icon="sap-icon://add" visible="false"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

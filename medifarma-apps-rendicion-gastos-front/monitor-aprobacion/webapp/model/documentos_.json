@@ -1,0 +1,109 @@
+[
+  {
+    "nroDocumento": 4900000001,
+    "estadoFinal": "Rechazado",
+    "colorEstado": "#e60000",
+    "historial": [
+      {
+        "nroDocumento": 4900000001,
+        "fechaRegistro": "20/04/2019 10:00 a.m.",
+        "nivelAprobación": 1,
+        "aprobador": "Supert. Mina",
+        "estado": "Aprobado",
+        "colorSubEstado": "#66be2e",
+        "motivo": ""
+      },
+      {
+        "nroDocumento": 4900000001,
+        "fechaRegistro": "20/04/2019 11:00 a.m.",
+        "nivelAprobación": 2,
+        "aprobador": "Gerencia de Operaciones",
+        "estado": "Rechazado",
+        "colorSubEstado": "#e60000",
+        "motivo": "No es necesario para el proceso"
+      }
+    ]
+  },
+  {
+    "nroDocumento": 4900000004,
+    "estadoFinal": "Pendiente",
+    "colorEstado": "#ffcc00",
+    "historial": [
+      {
+        "nroDocumento": 4900000004,
+        "fechaRegistro": "21/04/2019 09:00 a.m.",
+        "nivelAprobación": 1,
+        "aprobador": "Supert. Mina",
+        "estado": "Aprobado",
+        "colorSubEstado": "#66be2e",
+        "motivo": ""
+      },
+      {
+        "nroDocumento": 4900000004,
+        "fechaRegistro": "22/04/2019 09:00 a.m.",
+        "nivelAprobación": 2,
+        "aprobador": "Gerencia de Operaciones",
+        "estado": "Pendiente",
+        "colorSubEstado": "#ffcc00",
+        "motivo": ""
+      }
+    ]
+  },
+  {
+    "nroDocumento": 4900000007,
+    "estadoFinal": "Pendiente",
+    "colorEstado": "#ffcc00",
+    "historial": [
+      {
+        "nroDocumento": 4900000007,
+        "fechaRegistro": "22/04/2019 10:00 a.m.",
+        "nivelAprobación": 1,
+        "aprobador": "Supert. Mina",
+        "estado": "Pendiente",
+        "colorSubEstado": "#ffcc00",
+        "motivo": ""
+      }
+    ]
+  },
+  {
+    "nroDocumento": 4900000012,
+    "estadoFinal": "Aprobado",
+    "colorEstado": "#66be2e",
+    "historial": [
+      {
+        "nroDocumento": 4900000012,
+        "fechaRegistro": "23/04/2019 11:00 a.m.",
+        "nivelAprobación": 1,
+        "aprobador": "Supert. Mina",
+        "estado": "Aprobado",
+        "colorSubEstado": "#66be2e",
+        "motivo": ""
+      },
+      {
+        "nroDocumento": 4900000012,
+        "fechaRegistro": "23/04/2019 11:30 a.m.",
+        "nivelAprobación": 2,
+        "aprobador": "Gerencia de Operaciones",
+        "estado": "Aprobado",
+        "colorSubEstado": "#66be2e",
+        "motivo": ""
+      }
+    ]
+  },
+  {
+    "nroDocumento": 4900000034,
+    "estadoFinal": "Rechazado",
+    "colorEstado": "#e60000",
+    "historial": [
+      {
+        "nroDocumento": 4900000034,
+        "fechaRegistro": "24/04/2019 11:00 a.m.",
+        "nivelAprobación": 1,
+        "aprobador": "Supert. Mina",
+        "estado": "Rechazado",
+        "colorSubEstado": "#e60000",
+        "motivo": "No hay suficiente presupuesto"
+      }
+    ]
+  }
+]

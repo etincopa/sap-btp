@@ -1,0 +1,225 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "everis.apps.ReporteDocumentosAprobacion",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "sourceTemplate": {
+      "id": "ui5template.basicSAPUI5ApplicationProject",
+      "version": "1.40.12"
+    },
+    "dataSources": {
+      "MM_APROBDOC_SRV": {
+        "uri": "/saperp/eper/MM_APROBDOC_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "ZOD_MM_UTILIDADES_SRV": {
+        "uri": "saperp/eper/OD_MM_UTILIDADES_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "ZSCP_MONITORDOCUMENTOS_SRV": {
+        "uri": "saperp/eper/MONITOR_DOCUMENTOS_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "ZSCP_FI_ENTREGAS_RENDIR_SRV": {
+        "uri": "saperp/eper/ENTREGAS_RENDIR_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "ZCAJACHICAFF_SRV": {
+        "uri": "saperp/eper/CAJACHICAFF_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "reporteDocumentos",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "icon": "sap-icon://monitor-payments"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "everis.apps.ReporteDocumentosAprobacion.view.Home",
+      "type": "XML",
+      "async": true,
+      "id": "Home"
+    },
+    "dependencies": {
+      "minUI5Version": "1.65.6",
+      "libs": {
+        "sap.ui.layout": {},
+        "sap.ui.core": {},
+        "sap.m": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "everis.apps.ReporteDocumentosAprobacion.i18n.i18n"
+        }
+      },
+      "oScpAprobcModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "MM_APROBDOC_SRV",
+        "preload": true
+      },
+      "oUtilitiesModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "ZOD_MM_UTILIDADES_SRV",
+        "preload": true
+      },
+      "ODataModelMonitor": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultOperationMode": "Server",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "ZSCP_MONITORDOCUMENTOS_SRV",
+        "preload": true
+      },
+      "oDataModelEntregasRendir": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultOperationMode": "Server",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          },
+          "useBatch": true
+        },
+        "dataSource": "ZSCP_FI_ENTREGAS_RENDIR_SRV",
+        "preload": true
+      },
+      "oDataModelFondoFijo": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultOperationMode": "Server",
+          "metadataUrlParams": {
+            "sap-documentation": "heading",
+            "sap-language": "ES"
+          }
+        },
+        "dataSource": "ZCAJACHICAFF_SRV",
+        "preload": true
+      },
+      "oDataApp": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/dataLocal.json",
+        "preload": false
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "everis.apps.ReporteDocumentosAprobacion.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteHome",
+          "pattern": "RouteHome",
+          "target": ["TargetHome"]
+        }
+      ],
+      "targets": {
+        "TargetHome": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Home",
+          "viewName": "Home"
+        }
+      }
+    }
+  },
+  "sap.platform.hcp": {
+    "uri": "webapp",
+    "_version": "1.1.0"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "medifarma-apps-rendicion-gastos-bs"
+  }
+}

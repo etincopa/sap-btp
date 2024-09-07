@@ -1,0 +1,160 @@
+{
+  "maximumFilenameLength": 100,
+  "maximumFileSize": 10,
+  "busy": false,
+  "multiple": false,
+  "uploadEnabled": true,
+  "mode": "None",
+  "enableEdit": false,
+  "enableDelete": true,
+  "visibleDelete": true,
+  "visibleEdit": false,
+  "fileTypes": [
+    "pdf",
+    "jpg",
+    "jpeg",
+    "png",
+    "msg",
+    "xls",
+    "xlsx",
+    "zip",
+    "rar",
+    "eml",
+    "docx",
+    "xml"
+  ],
+  "parameters": {
+    "applications": [
+      "ENTREGAS_RENDIR",
+      "CAJA_CHICA",
+      "SHAREPOINT"
+    ],
+    "ENTREGAS_RENDIR": [
+      {
+        "key": "AMBIENTE",
+        "mandatory": true
+      },
+      {
+        "key": "MONEDA",
+        "mandatory": true,
+        "array": true
+      },
+      {
+        "key": "FILTRO_CAMPO",
+        "mandatory": true
+      },
+      {
+        "key": "FILTRO_TABLA",
+        "mandatory": true
+      },
+      {
+        "key": "GASTO_NIVEL_APROBACION_1",
+        "mandatory": true
+      },
+      {
+        "key": "GASTO_NIVEL_APROBACION_2",
+        "mandatory": true
+      },
+      {
+        "key": "GASTO_NIVEL_APROBACION_3",
+        "mandatory": true
+      },
+      {
+        "key": "PROCESO",
+        "mandatory": true
+      },
+      {
+        "key": "SOLICITUD_NIVEL_APROBACION_1",
+        "mandatory": true
+      },
+      {
+        "key": "SOLICITUD_NIVEL_APROBACION_2",
+        "mandatory": true
+      },
+      {
+        "key": "BUSQUEDA_CAMPO",
+        "mandatory": true
+      },
+      {
+        "key": "BUSQUEDA_TABLA",
+        "mandatory": true
+      },
+      {
+        "key": "GROUP_ADMIN",
+        "mandatory": true
+      },
+      {
+        "key": "REGLA",
+        "mandatory": true
+      },
+      {
+        "key": "SOCIEDAD_CARPETA",
+        "mandatory": true,
+        "array": true,
+        "highValue": true
+      }
+    ],
+    "CAJA_CHICA": [
+      {
+        "key": "AMBIENTE",
+        "mandatory": true
+      },
+      {
+        "key": "FILTRO_CAMPO",
+        "mandatory": true
+      },
+      {
+        "key": "FILTRO_TABLA",
+        "mandatory": true
+      },
+      {
+        "key": "GASTO_NIVEL_APROBACION_1",
+        "mandatory": true
+      },
+      {
+        "key": "GASTO_NIVEL_APROBACION_2",
+        "mandatory": true
+      },
+      {
+        "key": "PROCESO",
+        "mandatory": true
+      },
+      {
+        "key": "SOLICITUD_NIVEL_APROBACION_1",
+        "mandatory": true
+      },
+      {
+        "key": "BUSQUEDA_CAMPO",
+        "mandatory": true
+      },
+      {
+        "key": "BUSQUEDA_TABLA",
+        "mandatory": true
+      },
+      {
+        "key": "REGLA",
+        "mandatory": true
+      },
+      {
+        "key": "CAJA_REEMBOLSO",
+        "mandatory": true
+      },
+      {
+        "key": "SOCIEDAD_CARPETA",
+        "mandatory": true,
+        "array": true,
+        "highValue": true
+      }
+    ],
+    "SHAREPOINT": [
+      {
+        "key": "ROOT_DIRECTORY",
+        "mandatory": true
+      },
+      {
+        "key": "URL",
+        "mandatory": true
+      }
+    ]
+  }
+}

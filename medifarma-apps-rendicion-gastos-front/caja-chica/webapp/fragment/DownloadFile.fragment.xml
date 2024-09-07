@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog draggable="true" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttach">
+		<content>
+			<UploadCollection noDataDescription="{i18n>txtnoDataDescriptionDownload}" noDataText="{i18n>txtNoDataTextDownload}" maximumFilenameLength="{Config>/maximumFilenameLength}" maximumFileSize="{Config>/maximumFileSize}" multiple="{Config>/multiple}" busy="{Config>/busy}" change="onChange" typeMissmatch="onTypeMissmatch" fileType="{Config>/fileTypes}" uploadComplete="uploadComplete" uploadTerminated="onUploadTerminated" items="{ path: '/' }" uploadEnabled="{Config>/uploadEnabled}" uploadButtonInvisible="true" mode="{Config>/mode}">
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitleDownload" text="Adjuntos ({= ${/}.length })"/>
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem documentId="{Documents>LoioId}" fileName="{name}" mimeType="{mimeType}" url="{url}" deletePress="onFileDeleted" press=".onPressItemDownload" enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false">
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialogDownload" icon="sap-icon://decline" type="Default"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

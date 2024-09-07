@@ -1,0 +1,147 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "id": "firstusertask",
+        "_version": "1.3.0",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{APPTITLE}}",
+        "description": "{{APPDESCRIPTION}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
+        },
+        "dataSources": {   
+            "SUPPLIERS_SRV": {
+              "uri": "saperp/eper/SUPPLIERS_SRV/",
+              "type": "OData",
+              "settings": {
+                "odataVersion": "2.0"
+              }
+            },
+            "ENTREGAS_RENDIR_SRV": {
+              "uri": "saperp/eper/ENTREGAS_RENDIR_SRV/",
+              "type": "OData",
+              "settings": {
+                "odataVersion": "2.0"
+              }
+            },
+            "UTILS_SRV": {
+                "uri": "saperp/eper/UTILS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+          } 
+    },
+    "sap.ui": {
+        "_version": "1.3.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.2.0",
+        "rootView": {
+            "viewName": "UISolicitudFF.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "UISolicitudFF.i18n.i18n"
+                }
+            },
+            "SUPPLIERS_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                  "defaultBindingMode": "TwoWay",
+                  "defaultOperationMode": "Server",
+                  "metadataUrlParams": {
+                    "sap-documentation": "heading",
+                    "sap-language": "ES"
+                  },
+                  "useBatch": true
+                },
+                "dataSource": "SUPPLIERS_SRV"
+            },
+            "UtilsModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "OneWay",
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+                },
+                "dataSource": "UTILS_SRV",
+                "preload": true
+            },
+            "Config": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/Config.json",
+                "preload": false
+            },
+            "oEntregaModel": {
+              "type": "sap.ui.model.odata.v2.ODataModel",
+              "settings": {
+                "defaultBindingMode": "TwoWay",
+                "metadataUrlParams": {
+                  "sap-documentation": "heading",
+                  "useBatch": false,
+                  "sap-language": "ES"
+                }
+              },
+              "dataSource": "ENTREGAS_RENDIR_SRV",
+              "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        }
+    },
+    "sap.platform.hcp": {
+        "uri": "",
+        "_version": "1.1.0"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "medifarma-apps-rendicion-gastos-bs"
+    }
+}

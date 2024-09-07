@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttach">
+		<content>
+			<!--<UploadCollection-->
+			<!--items="{helpModel>/Files}"-->
+			<!--uploadButtonInvisible="true" -->
+			<!--mode="None">-->
+			<!--	<items>-->
+			<!--		<UploadCollectionItem -->
+			<!--		documentId="{helpModel>LoioId}"-->
+			<!--		fileName="{helpModel>properties/name/value}"-->
+			<!--		mimeType="{helpModel>properties/type/value}"-->
+			<!--		visibleDelete="false"-->
+			<!--		visibleEdit="false"-->
+			<!--		 press="onDownloadFiles"/>-->
+			<!--	</items>-->
+			<!--</UploadCollection>-->
+			<UploadCollection id="UploadCollection" maximumFilenameLength="{settings>/maximumFilenameLength}" multiple="true"
+				fileDeleted="onDeleteSelectedItems" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed"
+				fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}" selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch"
+				beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated" items="{helpModel>/Files}"
+				numberOfAttachmentsText="Uploaded (8)" showSeparators="{settings>/showSeparators}" uploadButtonInvisible="false" mode="None"
+				uploadEnabled="false">
+				<toolbar>
+					<OverflowToolbar id="myId">
+						<Title id="attachmentTitle" text="Anexos"/>
+						<ToolbarSpacer/>
+						<Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent"/>
+						<ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent"/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items >
+					<UploadCollectionItem documentId="{helpModel>UniqueId}" fileName="{helpModel>Name}"
+						press="onDownloadFiles" enableEdit="true" validationSuccess="validationSuccess"
+						modelContextChange="Change" visibleDelete="false" visibleEdit="false">
+						<attributes>
+							<ObjectAttribute title="{title}" text="{text}" active="{active}" press="onAttributePress"/>
+						</attributes>
+						<statuses>
+							<ObjectStatus title="{title}" text="{text}" state="{state}"/>
+						</statuses>
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialog" icon="sap-icon://decline" type="Accept"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,109 @@
+<mvc:View controllerName="com.everis.monitorDocumentos.controller.main" displayBlock="true" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="Verificación de Estados de Aprobación">
+					<content>
+						<FlexBox
+							alignItems="Start"
+							justifyContent="End" visible="{=${oModelFilter>/nombreSociedad} !== '' ? true:false}">
+							<items>
+								<Text 
+									text="{oModelFilter>/nombreSociedad}"
+									class="sapUiSmallMarginEnd"/>
+							</items>
+						</FlexBox>
+						<fb:FilterBar id="idFilterBar" filterContainerWidth="15rem" reset="onReset" search="onSearch" header="Filtros"
+							showFilterConfiguration="false" showRestoreButton="false" showClearButton="false">
+							<fb:filterItems>
+								<fb:FilterItem name="A" label="Rango de Fechas">
+									<fb:control>
+										<DateRangeSelection id="drFilter" displayFormat="dd/MM/yyyy" valueFormat="yyyyMMdd" dateValue="{oModelFilter>/fechaInicial}"
+											secondDateValue="{oModelFilter>/fechaFinal}"/>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="B" label="Aplicación">
+									<fb:control>
+										<ComboBox id="comboProceso" showSecondaryValues="false" items="{/}" selectedKey="{oModelFilter>/subProcesoSelectd}" change="onChangeFilter">
+											<core:ListItem key="{IdSubproceso}" text="{Vtext}" additionalText="{IdProceso}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="C" label="Nro. de Documento">
+									<fb:control>
+										<Input id="inputNroDocumento" value="{oModelFilter>/nroDocumento}"/>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="D" label="Estado" labelTooltip="Tooltip Example" mandatory="false">
+									<fb:control>
+										<ComboBox id="comboEstado" showSecondaryValues="false" items="{/}" selectedKey="{oModelFilter>/estado}" change="onChangeFilter">
+											<core:ListItem key="{IdStatus}" text="{Vtext}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+						<Table id="idProductsTable" inset="false" growing="true"  growingScrollToLoad="false" items="{ path: 'oModelDocumento>/', sorter: { path: 'NroDocumento', descending: 'true'} }">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Documentos" level="H2"/>
+									<ToolbarSpacer/>
+									<!--<Button icon="sap-icon://download" press="onDataExport"/>-->
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="productCol" width="auto">
+									<Text text="Nro. Documento"/>
+								</Column>
+								<Column id="supplierCol" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Documento"/>
+								</Column>
+								<Column id="stageCol" minScreenWidth="Tablet" demandPopin="true" >
+									<Text text="Etapa"/>
+								</Column>
+								<Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Fecha de creación"/>
+								</Column>
+								<Column id="weightCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Estado"/>
+								</Column>
+								<Column id="idMotivo" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Motivo de Rechazo"/>
+								</Column>
+								<Column id="idBtn1" hAlign="Right" width="auto">
+									<Text text=""/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier title="{oModelDocumento>NroDocumento}"/>
+										<Text text="{oModelDocumento>VtextProceso}"/>
+										<Text text="{oModelDocumento>Zetapa}"/>
+										<Text text="{oModelDocumento>fechaCreacion} {oModelDocumento>Erzet}"/>
+										<HBox>
+											<core:Icon src="sap-icon://circle-task-2" color="{oModelDocumento>colorEstado}" class="sapUiSmallMarginEnd"></core:Icon>
+											<Text text="{oModelDocumento>Vtext}"/>
+										</HBox>
+										<HBox>
+											<Button icon="sap-icon://display" press="onMotivoDialog" ariaLabelledBy="actionButtonLabel" type="Transparent" class="sapUiSmallMarginEnd"
+												visible="{oModelDocumento>hasMotivo}"/>
+											<Text text="{oModelDocumento>MotivoRechazo}" width="auto" maxLines="2" wrapping="true" wrappingType="Hyphenated" textAlign="Begin" textDirection="Inherit"/>
+										</HBox>
+										<HBox>
+											<Button icon="sap-icon://write-new-document" tooltip="{i18n>btnModificar}" press="navToEdit" ariaLabelledBy="actionButtonLabel" class="sapUiTinyMarginEnd" enabled="{oModelDocumento>enableEdit}" visible="true"/>
+											<Button icon="sap-icon://overview-chart" tooltip="{i18n>btnWorkflow}" press="onLogDialog" ariaLabelledBy="actionButtonLabel" class="sapUiTinyMarginEnd"/>
+											<Button icon="sap-icon://delete" tooltip="{i18n>btnEliminar}" press="onPressDelete" ariaLabelledBy="actionButtonLabel" class="sapUiTinyMarginEnd" enabled="{= ${oModelDocumento>enableDelete} &amp;&amp; !${oModelDocumento>FlagAprob}}"/>
+											<Button icon="sap-icon://detail-view" tooltip="{i18n>btnDetalle}" press="navToDetail" ariaLabelledBy="actionButtonLabel" class="sapUiTinyMarginEnd"/>
+										</HBox>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog draggable="true" resizable="false" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttach">
+		<content>
+			<UploadCollection
+			noDataDescription="{i18n>txtnoDataDescription}"
+			noDataText="{i18n>txtNoDataText}"
+			maximumFilenameLength="{Config>/maximumFilenameLength}" 
+			maximumFileSize="{Config>/maximumFileSize}" 
+			multiple="{Config>/multiple}"
+			busy="{Config>/busy}"
+			change="onChangeDevolucion"
+			typeMissmatch="onTypeMissmatch"
+			fileType="{Config>/fileTypes}"
+			uploadComplete="uploadComplete"
+			uploadTerminated="onUploadTerminated"
+			instantUpload="true"
+			items="{ path: 'DocumentsDevolucion>/' }"
+			uploadEnabled="{Config>/uploadEnabled}"
+			uploadButtonInvisible="false" 
+			mode="{Config>/mode}">
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitleDevolucion"/>
+						<ToolbarSpacer/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem 
+					documentId="{DocumentsDevolucion>LoioId}"
+					fileName="{DocumentsDevolucion>Descript}.{DocumentsDevolucion>DocType}"
+					mimeType="{DocumentsDevolucion>Mimetype}"
+					url="{DocumentsDevolucion>LoioId}"
+					deletePress="onFileDeletedDevolucion"
+					press=".onPressItemDownload"
+					enableEdit="{Config>/enableEdit}"
+					enableDelete="{Config>/enableDelete}" 
+					visibleDelete="{Config>/visibleDelete}"
+					visibleEdit="{Config>/visibleEdit}">
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		<beginButton>
+			<Button text="Cerrar" press="onCloseDialogAttachDevolucion" icon="sap-icon://decline" type="Accept"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

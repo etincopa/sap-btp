@@ -1,0 +1,8 @@
+<mvc:View controllerName="com.everis.apps.cajachicaff.controller.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+	<Shell>
+		<App id="app">
+		</App>
+	</Shell>
+</mvc:View>

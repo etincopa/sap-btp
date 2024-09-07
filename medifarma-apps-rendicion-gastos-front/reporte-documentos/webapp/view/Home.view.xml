@@ -1,0 +1,119 @@
+<mvc:View controllerName="everis.apps.ReporteDocumentosAprobacion.controller.Home" displayBlock="true" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<App id="app" class="sapUiSizeCompact">
+		<pages>
+			<Page id="page" title="Reporte aprobación de documentos">
+				<content>
+					<FlexBox alignItems="Start" justifyContent="End" visible="{=${oModelFilter>/nombreSociedad} !== '' ? true:false}">
+						<items>
+							<Text text="{oModelFilter>/nombreSociedad}" class="sapUiSmallMarginEnd"/>
+						</items>
+					</FlexBox>
+					<fb:FilterBar id="idFilterBar" filterContainerWidth="15rem" reset="onReset" search="onFilterTable" header="Filtros"
+						showFilterConfiguration="false" showRestoreButton="false" showClearButton="false">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="Sociedad">
+								<fb:control>
+									<ComboBox showSecondaryValues="false" id="idSociedad" selectedKey="{oDataApp>/bukrs}" change="onChangeFilter" required="true">
+										<core:ListItem key="1000" text="1000"/>
+									</ComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="Rango de Fechas">
+								<fb:control>
+									<DateRangeSelection id="drFilter" displayFormat="dd/MM/yyyy" valueFormat="YYYYMMdd" dateValue="{oDataApp>/fechaInicial}"
+										secondDateValue="{oDataApp>/fechaFinal}" required="true"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="Usuario Solicitante">
+								<fb:control>
+									<ComboBox showSecondaryValues="false" items="{path : 'oScpAprobcModel>/UsuarioSet'}" change="onChangeFilterUser">
+										<core:ListItem key="{oScpAprobcModel>User}" text="{oScpAprobcModel>NombreUsuario}" additionalText="{IdProceso}"/>
+									</ComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="D" label="Tipo de Obj. Costo">
+								<fb:control>
+									<ComboBox id="idCbxTypeObjectCosto" showSecondaryValues="true" items="{oDataApp>/tipoobjcostoreservaSet}"
+										editable="{oDataApp>/bEnabledTypeCosto}" selectedKey="{oDataApp>/Rstyp}" change="onChangeFilterTypeCosto">
+										<core:ListItem key="{oDataApp>Rstyp}" text="{oDataApp>Rsttx}" additionalText="{oDataApp>Rstyp}"/>
+									</ComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="E" label="Objeto de Costo">
+								<fb:control>
+									<Input value="{oDataApp>/sKeyObjCost}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onOpenDialog"
+										editable="{oDataApp>/bEnabledObjectCosto}"/>
+									<!--<ComboBox id="idCbxObjectCosto" showSecondaryValues="true" items="{oDataApp>/objcostoSet}" editable="{oDataApp>/bEnabledObjectCosto}"
+											selectedKey="{oDataApp>/Kostl}" change="onChangeFilter">
+											<core:ListItem key="{= ${oDataApp>Kostl} ? ${oDataApp>Kostl} : ${oDataApp>Aufnr} }" text="{oDataApp>Ktext}"
+												additionalText="{= ${oDataApp>Kostl} ? ${oDataApp>Kostl} : ${oDataApp>Aufnr} }"/>
+										</ComboBox>-->
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+					<Table id="idTableDocuments" growing="true" popinLayout="Block" items="{ path :'oScpAprobcModel>/AprobDocSet'}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Documentos" level="H2"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="productCol" width="auto">
+								<Text text="Nro. Documento"/>
+							</Column>
+							<Column id="supplierCol" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Documento"/>
+							</Column>
+							<Column id="IdSolicitante" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Solicitante"/>
+							</Column>
+							<Column id="stageCol" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Etapa"/>
+							</Column>
+							<Column id="idDocSolicitud" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Doc.Solicitud"/>
+							</Column>
+							<Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Fecha de creación"/>
+							</Column>
+							<Column id="importe" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Importe"/>
+							</Column>
+							<Column id="weightCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Estado"/>
+							</Column>
+							<Column id="idMotivo" minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="auto">
+								<Text text="Motivo de Rechazo"/>
+							</Column>
+							<!--<Column id="idBtn1" hAlign="Right" width="auto">-->
+							<!--	<Text text=""/>-->
+							<!--</Column>-->
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier title="{oScpAprobcModel>NRODOC}"/>
+									<Text text="{path:'oScpAprobcModel>DOCUMENTO' ,formatter:'.formatDocument'}"/>
+									<Text text="{oScpAprobcModel>Usu_sol}"/>
+									<Text text="{oScpAprobcModel>ETAPA}"/>
+									<Text text="{oScpAprobcModel>DocSolicitud}"/>
+									<Text text="{path:'oScpAprobcModel>BUDAT',formatter:'.formatDate'}"/>
+									<ObjectNumber number="{oScpAprobcModel>IMPORTE}" state="Success"/>
+									<HBox>
+										<core:Icon src="sap-icon://circle-task-2" color="{path: 'oScpAprobcModel>estado' , formatter: '.formatColor'}" class="sapUiSmallMarginEnd"></core:Icon>
+										<Text text="{path: 'oScpAprobcModel>estado' , formatter: '.formatestado'}"/>
+									</HBox>
+									<Text text="{oScpAprobcModel>motrech}"/>
+									<!--<Button id="btnVisualizar" icon="sap-icon://vds-file" visible="false" width="2em"/>-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

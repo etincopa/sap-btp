@@ -1,0 +1,29 @@
+{"ConsumoSolicitanteApprov": {
+	"Subject": "Reserva-Salida de Material Aprobada N° RSNUM",
+	"Mail_txt": "Estimado Usuario,<br>Su solicitud de retiro de material ha sido aprobada bajo el número de reserva RSNUM, favor acercarse al almacén WERKS.<br>Recuerde llevar su número de reserva para que sea atendido./t/tAtentamente,/t",
+    "zcorreos": ""
+},
+  "ConsumoAlmacenistaApprov": {
+    "Subject": "Reserva-Salida de Material Aprobada N° RSNUM",
+    "Mail_txt": "Estimados Señores,/tPor medio del presente, se les informa que la reserva N° RSNUM, ha sido aprobada./tAgradeceremos efectuar el despacho de los materiales./t/tAtentamente,/t",
+    "zcorreos": [
+      {
+        "Receiver": ""
+      }
+    ]
+  },
+  "ConsignacionSolicitanteApprov": {
+    "Subject": "Reserva-Salida de Material Aprobada N° RSNUM",
+    "Mail_txt": "Estimado Usuario,/tSu solicitud de retiro de material ha sido aprobada bajo el número de reserva RSNUM, favor acercarse al Almacén en Consignación./tRecuerde llevar su número de reserva para que sea atendido./tAtentamente,/t/t",
+    "zcorreos": ""
+  },
+  "ConsignacionAlmacenistaApprov": {
+    "Subject": "Reserva-Salida de Material Aprobada N° RSNUM",
+    "Mail_txt": "Estimados Señores,/tPor medio del presente, se les informa que la reserva N° RSNUM, ha sido aprobada./tAgradeceremos efectuar el despacho de los materiales./t/tAtentamente,/t",
+    "zcorreos": [
+      {
+        "Receiver": ""
+      }
+    ]
+  }
+}

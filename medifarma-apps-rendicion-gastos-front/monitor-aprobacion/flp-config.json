@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.everis.monitorDocumentos.everis-apps-monitor-aprobacion-documentos",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#everisappsmonitoraprobaciondocumentos-Display",
+        "navigationComponentName": "com.everis.monitorDocumentos",
+        "intentSemanticObject": "everis-apps-monitor-aprobacion-documentos",
+        "intentAction": "Display",
+        "html5ApplicationName": "monitordocumentos",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "e5800dbd-38e6-4de0-98df-448a0a2f6fb3-1559274681447"
+        ],
+        "contentPackages": [
+            "c6dfff26-5423-43ed-8791-02e99c936577"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Verificación de Estados de Aprobación",
+        "subtitle": "",
+        "searchKeywords": "Verificación de Estados de Aprobación,",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

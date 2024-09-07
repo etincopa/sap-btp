@@ -1,0 +1,158 @@
+_schema-version: "3.2"
+ID: medifarma-apps-rendicion-gastos
+description: A Fiori application.
+version: 0.0.1
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+modules:
+- name: dest_content
+  type: com.sap.application.content
+  requires:
+  - name: dest_service
+    parameters:
+      content-target: true
+  - name: html5_repo_host_service
+    parameters:
+      service-key:
+        name: html5_repo_host_service_key
+  - name: uaa_service
+    parameters:
+      service-key:
+        name: uaa_service_key
+  - name: workflow_mta
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: project_repo_host
+          ServiceInstanceName: html5_repo_host_service
+          ServiceKeyName: html5_repo_host_service_key
+          sap.cloud.service: medifarma-apps-rendicion-gastos-bs
+        - Name: project_uaa
+          Authentication: OAuth2UserTokenExchange
+          ServiceInstanceName: uaa_service
+          ServiceKeyName: uaa_service_key
+          sap.cloud.service: medifarma-apps-rendicion-gastos-bs
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: project_content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: html5_repo_host_service
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - name: comeverisappscajachicaff
+      artifacts:
+      - comeverisappscajachicaff.zip
+      target-path: resources/
+    - name: everisappsentregasRendir
+      artifacts:
+      - everisappsentregasRendir.zip
+      target-path: resources/
+    - name: everisappsentregasRendirTaskUi
+      artifacts:
+      - everisappsentregasRendirTaskUi.zip
+      target-path: resources/
+    - name: comeverismonitorDocumentos
+      artifacts:
+      - comeverismonitorDocumentos.zip
+      target-path: resources/  
+    - name: everisappsReporteDocumentosAprobacion
+      artifacts:
+      - everisappsReporteDocumentosAprobacion.zip
+      target-path: resources/  
+- name: comeverisappscajachicaff
+  type: html5
+  path: caja-chica
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: everisappsentregasRendir
+  type: html5
+  path: entregas-rendir
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: everisappsentregasRendirTaskUi
+  type: html5
+  path: entregas-rendir-taskui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []    
+- name: comeverismonitorDocumentos
+  type: html5
+  path: monitor-aprobacion
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []    
+- name: everisappsReporteDocumentosAprobacion
+  type: html5
+  path: reporte-documentos
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: dest_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-plan: lite
+- name: uaa_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: html5_repo_host_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: workflow_mta
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service: workflow
+    service-plan: standard
+- name: conn_service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite

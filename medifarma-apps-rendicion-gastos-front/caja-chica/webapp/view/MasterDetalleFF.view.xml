@@ -1,0 +1,15 @@
+<mvc:View xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="com.everis.apps.cajachicaff.controller.MasterDetalleFF" displayBlock="true">
+	<Page title="Crear Solicitud" id="idPagCrearSolicitud" floatingFooter="true" showNavButton="true" navButtonPress="onIrListaMSolicitud">
+		<core:Fragment id="idFragCrearSolicitud" fragmentName="com.everis.apps.cajachicaff.fragment.FragmentCrearSolicitud" type="XML"/>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="btnTest" type="Ghost" text="Test" press="onTest" icon="sap-icon://lab" visible="false"/>
+				<Button id="btnGrabar" type="Emphasized" text="Grabar" press="onCrearNuevaSolicitud" icon="sap-icon://save"/>
+				<Button type="Ghost" text="Reiniciar" press="fnLimpiarCamposCrearSolicitud" icon="sap-icon://refresh"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,189 @@
+<core:FragmentDefinition controllerName="everis.apps.entregasRendir.controller.main" xmlns:core="sap.ui.core" 
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:Form editable="true" id="idDetGastos">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Fecha de Doc.">
+						<DatePicker editable="false" value="{path: '/Bldat', formatter: '.formatter.setFormatterDate'}" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha de solicitud...">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<!--	<f:FormElement label="Operación">
+						<Input editable="false" value="{/sZcatCompleto}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement> -->
+					<f:FormElement label="Centro de Coste">
+						<Input value="{/Kostl}" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Referencia">
+						<Input value="{/Xblnr}" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Cuenta de Mayor">
+						<Input value="{/Hkont}" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Solicitud">
+						<!--<Input value="{/BktxtDoc}" editable="false">-->
+						<Input value="{/Sgtxt}" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Fecha contable">
+						<DatePicker editable="false" value="{path: '/Budat', formatter: '.formatter.setFormatterDate'}" valueFormat="dd-MM-yyyy">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<f:FormElement label="Moneda">
+						<Input value="{/Waers}" editable="false">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Importe Total">
+						<Input id="idImporteTotal" editable="false" value="{/Wrbtr}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<!--	<f:FormElement label="Texto Cabecera">
+						<Input editable="false" value="Gastos notariales y registrales">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement> -->
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+	<ScrollContainer height="auto" width="100%" horizontal="true" vertical="true" focusable="true">
+		<Table id="idTablaDetGastos" items="{path: '/'}">
+		<columns>
+				<Column width="3rem">
+					<Text text="POS"/>
+				</Column>
+				<Column width="6rem">
+					<Text text="Operacion"/>
+				</Column>
+				<Column width="8rem">
+					<Text wrapping="true" text="Cta. Mayor"/>
+				</Column>
+				<Column width="6.5rem">
+					<Text text="Ceco"/>
+				</Column>
+				<Column width="10rem">
+					<Text text="Rz. Social"/>
+				</Column>
+				<Column width="7rem">
+					<Text text="RUC"/>
+				</Column>
+				<Column width="4rem">
+					<Text text="Serie"/>
+				</Column>
+				<Column width="6rem">
+					<Text text="Correlativo"/>
+				</Column>
+				<Column width="8rem">
+					<Text text="Importe"/>
+				</Column>
+				<Column width="5rem">
+					<Text text="Ind. Imp."/>
+				</Column>
+				<Column width="3rem">
+					<Text text="Adj."/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem id="clitb" press="tbDeclaracioncli">
+					<cells>
+						<Text text="{Nrpos}"/>
+						<ObjectIdentifier text="{ZCat}"/>
+						<Text text="{Saknr}"/>
+						<Text text="{Kostl}"/>
+						<Text text="{Sgtxt}"/>
+						<Text text="{Dzuonr}"/>
+						<Text text="{Serie}"/>
+						<Text text="{Correlativo}"/>
+						<ObjectNumber number="{Wrbtr}" unit="{Waers}" state="Success"/>
+						<Text text="{Mwskz}"/>
+						<!-- <Link href="{urlImagen}" target="_blank" text="Imagen"></Link> -->
+						<Button id="btnDownloadTable" press="fnAbrir" icon="sap-icon://attachment" app:posUrl="{urlImagen}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+	<f:Form editable="true" id="idDetDevolucionReembolso">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Reembolso" visible="{=${/Opcion} === 'R'? true : false}">
+						<Input id="idReembolso" editable="false" maxLength="50" value="{=${/Opcion} === 'R'? ${/SgtxtOpcion} : ''}">
+							<layoutData>
+								<l:GridData span="XL7 L7 M7 S7"/>
+							</layoutData>
+						</Input>
+						<CheckBox id="idCheckReembolso" valueState="Information" selected="{=${/Opcion} === 'R'? true : false}" editable="false"/>
+					</f:FormElement>
+					<f:FormElement label="Devolución" visible="{=${/Opcion} === 'D'? true : false}">
+						<Input id="idDevolucion" editable="false" maxLength="50" value="{=${/Opcion} === 'D'? ${/SgtxtOpcion} : ''}">
+							<layoutData>
+								<l:GridData span="XL7 L7 M7 S7"/>
+							</layoutData>
+						</Input>
+						<CheckBox id="idCheckDevol" valueState="Information" selected="{=${/Opcion} === 'D'? true : false}" editable="false"/>
+						<!--<Button press="fnAbrirDevolucion" icon="sap-icon://attachment" app:posUrl="{/urlImagenDevolucion}" visible="{/visibleBtnDevolucion}"/>-->
+						<Button id="btnDownloadDevo" press="fnAbrir" icon="sap-icon://attachment"/>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer visible="false">
+				<f:formElements>
+					<f:FormElement label="Importe Total">
+						<Input id="idImporteTotal2" editable="false" value="0">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</core:FragmentDefinition>

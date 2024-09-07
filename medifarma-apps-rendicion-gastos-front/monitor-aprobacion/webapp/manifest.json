@@ -1,0 +1,438 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.everis.monitorDocumentos",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "monitoraprobacion",
+                    "action": "display",
+                    "title": "{{appTitle}}",
+                    "icon": "sap-icon://monitor-payments"
+                }
+            }
+        },
+        "dataSources": {
+            "ZOD_MM_UTILIDADES_SRV": {
+                "uri": "saperp/eper/OD_MM_UTILIDADES_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZSCP_MONITORDOCUMENTOS_SRV": {
+                "uri": "saperp/eper/MONITOR_DOCUMENTOS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZSCP_FI_ENTREGAS_RENDIR_SRV": {
+                "uri": "saperp/eper/ENTREGAS_RENDIR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+            "Z_FI_FF_ER_SRV": {
+                "uri": "saperp/sap/Z_FI_FF_ER_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+            "CAJACHICAFF_SRV": {
+                "uri": "saperp/eper/CAJACHICAFF_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+             "MM_SALIDA_MERCANCIA_SRV": {
+                "uri": "saperp/eper/MM_SALIDA_MERCANCIA_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
+            "UTILS_SRV": {
+                "uri": "saperp/eper/UTILS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "com.everis.monitorDocumentos.view.main",
+            "type": "XML",
+            "async": true,
+            "id": "main"
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.everis.monitorDocumentos.i18n.i18n"
+                }
+            },
+            "oDocumentModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": true,
+                "uri": "model/documentos.json"
+            },
+            "oRegistroModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": true,
+                "uri": "model/emptyTableModel.json"
+            },
+            "oUtilitiesModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    }
+                },
+                "dataSource": "ZOD_MM_UTILIDADES_SRV",
+                "preload": true
+            },
+            "ODataModelMonitor": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultOperationMode": "Server",
+                    "defaultUpdateMethod": "PUT",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    }
+                },
+                "dataSource": "ZSCP_MONITORDOCUMENTOS_SRV",
+                "preload": true
+            },
+            "oDataModelEntregasRendir": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultOperationMode": "Server",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    },
+                    "useBatch": true
+                },
+                "dataSource": "ZSCP_FI_ENTREGAS_RENDIR_SRV",
+                "preload": true
+            },
+            "oDataModelFFER": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultOperationMode": "Server",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    },
+                    "useBatch": true
+                },
+                "dataSource": "Z_FI_FF_ER_SRV",
+                "preload": true
+            },
+            "oDataModelFondoFijo": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultOperationMode": "Server",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    }
+                },
+                "dataSource": "CAJACHICAFF_SRV",
+                "preload": true
+            },
+            "UtilsModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "OneWay",
+					"metadataUrlParams": {
+						"sap-language": "ES"
+					}
+                },
+                "dataSource": "UTILS_SRV",
+                "preload": true
+            },
+            "oBackendDataModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"metadataUrlParams": {
+						"sap-documentation": "heading",
+						"sap-language": "ES"
+					}
+				},
+				"dataSource": "MM_SALIDA_MERCANCIA_SRV",
+				"preload": true
+			},
+            "Config": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/Config.json",
+                "preload": true
+            },
+            "oCajaChicaFFModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading",
+                        "sap-language": "ES"
+                    }
+                },
+                "dataSource": "CAJACHICAFF_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.everis.monitorDocumentos.view",
+                "controlAggregation": "pages",
+                "controlId": "App",
+                "clearControlAggregation": false
+            },
+            "targets": {
+                "main": {
+                    "controlAggregation": "pages",
+                    "viewName": "main",
+                    "viewId": "main",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "detail": {
+                    "controlAggregation": "pages",
+                    "viewName": "detail",
+                    "viewId": "detail",
+                    "viewLevel": 2,
+                    "transition": "slide"
+                },
+                "detailPVenta": {
+                    "controlAggregation": "pages",
+                    "viewName": "detailPVenta",
+                    "viewId": "detailPVenta",
+                    "viewLevel": 2,
+                    "transition": "slide"
+                },
+                "detailIntercompany": {
+                    "controlAggregation": "pages",
+                    "viewName": "detailIntercompany",
+                    "viewId": "detailIntercompany",
+                    "viewLevel": 2,
+                    "transition": "slide"
+                },
+                "detailFondoFijo": {
+                    "viewType": "XML",
+                    "viewName": "detailFondoFijo",
+                    "viewId": "detailFondoFijo",
+                    "viewLevel": 2,
+                    "controlAggregation": "pages"
+                },
+                "detailEntregaRendir": {
+                    "viewType": "XML",
+                    "viewName": "detailEntregaRendir",
+                    "viewId": "detailEntregaRendir",
+                    "viewLevel": 2,
+                    "controlAggregation": "pages"
+                },
+                "detailRendicionER": {
+					"viewType": "XML",
+					"viewName": "detailRendicionER",
+					"viewId": "detailRendicionER",
+					"viewLevel": 2,
+					"controlAggregation": "pages"
+				},
+				"detailRendicionFF": {
+					"viewType": "XML",
+					"viewName": "detailRendicionFF",
+					"viewId": "detailRendicionFF",
+					"viewLevel": 2,
+					"controlAggregation": "pages"
+				},
+                "crearGastoEntregaRendir": {
+                    "viewType": "XML",
+                    "viewName": "crearGastoEntregaRendir",
+                    "viewId": "crearGastoEntregaRendir",
+                    "viewLevel": 3,
+                    "controlAggregation": "pages"
+                },
+                "crearGastoFondoFijo": {
+                    "viewType": "XML",
+                    "viewName": "crearGastoFondoFijo",
+                    "viewId": "crearGastoFondoFijo",
+                    "viewLevel": 3,
+                    "controlAggregation": "pages"
+                }
+            },
+            "routes": [
+                {
+                    "pattern": "main/:context:",
+                    "name": "main",
+                    "target": [
+                        "main"
+                    ]
+                },
+                {
+                    "pattern": "",
+                    "name": "default",
+                    "target": [
+                        "main"
+                    ]
+                },
+                {
+                    "pattern": "detail/:idDocumento:",
+                    "name": "detail",
+                    "target": [
+                        "detail"
+                    ]
+                },
+                {
+                    "pattern": "detailIntercompany/:idDocumento:",
+                    "name": "detailIntercompany",
+                    "target": [
+                        "detailIntercompany"
+                    ]
+                },
+                {
+                    "pattern": "detailPVenta/:idDocumento:",
+                    "name": "detailPVenta",
+                    "target": [
+                        "detailPVenta"
+                    ]
+                },
+                {
+                    "name": "detailFondoFijo",
+                    "pattern": "detailFondoFijo/:Bukrs:,:Belnr:,:Gjahr:,:Retiro:,:Enabled:",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "detailFondoFijo"
+                    ]
+                },
+                {
+                    "name": "detailEntregaRendir",
+                    "pattern": "detailEntregaRendir/:Bukrs:,:Belnr:,:Gjahr:,:Enabled:",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "detailEntregaRendir"
+                    ]
+                },
+                {
+					"name": "detailRendicionER",
+					"pattern": "detailRendicionER/:Bukrs:,:Belnr:,:Gjahr:,:Enabled:",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"detailRendicionER"
+					]
+				},
+				{
+					"name": "detailRendicionFF",
+					"pattern": "detailRendicionFF/:Bukrs:,:Belnr:,:Gjahr:,:Retiro:,:Enabled:",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"detailRendicionFF"
+					]
+				},
+                
+                {
+                    "name": "crearGastoEntregaRendir",
+                    "pattern": "crearGastoEntregaRendir",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "crearGastoEntregaRendir"
+                    ]
+                },
+                {
+                    "name": "crearGastoFondoFijo",
+                    "pattern": "crearGastoFondoFijo",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "crearGastoFondoFijo"
+                    ]
+                }
+            ]
+        }
+    },
+    "sap.platform.hcp": {
+        "uri": "webapp",
+        "_version": "1.1.0"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "medifarma-apps-rendicion-gastos-bs"
+    }
+}

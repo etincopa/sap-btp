@@ -1,0 +1,125 @@
+<core:FragmentDefinition controllerName="everis.apps.entregasRendir.controller.main" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<f:Form editable="true" id="idDetSolicitud">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Solicitante" visible="{oGeneral>/isAdmin}">
+						<Text id="idNameSolicitante" text="{/Uname} - {/Bktxt}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Text>
+					</f:FormElement>
+					<f:FormElement label="Nro de Solicitud" visible="false">
+						<Input id="idNroSolicitud" editable="false" value="{/ParkedDocument}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Fecha de Solicitud">
+						<DatePicker id="idFecha" editable="false" value="{ path: '/Bldat', formatter: '.formatter.setFormatterDate'}" displayFormat="dd-MM-yyyy"  valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha de solicitud...">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<f:FormElement label="Operación">
+						<Input id="idOperacion" editable="false" value="{/sZcatCompleto}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Cuenta de Mayor" visible="false">
+						<Input id="idCuentaMyr" editable="false" value="{/Hkont}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Importe Total">
+						<Input id="idImporte" editable="false" value="{/Wrbtr}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<!--	<f:FormElement label="Texto Cabecera">
+						<Input id="idTxtCab" editable="false" value="750.00">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement> -->
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Fecha contable">
+						<DatePicker id="idFechaCont" editable="false" value="{ path: '/Budat', formatter: '.formatter.setFormatterDate'}" displayFormat="dd-MM-yyyy" valueFormat="dd-MM-yyyy" placeholder="Ingrese fecha contable...">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</DatePicker>
+					</f:FormElement>
+					<f:FormElement label="Moneda">
+						<Input id="idWaers" editable="false" value="{/Waers}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+					<f:FormElement label="Referencia">
+						<Input id="idReferencia" editable="false" value="{/Xblnr}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Input>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+	<f:Form>
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer >
+				<f:formElements>
+					<f:FormElement>
+						<Table id="idTablaDetSolicitud" items="{path: '/'}">
+							<columns>
+								<Column width="4rem">
+									<Text text="N°"/>
+								</Column>
+								<Column hAlign="Left">
+									<Text text="Descripción"/>
+								</Column>
+								<Column hAlign="Left">
+									<Text text="Importe"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Active">
+									<cells>
+										<Text text="{Nrpos}"/>
+										<Text text="{Detalle}"/>
+										<ObjectNumber  number="{Wrbtr}" unit="{Waers}" state="Success" textAlign="Center"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</core:FragmentDefinition>

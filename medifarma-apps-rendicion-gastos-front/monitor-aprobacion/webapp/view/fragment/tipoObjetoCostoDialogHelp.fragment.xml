@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>appTituloDialogoTipoObjetoCostoHelp}"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{oTipoObjetoCosto>/}"
+		search="_handleValueHelpSearch_ti"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose"
+		noDataText="{i18n>appNoDataHelp}">
+		<StandardListItem 
+			title="{oTipoObjetoCosto>Rsttx}"  
+			info="{oTipoObjetoCosto>Rstyp}"
+			/>
+	</SelectDialog>
+</core:FragmentDefinition>

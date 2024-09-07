@@ -1,0 +1,227 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZOD_MM_COMPRA_INTERCOMPANY_SRV" xml:lang="es" sap:schema-version="1">
+			<EntityType Name="zcabintercomp" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nombre empresa" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Name1" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Nombre 1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Almacén" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lgobe" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Equnr" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Equipo" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Eqktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttp" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo imputación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttx" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Centro coste" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ktext" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Orden" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zobservacion" Type="Edm.String" MaxLength="300" sap:unicode="false" sap:label="Txt." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.String" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ResultMsg" Type="Edm.String" sap:unicode="false" sap:label="Mensaje" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ToIntercompPosition" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.IntercompToPositions"
+					FromRole="FromRole_IntercompToPositions" ToRole="ToRole_IntercompToPositions"/><NavigationProperty Name="ToMensaje" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.IntercompToMensaje" FromRole="FromRole_IntercompToMensaje"
+					ToRole="ToRole_IntercompToMensaje"/></EntityType>
+			<EntityType Name="zposintercomp" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Mtart" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mtbez" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Denom.tipo mat."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Bwtar" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cl.valoración" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Huzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/></EntityType>
+			<EntityType Name="zmensaje" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/><PropertyRef Name="Id"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Reserva" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Type" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tipo de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Clase de mensajes"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Number" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" MaxLength="220" sap:unicode="false" sap:label="Texto mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogNo" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Número log" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogMsgNo" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV1" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV2" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV3" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV4" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Parameter" Type="Edm.String" MaxLength="32" sap:unicode="false" sap:label="Parámetro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Row" Type="Edm.String" sap:unicode="false" sap:label="Línea parámetro" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Field" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Nombre campo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="System" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Sistema lógico" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zrintercompanyposc" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mtart" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mtbez" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Denom.tipo mat." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bwtar" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Cl.valoración" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="Meins"
+					sap:label="Cantidad" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="Fdatum" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zrintercompanycab" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nombre empresa" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Name1" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Nombre 1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Almacén" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lgobe" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Equnr" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Equipo" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Eqktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttp" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tipo imputación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttx" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Kostl" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Centro coste" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ktext" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Aufnr" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Orden" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zobservacion" Type="Edm.String" MaxLength="300" sap:unicode="false" sap:label="Txt." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ToRIntercompPosicion" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.RIntercompToPosicion"
+					FromRole="FromRole_RIntercompToPosicion" ToRole="ToRole_RIntercompToPosicion"/></EntityType>
+			<EntityType Name="zlibera" sap:content-version="1">
+				<Key><PropertyRef Name="Type"/></Key><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Cód.mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Texto mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Número log" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogMsgNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zliberarpedido" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ToReturn" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.LiberaPedidoToReturn"
+					FromRole="FromRole_LiberaPedidoToReturn" ToRole="ToRole_LiberaPedidoToReturn"/></EntityType>
+			<EntityType Name="zreturn" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="NroDoc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Numero de documento" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Cód.mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Texto mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Número log" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogMsgNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zinterccab" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/></Key><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Almacén" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Equnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttp" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo imputación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Centro coste" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Orden" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zobservacion" Type="Edm.String" Nullable="false" MaxLength="300" sap:unicode="false" sap:label="Txt." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Hora" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zintercpos" sap:content-version="1">
+				<Key><PropertyRef Name="Posnr"/></Key><Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Hora" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="zintercompanyc" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="Code" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Ámbito no definido , posiblemente para niveles patch"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mandt" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Mandante" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ResultMsg" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="c" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Almacén" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Equnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Knttp" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo imputación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Centro coste" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Orden" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zobservacion" Type="Edm.String" Nullable="false" MaxLength="300" sap:unicode="false" sap:label="Txt." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Hora" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ToCIntercompMensaje" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.CIntercompToMensaje"
+					FromRole="FromRole_CIntercompToMensaje" ToRole="ToRole_CIntercompToMensaje"/><NavigationProperty Name="ToCIntercompPosicion" Relationship="ZOD_MM_COMPRA_INTERCOMPANY_SRV.CIntercompToPosicion"
+					FromRole="FromRole_CIntercompToPosicion" ToRole="ToRole_CIntercompToPosicion"/></EntityType>
+			<EntityType Name="zintercompanyposc" sap:content-version="1">
+				<Key><PropertyRef Name="NroDoc"/></Key><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Mandante" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NroDoc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bwtar" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cl.valoración" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fdatum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Huzeit" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Hora" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="LiberaPedidoToReturn" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zliberarpedido" Multiplicity="1" Role="FromRole_LiberaPedidoToReturn"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zreturn" Multiplicity="*" Role="ToRole_LiberaPedidoToReturn"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_LiberaPedidoToReturn"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_LiberaPedidoToReturn"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RIntercompToPosicion" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zrintercompanycab" Multiplicity="1" Role="FromRole_RIntercompToPosicion"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zrintercompanyposc" Multiplicity="*" Role="ToRole_RIntercompToPosicion"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RIntercompToPosicion"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_RIntercompToPosicion"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="IntercompToMensaje" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zcabintercomp" Multiplicity="1" Role="FromRole_IntercompToMensaje"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zmensaje" Multiplicity="*" Role="ToRole_IntercompToMensaje"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_IntercompToMensaje"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_IntercompToMensaje"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="IntercompToPositions" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zcabintercomp" Multiplicity="1" Role="FromRole_IntercompToPositions"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zposintercomp" Multiplicity="*" Role="ToRole_IntercompToPositions"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_IntercompToPositions"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_IntercompToPositions"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CIntercompToMensaje" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercompanyc" Multiplicity="1" Role="FromRole_CIntercompToMensaje"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zmensaje" Multiplicity="*" Role="ToRole_CIntercompToMensaje"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CIntercompToMensaje"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_CIntercompToMensaje"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CIntercompToPosicion" sap:content-version="1"><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercompanyc" Multiplicity="1" Role="FromRole_CIntercompToPosicion"/><End Type="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercompanyposc" Multiplicity="*" Role="ToRole_CIntercompToPosicion"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CIntercompToPosicion"><PropertyRef Name="NroDoc"/></Principal>
+					<Dependent Role="ToRole_CIntercompToPosicion"><PropertyRef Name="NroDoc"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZOD_MM_COMPRA_INTERCOMPANY_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="zcabintercompSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zcabintercomp" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="zposintercompSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zposintercomp" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="zmensajeSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zmensaje" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="zrintercompanyposcSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zrintercompanyposc" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zrintercompanycabSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zrintercompanycab" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zliberaSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zlibera" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zliberarpedidoSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zliberarpedido" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="zreturnSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zreturn" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="zinterccabSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zinterccab" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zintercposSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercpos" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zintercompanycSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercompanyc" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="zintercompanyposcSet" EntityType="ZOD_MM_COMPRA_INTERCOMPANY_SRV.zintercompanyposc" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="CIntercompToPosicionSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.CIntercompToPosicion" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zintercompanycSet" Role="FromRole_CIntercompToPosicion"/><End EntitySet="zintercompanyposcSet" Role="ToRole_CIntercompToPosicion"/></AssociationSet>
+				<AssociationSet Name="LiberaPedidoToReturnSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.LiberaPedidoToReturn" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zliberarpedidoSet" Role="FromRole_LiberaPedidoToReturn"/><End EntitySet="zreturnSet" Role="ToRole_LiberaPedidoToReturn"/></AssociationSet>
+				<AssociationSet Name="IntercompToPositionsSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.IntercompToPositions" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zcabintercompSet" Role="FromRole_IntercompToPositions"/><End EntitySet="zposintercompSet" Role="ToRole_IntercompToPositions"/></AssociationSet>
+				<AssociationSet Name="IntercompToMensajeSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.IntercompToMensaje" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zcabintercompSet" Role="FromRole_IntercompToMensaje"/><End EntitySet="zmensajeSet" Role="ToRole_IntercompToMensaje"/></AssociationSet>
+				<AssociationSet Name="CIntercompToMensajeSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.CIntercompToMensaje" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zintercompanycSet" Role="FromRole_CIntercompToMensaje"/><End EntitySet="zmensajeSet" Role="ToRole_CIntercompToMensaje"/></AssociationSet>
+				<AssociationSet Name="RIntercompToPosicionSet" Association="ZOD_MM_COMPRA_INTERCOMPANY_SRV.RIntercompToPosicion" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zrintercompanycabSet" Role="FromRole_RIntercompToPosicion"/><End EntitySet="zrintercompanyposcSet" Role="ToRole_RIntercompToPosicion"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZOD_MM_COMPRA_INTERCOMPANY_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZOD_MM_COMPRA_INTERCOMPANY_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

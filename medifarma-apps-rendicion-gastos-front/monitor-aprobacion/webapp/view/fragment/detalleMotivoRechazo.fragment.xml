@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover title="{oModelRechazo>/NroDocumento} - Motivo de Rechazo" class="sapUiContentPadding" placement="Bottom" contentWidth="30%">
+		<beginButton>
+			<Button text="Cerrar" press="handleCloseButtonRechazo"/>
+		</beginButton>
+		<content>
+			<Text text="{oModelRechazo>/MotivoRechazo}" wrapping="true" maxLines="50"></Text>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

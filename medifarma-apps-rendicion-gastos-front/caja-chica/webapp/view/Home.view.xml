@@ -1,0 +1,85 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="com.everis.apps.cajachicaff.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+
+	<Page id="page" title="Fondo Fijo">
+		<content>
+			<f:Form id="idFormFondoF" editable="true" visible="true">
+				<f:title>
+					<core:Title text="Ingrese los siguientes datos:"/>
+				</f:title>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Sociedad">
+								<f:fields>
+									<Input type="Text" editable="false" value="" id="idSociedadM"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Fondo Fijo">
+								<f:fields>
+									<Select id="idFondoFijo" forceSelection="true" items="{ path: 'oModelCajasDisponibles>/', sorter: {path: 'Zfondo'}}">
+										<core:Item key="{oModelCajasDisponibles>Zfondo}" text="{oModelCajasDisponibles>Zfondo}"/>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+									<Label text=" "></Label>
+									<Button type="Emphasized" text="Aceptar" press="onIrMasterDetalleDesPho"></Button>
+									<Button type="Default" text="Cancelar" press="onGoShellHome"></Button>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<Panel id="idPValidacion">
+				<FlexBox alignItems="Center" justifyContent="Center" direction="Column">
+					<items>
+						<Image id="idImgCliente" src=""></Image>
+						<f:Form id="idValid" width="120%" editable="true">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="1" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer title="">
+									<f:formElements>
+										<f:FormElement label="Sociedad">
+											<f:fields>
+												<Input type="Text" editable="false" value="" id="idDSociedad"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="Fondo Fijo">
+											<f:fields>
+												<Select id="idDFondoFijo" forceSelection="false" items="{ path: 'oModelCajasDisponibles>/', sorter: {path: 'Zfondo'}}">
+													<core:Item key="{oModelCajasDisponibles>Zfondo}" text="{oModelCajasDisponibles>Zfondo} - {oModelCajasDisponibles>Txt50}"/>
+												</Select>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="">
+											<f:fields>
+												<Button type="Emphasized" text="Aceptar" press="onIrMasterDetalleDes"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="">
+											<f:fields>
+												<Button type="Default" text="Cancelar" press="onGoShellHome"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</items>
+				</FlexBox>
+			</Panel>
+
+		</content>
+	</Page>
+
+</mvc:View>

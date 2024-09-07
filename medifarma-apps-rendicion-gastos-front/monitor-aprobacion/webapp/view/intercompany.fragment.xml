@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core"
+	xmlns="sap.m" controllerName="com.everis.monitorDocumentos.controller.detailIntercompany">
+	<VBox class="sapUiSizeCompact">
+		<f:Form id="FormDisplayHousingD" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:title>
+				<core:Title text="Compra Intercompany N°{oRegistroModel>/NroDoc}" level="Auto" icon="sap-icon://activity-items"/>
+			</f:title>
+			<f:formContainers>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement label="{i18n>appSociedad}">
+							<f:fields>
+								<Text id="txtSociedad" text="{oRegistroModel>/Bukrs} - {oRegistroModel>/Butxt}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>appCentroSolicitante}">
+							<f:fields>
+								<Text id="inputCentro" text="{oRegistroModel>/Werks} - {oRegistroModel>/Name1}"/>
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>appCentroSuministrador}">
+							<f:fields>
+								<Text id="inputCentroSuministrador" text="{oRegistroModel>/WerksSumi} - {oRegistroModel>/Name1Sumi}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>appAlmacenSuministrador}">
+							<f:fields>
+								<Text id="TextAlmacen" text="{oRegistroModel>/LgortSumi} - {oRegistroModel>/LgobeSumi}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>appEquipoPM}">
+							<f:fields>
+								<Text id="TextEquiPm" text="{oRegistroModel>/Equnr} - {oRegistroModel>/Eqktx}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement label="{i18n>appTipObj}">
+							<f:fields>
+								<Text id="TextTipImp" text="{oRegistroModel>/Rstyp} - {oRegistroModel>/Rsttx}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>appCeCo}">
+							<f:fields>
+								<Text id="TextCeCo" text="{oRegistroModel>/Aufnr}{oRegistroModel>/Kostl} - {oRegistroModel>/Ktext2}{oRegistroModel>/Ktext}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>appObser}">
+							<f:fields>
+								<Text id="TextObser" text="{oRegistroModel>/Zobservacion}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<Table id="tb_Intercompany" mode="None" backgroundDesign="Translucent" items="{oRegistroModel>/items}" inset="false">
+			<headerToolbar>
+				<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+					<content>
+						<!--<Button text="" type="Default" icon="sap-icon://grid" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+						<Title text="{i18n>appTablaTitulo}" titleStyle="H4" width="auto" textAlign="Begin" visible="true"/>
+						<ToolbarSpacer width=""/>
+					</content>
+					<tooltip/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column vAlign="Middle" hAlign="Center" width="70px">
+					<header><Label text="{i18n>appPosicion}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>appTipMat}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" width="15%" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>appMaterial}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>appDesc}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true" visible="true">
+					<header><Label text="{i18n>appclaseVal}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>appCant}"/></header>
+				</Column>
+				<Column vAlign="Middle" hAlign="Center" width="10%" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>appUm}"/></header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<ObjectIdentifier title="{oRegistroModel>Posnr}" class="sapMTableContentMargin"/>
+						<Text text="{oRegistroModel>Mtart} - {oRegistroModel>Mtbez}"/>
+						<Text text="{oRegistroModel>Matnr}"/>
+						<Text text="{oRegistroModel>Maktx}" maxLines="5" wrapping="true"/>
+						<Text text="{oRegistroModel>Bwtar}"/>
+						<Text text="{oRegistroModel>Menge}"/>
+						<Text text="{oRegistroModel>Meins}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--</IconTabFilter>
+        </items>
+    </IconTabBar>-->
+	</VBox>
+</core:FragmentDefinition>

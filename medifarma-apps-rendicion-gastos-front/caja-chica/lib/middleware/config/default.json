@@ -1,0 +1,19 @@
+{
+  "proxy": {
+    "saperp": {
+      "target": "http://varsupport.everis.pe:50100",
+      "auth": "<user>:<password>",
+      "entryPath": "/sap/opu/odata",
+      "sap-client": "600"
+    },
+    "userapi": {
+      "target": "http://localhost:5000",
+      "entryPath": ""
+    },
+    "iasscim": {
+      "target": "https://awjv7cscn.accounts.ondemand.com/service/scim",
+      "auth": "<token>",
+      "entryPath": ""
+    }
+  }
+}
