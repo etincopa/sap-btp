@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>MultiSelectMode</name>
+    <derived/>
+    <documentation>Enumeration of the &lt;code&gt;multiSelectMode&gt;/code&gt; in &lt;code&gt;ListBase&lt;/code&gt;.</documentation>
+    <since>1.93</since>
+    <enumeration>
+        <value name="Default">
+            <documentation>Renders the &lt;code&gt;selectAll&lt;/code&gt; checkbox (default behavior).</documentation>
+        </value>
+        <value name="ClearAll">
+            <documentation>Renders the &lt;code&gt;clearAll&lt;/code&gt; icon.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ExpandableTextOverflowMode</name>
+    <derived/>
+    <documentation>Expandable text overflow mode</documentation>
+    <enumeration>
+        <value name="InPlace">
+            <documentation>InPlace</documentation>
+        </value>
+        <value name="Popover">
+            <documentation>Popover</documentation>
+        </value>
+    </enumeration>
+</simple-type>

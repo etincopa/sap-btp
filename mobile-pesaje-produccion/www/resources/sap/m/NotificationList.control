@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>NotificationList</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The NotificationList control provides a container for &lt;code&gt;NotificationListGroup&lt;/code&gt;
+and &lt;code&gt;NotificationListItem&lt;/code&gt;.</documentation>
+    <since>1.90</since>
+    <baseType>sap.m/ListBase</baseType>
+</control>

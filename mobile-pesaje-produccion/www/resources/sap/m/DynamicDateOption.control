@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>DynamicDateOption</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>A base type for the options used by the DynamicDateRange control.</documentation>
+    <since>1.92</since>
+    <developmentState state="experimental" since="1.92">This class is experimental and provides only limited functionality. Also the API might be changed in future.</developmentState>
+    <baseType>sap.ui.core/Element</baseType>
+    <properties>
+        <property name="key" type="sap.ui.core/string">
+            <documentation>A key which identifies the option. The option produces
+DynamicDateRange values with operator same as the option key.</documentation>
+        </property>
+        <property name="valueTypes" type="sap.ui.core/string[]">
+            <documentation>Defines the types of the option's parameters. Possible values for
+the array items are "date" and "int". A date range is usually represented
+with two consecutive "date" values.</documentation>
+        </property>
+    </properties>
+</control>

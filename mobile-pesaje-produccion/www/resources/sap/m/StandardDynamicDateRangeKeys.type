@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>StandardDynamicDateRangeKeys</name>
+    <derived/>
+    <documentation>The option keys of all the standard options of a DynamicDateRange control.</documentation>
+    <developmentState state="experimental" since="1.92">These keys are experimental. The API might be changed in future.</developmentState>
+    <enumeration>
+        <value name="DATE">
+            <documentation>The date will be selected from a calendar.</documentation>
+        </value>
+        <value name="DATETIME">
+            <documentation>The date and time will be selected from a calendar and time picker.</documentation>
+        </value>
+        <value name="TODAY">
+            <documentation>The date will be the day of selection.</documentation>
+        </value>
+        <value name="YESTERDAY">
+            <documentation>The date will be the day before the day of selection.</documentation>
+        </value>
+        <value name="TOMORROW">
+            <documentation>The date will be the day after the day of selection.</documentation>
+        </value>
+        <value name="FIRSTDAYWEEK">
+            <documentation>The date will be the first day of the current week.</documentation>
+        </value>
+        <value name="LASTDAYWEEK">
+            <documentation>The date will be the last day of the current week.</documentation>
+        </value>
+        <value name="FIRSTDAYMONTH">
+            <documentation>The date will be the first day of the current month.</documentation>
+        </value>
+        <value name="LASTDAYMONTH">
+            <documentation>The date will be the last day of the current month.</documentation>
+        </value>
+        <value name="FIRSTDAYQUARTER">
+            <documentation>The date will be the first day of the current quarter.</documentation>
+        </value>
+        <value name="LASTDAYQUARTER">
+            <documentation>The date will be the last day of the current quarter.</documentation>
+        </value>
+        <value name="FIRSTDAYYEAR">
+            <documentation>The date will be the first day of the current year.</documentation>
+        </value>
+        <value name="LASTDAYYEAR">
+            <documentation>The date will be the last day of the current year.</documentation>
+        </value>
+        <value name="DATERANGE">
+            <documentation>The range will be selected from a calendar.</documentation>
+        </value>
+        <value name="DATETIMERANGE">
+            <documentation>The range will be selected from two DateTimePicker controls.</documentation>
+        </value>
+        <value name="FROM">
+            <documentation>The range will start from a date selected from a calendar.</documentation>
+        </value>
+        <value name="TO">
+            <documentation>The range will end in a date selected from a calendar.</documentation>
+        </value>
+        <value name="FROMDATETIME">
+            <documentation>The range will start from a date and time selected from a calendar and time picker.</documentation>
+        </value>
+        <value name="TODATETIME">
+            <documentation>The range will end in a date and time selected from a calendar and time picker.</documentation>
+        </value>
+        <value name="YEARTODATE">
+            <documentation>The range will start from the first day of the current year and ends with the date selected from a calendar.</documentation>
+        </value>
+        <value name="DATETOYEAR">
+            <documentation>The range will start from the date selected from a calendar and ends with the last day of the current year.</documentation>
+        </value>
+        <value name="LASTDAYS">
+            <documentation>The range will contain the last X days. The count of the days is selected from a StepInput.</documentation>
+        </value>
+        <value name="LASTWEEKS">
+            <documentation>The range will contain the last X weeks. The count of the weeks is selected from a StepInput.</documentation>
+        </value>
+        <value name="LASTMONTHS">
+            <documentation>The range will contain the last X months. The count of the months is selected from a StepInput.</documentation>
+        </value>
+        <value name="LASTQUARTERS">
+            <documentation>The range will contain the last X quarters. The count of the quarters is selected from a StepInput.</documentation>
+        </value>
+        <value name="LASTYEARS">
+            <documentation>The range will contain the last X years. The count of the years is selected from a StepInput.</documentation>
+        </value>
+        <value name="NEXTDAYS">
+            <documentation>The range will contain the next X days. The count of the days is selected from a StepInput.</documentation>
+        </value>
+        <value name="NEXTWEEKS">
+            <documentation>The range will contain the next X weeks. The count of the weeks is selected from a StepInput.</documentation>
+        </value>
+        <value name="NEXTMONTHS">
+            <documentation>The range will contain the next X months. The count of the months is selected from a StepInput.</documentation>
+        </value>
+        <value name="NEXTQUARTERS">
+            <documentation>The range will contain the next X quarters. The count of the quarters is selected from a StepInput.</documentation>
+        </value>
+        <value name="NEXTYEARS">
+            <documentation>The range will contain the next X years. The count of the years is selected from a StepInput.</documentation>
+        </value>
+        <value name="TODAYFROMTO">
+            <documentation>The range will contain the last X days and the next Y days. The count of the days is selected from a StepInput.</documentation>
+        </value>
+        <value name="THISWEEK">
+            <documentation>The range will contain the days of the current week.</documentation>
+        </value>
+        <value name="LASTWEEK">
+            <documentation>The range will contain the days of the last week.</documentation>
+        </value>
+        <value name="NEXTWEEK">
+            <documentation>The range will contain the days of the next week.</documentation>
+        </value>
+        <value name="SPECIFICMONTH">
+            <documentation>The range will contain a month selected from a MonthPicker.</documentation>
+        </value>
+        <value name="SPECIFICMONTHINYEAR">
+            <documentation>The range will contain a month in exact year selected from a MonthPicker.</documentation>
+        </value>
+        <value name="THISMONTH">
+            <documentation>The range will contain the days in the current month.</documentation>
+        </value>
+        <value name="LASTMONTH">
+            <documentation>The range will contain the days in the last month.</documentation>
+        </value>
+        <value name="NEXTMONTH">
+            <documentation>The range will contain the days in the next month.</documentation>
+        </value>
+        <value name="THISQUARTER">
+            <documentation>The range will contain the days in the current quarter.</documentation>
+        </value>
+        <value name="LASTQUARTER">
+            <documentation>The range will contain the days in the last quarter.</documentation>
+        </value>
+        <value name="NEXTQUARTER">
+            <documentation>The range will contain the days in the next quarter.</documentation>
+        </value>
+        <value name="QUARTER1">
+            <documentation>The range will contain the days in the first quarter.</documentation>
+        </value>
+        <value name="QUARTER2">
+            <documentation>The range will contain the days in the second quarter.</documentation>
+        </value>
+        <value name="QUARTER3">
+            <documentation>The range will contain the days in the third quarter.</documentation>
+        </value>
+        <value name="QUARTER4">
+            <documentation>The range will contain the days in the fourth quarter.</documentation>
+        </value>
+        <value name="THISYEAR">
+            <documentation>The range will contain the days in the current year.</documentation>
+        </value>
+        <value name="LASTYEAR">
+            <documentation>The range will contain the days in the last year.</documentation>
+        </value>
+        <value name="NEXTYEAR">
+            <documentation>The range will contain the days in the next year.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

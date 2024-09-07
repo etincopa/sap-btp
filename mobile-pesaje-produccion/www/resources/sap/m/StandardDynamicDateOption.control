@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>StandardDynamicDateOption</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>A control base type.</documentation>
+    <developmentState state="experimental" since="1.92">This class is experimental and provides only limited functionality. Also the API might be changed in future.</developmentState>
+    <baseType>sap.m/DynamicDateOption</baseType>
+</control>

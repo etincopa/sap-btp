@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>BadgeAnimationType</name>
+    <derived/>
+    <documentation>Types of animation performed by {@link sap.m.BadgeEnabler}.</documentation>
+    <since>1.87</since>
+    <enumeration>
+        <value name="Full">
+            <documentation>Badge indicator will perform Appear,Update,and Disappear animation.</documentation>
+        </value>
+        <value name="Update">
+            <documentation>Badge indicator will perform only Update animation (suitable for controls, which invalidate often).</documentation>
+        </value>
+        <value name="None">
+            <documentation>No animation is performed.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

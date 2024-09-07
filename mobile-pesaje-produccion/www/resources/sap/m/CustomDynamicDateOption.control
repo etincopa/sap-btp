@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>CustomDynamicDateOption</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>A custom option for the DynamicDateRange control.</documentation>
+    <since>1.92</since>
+    <developmentState state="experimental" since="1.92">This class is experimental and provides only limited functionality. Also the API might be changed in future.</developmentState>
+    <baseType>sap.m/DynamicDateOption</baseType>
+    <properties>
+        <property name="getText" type="sap.ui.core/any">
+            <documentation>Defines a method that provides the option's label text.</documentation>
+        </property>
+        <property name="getValueHelpUITypes" type="sap.ui.core/any">
+            <documentation>Defines a method that provides the option's value help UI types. Based on the types a functional
+value help dialog will be created. Types are DynamicDateValueHelpUIType instances.</documentation>
+        </property>
+        <property name="createValueHelpUI" type="sap.ui.core/any">
+            <documentation>Defines a method that can create the option's value help UI. For custom scenarios where
+getValueHelpUITypes is not enough to define the UI.</documentation>
+        </property>
+        <property name="validateValueHelpUI" type="sap.ui.core/any">
+            <documentation>Defines a method that can validate all controls from the value help UI related to a given option.</documentation>
+        </property>
+        <property name="getValueHelpOutput" type="sap.ui.core/any">
+            <documentation>Defines a method that can collect the value from the value help UI.</documentation>
+        </property>
+        <property name="getGroup" type="sap.ui.core/any">
+            <documentation>Defines a method that provides the order index of the option's group.
+Used for grouping within the options list inside a DynamicDateRange's popup.</documentation>
+        </property>
+        <property name="getGroupHeader" type="sap.ui.core/any">
+            <documentation>Defines a method that provides the option's group header text.</documentation>
+        </property>
+        <property name="format" type="sap.ui.core/any">
+            <documentation>Defines a method that formats the option's value to a string. See DynamicDateOption.format.</documentation>
+        </property>
+        <property name="parse" type="sap.ui.core/any">
+            <documentation>Defines a method that parses the option's value from a string. See DynamicDateOption.parse.</documentation>
+        </property>
+        <property name="toDates" type="sap.ui.core/any">
+            <documentation>Defines a method that calculates an absolute date range from the options relative value. See DynamicDateOption.toDates.</documentation>
+        </property>
+        <property name="enhanceFormattedValue" type="sap.ui.core/any">
+            <documentation>Defines a method that controls whether the formatted date range should be concatenated to the
+formatted value when displayed.</documentation>
+        </property>
+    </properties>
+</control>
