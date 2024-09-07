@@ -1,0 +1,59 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.ReadBarCode"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
+	<Page
+		showHeader="true"
+		title="TEST QR"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true"
+	>
+		<content>
+			<Button
+				text="Scan"
+				press="onBarcodeScan"
+				icon="sap-icon://qr-code"
+			/>
+			<Panel backgroundDesign="Transparent">
+				<Table items="{ReadBarCodeListModel>/}">
+					<headerToolbar>
+						<Toolbar>
+							<Title text=""/>
+							<ToolbarSpacer/>
+							<SearchField
+								placeholder="Buscar"
+								width="50%"
+								liveChange="onSearchLive"
+								search="onSearch"
+							/>
+						</Toolbar>
+					</headerToolbar>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{ReadBarCodeListModel>Correlativo}"/>
+								<Text text="{ReadBarCodeListModel>BultoCodigo}"/>
+								<Text text="{ReadBarCodeListModel>Cantidad}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+					<columns>
+						<Column>
+							<Text text="Correlativo"/>
+						</Column>
+						<Column>
+							<Text text="BultoCodigo"/>
+						</Column>
+						<Column>
+							<Text text="Cantidad"/>
+						</Column>
+					</columns>
+				</Table>
+			</Panel>
+		</content>
+		<footer>
+			<OverflowToolbar/>
+		</footer>
+	</Page>
+</mvc:View>

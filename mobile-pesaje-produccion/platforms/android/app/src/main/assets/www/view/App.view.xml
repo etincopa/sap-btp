@@ -1,0 +1,74 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt"
+	xmlns:mvc="sap.ui.core.mvc"
+>
+	<tnt:ToolPage id="app">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button
+					id="idSideNavigationToggleButton"
+					icon="sap-icon://menu2"
+					type="Transparent"
+					press=".onSideNavButtonPress"
+				>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer/>
+				<Title
+					text="{i18n>appTitle}"
+					level="H2"
+				/>
+				<ToolbarSpacer/>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<Button
+					text="{UserInfoModel>/oUser/nombreMostrar}"
+					type="Transparent"
+					press=".handleUserNamePress"
+				>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation
+				expanded="true"
+				itemSelect=".onItemSelect"
+			>
+				<tnt:NavigationList items="{
+					path: 'menu>/navigation',
+					templateShareable: false
+				}">
+					<tnt:NavigationListItem
+						text="{menu>title}"
+						icon="{menu>icon}"
+						enabled="{menu>enabled}"
+						expanded="{menu>expanded}"
+						key="{menu>key}"
+					/>
+				</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList items="{
+						path: 'menu>/fixedNavigation',
+						templateShareable: false
+					}">
+						<tnt:NavigationListItem
+							text="{menu>title}"
+							icon="{menu>icon}"
+							key="{menu>key}"
+						/>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<App id="mainContents"/>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

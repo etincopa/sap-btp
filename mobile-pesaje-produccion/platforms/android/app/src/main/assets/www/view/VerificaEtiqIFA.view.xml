@@ -1,0 +1,267 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.VerificaEtiqIFA"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Page
+		showHeader="true"
+		title="{i18n>tltVerificaEtiqIFA}"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+	>
+		<content>
+			<f:SimpleForm
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="3"
+				labelSpanM="4"
+				labelSpanS="3"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="4"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="1"
+				columnsM="1"
+				singleContainerFullSize="false"
+				visible="true"
+			>
+				<f:content>
+					<Label text="{i18n>lblEtiqIFA}"/>
+					<SearchField
+						placeholder="{i18n>lblSearch}"
+						value="{StandardModel>/oQR/oEtiqueta/text}"
+						search="onQRSearch($event, 'IFA')"
+						enabled="true"
+					/>
+					<Button
+						icon="sap-icon://qr-code"
+						press="onQRScan($event, 'IFA')"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M2 S2"/>
+						</layoutData>
+					</Button>
+					<Label text="{i18n>lblNumOrden}"/>
+					<Input
+						value="{FormVerificationModel>/oOrden/numero}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblLoteProd}"/>
+					<Input
+						value="{FormVerificationModel>/oOrden/lote}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblDescProd}"/>
+					<TextArea
+						cols="2"
+						value="{FormVerificationModel>/oOrden/descProd}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblEtiqInsumo}"/>
+					<!--Input value="C675252"> </Input-->
+					<SearchField
+						placeholder="{i18n>lblSearch}"
+						value="{StandardModel>/oQR/oSaldo/text}"
+						search="onQRSearch($event, 'SALDO')"
+						width="100%"
+						enabled="{StandardModel>/oQR/oSaldo/edit}"
+					/>
+					<Button
+						icon="sap-icon://qr-code"
+						press="onQRScan($event, 'SALDO')"
+						enabled="{StandardModel>/oQR/oSaldo/edit}"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M2 S2"/>
+						</layoutData>
+					</Button>
+					<Label text=""/>
+					<ObjectStatus
+						title=""
+						text="{FormVerificationModel>/oInsumo/info}"
+						state="Information"
+						icon=""
+					/>
+					<Label text="{i18n>lblCodiInsu}"/>
+					<Input
+						value="{FormVerificationModel>/oInsumo/codigo}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblLoteInsu}"/>
+					<Input
+						value="{FormVerificationModel>/oInsumo/lote}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblDecrInsu}"/>
+					<TextArea
+						cols="2"
+						value="{FormVerificationModel>/oInsumo/descripcion}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblCantSug}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oInsumo/cantPedida}"
+						editable="false"
+					/>
+					<core:Title text="Pesos"/>
+					<Label text="{i18n>lblCantPes}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oInsumo/cantPendiente}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblNeto}"/>
+					<Input
+						change="onLiveChangePeso"
+						value="{FormVerificationModel>/oPeso/neto}"
+						type="Number"
+						editable="{FormVerificationModel>/oAction/edit}"
+					/>
+					<!--Input
+						type="Number"
+						value="{FormVerificationModel>/oPeso/neto}"
+						valueLiveUpdate="true"
+						liveChange="onLiveChangePeso"
+						editable="{FormVerificationModel>/oAction/edit}"
+					/-->
+					<Label text="{i18n>lblTara}"/>
+					<Input
+						change="onLiveChangePeso"
+						value="{FormVerificationModel>/oPeso/tara}"
+						type="Number"
+						editable="{FormVerificationModel>/oAction/edit}"
+					/>
+					<!--Input
+						type="Number"
+						value="{FormVerificationModel>/oPeso/tara}"
+						valueLiveUpdate="true"
+						liveChange="onLiveChangePeso"
+						editable="{FormVerificationModel>/oAction/edit}"
+					/-->
+					<Label text="{i18n>lblBruto}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oPeso/bruto}"
+						editable="false"
+					/>
+					<Input
+						value="{FormVerificationModel>/oInsumo/umb}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M2 S2"/>
+						</layoutData>
+					</Input>
+
+					<core:Title text="Indicadores"/>
+					<Label text=""/>
+					<ObjectStatus
+						title=""
+						text="{
+							path: 'FormVerificationModel>/oAjuste/enMas',
+							formatter: '.formatter.getAjusteText'
+						}"
+						visible="{= ${FormVerificationModel>/oAjuste/ajuste} &amp;&amp; ${FormVerificationModel>/oAjuste/auto}  ? true : false }"
+						state="Success"
+						icon=""
+					/>
+					<Label text="{i18n>lblStickAP}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oSaldo/cantDisponible}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblCantLoteLog}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oSaldo/cantLoteLogistico}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblDifStockAlmPiso}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oAjuste/difStockAlmPiso}"
+						editable="false"
+					/>
+					<Label text="{i18n>lblPorcAjuste}"/>
+					<Input
+						type="Number"
+						value="{FormVerificationModel>/oAjuste/porcentaje}"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M4 S5"/>
+						</layoutData>
+					</Input>
+					<ObjectStatus
+						title=""
+						text="(+/-) 0.1%"
+						state="{
+							path: 'FormVerificationModel>/oAjuste/auto',
+							formatter: '.formatter.getBStatus'
+						}"
+						icon="{
+							path: 'FormVerificationModel>/oAjuste/auto',
+							formatter: '.formatter.getBStatusTextIcon'
+						}"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M5 S4"/>
+						</layoutData>
+					</ObjectStatus>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button id="messagePopoverBtn"
+					icon="sap-icon://information"
+					type="Default"
+					text= ""
+					press=".handleMessagePopoverPress" />
+				<ToolbarSpacer/>
+				<Button
+					text="Guardar"
+					icon=""
+					type="Accept"
+					press="onSave"
+					visible="{FormVerificationModel>/oAction/save}"
+				/>
+				<Button
+					text="Confirmar"
+					icon=""
+					type="Accept"
+					press="onConfirm"
+					visible="{FormVerificationModel>/oAction/confirm}"
+				/>
+				<Button
+					text="Guardar/Confirmar"
+					icon=""
+					type="Accept"
+					press="onSaveAndConfirm"
+					visible="{FormVerificationModel>/oAction/saveAndConfirm}"
+				/>
+				<Button
+					text="Resetear"
+					icon=""
+					type="Accept"
+					press="onReset"
+					visible="{FormVerificationModel>/oAction/reset}"
+				/>
+				<Button
+					text="Cancelar"
+					type="Reject"
+					press="onCancel"
+				/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

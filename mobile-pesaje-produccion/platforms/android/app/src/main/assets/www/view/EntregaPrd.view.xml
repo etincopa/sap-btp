@@ -1,0 +1,125 @@
+<mvc:View controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.EntregaPrd"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:grid="sap.ui.layout.cssgrid">
+	<Page showHeader="true" title="{i18n>hedTraslados}" class="sapUiContentPadding 
+			sapUiResponsivePadding--header 
+			sapUiResponsivePadding--subHeader 
+			sapUiResponsivePadding--content 
+			sapUiResponsivePadding--footer" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>lblProducto}" />
+					<SearchField placeholder="{i18n>lblSearch}" value="{StandardModel>/oQR/oBulto/text}" search="onQRSearch" width="100%">
+						<layoutData>
+							<l:GridData span="XL6 L6 M6 S7" />
+						</layoutData>
+					</SearchField>
+					<Button icon="sap-icon://qr-code" press="onQRScan">
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2" />
+						</layoutData>
+					</Button>
+					<Label text="{i18n>hedAccion}" />
+					<Select id="idSelectOperation" change=".onCambiarAccion" selectedItem="{localModel>/selectedAction}" items="{
+							path: 'localModel>/list',
+							sorter: { path: 'key', descending: true }
+						}" forceSelection="false" enabled="{localModel>/UI/operation}">
+						<core:Item key="{localModel>key}" text="{localModel>name}" />
+					</Select>
+					<Label text="Orden" />
+					<Input value="{FormVerificationModel>/oOrden/numero}" editable="false">
+						<layoutData>
+							<l:GridData span="XL8 L8 M6 S9" />
+						</layoutData>
+					</Input>
+					<Label text="Lote" />
+					<Input value="{FormVerificationModel>/oOrden/lote}" editable="false">
+						<layoutData>
+							<l:GridData span="XL8 L8 M6 S9" />
+						</layoutData>
+					</Input>
+					<Label text="Producto." />
+					<TextArea cols="2" value="{FormVerificationModel>/oOrden/descProd}" editable="false" />
+				</f:content>
+			</f:SimpleForm>
+			<ScrollContainer height="80%" width="100%" vertical="true" focusable="true">
+				<Table id="idBultoTable" inset="false" items="{BultoGroupListModel>/}" fixedLayout="true" sticky="HeaderToolbar,InfoToolbar,ColumnHeaders" mode="{= ${localModel>/UI/multiselect} ? 'MultiSelect': 'None'}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Label text="Multiselect" labelFor="idMultiselect"/>
+							<Switch id="idMultiselect" state="{localModel>/UI/multiselect}" customTextOn="Si" customTextOff="No">
+								<layoutData>
+									<FlexItemData growFactor="1" />
+								</layoutData>
+							</Switch>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://delete" tooltip="Eliminar" type="Reject" press="onDeleteMiltiItems" enabled="{localModel>/UI/confirm}" visible="{localModel>/UI/multiselect}"/>
+							<Button icon="sap-icon://redo" tooltip="Devolver" type="Reject" press="onReturnMultiItems" enabled="{= ${localModel>/selectedAction} === 'RPRO-2' || ${localModel>/selectedAction} === 'RALM-4' ? true : false}" visible="{localModel>/UI/multiselect}"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="3.5em" minScreenWidth="" demandPopin="true" hAlign="Left">
+							<Text text="" />
+						</Column>
+						<Column width="3.5em" minScreenWidth="" demandPopin="true" hAlign="Left">
+							<Text text="" />
+						</Column>
+						<Column width="8em" minScreenWidth="" demandPopin="true" hAlign="Left">
+							<Text text="Código" />
+						</Column>
+						<Column width="8em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<Text text="Lote" />
+						</Column>
+						<Column width="14em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<Text text="Nombre " />
+						</Column>
+						<Column width="8em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<Text text="C.Atendida" />
+						</Column>
+						<Column width="4em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<Text text="UM" />
+						</Column>
+						<Column width="8em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" visible="{= ${BultoGroupListModel>oInsumo/Tipo} === 'FRACCION' ? false : true}">
+							<Text text="#Bultos" />
+						</Column>
+						<!-- <Column width="14em" minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<Text text="Almacén " />
+						</Column> -->
+						<Column width="3.5em" minScreenWidth="" demandPopin="true" hAlign="Left">
+							<Text text="" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Button icon="sap-icon://delete" tooltip="Eliminar" type="Reject" press="onDeleteItems" enabled="{localModel>/UI/confirm}" visible="{= !${localModel>/UI/multiselect}}"/>
+								<Button icon="sap-icon://redo" tooltip="Devolver" type="Reject" press="onReturnItems" enabled="{= ${localModel>/selectedAction} === 'RPRO-2' || ${localModel>/selectedAction} === 'RALM-4' ? true : false}" visible="{= !${localModel>/UI/multiselect}}"/>
+								<Text text="{BultoGroupListModel>oInsumo/codigo}" />
+								<Text text="{BultoGroupListModel>oInsumo/lote}" />
+								<Text text="{BultoGroupListModel>oInsumo/descripcion}" />
+								<Text text="{BultoGroupListModel>oBulto/neto}" />
+								<Text text="{BultoGroupListModel>oBulto/Umed}" />
+								<Text text="{BultoGroupListModel>oBulto/countB}" />
+								<!-- <Text text="{BultoGroupListModel>oInsumo/almacen}" /> -->
+								<Button icon="sap-icon://show" tooltip="Detalle" type="Accept" press="onShowBulto" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<footer>
+			<OverflowToolbar >
+				<Button id="messagePopoverBtn" icon="sap-icon://information" type="Default" text="" press=".handleMessagePopoverPress"/>
+				<ToolbarSpacer />
+				<Button text="Confirmar" type="Accept" press="onConfirm" enabled="{localModel>/UI/confirm}"/>
+				<Button text="Cancelar" type="Reject" press="onCancel" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
