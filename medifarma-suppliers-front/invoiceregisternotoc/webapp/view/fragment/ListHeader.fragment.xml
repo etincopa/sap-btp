@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<List id="idLista" items="{path:'listMaster>/'}" mode="SingleSelectMaster" width="100%" headerText="" footerText="" backgroundDesign="Solid"
+		showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" itemPress="onGetRequestInvoice">
+		<infoToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+				<content>
+					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+				</content>
+			</Toolbar>
+		</infoToolbar>
+		<headerToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="true" enabled="true">
+				<content>
+					<SearchField value="{search>/value}" placeholder="Buscar" showSearchButton="true" liveChange="onSearchMaster" visible="true" width="100%"/>
+					<Button press="onRefreshRequestBP" type="Default" icon="sap-icon://refresh" iconFirst="true" width="auto" iconDensityAware="false"/>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<items>
+			<ObjectListItem title="{listMaster>WFCreatedByName}" type="Active" number="{listMaster>VoucherNumber}" numberState="None" selected="true">
+				<firstStatus>
+					<ObjectStatus text="{path: 'listMaster>WFStatus', formatter: '.formatter.onGetStatus'}"
+						state="{path: 'listMaster>WFStatus', formatter: '.formatter.onGetState'}" icon="sap-icon://donut-chart"/>
+				</firstStatus>
+				<ObjectAttribute text=""/>
+				<ObjectAttribute text="{i18n>lstDateRequest} {listMaster>RequestedOnDateFormat}"/>
+				<ObjectAttribute text="{i18n>lstDateApprove} {listMaster>ApprovedOnDateFormat}"/>
+				<ObjectAttribute text="{listMaster>PRNotPurchaseOrderID}" visible="false"/>
+			</ObjectListItem>
+		</items>
+	</List>
+</core:FragmentDefinition>

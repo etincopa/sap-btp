@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog id="dUploadCollection" title="Archivos adicionales" contentWidth="550px" contentHeight="300px">
+        <content>
+            <UploadCollection
+                id="UploadCollection"
+                maximumFileSize="{UploadCollectionModel>/maximumFileSize}"
+                multiple="true"
+                instantUpload="true"
+                change="onChange"
+                fileDeleted="onFileDeleted"
+                fileSizeExceed="onFileSizeExceed"
+                fileType="pdf,jpg,jpeg,png,msg,xls,xlsx,zip,rar,eml,docx,xml"
+                typeMissmatch="onTypeMissmatch"
+                items="{
+                    path: 'UploadCollectionModel>/items',
+                    templateShareable: false
+                }"
+                numberOfAttachmentsText="{i18n>lblUploadCollection} ({UploadCollectionModel>/items/length})"
+                showSeparators="All"
+                uploadEnabled="{UploadCollectionModel>/uploadEnabled}"
+                uploadButtonInvisible="false"
+                mode="None"
+                sameFilenameAllowed="false">
+                <toolbar>
+                    <OverflowToolbar>
+                        <Title id="attachmentTitle" />
+                        <ToolbarSpacer />
+                        <Button id="fileUploader3Down" text="{i18n>btndownloadUploadCollection}" width="50%" custom:custom="AR3"
+                            press="onDowloadFile" enabled="{btnDown>/state}" icon="sap-icon://download"/>
+                        <UploadCollectionToolbarPlaceholder />
+                    </OverflowToolbar>
+                </toolbar>
+                <items>
+                    <UploadCollectionItem
+                        fileName="{UploadCollectionModel>fileName}"
+                        enableDelete="{UploadCollectionModel>/enableDelete}"
+                        visibleDelete="{UploadCollectionModel>/visibleDelete}"
+                        visibleEdit="false">
+                    </UploadCollectionItem>
+                </items>
+            </UploadCollection>
+        </content>
+		<endButton>
+			<Button text="{i18n>btnClose}" press=".onCloseDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,179 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">>
+	<form:Form width="100%" editable="true" visible="true">
+		<form:title>
+			<core:Title text="{i18n>dataDoc}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="false">
+						<form:label>
+							<Label text="{i18n>lblOperation}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboOperation" items="{path : 'listOperation>/'}" placeholder="{i18n>phlblOperation}" selectedKey="{DataGeneral>/Operation}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listOperation>OperationID}" text="{listOperation>Description}" additionalText="{listOperation>OperationID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblDocumentType}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboDocumentClass" items="{path : 'listDocumentClass>/'}" placeholder="{i18n>phlblDocumentType}"
+								selectedKey="{DataGeneral>/DocumentClass}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}"
+								change="onChooseDocumentType">
+								<core:ListItem key="{listDocumentClass>DocumentClassID}" text="{listDocumentClass>Description}"
+									additionalText="{listDocumentClass>DocumentClassID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblArea}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboArea" items="{path : 'listArea>/'}" placeholder="{i18n>phlArea}"
+								selectedKey="{DataGeneral>/AreaID}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}">
+								<core:ListItem key="{listArea>AreaID}" text="{listArea>Name}"
+									additionalText="{listArea>AreaID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblInvoiceDate}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<DatePicker id="dpDate" width="auto" displayFormat="dd/MM/yyyy" enabled="{general>/state}" visible="true" valueFormat="yyyy-MM-ddT00:00:00"
+								value="{DataGeneral>/InvoiceDate}" change="onInvoiceDateChange"/>
+						</form:fields>
+					</form:FormElement>
+					<!--{visible>/state}-->
+					<form:FormElement visible="{visible>/state}">
+						<form:label>
+							<Label text="{i18n>lblInvoiceRef}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptReference" value="{DataGeneral>/InvoiceReference}" placeholder="{placeholderNDocument>/state}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="{quantity>/state}" change="onReferenceChange"
+								custom:custom="invoiceReference"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAmount}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptAmount" value="{DataGeneral>/Amount}" placeholder="{i18n>phlblAmount}" type="Text" showValueHelp="false"
+								enabled="{general>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="40" liveChange="onChangeImport"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblSupplierRUC}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptSupplierRUC" value="{DataGeneral>/Ruc}" placeholder="{i18n>phlblSupplierRUC}" type="Text" showValueHelp="false" enabled="{supplierRuc>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="11" 
+									liveChange="onSupplierRucLiveChange" change="onSupplierRucChange" valueLiveUpdate="true">
+								<layoutData>
+									<l:GridData span="XL4 L4 M4" />
+								</layoutData>
+							</Input>
+							<!-- <Input id="iptSupplierName" value="{DataGeneral>/SupplierName}" placeholder="{i18n>phlblSupplierName}" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false">
+							</Input> -->
+							<Text id="txtSupplierName" text="{DataGeneral>/SupplierName}"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="{DataGeneral>/FormVisible}">
+						<form:label>
+							<Label text="{i18n>lblSunatStatus}" design="Bold" width="100%"  textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+                            <Text id="iptSunat" text="{DataGeneral>/StatusSunat}"/>
+							</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblSociety}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboSociety" items="{path : 'listSociety>/'}" placeholder="{i18n>phlblSociety}" selectedKey="{DataGeneral>/Company}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listSociety>Bukrs}" text="{listSociety>Butxt}" additionalText="{listSociety>Bukrs}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblNroCompro}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input id="iptVoucherNumber" value="{DataGeneral>/VoucherNumber}" placeholder="{placeholderNDocument>/state}" type="Text" showValueHelp="false"
+								enabled="{voucher>/state}" visible="true" width="auto" valueHelpOnly="false" maxLength="{quantity>/state}" change="onReferenceChange"
+								custom:custom="comprobante"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblCoin}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox id="cboCurrency" items="{path : 'listCoin>/'}" placeholder="{i18n>phlblCoin}" selectedKey="{DataGeneral>/Currency}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}" change="onValidatorColumns">
+								<core:ListItem key="{listCoin>CurrencyID}" text="{listCoin>Description}" additionalText="{listCoin>CurrencyID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<CheckBox id="chkSunat" text="{i18n>chkSunat}" selected="{DataGeneral>/CheckSunat}" select="onSelectSunatCheck" enabled="true"/>
+						</form:fields>
+					</form:FormElement>
+                    <form:FormElement visible="true">
+						<form:label>
+							<Label text="" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<CheckBox text="{i18n>chkElectronicSupplier}" selected="{DataGeneral>/CheckElectronicSupplier}" select="onElectronicSupplierCheck" enabled="{general>/state}" />
+							<CheckBox text="Verificación Factura" selected="{DataGeneral>/CheckFactura}" visible="false"/>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" columnsXL="2" labelSpanL="3" columnsM="2" labelSpanM="3" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<IconTabBar class="sapUiLargeMarginBottom" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid"
+		upperCase="false" visible="true" selectedKey="Ok" select="onSelectIconTabFilter">
+		<items>
+			<IconTabFilter icon="sap-icon://history" iconColor="Critical" text="{i18n>icoTimeLine}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="{timeLine>/state}" iconDensityAware="false">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.invoiceregisternotoc.view.fragment.InformationTimeLine" type="XML"/>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://upload-to-cloud" iconColor="Positive" text="{i18n>icoAdjunt}" count="" design="Horizontal" showAll="false"
+				textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="ADJ">
+				<content>
+					<core:Fragment fragmentName="com.everis.suppliers.invoiceregisternotoc.view.fragment.InformationAdjunt" type="XML"/>
+				</content>
+			</IconTabFilter>
+		</items>
+		<content/>
+	</IconTabBar>
+</core:FragmentDefinition>

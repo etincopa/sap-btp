@@ -1,0 +1,47 @@
+<mvc:View controllerName="com.everis.suppliers.invoiceregisternotoc.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core">
+	<App id="app">
+		<pages>
+			<Page id="page" showHeader="false">
+				<content>
+					<SplitContainer id="idsplit">
+						<masterPages>
+							<semantic:MasterPage title="{i18n>title}">
+								<core:Fragment fragmentName="com.everis.suppliers.invoiceregisternotoc.view.fragment.ListHeader" type="XML"/>
+								<!--<semantic:filter>-->
+								<!--	<semantic:FilterAction press="onSemanticButtonPress"/>-->
+								<!--</semantic:filter>-->
+								<semantic:addAction>
+									<semantic:AddAction press="onAddRequestInvoice"/>
+								</semantic:addAction>
+							</semantic:MasterPage>
+						</masterPages>
+						<detailPages>
+							<Page id="page2" showHeader="false">
+								<content>
+									<core:Fragment fragmentName="com.everis.suppliers.invoiceregisternotoc.view.fragment.CreatedInvoice" type="XML"/>
+								</content>
+								<footer id="footerButtons">
+									<OverflowToolbar>
+										<Button icon="sap-icon://message-popup" text="{count>/state}" type="Emphasized" press="onMessagesButtonPress"/>
+										<ToolbarSpacer/>
+										<Button type="Accept" text="{i18n>requestValidation}" press="onRequestInvoice" enabled="{general>/state}"/>
+									</OverflowToolbar>
+								</footer>
+							</Page>
+							<!--<semantic:DetailPage>-->
+							<!--	<core:Fragment fragmentName="com.everis.suppliers.invoiceregisternotoc.view.fragment.CreatedInvoice" type="XML"/>-->
+							<!--	<semantic:messagesIndicator>-->
+							<!--		<semantic:MessagesIndicator visible="true" press="onMessagesButtonPress"/>-->
+							<!--	</semantic:messagesIndicator>-->
+							<!--	<semantic:mainAction>-->
+							<!--		<semantic:MainAction text="{i18n>requestValidation}" press="onRequestInvoice" enabled="true"/>-->
+							<!--	</semantic:mainAction>-->
+							<!--</semantic:DetailPage>-->
+						</detailPages>
+					</SplitContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

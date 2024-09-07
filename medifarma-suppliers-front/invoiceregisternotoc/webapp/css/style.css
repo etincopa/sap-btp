@@ -1,0 +1,8 @@
+/* Enter your custom styles here */
+.sapMTextLineClamp {
+    -webkit-line-clamp: 5!important;
+}
+
+.sapMListInfoTBarContainer {
+	display: none!important;
+}

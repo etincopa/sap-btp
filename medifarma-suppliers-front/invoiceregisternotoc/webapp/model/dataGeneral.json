@@ -1,0 +1,48 @@
+{
+	"operation":[{
+		"id": 1,
+		"text": "Factura"
+	},{
+		"id": 2,
+		"text": "Abono"
+	}],
+	"documentType":[{
+		"id": 1,
+		"text": "Factura"
+	},{
+		"id": 2,
+		"text": "Boleta"
+	},{
+		"id": 3,
+		"text": "Nota de Credito"
+	},{
+		"id": 4,
+		"text": "Nota de Debito"
+	}],
+	"society":[{
+		"id": 1,
+		"text": "Sociedad 1"
+	},{
+		"id": 2,
+		"text": "Sociedad 2"
+	},{
+		"id": 3,
+		"text": "Sociedad 3"
+	},{
+		"id": 4,
+		"text": "Sociedad 4"
+	},{
+		"id": 5,
+		"text": "Sociedad 5"
+	}],
+	"coin":[{
+		"id": 1,
+		"text": "USD"
+	},{
+		"id": 2,
+		"text": "PEN"
+	},{
+		"id": 3,
+		"text": "EUR"
+	}]
+}

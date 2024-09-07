@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<form:Form width="100%" editable="true" visible="true">
+		<form:title>
+			<core:Title level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="{xmlVisible>/state}">
+						<form:label>
+							<Label text="{i18n>lblAdjuntXml}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader4" value="{UploadFile>/XML}" name="myFileUpload4" uploadUrl="upload4/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" fileType="xml" custom:custom="XML"
+								change="onSaveFile" buttonText="{i18n>btnFileUploaderText}"/>
+							<Button id="fileUploader4Down" text="{i18n>btndownload}" width="50%" custom:custom="XML" press="onDowloadFile" enabled="{btnDown>/state}" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAdjunt1}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader1" value="{UploadFile>/AR1}" name="myFileUpload1" uploadUrl="upload1/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="AR1" change="onSaveFile"
+								fileType="pdf" buttonText="{i18n>btnFileUploaderText}"/>
+							<Button  id="fileUploader1Down" text="{i18n>btndownload}" width="50%" custom:custom="AR1" press="onDowloadFile" enabled="{btnDown>/state}" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAdjunt2}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader2" value="{UploadFile>/AR2}" name="myFileUpload2" uploadUrl="upload2/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="AR2" change="onSaveFile"
+								fileType="pdf,doc,docx,xls,xlsx,jpg,png,jpeg" buttonText="{i18n>btnFileUploaderText}"/>
+							<Button id="fileUploader2Down" text="{i18n>btndownload}" width="50%" custom:custom="AR2" press="onDowloadFile" enabled="{btnDown>/state}" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAdjunt3}" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<!-- <u:FileUploader id="fileUploader3" value="{UploadFile>/AR3}"  name="myFileUpload3" uploadUrl="upload3/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="AR3" change="onSaveFile"
+								fileType="pdf,doc,docx,xls,xlsx,jpg,png,jpeg" buttonText="{i18n>btnFileUploaderText}" multiple="true"/> -->
+							<Button id="btnArchivosAdicionales" text="{i18n>btnshowUploadCollection}" width="25%" press="onOpenUploadCollection" icon="sap-icon://sap-box"/>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+</core:FragmentDefinition>

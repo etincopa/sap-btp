@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:commons="sap.suite.ui.commons">
+	<commons:Timeline id="idTimeline" enableDoubleSided="true" groupBy="HireDate" growingThreshold="0" filterTitle="{i18n>tlFilter}"
+		sortOldestFirst="true" content="{path:'listTimeLine>/'}">
+		<commons:content>
+			<commons:TimelineItem id="idTemplateItem" dateTime="{path: 'listTimeLine>CreatedByTimestamp', formatter: '.formatter.onGetStatus'}"
+				title="{path: 'listTimeLine>Status', formatter: '.formatter.onGetStatus'}" userNameClickable="true" text="{listTimeLine>SystemComment}"
+				userName="{listTimeLine>CreatedByName}" filterValue="{listTimeLine>CreatedByName}" icon="sap-icon://employee"></commons:TimelineItem>
+		</commons:content>
+	</commons:Timeline>
+</core:FragmentDefinition>
