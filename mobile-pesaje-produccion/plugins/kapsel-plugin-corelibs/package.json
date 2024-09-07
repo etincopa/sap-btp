@@ -1,0 +1,18 @@
+{
+  "name": "@sap-kapsel/kapsel-plugin-corelibs",
+  "version": "4.7.6",
+  "description": "Kapsel Core Libs Plugin",
+  "cordova": {
+    "id": "kapsel-plugin-corelibs",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "SAP SE"
+}

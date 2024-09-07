@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<interface xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ITitleContent</name>
+    <derived/>
+    <documentation>Marker interface for controls that can be used in &lt;code&gt;content&lt;/code&gt; aggregation of the &lt;code&gt;sap.m.Title&lt;/code&gt; control.</documentation>
+    <since>1.87</since>
+</interface>
