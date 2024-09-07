@@ -1,0 +1,67 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.Inicio"
+>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Configuración"
+		subheader=""
+		press="onNav('Configuracion')"
+	>
+		<TileContent>
+			<ImageContent src="sap-icon://overview-chart"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>hedTraslados}"
+		subheader=""
+		press="onNav('EntregaPrd')"
+	>
+		<TileContent
+			footer="ALM  -  PRO"
+		>
+			<ImageContent src="sap-icon://shipping-status"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Verificación de Etiquetas IFA"
+		subheader=""
+		press="onNav('VerificaEtiqIFA')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://activity-2"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Impresión de Bulto Saldo"
+		subheader=""
+		press="onNav('ImpreBultoSaldo')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://activity-2"/>
+		</TileContent>
+	</GenericTile>
+	<GenericTile
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="Reporte Bulto Pend. Confirmar"
+		subheader=""
+		press="onNav('ReportBultoPendConfirm')"
+	>
+		<TileContent
+			unit=""
+			footer=""
+		>
+			<ImageContent src="sap-icon://clinical-tast-tracker"/>
+		</TileContent>
+	</GenericTile>
+</mvc:View>

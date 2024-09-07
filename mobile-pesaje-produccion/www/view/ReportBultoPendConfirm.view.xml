@@ -1,0 +1,167 @@
+<mvc:View
+	controllerName="com.medifarma.cp.pesajeimpresionbultosaldo.controller.ReportBultoPendConfirm"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
+	<Page
+		showHeader="true"
+		title="{i18n>tltRepIfaPendConf}"
+		class="sapUiContentPadding 
+			sapUiResponsivePadding--header 
+			sapUiResponsivePadding--subHeader 
+			sapUiResponsivePadding--content 
+			sapUiResponsivePadding--footer"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+	>
+		<content>
+			<ScrollContainer
+				vertical="true"
+				focusable="true"
+			>
+				<Table
+					id="idBultoTable"
+					inset="false"
+					mode="None"
+					items="{BultoListModel>/}"
+					fixedLayout="true"
+					sticky="HeaderToolbar,InfoToolbar,ColumnHeaders"
+				>
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<SearchField
+									placeholder="{i18n>lblSearch}"
+									value="{StandardModel>/oQR/oBulto/text}"
+									search="onQRSearch($event, 'IFA')"
+									width="80%"
+									enabled="{StandardModel>/oQR/oBulto/edit}"
+								/>
+								<Button
+									type="Ghost"
+									icon="sap-icon://qr-code"
+									press="onQRScan($event, 'IFA')"
+								/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column
+							width="8em"
+							minScreenWidth=""
+							demandPopin="true"
+							hAlign="Left"
+						>
+							<Text text="Insumo"/>
+						</Column>
+						<Column
+							width="8em"
+							minScreenWidth=""
+							demandPopin="true"
+							hAlign="Left"
+						>
+							<Text text="Lote Insumo"/>
+						</Column>
+						<Column
+							width="auto"
+							hAlign="Center"
+							vAlign="Middle"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline"
+							mergeDuplicates="false"
+						>
+							<Text text="# Orden"/>
+						</Column>
+						<Column
+							width="auto"
+							hAlign="Center"
+							vAlign="Middle"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline"
+							mergeDuplicates="false"
+						>
+							<Text text="Lote Producto"/>
+						</Column>
+						<Column
+							width="auto"
+							hAlign="Center"
+							vAlign="Middle"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline"
+							mergeDuplicates="false"
+						>
+							<Text text="Neto"/>
+						</Column>
+						<Column
+							width="auto"
+							hAlign="Center"
+							vAlign="Middle"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline"
+							mergeDuplicates="false"
+						>
+							<Text text="Tara"/>
+						</Column>
+						<Column
+							width="auto"
+							hAlign="Center"
+							vAlign="Middle"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline"
+							mergeDuplicates="false"
+						>
+							<Text text="UM"/>
+						</Column>
+						<Column
+							width="7em"
+							minScreenWidth=""
+							demandPopin="true"
+							hAlign="Center"
+						>
+							<Text text="Acción"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{BultoListModel>I_codigo}"/>
+								<Text text="{BultoListModel>I_lote}"/>
+								<Text text="{BultoListModel>O_numero}"/>
+								<Text text="{BultoListModel>O_lote}"/>
+								<Text text="{BultoListModel>B_neto}"/>
+								<Text text="{BultoListModel>B_tara}"/>
+								<Text text="{BultoListModel>I_unidad}"/>
+								<HBox>
+									<Button
+										tooltip="Confirmar"
+										text=""
+										icon="sap-icon://accept"
+										press="onConfirm($event, ${BultoListModel>grupoOrdenBultoId})"
+										visible="{= ${BultoListModel>B_estadoPesaje} === 'PENDAJU' &amp;&amp; ${BultoListModel>I_ajuste} !== 'X'? true : false }"
+									/>
+									<Button
+										tooltip="Resetear"
+										text=""
+										icon="sap-icon://refresh"
+										type="Reject"
+										press="onReset($event, ${BultoListModel>})"
+									/>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<!--footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</footer-->
+	</Page>
+</mvc:View>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>upload/Uploader</name>
+    <derived/>
+    <documentation>A basic implementation for uploading and downloading one or multiple files.</documentation>
+    <since>1.63</since>
+    <baseType>sap.ui.core/Element</baseType>
+    <properties>
+        <property name="uploadUrl" type="sap.ui.core/string">
+            <documentation>URL where the next file is going to be uploaded to.</documentation>
+        </property>
+        <property name="downloadUrl" type="sap.ui.core/string">
+            <documentation>URL where the next file is going to be download from.</documentation>
+        </property>
+        <property name="httpRequestMethod" type="sap.m/upload/UploaderHttpRequestMethod" defaultValue="Post" since="1.90">
+            <documentation>HTTP request method chosen for file upload.</documentation>
+        </property>
+        <property name="useMultipart" type="sap.ui.core/boolean" defaultValue="false" since="1.92">
+            <documentation>This property decides the type of request. If set to "true", the request gets sent as a multipart/form-data request instead of file only request.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="uploadStarted" allowPreventDefault="false">
+            <documentation>The event is fired just after the POST request was sent.</documentation>
+            <parameters>
+                <parameter name="item" type="sap.m/upload/UploadSetItem">
+                    <documentation>The item that is going to be uploaded.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="uploadProgressed" allowPreventDefault="false">
+            <documentation>The event is fired every time an XHR request reports progress in uploading.</documentation>
+            <parameters>
+                <parameter name="item" type="sap.m/upload/UploadSetItem">
+                    <documentation>The item that is being uploaded.</documentation>
+                </parameter>
+                <parameter name="loaded" type="sap.ui.core/int">
+                    <documentation>The number of bytes transferred since the beginning of the operation.
+This doesn't include headers and other overhead, but only the content itself</documentation>
+                </parameter>
+                <parameter name="total" type="sap.ui.core/int">
+                    <documentation>The total number of bytes of content that will be transferred during the operation.
+If the total size is unknown, this value is zero.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="uploadCompleted" allowPreventDefault="false">
+            <documentation>The event is fired when an XHR request reports successful completion of upload process.</documentation>
+            <parameters>
+                <parameter name="item" type="sap.m/upload/UploadSetItem">
+                    <documentation>The item that was uploaded.</documentation>
+                </parameter>
+                <parameter name="responseXHR" type="sap.ui.core/object">
+                    <documentation>A JSON object containing the additional response parameters like response, responseXML, readyState, status and headers.
+&lt;i&gt;Sample response object:&lt;/i&gt;
+&lt;pre&gt;&lt;code&gt;
+{
+   response: "&lt;!DOCTYPE html&gt;\n&lt;html&gt;...&lt;/html&gt;\n",
+   responseXML: null,
+   readyState: 2,
+   status: 404,
+   headers: "allow: GET, HEAD"
+}
+&lt;/code&gt;&lt;/pre&gt;</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="uploadAborted" allowPreventDefault="false">
+            <documentation>The event is fired when an XHR request reports its abortion.</documentation>
+            <parameters>
+                <parameter name="item" type="sap.m/upload/UploadSetItem">
+                    <documentation>The item that is going to be deleted.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+</control>
