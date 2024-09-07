@@ -1,0 +1,9 @@
+{
+	"ActivityIndicatorText": "Validando...",
+	"Message": "¿Está seguro de actualizar la solicitud de adelanto?",
+	"OKCaption": "Aceptar",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Adelantos/ActualizarSolicitud.action",
+	"ShowActivityIndicator": true,
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoEmbarcacionValidationRule.js",
+	"_Type": "Action.Type.Message"
+}

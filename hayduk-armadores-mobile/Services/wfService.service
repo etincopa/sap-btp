@@ -1,0 +1,10 @@
+{
+	"DestinationName": "workflow",
+	"Headers": {
+		"Content-Type": "application/json"
+	},
+	"OfflineEnabled": false,
+	"PathSuffix": "/rest/v1",
+	"RestService": true,
+	"SourceType": "Mobile"
+}

@@ -1,0 +1,20 @@
+{
+	"Caption": "DemoSliderNS",
+	"Controls": [
+		{
+			"Class": "MySliderNSClass",
+			"Control": "MySliderNSControl",
+			"ExtensionProperties": {
+				"Obj": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerDataSliderRule.js"
+			},
+			"Module": "MySliderNSModule",
+			"Target": "",
+			"_Name": "ExtensionControl0",
+			"_Type": "Control.Type.Extension"
+		}
+	],
+	"Target": "",
+	"_Name": "DemoSliderNS",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

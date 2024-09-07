@@ -1,0 +1,18 @@
+{
+	"Caption": "prueba",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+					]
+				}
+			],
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "prueba",
+	"_Type": "Page"
+}

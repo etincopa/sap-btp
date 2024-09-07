@@ -1,0 +1,7 @@
+{
+	"Filterable": "#Page:LiquidacionPesca/#Control:SectionedTable0",
+	"ModalPageFullscreen": false,
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaFilterSuccess.js",
+	"PageToOpen": "/Armadores/Pages/EstadoCuenta/LiquidacionPescaFilter.page",
+	"_Type": "Action.Type.Filter"
+}

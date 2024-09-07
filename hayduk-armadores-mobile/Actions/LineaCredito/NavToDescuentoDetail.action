@@ -1,0 +1,8 @@
+{
+	"ActivityIndicatorText": "Cargando...",
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/DescuentosDetail.page",
+	"ShowActivityIndicator": true,
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/NavToDescuentoDetailRule.js",
+	"_Type": "Action.Type.Navigation"
+}

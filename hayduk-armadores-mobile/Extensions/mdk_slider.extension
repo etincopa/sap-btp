@@ -1,0 +1,37 @@
+{
+	"Class": "MySliderClass",
+	"Control": "MySliderExtension",
+	"Display": "/Armadores/Images/slider.png",
+	"ExtensionPropertiesSchema": {
+		"BindType": "",
+		"properties": {
+			"Currency": {
+				"BindType": "",
+				"type": "string"
+			},
+			"Enable": {
+				"BindType": "",
+				"type": "boolean"
+			},
+			"MaxValue": {
+				"BindType": "",
+				"type": "string"
+			},
+			"MinValue": {
+				"BindType": "",
+				"type": "string"
+			},
+			"Title": {
+				"BindType": "",
+				"type": "string"
+			},
+			"Value": {
+				"BindType": "",
+				"type": "string"
+			}
+		},
+		"type": "object"
+	},
+	"Module": "MySliderModule",
+	"_Type": "Register.Type.ExtensionControl.Metadata"
+}

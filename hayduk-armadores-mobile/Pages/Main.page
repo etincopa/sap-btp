@@ -1,0 +1,66 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"Position": "Left",
+				"SystemItem": "Search",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"IsIconCircular": false,
+				"Position": "Right",
+				"SystemItem": "Done",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Armadores",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Buttons": [
+						{
+							"OnPress": "/Armadores/Actions/Categories/NavToCategories_List.action",
+							"Target": "",
+							"Alignment": "Center",
+							"Title": "Categories",
+							"ButtonType": "Text",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"_Name": "SectionButtonTable0",
+					"_Type": "Section.Type.ButtonTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"ToolBar": {
+		"Items": [
+			{
+				"Caption": "Logout",
+				"Clickable": true,
+				"Enabled": true,
+				"OnPress": "/Armadores/Actions/Logout.action",
+				"Target": "",
+				"Visible": true,
+				"_Name": "LogoutToolbarItem",
+				"_Type": "Control.Type.ToolbarItem"
+			}
+		]
+	},
+	"_Name": "Main",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

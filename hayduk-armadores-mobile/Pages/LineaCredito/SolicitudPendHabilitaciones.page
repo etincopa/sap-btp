@@ -1,0 +1,55 @@
+{
+	"Caption": "Solicitudes Pendientes de Habilitaciones",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"Footnote": "Estado : {sEstadoDet}",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/habilitacionSolicitudCentro.png"
+						],
+						"OnPress": "/Armadores/Actions/LineaCredito/SolicitudPendHabilitacionDetail.action",
+						"PreserveIconStackSpacing": false,
+						"ProgressIndicator": "open",
+						"StatusText": "$(C,{sMontoSolicitado} ,'USD')",
+						"Subhead": "{sEmbarcacion} {sRazonSocial}",
+						"Title": "$(D,{dFechaRegistro},'es-PE','America/Lima',{format:'long'})"
+					},
+					"Target": {
+						"EntitySet": "SolicitudPendHabilitacion",
+						"QueryOptions": "$filter=sIDRUC eq '{{#Application/#ClientData/#Property:UserId}}' and sTask ne ''&$orderby=dFechaRegistro desc",
+						"Service": "/Armadores/Services/armadorService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/Armadores/Rules/LineaCredito/Habilitaciones/RefreshSolicitudes.js",
+	"Target": "",
+	"_Name": "SolicitudPendHabilitaciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

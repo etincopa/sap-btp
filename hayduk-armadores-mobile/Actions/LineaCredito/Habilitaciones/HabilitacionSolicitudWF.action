@@ -1,0 +1,20 @@
+{
+	"ActionResult": {
+		"_Name": "wfResp"
+	},
+	"ActivityIndicatorText": "Guardando...",
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionSolicitudRespWF.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"Path": "/workflow-instances",
+		"RequestProperties": {
+			"Body": {
+				"context": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionSolicitudContextWF.js",
+				"definitionId": "lineacredito"
+			},
+			"Method": "POST"
+		},
+		"Service": "/Armadores/Services/wfService.service"
+	},
+	"_Type": "Action.Type.RestService.SendRequest"
+}

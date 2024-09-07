@@ -1,0 +1,26 @@
+{
+	"PopoverItems": [
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/LineaCredito/NavToAdelantoSolicitud.action",
+			"Title": "Crear Sol.",
+			"Visible": true
+		},
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/NavToSolicitudes.action",
+			"Title": "Solicitudes",
+			"Visible": true
+		},
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/NavToEmbarcacionDescuento.action",
+			"Title": "Ver Descuentos",
+			"Visible": true
+		}
+	],
+	"_Type": "Action.Type.PopoverMenu"
+}

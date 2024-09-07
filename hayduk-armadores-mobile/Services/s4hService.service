@@ -1,0 +1,7 @@
+{
+	"DestinationName": "S4H",
+	"LanguageURLParam": "sap-language",
+	"OfflineEnabled": false,
+	"PathSuffix": "/sap/opu/odata/sap/ZSCP_ARMADORES_SRV/",
+	"SourceType": "Mobile"
+}

@@ -1,0 +1,12 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"OnSuccess": "/Armadores/Rules/Overview/DatosCuentaWFSuccess.js",
+	"Target": {
+		"EntitySet": "SolicitudDatoCuenta",
+		"QueryOptions": "$filter=sUsuarioRegistro eq '{{#Application/#ClientData/#Property:UserId}}' and sEstado eq '1' and sCuentaAct eq '{{#Page:TabCuentaEdit/#Control:Tipo/#SelectedValue}}'",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

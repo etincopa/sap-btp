@@ -1,0 +1,81 @@
+{
+	"Caption": "Detalle de pago en liquidaciones",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"Footnote": "Total : $(C,{Monto} ,{Moneda})",
+						"HeadlineText": "{Referencia}",
+						"StatusText": "{FechaDoc}",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Subhead": "{Embarcacion}",
+						"Target": ""
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Header": {
+						"Caption": "Registro de Pagos",
+						"UseTopPadding": true
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"Footnote": "{Referencia}",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/liquidacionCentro.png"
+						],
+						"PreserveIconStackSpacing": false,
+						"StatusText": "$(C,{Monto} ,{Moneda})",
+						"Subhead": "{FechaPago}",
+						"Title": "{IDPago}"
+					},
+					"Target": {
+						"EntitySet": "HabilitacionRegDetSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDHabilitacion eq '{IDHabilitacion}' and Ejercicio eq '{Ejercicio}' and Posicion eq '{Posicion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Controls": [],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "PagHabilitacionesDetail",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

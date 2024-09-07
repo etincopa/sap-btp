@@ -1,0 +1,11 @@
+{
+	"Message": "Se envió a aprobar",
+	"OKCaption": "Ok",
+	"OnOK": "/Armadores/Actions/Home/Misdatos.action",
+	"OnSuccessLog": {
+		"Level": "Info",
+		"Message": ""
+	},
+	"Title": "Satisfactorio",
+	"_Type": "Action.Type.Message"
+}

@@ -1,0 +1,36 @@
+{
+	"ActionResult": {
+		"_Name": "oData"
+	},
+	"ActivityIndicatorText": "Guardando...",
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionSolicitudArmadorResp.js",
+	"Properties": {
+		"sArmador": "/Armadores/Rules/Home/Headline.js",
+		"sCodHabilitacion": "1",
+		"sDetalle": "#Page:SolicitarHabilitacion/#Control:ntDetDescuento/#Value",
+		"sEmbarcacion": "#Page:SolicitarHabilitacion/#Control:lpEmbarcacion/#SelectedValue",
+		"sEmbarcacionDes": "/Armadores/Rules/LineaCredito/Values/EmbarcacionDesDisplayReturnRule.js",
+		"sEstado": "0",
+		"sEstadoDet": "CREADO",
+		"sID": "/Armadores/Rules/LineaCredito/Values/ObtenerIDRule.js",
+		"sIDRUC": "#Application/#ClientData/#Property:UserId",
+		"sIDWorklow": "#Page:SolicitarHabilitacion/#Control:spWorkflowInstanceId/#Value",
+		"sMoneda": "#Page:SolicitarHabilitacion/#Control:lpMoneda/#SelectedValue",
+		"sMontoSolicitado": "#Page:SolicitarHabilitacion/#Control:spMontoSolicitud/#Value",
+		"sPlanta": "#Page:SolicitarHabilitacion/#Control:lpPlanta/#SelectedValue",
+		"sPlantaDes": "/Armadores/Rules/LineaCredito/Values/PlantaDesDisplayReturn.js",
+		"sRazonSocial": "#Page:SolicitarHabilitacion/#Control:spRSocial/#Value",
+		"sTasaDescuento": "#Page:SolicitarHabilitacion/#Control:spTasaDescuento/#Value",
+		"sTask": "FLOTA",
+		"sTemporada": "#Page:SolicitarHabilitacion/#Control:lpPagarNroTemp/#SelectedValue",
+		"sUsuarioRegistro": "#Application/#ClientData/#Property:UserId",
+		"sViaPago": "#Page:SolicitarHabilitacion/#Control:lpViaPago/#SelectedValue",
+		"xActivo": true
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "SolicitudPendHabilitacion",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

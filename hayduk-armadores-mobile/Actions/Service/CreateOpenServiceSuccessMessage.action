@@ -1,0 +1,11 @@
+{
+	"ActivityIndicatorText": "Cargando...",
+	"Animated": true,
+	"Duration": 5,
+	"IsIconHidden": true,
+	"Message": "Servicio de datos de la aplicación inicializado",
+	"NumberOfLines": 3,
+	"OnSuccess": "/Armadores/Actions/Service/s4hCreateService.action",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.ToastMessage"
+}

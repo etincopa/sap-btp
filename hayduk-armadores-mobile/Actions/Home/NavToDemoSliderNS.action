@@ -1,0 +1,6 @@
+{
+	"ClearHistory": true,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/Home/DemoSliderNS.page",
+	"_Type": "Action.Type.Navigation"
+}

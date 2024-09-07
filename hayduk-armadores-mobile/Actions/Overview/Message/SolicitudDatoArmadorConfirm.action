@@ -1,0 +1,7 @@
+{
+	"CancelCaption": "Cancelar",
+	"Message": "¿Desea enviar la solicitud de actualización?",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/Overview/ServiceRest/ValidationTabDatosWF.action",
+	"_Type": "Action.Type.Message"
+}

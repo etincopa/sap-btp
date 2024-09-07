@@ -1,0 +1,8 @@
+{
+	"Message": "¿Desea enviar la solicitud de habilitación?",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/LineaCredito/Habilitaciones/HabilitacionSearchExist.action",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Habilitaciones/HabilitacionSearchExist.action",
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Habilitaciones/EnviarSolicitudValidationRule.js",
+	"_Type": "Action.Type.Message"
+}

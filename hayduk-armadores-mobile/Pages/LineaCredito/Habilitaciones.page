@@ -1,0 +1,149 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Icon": "sap-icon://filter",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/HabilitacionEspecieTemporadaFilter.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"Icon": "sap-icon://vertical-grip",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/PopoverMenu.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Habilitaciones",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando Tabla..."
+			},
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerEmbarcacionRule.js",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						}
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"Controls": [
+						{
+							"Class": "MySliderClass",
+							"Control": "MySliderExtension",
+							"ExtensionProperties": {
+								"Currency": "/Armadores/Rules/LineaCredito/Habilitaciones/LineaCreditoValues/LineaCreditoMoneda.js",
+								"Enable": false,
+								"MaxValue": "/Armadores/Rules/LineaCredito/Habilitaciones/LineaCreditoValues/LineaCreditoMontoMaximo.js",
+								"MinValue": "0",
+								"Title": "HABILITACIONES",
+								"Value": "/Armadores/Rules/LineaCredito/Habilitaciones/LineaCreditoValues/LineaCreditoMontoConsumido.js"
+							},
+							"IsVisible": true,
+							"Module": "MySliderModule",
+							"_Name": "FormCellExtension0",
+							"_Type": "Control.Type.FormCell.Extension"
+						},
+						{
+							"Caption": "Especie",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Target": "",
+							"_Name": "spEspecie",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Temporada",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/LineaCredito/Habilitaciones/ObtenerUltimaTemporadaRule.js",
+							"_Name": "spTemporada",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				},
+				{
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando Registros...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionRegSumValue.js",
+						"Caption": "Total",
+						"FooterStyle": "attribute",
+						"UseBottomPadding": false,
+						"Visible": true
+					},
+					"HighlightSelectedItem": true,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"Footnote": "{FechaDoc}",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/habilitaciones.png"
+						],
+						"OnPress": "/Armadores/Actions/LineaCredito/HabilitacionesDetail.action",
+						"PreserveIconStackSpacing": false,
+						"ProgressIndicator": "open",
+						"StatusText": "$(C,{Monto} ,{Moneda})",
+						"Styles": {
+							"Title": "SimplePropertyFormCellCaption"
+						},
+						"Subhead": "{Embarcacion}",
+						"Title": "{Referencia}"
+					},
+					"Target": {
+						"EntitySet": "HabilitacionRegSet",
+						"QueryOptions": "/Armadores/Rules/LineaCredito/ObtenerEmbarcacionIdRule.js",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "sotHabilitacionesReg",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "HabilitacionesSectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaOnReturning.js",
+	"Target": "",
+	"_Name": "Habilitaciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

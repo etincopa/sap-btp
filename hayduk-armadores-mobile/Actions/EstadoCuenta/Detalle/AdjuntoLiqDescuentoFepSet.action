@@ -1,0 +1,15 @@
+{
+	"ActionResult": {
+		"_Name": "oData"
+	},
+	"ActivityIndicatorText": "Descargando...",
+	"OnFailure": "/Armadores/Actions/Home/Message/ObtenerUsuarioFallo.action",
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/Detalle/AdjuntoLiqDescuentoFepSetSuccesRule.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "AdjuntoFepSet",
+		"QueryOptions": "$filter=IDDocumento eq '{{#Page:DescuentoFEP/#Control:spIDDocumento/#Value}}' and IDRuc eq '{{#Page:DescuentoFEP/#Control:spIDRuc/#Value}}' and IDEjercicio eq '{{#Page:DescuentoFEP/#Control:spIDEjercicio/#Value}}'",
+		"Service": "/Armadores/Services/s4hService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

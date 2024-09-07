@@ -1,0 +1,6 @@
+{
+	"NavigationType": "Cross",
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaDetalleOnLoaded.js",
+	"PageToOpen": "/Armadores/Pages/EstadoCuenta/LiquidacionPescaDetalle.page",
+	"_Type": "Action.Type.Navigation"
+}

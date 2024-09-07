@@ -1,0 +1,5 @@
+{
+	"Message": "El tamaño del archivo supera lo permitido (2MB)",
+	"Title": "Longitud de Adjunto",
+	"_Type": "Action.Type.Message"
+}

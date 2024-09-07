@@ -1,0 +1,6 @@
+{
+	"Message": "Message",
+	"OKCaption": "Aceptar",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Habilitacion.action",
+	"_Type": "Action.Type.Message"
+}

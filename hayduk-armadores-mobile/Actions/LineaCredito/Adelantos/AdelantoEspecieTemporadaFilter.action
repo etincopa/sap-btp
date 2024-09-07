@@ -1,0 +1,9 @@
+{
+	"ActivityIndicatorText": "Cargado Filtros...",
+	"Filterable": "#Page:Adelantos/#Control:stAdelanto",
+	"ModalPageFullscreen": false,
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Adelantos/FilterSuccessRule.js",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/Adelantos/AdelantoEspecieTemporadaFilter.page",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.Filter"
+}

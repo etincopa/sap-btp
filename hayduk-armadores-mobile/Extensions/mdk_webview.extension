@@ -1,0 +1,7 @@
+{
+	"Class": "MyWebViewClass",
+	"Control": "MyWebViewExtension",
+	"Display": "/Armadores/Images/webview.png",
+	"Module": "MyWebViewModule",
+	"_Type": "Register.Type.ExtensionControl"
+}

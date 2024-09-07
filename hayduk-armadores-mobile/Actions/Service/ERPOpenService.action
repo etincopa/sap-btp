@@ -1,0 +1,12 @@
+{
+	"ActionResult": {
+		"_Name": "init"
+	},
+	"ActivityIndicatorText": "Cargando...",
+	"OnFailure": "/Armadores/Actions/Service/ERPCreateOpenServiceFailureMessage.action",
+	"OnSuccess": "/Armadores/Actions/Home/ServiceOData/ObtenerUsuario.action",
+	"Service": "/Armadores/Services/ERPService.service",
+	"ShowActivityIndicator": true,
+	"ValidationRule": "/Armadores/Rules/Home/HomeSuccessRule.js",
+	"_Type": "Action.Type.ODataService.Open"
+}

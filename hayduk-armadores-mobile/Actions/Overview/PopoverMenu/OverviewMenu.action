@@ -1,0 +1,12 @@
+{
+	"PopoverItems": [
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/Overview/NavToTabCuentaEdit.action",
+			"Title": "Crear cuenta",
+			"Visible": true
+		}
+	],
+	"_Type": "Action.Type.PopoverMenu"
+}

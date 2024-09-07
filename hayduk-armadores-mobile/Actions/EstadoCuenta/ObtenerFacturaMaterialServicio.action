@@ -1,0 +1,16 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/FacturaVentaPetroleoSuccess.js",
+	"Properties": {
+		"sFolio": "#Page:MaterialServicio/#Control:LiqMatSerReferencia/#Value",
+		"sTipo": "01"
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "FacturaPDF",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

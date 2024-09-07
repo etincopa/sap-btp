@@ -1,0 +1,156 @@
+{
+	"Caption": "Agregar Cuenta",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Tipo",
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{Descripcion}",
+								"ReturnValue": "{IDTipoCuenta}",
+								"Target": {
+									"EntitySet": "TipoCuentaSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione un Tipo y presione el botón atras",
+							"Target": "",
+							"Value": [
+								"{Tipo}"
+							],
+							"_Name": "Tipo",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Banco",
+							"DataPaging": {
+								"LoadingIndicatorText": "Obteniendo...",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/Overview/CuentaBancoOnChangeRule.js",
+							"PickerItems": {
+								"DisplayValue": "{Descripcion}",
+								"ReturnValue": "{IDTipoBanco}",
+								"Target": {
+									"EntitySet": "TipoBancoSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione un Banco y presione el botón atras",
+							"Target": "",
+							"Value": [
+								"{ClaveBanco}"
+							],
+							"_Name": "Banco",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"Caption": "Nro",
+							"IsEditable": true,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{NroCuenta}",
+							"_Name": "NumeroCuenta",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "CCI",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Target": "",
+							"Value": "{CCI}",
+							"_Name": "NumeroCuentaCCI",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "IdWF",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"_Name": "IdWF",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "IdKey",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{IDKey}",
+							"_Name": "IdKey",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Clave Banco",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{ClaveBanco}",
+							"_Name": "ClaveBanco",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AllowedFileTypes": [
+								"jpg",
+								"png"
+							],
+							"AttachmentActionType": [
+								"AddPhoto",
+								"TakePhoto",
+								"SelectFile"
+							],
+							"AttachmentAddTitle": "Adjuntar Declaración Jurada",
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/Overview/AttachmentChangeRule.js",
+							"Target": "",
+							"_Name": "AdjuntoId",
+							"_Type": "Control.Type.FormCell.Attachment"
+						},
+						{
+							"ButtonType": "Primary",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/Overview/Message/SolicitudCuentaArmadorConfirm.action",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Enviar actualización",
+							"_Name": "btnEnvioCuenta",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"OnUnloaded": "/Armadores/Rules/Overview/PageControls/DatoCuentaEditOnLoadedRule.js",
+	"Target": "",
+	"_Name": "TabCuentaAdd",
+	"_Type": "Page"
+}

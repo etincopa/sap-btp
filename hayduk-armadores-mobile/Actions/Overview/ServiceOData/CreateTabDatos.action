@@ -1,0 +1,21 @@
+{
+	"ActionResult": {
+		"_Name": "create"
+	},
+	"ActivityIndicatorText": "Enviando...",
+	"OnFailure": "/Armadores/Actions/Overview/Message/TestFallo.action",
+	"OnSuccess": "/Armadores/Actions/Overview/Message/SolicitudDatoCuentaArmadorSuccess.action",
+	"Properties": {
+		"sCorreoProp": "#Page:TabDatosEdit/#Control:EmailEdit/#Value",
+		"sEstado": "1",
+		"sIDWorklow": "#Page:TabDatosEdit/#Control:IdWF/#Value",
+		"sUsuarioRegistro": "#Application/#ClientData/#Property:UserId",
+		"xActivo": true
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "SolicitudDatoArmador",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

@@ -1,0 +1,226 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Icon": "sap-icon://filter",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/AdelantoEspecieTemporadaFilter.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"Icon": "sap-icon://vertical-grip",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/PopoverMenu.action",
+				"Position": "Right",
+				"Caption": "",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Adelantos",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"BodyText": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerCantidadProyectadaRule.js",
+						"DetailImageIsCircular": false,
+						"Footnote": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerCantidadDescargadaRule.js",
+						"HeadlineText": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerEmbarcacionRule.js",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Target": ""
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Layout": {
+						"NumberOfColumns": 2
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "Monto disponible para adelanto",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "/Armadores/Rules/LineaCredito/Adelantos/LineaCreditoValues/MontoDisponible.js",
+								"Visible": true
+							}
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"_Name": "SectionSimplePropertyCollection0",
+					"_Type": "Section.Type.SimplePropertyCollection"
+				},
+				{
+					"Controls": [
+						{
+							"Class": "MySliderClass",
+							"Control": "MySliderExtension",
+							"ExtensionProperties": {
+								"Currency": "/Armadores/Rules/LineaCredito/Adelantos/LineaCreditoValues/LineaCreditoMoneda.js",
+								"Enable": false,
+								"MaxValue": "/Armadores/Rules/LineaCredito/Adelantos/LineaCreditoValues/LineaCreditoMontoMaximo.js",
+								"MinValue": 0,
+								"Title": "ADELANTOS",
+								"Value": "/Armadores/Rules/LineaCredito/Adelantos/LineaCreditoValues/LineaCreditoMontoConsumido.js"
+							},
+							"IsVisible": false,
+							"Module": "MySliderModule",
+							"Target": "",
+							"_Name": "xcAdelanto",
+							"_Type": "Control.Type.FormCell.Extension"
+						},
+						{
+							"Caption": "Especie",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Target": "",
+							"_Name": "spEspecie",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Temporada",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/LineaCredito/ObtenerUltimaTemporadaRule.js",
+							"_Name": "spTemporada",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Embarcación",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "spEmbarcacion",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Temporadas",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": false,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoFilterTemporada.js",
+							"PickerItems": {
+								"DisplayValue": "{IDTemporada}: {FechaInicio}-{FechaFin}",
+								"ReturnValue": "{IDTemporada}",
+								"Target": {
+									"EntitySet": "TemporadaSet",
+									"QueryOptions": "$filter=IDEspecie eq '01' and IDTipo eq 'ADELTEMP'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Please select one single item",
+							"Target": "",
+							"_Name": "lpTemporadas",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				},
+				{
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando Registros...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoRegSumValue.js",
+						"Caption": "Total",
+						"FooterStyle": "attribute",
+						"UseBottomPadding": false,
+						"Visible": true
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"Footnote": "{FechaDoc}",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/adelantos.png"
+						],
+						"OnPress": "/Armadores/Actions/LineaCredito/AdelantosDetail.action",
+						"PreserveIconStackSpacing": true,
+						"StatusText": "$(C,{Monto} ,{Moneda})",
+						"Styles": {
+							"Title": "SimplePropertyFormCellCaption"
+						},
+						"Subhead": "{Embarcacion}",
+						"Title": "{Referencia}"
+					},
+					"Target": {
+						"EntitySet": "AdelantoRegSet",
+						"QueryOptions": "/Armadores/Rules/LineaCredito/ObtenerEmbarcacionIdRule.js",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Controls": [],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "stAdelanto",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "Adelantos",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

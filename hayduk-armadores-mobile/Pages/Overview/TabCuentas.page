@@ -1,0 +1,63 @@
+{
+	"Caption": "TabCuentas",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"Avatars": [
+								{
+									"Image": "sap-icon://loan"
+								}
+							],
+							"ImageIsCircular": false
+						},
+						"Footnote": "{CCI}",
+						"OnPress": "/Armadores/Actions/Overview/NavToTabCuentaEdit.action",
+						"PreserveIconStackSpacing": false,
+						"Styles": {
+							"DetailImage": "ObjectTableImageDetail"
+						},
+						"Subhead": "{NroCuenta}",
+						"SubstatusImage": "/Armadores/Images/Edit.png",
+						"Title": "{Tipo} - {Banco}"
+					},
+					"Target": {
+						"EntitySet": "DatosCuentasSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Controls": [],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "TabCuentas",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

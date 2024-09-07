@@ -1,0 +1,6 @@
+{
+	"Message": "La dirección de correo electrónico no tiene el formato correcto de destinatario @ dominio.",
+	"OKCaption": "OK",
+	"Title": "Validación Email",
+	"_Type": "Action.Type.Message"
+}

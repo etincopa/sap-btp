@@ -1,0 +1,8 @@
+{
+	"Message": "Enviar Mensaje por propiedad",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/ClosePage.action",
+	"OnSuccess": "/Armadores/Actions/ClosePage.action",
+	"ShowActivityIndicator": false,
+	"_Type": "Action.Type.Message"
+}

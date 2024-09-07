@@ -1,0 +1,46 @@
+{
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "SectionObjectTable0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"Title": "Title",
+						"Subhead": "Subhead",
+						"Footnote": "Footnote",
+						"Description": "Description",
+						"StatusText": "Status",
+						"SubstatusText": "Substatus",
+						"AvatarStack": {
+							"Avatars": [
+								{
+									"Image": "res://mdk_logo.png"
+								}
+							],
+							"ImageIsCircular": false
+						},
+						"PreserveIconStackSpacing": true,
+						"AccessoryType": "none",
+						"ProgressIndicator": "inProgress",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						}
+					},
+					"HighlightSelectedItem": false
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "HabilitacionSolicitudes",
+	"Caption": "Solicitudes Pendientes de ",
+	"PrefersLargeCaption": true
+}

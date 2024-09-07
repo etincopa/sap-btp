@@ -1,0 +1,9 @@
+{
+	"ActivityIndicatorText": "Cargado Filtros...",
+	"Filterable": "#Page:Habilitaciones/#Control:HabilitacionesSectionedTable",
+	"ModalPageFullscreen": false,
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaFilterSuccess.js",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/Habilitaciones/HabilitacionEspecieTemporadaFilter.page",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.Filter"
+}

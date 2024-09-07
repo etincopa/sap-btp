@@ -1,0 +1,11 @@
+{
+	"Properties": {
+		"Correo": "#Page:TabDatos/#Control:Correo/#Value",
+		"IDRUC": "#Page:TabDatos/#Control:RUC/#Value"
+	},
+	"Target": {
+		"EntitySet": "DatosArmador",
+		"Service": "/Armadores/Services/ERPService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

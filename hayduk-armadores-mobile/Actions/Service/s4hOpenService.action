@@ -1,0 +1,7 @@
+{
+	"ActivityIndicatorText": "Cargando...",
+	"OnSuccess": "/Armadores/Actions/Service/ERPCreateService.action",
+	"Service": "/Armadores/Services/s4hService.service",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.ODataService.Open"
+}

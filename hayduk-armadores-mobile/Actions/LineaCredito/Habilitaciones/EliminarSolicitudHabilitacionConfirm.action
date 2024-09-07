@@ -1,0 +1,6 @@
+{
+	"Message": "¿Está seguro de eliminar la habilitación?",
+	"OKCaption": "Aceptar",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Habilitaciones/EliminarSolicitud.action",
+	"_Type": "Action.Type.Message"
+}

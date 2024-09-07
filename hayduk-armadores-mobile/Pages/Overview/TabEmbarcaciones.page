@@ -1,0 +1,46 @@
+{
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"AvatarStack": {
+							"Avatars": [
+								{
+									"Image": "sap-icon://basket"
+								}
+							],
+							"ImageIsCircular": false
+						},
+						"Footnote": "{Matricula}",
+						"PreserveIconStackSpacing": false,
+						"Styles": {
+							"DetailImage": "ObjectTableImageDetail"
+						},
+						"Title": "{Nombre}"
+					},
+					"Target": {
+						"EntitySet": "DatosEmbarcacionSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "TabEmbarcaciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

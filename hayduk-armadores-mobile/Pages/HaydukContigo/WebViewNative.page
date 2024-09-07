@@ -1,0 +1,20 @@
+{
+	"Caption": "WebViewNative",
+	"Controls": [
+		{
+			"Class": "MyWebViewNativeClass",
+			"Control": "MyWebViewNativeExtension",
+			"ExtensionProperties": {
+				"Url": "https://www.linkedin.com/company/hayduk/"
+			},
+			"Module": "MyWebViewNativeModule",
+			"Target": "",
+			"_Name": "ExtensionControl0",
+			"_Type": "Control.Type.Extension"
+		}
+	],
+	"Target": "",
+	"_Name": "WebViewNative",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

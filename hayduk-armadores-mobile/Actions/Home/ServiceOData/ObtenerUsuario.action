@@ -1,0 +1,13 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"OnFailure": "/Armadores/Actions/Home/Message/ObtenerUsuarioFallo.action",
+	"OnSuccess": "/Armadores/Rules/Home/User.js",
+	"Target": {
+		"EntitySet": "DatosArmadorSet",
+		"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+		"Service": "/Armadores/Services/s4hService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

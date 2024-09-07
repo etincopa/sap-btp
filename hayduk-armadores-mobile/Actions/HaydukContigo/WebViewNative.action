@@ -1,0 +1,6 @@
+{
+	"ClearHistory": true,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/HaydukContigo/WebViewNative.page",
+	"_Type": "Action.Type.Navigation"
+}

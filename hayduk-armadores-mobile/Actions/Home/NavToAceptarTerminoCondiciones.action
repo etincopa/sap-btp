@@ -1,0 +1,7 @@
+{
+	"ModalPage": true,
+	"ModalPageFullscreen": true,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/Home/AceptarTerminoCondiciones.page",
+	"_Type": "Action.Type.Navigation"
+}

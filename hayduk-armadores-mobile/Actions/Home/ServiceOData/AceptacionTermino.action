@@ -1,0 +1,15 @@
+{
+	"OnSuccess": "/Armadores/Rules/Home/OdataService/EnviarAceptacionTerminoSuccess.js",
+	"Properties": {
+		"sRUC": "#Application/#ClientData/#Property:UserId",
+		"sTerminoCondicionesId": "/Armadores/Rules/Home/ObtenerTerminoCondicionesIdRule.js",
+		"sUsuarioRegistro": "#Application/#ClientData/#Property:UserId",
+		"xActivo": true
+	},
+	"Target": {
+		"EntitySet": "AceptacionTermino",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"ValidationRule": "/Armadores/Rules/Home/OdataService/EnviarAceptacionTerminoValidationRule.js",
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

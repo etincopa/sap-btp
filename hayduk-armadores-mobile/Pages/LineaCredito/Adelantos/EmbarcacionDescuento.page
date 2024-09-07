@@ -1,0 +1,279 @@
+{
+	"Caption": "Descuentos",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"BodyText": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/TotalIgvRule.js",
+						"DetailImageIsCircular": false,
+						"HeadlineText": "/Armadores/Rules/LineaCredito/Adelantos/ObtenerEmbarcacionRule.js",
+						"StatusText": "$(C,{SubtotalDctos} ,'USD')",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Subhead": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/ObtenerMatriculaRule.js",
+						"Target": ""
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"FooterVisible": false,
+						"Style": "SimplePropertyFormCellCaption"
+					},
+					"KeyAndValues": [
+						{
+							"KeyName": "Desc. FEP",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescFep},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Adelanto",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescAdelanto},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Detracc.",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescDetracc},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Comb.",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescComb},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Material/Servicio",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescMatServ},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Hab.",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescHab},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. Deco.",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescDeco},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Desc. San Pedro",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescSanPedro},'USD')",
+							"Visible": true
+						},
+						{
+							"KeyName": "Otros Desc.",
+							"LinkColor": "#004F71",
+							"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+							"Target": "",
+							"Value": "$(C,{DescOtros},'USD')",
+							"Visible": true
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 3
+					},
+					"MaxItemCount": 1,
+					"Target": {
+						"EntitySet": "AdelantoLinCredDetSet",
+						"QueryOptions": "/Armadores/Rules/LineaCredito/ObtenerEmbarcacionIdRule.js",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionKeyValue0",
+					"_Type": "Section.Type.KeyValue"
+				},
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Layout": {
+						"MinimumInteritemSpacing": 3,
+						"NumberOfColumns": 2
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "        Desc. FEP",
+								"OnPress": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnPress.js",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailOnValue.js",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Adelanto",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescAdelanto},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Comb.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescComb},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Material/Servicio",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescMatServ},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Hab.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescHab},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Deco.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescDeco},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Detracc.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescDetracc},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. San Pedro",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescSanPedro},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Otros Desc.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescOtros},'USD')",
+								"Visible": true
+							}
+						}
+					],
+					"Target": "",
+					"Visible": false,
+					"_Name": "SectionSimplePropertyCollection0",
+					"_Type": "Section.Type.SimplePropertyCollection"
+				},
+				{
+					"Controls": [
+						{
+							"ButtonType": "Text",
+							"IsVisible": true,
+							"Styles": {
+								"Button": "LiqDescuentos"
+							},
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/ObtenerSubTotalRule.js",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnLoaded": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/EmbarcacionDescuentoOnLoaded.js",
+	"Target": "",
+	"_Name": "EmbarcacionDescuento",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

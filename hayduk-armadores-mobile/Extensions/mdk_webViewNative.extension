@@ -1,0 +1,17 @@
+{
+	"Class": "MyWebViewNativeClass",
+	"Control": "MyWebViewNativeExtension",
+	"Display": "/Armadores/Images/webview.png",
+	"ExtensionPropertiesSchema": {
+		"BindType": "",
+		"properties": {
+			"Url": {
+				"BindType": "",
+				"type": "string"
+			}
+		},
+		"type": "object"
+	},
+	"Module": "MyWebViewNativeModule",
+	"_Type": "Register.Type.ExtensionControl"
+}

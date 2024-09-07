@@ -1,0 +1,21 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"ActivityIndicatorText": "Descargando...",
+	"Headers": {
+		"Content-Type": "application/json"
+	},
+	"OnFailure": "/Armadores/Actions/Service/DownloadFileFailureMessage.action",
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/FacturaVentaPetroleoSuccess.js",
+	"Properties": {
+		"sFolio": "#Page:VentaPetroleo/#Control:NumeroFactura/#Value",
+		"sTipo": "01"
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "FacturaPDF",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

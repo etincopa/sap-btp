@@ -1,0 +1,5 @@
+{
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/EstadoCuenta/Detalle/DescuentoFEP.page",
+	"_Type": "Action.Type.Navigation"
+}

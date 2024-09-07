@@ -1,0 +1,30 @@
+{
+	"ActionResult": {
+		"_Name": "create"
+	},
+	"ActivityIndicatorText": "Enviando...",
+	"OnFailure": "/Armadores/Actions/Overview/Message/TestFallo.action",
+	"OnSuccess": "/Armadores/Actions/Overview/Message/SolicitudDatoCuentaArmadorSuccess.action",
+	"Properties": {
+		"sAdjunto": "/Armadores/Rules/Overview/AdjuntoBase64Rule.js",
+		"sBancoAct": "#Page:TabCuentaEdit/#Control:Banco/#SelectedValue",
+		"sBancoProp": "#Page:TabCuentaEdit/#Control:Banco/#SelectedValue",
+		"sCCIAct": "#Page:TabCuentaEdit/#Control:NumeroCuentaCCI/#Value",
+		"sCCIProp": "#Page:TabCuentaEdit/#Control:NumeroCuentaCCI/#Value",
+		"sCuentaAct": "#Page:TabCuentaEdit/#Control:Tipo/#SelectedValue",
+		"sEstado": "1",
+		"sFileName": "/Armadores/Rules/Overview/AdjuntoFileNameRule.js",
+		"sIDWorklow": "#Page:TabCuentaEdit/#Control:IdWF/#Value",
+		"sNroAct": "#Page:TabCuentaEdit/#Control:NumeroCuenta/#Value",
+		"sNroProp": "#Page:TabCuentaEdit/#Control:NumeroCuenta/#Value",
+		"sUsuarioActualiza": "#Application/#ClientData/#Property:UserId",
+		"sUsuarioRegistro": "#Application/#ClientData/#Property:UserId",
+		"xActivo": true
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "SolicitudDatoCuenta",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

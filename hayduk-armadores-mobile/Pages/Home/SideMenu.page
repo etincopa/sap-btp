@@ -1,0 +1,165 @@
+{
+	"Caption": "Armadores",
+	"Controls": [
+		{
+			"ClearHistory": false,
+			"Header": {
+				"Alignment": "left",
+				"DisableIconText": false,
+				"Headline": "/Armadores/Rules/Home/Headline.js",
+				"IconIsCircular": true,
+				"SubHeadline": "/Armadores/Rules/Home/SubHeadline.js"
+			},
+			"Sections": [
+				{
+					"Items": [
+						{
+							"PageToOpen": "/Armadores/Pages/Home/Home.page",
+							"ResetIfPressedWhenActive": true,
+							"TextAlignment": "left",
+							"Title": "Menu",
+							"Visible": true,
+							"_Name": "MenuAction"
+						}
+					],
+					"PreserveImageSpacing": true,
+					"SeparatorEnabled": false,
+					"Target": "",
+					"Visible": false,
+					"_Name": "SideDrawerSection2"
+				},
+				{
+					"Items": [
+						{
+							"PageToOpen": "/Armadores/Pages/Overview/overview.page",
+							"ResetIfPressedWhenActive": true,
+							"TextAlignment": "left",
+							"Title": "Mis Datos",
+							"Visible": true,
+							"_Name": "DatosAction"
+						}
+					],
+					"PreserveImageSpacing": true,
+					"SeparatorEnabled": false,
+					"Target": "",
+					"Visible": true,
+					"_Name": "SideDrawerSection5"
+				},
+				{
+					"Items": [
+						{
+							"PageToOpen": "/Armadores/Pages/Home/Home.page",
+							"ResetIfPressedWhenActive": true,
+							"Title": "Inicio",
+							"Visible": true,
+							"_Name": "HomeAction"
+						}
+					],
+					"PreserveImageSpacing": true,
+					"SeparatorEnabled": true,
+					"Target": "",
+					"Visible": true,
+					"_Name": "SideDrawerSection4"
+				},
+				{
+					"Caption": "Estado de Cuenta",
+					"Items": [
+						{
+							"PageToOpen": "/Armadores/Pages/EstadoCuenta/LiquidacionPesca.page",
+							"ResetIfPressedWhenActive": true,
+							"Title": "Liquidaciones de Pesca",
+							"Visible": true,
+							"_Name": "LiquidacionMenu"
+						}
+					],
+					"PreserveImageSpacing": true,
+					"SeparatorEnabled": true,
+					"Target": "",
+					"Visible": true,
+					"_Name": "SideDrawerSection0"
+				},
+				{
+					"Caption": "Línea de Crédito",
+					"Items": [
+						{
+							"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/NavToEmbarcaciones.action",
+							"TextAlignment": "left",
+							"Title": "Habilitaciones",
+							"Visible": true,
+							"_Name": "HabilitacionesMenu"
+						},
+						{
+							"PageToOpen": "/Armadores/Pages/LineaCredito/SolicitarHabilitacion.page",
+							"TextAlignment": "left",
+							"Title": "Solicitar Habilitación",
+							"Visible": true,
+							"_Name": "SolHabilitacionMenu"
+						},
+						{
+							"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/NavToEmbarcaciones.action",
+							"TextAlignment": "left",
+							"Title": "Adelantos",
+							"Visible": true,
+							"_Name": "AdelantosMenu"
+						},
+						{
+							"PageToOpen": "/Armadores/Pages/LineaCredito/SolicitarAdelanto.page",
+							"TextAlignment": "left",
+							"Title": "Solicitar Adelanto",
+							"Visible": true,
+							"_Name": "SolAdelantoMenu"
+						},
+						{
+							"PageToOpen": "/Armadores/Pages/LineaCredito/AdelantosSolicitudes.page",
+							"TextAlignment": "left",
+							"Title": "Solicitudes de Adelantos",
+							"Visible": true,
+							"_Name": "Item0"
+						},
+						{
+							"PageToOpen": "/Armadores/Pages/LineaCredito/HabilitacionesSolicitudes.page",
+							"TextAlignment": "left",
+							"Title": "Solicitudes de Habilitaciones",
+							"Visible": true,
+							"_Name": "Item1"
+						},
+						{
+							"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentos.action",
+							"TextAlignment": "left",
+							"Title": "Ver Descuentos",
+							"Visible": false,
+							"_Name": "verDescuentos"
+						}
+					],
+					"PreserveImageSpacing": true,
+					"SeparatorEnabled": true,
+					"Target": "",
+					"Visible": true,
+					"_Name": "SideDrawerSection1"
+				}
+			],
+			"Styles": {
+				"DrawerBackground": "SideDrawerBackground",
+				"HeaderBackground": "SideDrawerHeaderBackground",
+				"HeaderHeadline": "SideDrawerHeadline",
+				"HeaderIcon": "SideDrawerHeaderIcon",
+				"HeaderSeparator": "SideDrawerHeaderSeparator",
+				"HeaderSubHeadline": "SideDrawerSubHeadline",
+				"SectionCaption": "SideDrawerSectionCaption",
+				"SectionItemActive": "SideDrawerItemActive",
+				"SectionItemInactive": "SideDrawerItemInactive",
+				"SectionItemOnPress": "SideDrawerItemOnPress",
+				"SectionSeparator": "SideDrawerSectionSeparator"
+			},
+			"Target": {
+				"EntitySet": "",
+				"Service": ""
+			},
+			"_Name": "SideMenu",
+			"_Type": "Control.Type.SideDrawer"
+		}
+	],
+	"Target": "",
+	"_Name": "SideMenuPage",
+	"_Type": "Page"
+}

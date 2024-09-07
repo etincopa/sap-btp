@@ -1,0 +1,8 @@
+{
+	"ActivityIndicatorText": "Cargando Adelantos ...",
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/Adelantos.page",
+	"ShowActivityIndicator": true,
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoLineaCreditoService.js",
+	"_Type": "Action.Type.Navigation"
+}

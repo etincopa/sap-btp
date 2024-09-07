@@ -1,0 +1,166 @@
+{
+	"Controls": [
+		{
+			"Target": "",
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Target": "",
+					"_Type": "Section.Type.ImageCollection",
+					"_Name": "SectionImageCollection0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false,
+						"Style": "BackgroundColorWhite"
+					},
+					"ImageCells": [
+						{
+							"ImageCell": {
+								"Styles": {
+									"Image": "imageBackground"
+								},
+								"Target": "",
+								"_Name": "SectionImageCell0",
+								"Title": "Liquidación",
+								"Subtitle": "Pesca",
+								"Image": "/Armadores/Images/Home/liquidacionCentroColor.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/EstadoCuenta/NavToLiquidacion.action"
+							}
+						},
+						{
+							"ImageCell": {
+								"Styles": {
+									"Image": "imageBackground"
+								},
+								"Target": "",
+								"_Name": "SectionImageCell1",
+								"Title": "Habilitaciones",
+								"Subtitle": "Aceptados",
+								"Image": "/Armadores/Images/Home/habilitacionesCentroColor.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/NavToEmbarcaciones.action"
+							}
+						},
+						{
+							"ImageCell": {
+								"Styles": {
+									"Image": "imageBackground"
+								},
+								"Target": "",
+								"_Name": "SectionImageCell2",
+								"Title": "Adelantos",
+								"Subtitle": "Aceptados",
+								"Image": "/Armadores/Images/Home/adelantoCentroColor.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/NavToEmbarcaciones.action"
+							}
+						}
+					],
+					"Layout": {
+						"LayoutType": "HorizontalScroll"
+					}
+				},
+				{
+					"Target": "",
+					"_Type": "Section.Type.ImageCollection",
+					"_Name": "SectionImageCollection5",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false,
+						"Style": "BackgroundColorWhite"
+					},
+					"ImageCells": [
+						{
+							"ImageCell": {
+								"Target": "",
+								"_Name": "SectionImageCell3",
+								"Title": "Solicitud",
+								"Subtitle": "Habilitación",
+								"Image": "/Armadores/Images/Home/habilitacionesSolicitudCentroColor.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToHabilitacionSolicitud.action"
+							}
+						},
+						{
+							"ImageCell": {
+								"Target": "",
+								"_Name": "SectionImageCell4",
+								"Title": "Solicitud",
+								"Subtitle": "Adelanto",
+								"Image": "/Armadores/Images/Home/adelantoSolicitudCentroColor.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToAdelantoSolicitud.action"
+							}
+						}
+					],
+					"Layout": {
+						"LayoutType": "HorizontalFit"
+					}
+				},
+				{
+					"Target": "",
+					"_Type": "Section.Type.ImageCollection",
+					"_Name": "SectionImageCollection1",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false,
+						"Style": "BackgroundColorWhite"
+					},
+					"ImageCells": [
+						{
+							"ImageCell": {
+								"Target": "",
+								"_Name": "SectionImageCell5",
+								"Title": "Hayduk",
+								"Subtitle": "Contigo12",
+								"Image": "/Armadores/Images/Home/haydukContigoCentro.png",
+								"ImageIsCircular": false,
+								"Visible": true,
+								"OnPress": "/Armadores/Actions/HaydukContigo/ObtenerToken.action"
+							}
+						},
+						{
+							"ImageCell": {
+								"Target": "",
+								"_Name": "SectionImageCell6",
+								"Title": "Hayduk C Native",
+								"Subtitle": "Subtitle",
+								"Image": "res://mdk_logo.png",
+								"ImageIsCircular": false,
+								"Visible": false,
+								"OnPress": "/Armadores/Actions/HaydukContigo/WebViewNative.action"
+							}
+						},
+						{
+							"ImageCell": {
+								"Target": "",
+								"_Name": "SectionImageCell7",
+								"Title": "HC webView",
+								"Subtitle": "Subtitle",
+								"Image": "res://mdk_logo.png",
+								"ImageIsCircular": false,
+								"Visible": false,
+								"OnPress": "/Armadores/Actions/Test/TestAction.action"
+							}
+						}
+					],
+					"Layout": {
+						"LayoutType": "HorizontalFit"
+					}
+				}
+			]
+		}
+	],
+	"Target": "",
+	"_Type": "Page",
+	"_Name": "Home",
+	"Caption": "Home",
+	"PrefersLargeCaption": true
+}

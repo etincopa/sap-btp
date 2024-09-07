@@ -1,0 +1,12 @@
+{
+	"DestinationName": "ArmadorBackend",
+	"LanguageURLParam": "sap-language",
+	"OfflineEnabled": false,
+	"OnlineOptions": {
+		"ServiceOptions": {
+			"dataVersion": 400
+		}
+	},
+	"PathSuffix": "/catalog/",
+	"SourceType": "Cloud"
+}

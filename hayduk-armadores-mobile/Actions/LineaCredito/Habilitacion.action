@@ -1,0 +1,8 @@
+{
+	"ActivityIndicatorText": "Cargando Habilitaciones ...",
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/Habilitaciones.page",
+	"ShowActivityIndicator": true,
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionLineaCreditoService.js",
+	"_Type": "Action.Type.Navigation"
+}

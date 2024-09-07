@@ -1,0 +1,679 @@
+{
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"Value": "{IDLiquidacion}",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "spIDLiquidacion",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Caption": "IDLiquidacion"
+						},
+						{
+							"Target": "",
+							"Value": "{IDEjercicio}",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "DetalleIDEjercicio",
+							"IsEditable": true,
+							"IsVisible": false,
+							"Caption": "Caption",
+							"PlaceHolder": "PlaceHolder"
+						}
+					],
+					"Target": "",
+					"Visible": false,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0"
+				},
+				{
+					"ObjectHeader": {
+						"Tags": [
+							{
+								"Text": ""
+							}
+						],
+						"Subhead": "{FechaContabi}",
+						"Description": "Total Facturado     : {TotalFacturado}\nDescuentos           : {Descuentos}\nSub-Total               : {SubTotal}\nDetracción             : {Detraccion}\nPago Financiero    : {PagoFinanciero}\nNeto a Pagar         : {NetoPagar}",
+						"StatusText": "{NetoPagar}",
+						"SubstatusText": "{Moneda}",
+						"DetailImageIsCircular": false,
+						"BodyText": "{MetodoPago}",
+						"HeadlineText": "{IDLiquidacion}",
+						"Target": {
+							"EntitySet": "LiquidacionSet",
+							"QueryOptions": "/Armadores/Rules/EstadoCuenta/Detalle/LiqDetalleQueryOptionRule.js",
+							"Service": "/Armadores/Services/s4hService.service"
+						},
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						}
+					},
+					"_Type": "Section.Type.ObjectHeader",
+					"_Name": "ObjhDetalleLiquidacion",
+					"Visible": true
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader0",
+						"UseTopPadding": true,
+						"Caption": "Facturas por pagar"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionFactPagSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{Referencia}",
+						"Subhead": "{FechaDoc}",
+						"Description": "Description",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/factura.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleFacturaPorPagar.action"
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton0",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqFactura"
+							},
+							"Caption": "Total : {TotalFacturaPagar} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell1"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader1",
+						"UseTopPadding": true,
+						"Caption": "Descuento FEP"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionDescFepSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable1",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{Referencia}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"SubstatusText": "Substatus",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/impuesto.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleDescuentoFEP.action",
+						"Styles": {
+							"DetailImage": "ObjectTableImageDetail"
+						}
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton5",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalDescuentoFep} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell2"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader2",
+						"UseTopPadding": true,
+						"Caption": "Venta Petróleo"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionVentaPetSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable2",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{Referencia}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/petroleo.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleVentaPetroleo.action"
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton1",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalVentaPetroleo} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell3"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader3",
+						"UseTopPadding": false,
+						"Caption": "Materiales/Servicios"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionMatServSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable3",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{Referencia}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"SubstatusText": "Substatus",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/materialServicio.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleMaterialServicio.action",
+						"Styles": {
+							"DetailImage": "ObjectTableImageDetail"
+						}
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton4",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalMaterialServicio} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell4"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader4",
+						"UseTopPadding": true,
+						"Caption": "Habilitaciones"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionHabilitSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable4",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDDocumento}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/habilitaciones.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleHabilitacion.action"
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton3",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalHabilitacion} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell5"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader5",
+						"UseTopPadding": true,
+						"Caption": "Adelantos"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionAdelSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable6",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDDocumento}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/adelantos.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleAdelanto.action"
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton2",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalAdelanto} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell6"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader56",
+						"UseTopPadding": true,
+						"Caption": "Detracciones"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionDescFepSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable66",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDDocumento}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/adelantos.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleDetraccion.action"
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FormCellButton22",
+							"IsVisible": true,
+							"IsEditable": false,
+							"Styles": {
+								"Caption": "LiqDescuentos"
+							},
+							"Caption": "Total : {TotalDetraccion} {Moneda}",
+							"TextAlignment": "Center",
+							"Alignment": "Center"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell62"
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader6",
+						"UseTopPadding": true,
+						"Caption": "Otros Descuentos"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionOtrosDescSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable5",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDDocumento}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/otroDescuento.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetalleOtroDescuento.action"
+					},
+					"HighlightSelectedItem": false
+				},
+				{
+					"Header": {
+						"_Name": "SectionHeader7",
+						"UseTopPadding": true,
+						"Caption": "Pago a Financieras"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionPagoFinancSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and IDLiquidacion eq '{IDLiquidacion}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectPagoFinancieras",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDDocumento}",
+						"Subhead": "{FechaDoc}",
+						"StatusText": "{Monto}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/otroDescuento.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/LiquidacionPescaDetalle/NavToDetallePagoFinancieras.action"
+					},
+					"HighlightSelectedItem": false
+				}
+			],
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "LiquidacionPescaDetalle",
+	"Caption": "Detalle de Liquidación de Pesca",
+	"PrefersLargeCaption": true,
+	"OnUnloaded": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaDetalleOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ActionBarItem0",
+				"Caption": "Item",
+				"Icon": "sap-icon://download",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"OnPress": "/Armadores/Actions/EstadoCuenta/AdjuntoLiqSetAction.action"
+			}
+		],
+		"_Name": "ActionBar1"
+	}
+}

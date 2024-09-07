@@ -1,0 +1,19 @@
+{
+	"PopoverItems": [
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/LineaCredito/NavToHabilitacionSolicitud.action",
+			"Title": "Crear Sol.",
+			"Visible": true
+		},
+		{
+			"Enabled": true,
+			"Icon": "",
+			"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/NavToSolicitudes.action",
+			"Title": "Solicitudes",
+			"Visible": true
+		}
+	],
+	"_Type": "Action.Type.PopoverMenu"
+}

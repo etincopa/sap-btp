@@ -1,0 +1,59 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/CloseModalPage_Cancel.action",
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/ClosePage.action",
+				"Position": "Right",
+				"SystemItem": "Done",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Filtros",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "FILTRAR POR EJERCICIO",
+							"FilterProperty": "/Armadores/Rules/EstadoCuenta/EjercicioFilter.js",
+							"IsEditable": true,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaFiltroOnChange.js",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "slpEjercicio",
+							"_Type": "Control.Type.FormCell.Filter"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Result": [
+		"#Page:LiquidacionPescaFilter/#Control:slpEjercicio/#Value"
+	],
+	"Target": "",
+	"_Name": "LiquidacionPescaFilter",
+	"_Type": "Page"
+}

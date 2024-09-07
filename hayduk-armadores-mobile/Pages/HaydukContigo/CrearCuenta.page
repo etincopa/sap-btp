@@ -1,0 +1,94 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/HaydukContigo/CrearCuenta.action",
+				"Position": "Right",
+				"SystemItem": "Save",
+				"Caption": "Guardar",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Crear Cuenta Hayduk Contigo",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Nombre completo",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Default",
+							"PlaceHolder": "Ingrese su nombre completo",
+							"Target": "",
+							"_Name": "txtNombre",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Teléfono",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Phone",
+							"PlaceHolder": "Ingrese su teléfono",
+							"Target": "",
+							"_Name": "txtTelefono",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AlternateInput": "None",
+							"Caption": "DNI",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Number",
+							"PlaceHolder": "Ingrese su DNI",
+							"Target": "",
+							"_Name": "txtDNI",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Correo",
+							"IsEditable": false,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Correo.js",
+							"_Name": "txtCorreo",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "RUC",
+							"IsEditable": false,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Ruc.js",
+							"_Name": "FormCellSimpleProperty3",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Razón Social",
+							"IsEditable": false,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Headline.js",
+							"_Name": "FormCellSimpleProperty6",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "CrearCuenta",
+	"_Type": "Page"
+}

@@ -1,0 +1,12 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/AdjuntoPDF.js",
+	"Target": {
+		"EntitySet": "AdjuntoLiqSet",
+		"QueryOptions": "$filter=IDLiquidacion eq '{{#Page:LiquidacionPescaDetalle/#Control:SmpLiquidacion/#Value}}'",
+		"Service": "/Armadores/Services/s4hService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

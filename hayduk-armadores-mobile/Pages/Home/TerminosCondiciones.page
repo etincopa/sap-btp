@@ -1,0 +1,20 @@
+{
+	"Caption": "Terminos y Condiciones",
+	"Controls": [
+		{
+			"Class": "MyHtmlViewClass",
+			"Control": "MyHtmlViewControl",
+			"ExtensionProperties": {
+				"Html": "/Armadores/Rules/Home/ObtenerTerminoCondicionesHtmlRule.js"
+			},
+			"Module": "MyHtmlViewModule",
+			"Target": "",
+			"_Name": "ExtensionControl0",
+			"_Type": "Control.Type.Extension"
+		}
+	],
+	"Target": "",
+	"_Name": "TerminosCondiciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

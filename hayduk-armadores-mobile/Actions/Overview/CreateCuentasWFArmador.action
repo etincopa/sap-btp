@@ -1,0 +1,14 @@
+{
+	"Target": {
+		"Path": "/workflow-instances",
+		"RequestProperties": {
+			"Body": {
+				"context": "/Armadores/Rules/Overview/TabCuentasEdit.js",
+				"definitionId": "armador"
+			},
+			"Method": "POST"
+		},
+		"Service": "/Armadores/Services/wfService.service"
+	},
+	"_Type": "Action.Type.RestService.SendRequest"
+}

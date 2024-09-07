@@ -1,0 +1,11 @@
+{
+	"ActionResult": {
+		"_Name": "init"
+	},
+	"ActivityIndicatorText": "Cargando...",
+	"OnFailure": "/Armadores/Actions/Service/CreateOpenServiceFailureMessage.action",
+	"OnSuccess": "/Armadores/Actions/Service/CreateOpenServiceSuccessMessage.action",
+	"Service": "/Armadores/Services/armadorService.service",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.ODataService.Open"
+}

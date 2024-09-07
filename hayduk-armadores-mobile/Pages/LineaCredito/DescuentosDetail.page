@@ -1,0 +1,191 @@
+{
+	"Caption": "Detalle de descuento",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"Description": "TM. Descargado : {TmDesc}\nT + IGV               : {TIgv}",
+						"DetailImageIsCircular": false,
+						"HeadlineText": "{Embarcacion}",
+						"StatusText": "$(C,{SubtotalDctos} ,'USD')",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Subhead": "{Matricula}",
+						"Target": {
+							"EntitySet": "AdelantoLinCredDetSet",
+							"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' and Embarcacion eq '{{#Application/#EmbarcacionDescuento/#Property:Embarcacion}}'",
+							"Service": "/Armadores/Services/s4hService.service"
+						}
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Layout": {
+						"MinimumInteritemSpacing": 3,
+						"NumberOfColumns": 2
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailDisclosureButton",
+								"KeyName": "        Desc. FEP",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescFep},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Adelanto",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescAdelanto},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Comb.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescComb},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Material/Servicio",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescMatServ},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Hab.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescHab},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Deco.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescDeco},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. Detracc.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescDetracc},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Desc. San Pedro",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescSanPedro},'USD')",
+								"Visible": true
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "detailButton",
+								"KeyName": "        Otros Desc.",
+								"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetailDetail.action",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "$(C,{DescOtros},'USD')",
+								"Visible": true
+							}
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"_Name": "SectionSimplePropertyCollection0",
+					"_Type": "Section.Type.SimplePropertyCollection"
+				},
+				{
+					"Controls": [
+						{
+							"ButtonType": "Text",
+							"IsVisible": true,
+							"Styles": {
+								"Button": "LiqDescuentos"
+							},
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Total : $(C,{SubtotalDctos} ,'USD')",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "DescuentosDetail",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

@@ -1,0 +1,6 @@
+{
+	"Message": "Message",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/Home/NavToHome.action",
+	"_Type": "Action.Type.Message"
+}

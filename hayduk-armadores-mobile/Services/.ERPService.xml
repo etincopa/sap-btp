@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="AdelantoLinCred" EntityType="CatalogService.AdelantoLinCred"/>
+                <EntitySet Name="AdelantoReg" EntityType="CatalogService.AdelantoReg"/>
+                <EntitySet Name="AdelantoRegDet" EntityType="CatalogService.AdelantoRegDet"/>
+                <EntitySet Name="AdelantoSolicitud" EntityType="CatalogService.AdelantoSolicitud"/>
+                <EntitySet Name="AdjuntoLiq" EntityType="CatalogService.AdjuntoLiq"/>
+                <EntitySet Name="CorreoCab" EntityType="CatalogService.CorreoCab"/>
+                <EntitySet Name="CorreoDet" EntityType="CatalogService.CorreoDet"/>
+                <EntitySet Name="DatosArmador" EntityType="CatalogService.DatosArmador">
+                    <NavigationPropertyBinding Path="Cuentas" Target="DatosCuentas"/>
+                    <NavigationPropertyBinding Path="Embarcaciones" Target="DatosEmbarcacion"/>
+                </EntitySet>
+                <EntitySet Name="DatosCuentas" EntityType="CatalogService.DatosCuentas">
+                    <NavigationPropertyBinding Path="Armador" Target="DatosArmador"/>
+                </EntitySet>
+                <EntitySet Name="DatosEmbarcacion" EntityType="CatalogService.DatosEmbarcacion">
+                    <NavigationPropertyBinding Path="Armador" Target="DatosArmador"/>
+                </EntitySet>
+                <EntitySet Name="HabilitacionLinCred" EntityType="CatalogService.HabilitacionLinCred"/>
+                <EntitySet Name="HabilitacionReg" EntityType="CatalogService.HabilitacionReg"/>
+                <EntitySet Name="HabilitacionRegDet" EntityType="CatalogService.HabilitacionRegDet"/>
+                <EntitySet Name="HabilitacionSolicitud" EntityType="CatalogService.HabilitacionSolicitud"/>
+                <EntitySet Name="Liquidacion" EntityType="CatalogService.Liquidacion"/>
+                <EntitySet Name="LiquidacionAdel" EntityType="CatalogService.LiquidacionAdel"/>
+                <EntitySet Name="LiquidacionDescFep" EntityType="CatalogService.LiquidacionDescFep"/>
+                <EntitySet Name="LiquidacionDetrac" EntityType="CatalogService.LiquidacionDetrac"/>
+                <EntitySet Name="LiquidacionFactPag" EntityType="CatalogService.LiquidacionFactPag"/>
+                <EntitySet Name="LiquidacionHabilit" EntityType="CatalogService.LiquidacionHabilit"/>
+                <EntitySet Name="LiquidacionMatServ" EntityType="CatalogService.LiquidacionMatServ"/>
+                <EntitySet Name="LiquidacionOtrosDesc" EntityType="CatalogService.LiquidacionOtrosDesc"/>
+                <EntitySet Name="LiquidacionPagoFinanc" EntityType="CatalogService.LiquidacionPagoFinanc"/>
+                <EntitySet Name="LiquidacionVentaPet" EntityType="CatalogService.LiquidacionVentaPet"/>
+                <EntitySet Name="LiquidacionViaPago" EntityType="CatalogService.LiquidacionViaPago"/>
+                <EntitySet Name="Maestra" EntityType="CatalogService.Maestra"/>
+                <EntitySet Name="Temporada" EntityType="CatalogService.Temporada"/>
+                <EntitySet Name="TipoBanco" EntityType="CatalogService.TipoBanco"/>
+                <EntitySet Name="TipoCuenta" EntityType="CatalogService.TipoCuenta"/>
+                <EntitySet Name="TipoEmbarcacion" EntityType="CatalogService.TipoEmbarcacion"/>
+                <EntitySet Name="TipoPlanta" EntityType="CatalogService.TipoPlanta"/>
+                <EntitySet Name="TipoRazonSocial" EntityType="CatalogService.TipoRazonSocial"/>
+                <EntitySet Name="TipoViaPago" EntityType="CatalogService.TipoViaPago"/>
+            </EntityContainer>
+            <EntityType Name="AdelantoLinCred">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="MontoConsumido" Type="Edm.String"/>
+                <Property Name="MontoMaximo" Type="Edm.String"/>
+                <Property Name="Porcentaje" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="DescargaProyectada" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="AdelantoReg">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDTemporada"/>
+                    <PropertyRef Name="IDHabilitacion"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDTemporada" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDHabilitacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="Monto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="AdelantoRegDet">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDHabilitacion"/>
+                    <PropertyRef Name="IDPago"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDHabilitacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDPago" Type="Edm.String" Nullable="false"/>
+                <Property Name="Liquidacion" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="AdelantoSolicitud">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="ViaPago" Type="Edm.String"/>
+                <Property Name="Planta" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="RazonSocial" Type="Edm.String"/>
+                <Property Name="Temporada" Type="Edm.String"/>
+                <Property Name="TasaDescuento" Type="Edm.String"/>
+                <Property Name="Detalle" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="AdjuntoLiq">
+                <Key>
+                    <PropertyRef Name="IDLiquidacion"/>
+                </Key>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="NombreArchivo" Type="Edm.String"/>
+                <Property Name="TipoArchivo" Type="Edm.String"/>
+                <Property Name="Documento" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="CorreoCab">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="Correo" Type="Edm.String"/>
+                <Property Name="Asunto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="CorreoDet">
+                <Key>
+                    <PropertyRef Name="CuerpoMail"/>
+                </Key>
+                <Property Name="CuerpoMail" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="DatosArmador">
+                <Key>
+                    <PropertyRef Name="IDRUC"/>
+                </Key>
+                <Property Name="IDRUC" Type="Edm.String" Nullable="false"/>
+                <Property Name="RazonSocial" Type="Edm.String"/>
+                <Property Name="Direccion" Type="Edm.String" MaxLength="150"/>
+                <Property Name="Correo" Type="Edm.String" MaxLength="200"/>
+                <Property Name="ViaPgo" Type="Edm.String" MaxLength="200"/>
+                <NavigationProperty Name="Cuentas" Type="Collection(CatalogService.DatosCuentas)" Partner="Armador">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="Embarcaciones" Type="Collection(CatalogService.DatosEmbarcacion)" Partner="Armador">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="DatosCuentas">
+                <Key>
+                    <PropertyRef Name="IDTipo"/>
+                    <PropertyRef Name="Armador_IDRUC"/>
+                </Key>
+                <NavigationProperty Name="Armador" Type="CatalogService.DatosArmador" Partner="Cuentas">
+                    <ReferentialConstraint Property="Armador_IDRUC" ReferencedProperty="IDRUC"/>
+                </NavigationProperty>
+                <Property Name="IDTipo" Type="Edm.String" Nullable="false"/>
+                <Property Name="Banco" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NroCuenta" Type="Edm.String"/>
+                <Property Name="CCI" Type="Edm.String"/>
+                <Property Name="Armador_IDRUC" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="DatosEmbarcacion">
+                <Key>
+                    <PropertyRef Name="IDEmbarcacion"/>
+                    <PropertyRef Name="Armador_IDRUC"/>
+                </Key>
+                <NavigationProperty Name="Armador" Type="CatalogService.DatosArmador" Partner="Embarcaciones">
+                    <ReferentialConstraint Property="Armador_IDRUC" ReferencedProperty="IDRUC"/>
+                </NavigationProperty>
+                <Property Name="IDEmbarcacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="Nombre" Type="Edm.String" MaxLength="150"/>
+                <Property Name="Matricula" Type="Edm.String"/>
+                <Property Name="Armador_IDRUC" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="HabilitacionLinCred">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="MontoConsumido" Type="Edm.String"/>
+                <Property Name="MontoMaximo" Type="Edm.String"/>
+                <Property Name="Porcentaje" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="HabilitacionReg">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDTemporada"/>
+                    <PropertyRef Name="IDHabilitacion"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDTemporada" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDHabilitacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="HabilitacionRegDet">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDHabilitacion"/>
+                    <PropertyRef Name="IDPago"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDHabilitacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDPago" Type="Edm.String" Nullable="false"/>
+                <Property Name="Liquidacion" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="HabilitacionSolicitud">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="ViaPago" Type="Edm.String"/>
+                <Property Name="Planta" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="RazonSocial" Type="Edm.String"/>
+                <Property Name="Temporada" Type="Edm.String"/>
+                <Property Name="TasaDescuento" Type="Edm.String"/>
+                <Property Name="Detalle" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Liquidacion">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDEjercicio"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDEjercicio" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaContabi" Type="Edm.String"/>
+                <Property Name="Moneda" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="MetodoPago" Type="Edm.String"/>
+                <Property Name="Tipo" Type="Edm.String"/>
+                <Property Name="ACta" Type="Edm.String"/>
+                <Property Name="De" Type="Edm.String"/>
+                <Property Name="Fecha" Type="Edm.String"/>
+                <Property Name="TotalFacturado" Type="Edm.String"/>
+                <Property Name="Descuentos" Type="Edm.String"/>
+                <Property Name="SubTotal" Type="Edm.String"/>
+                <Property Name="Detraccion" Type="Edm.String"/>
+                <Property Name="PagoFinanciero" Type="Edm.String"/>
+                <Property Name="NetoPagar" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionAdel">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="Tasa" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionDescFep">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="TipoDocumento" Type="Edm.String"/>
+                <Property Name="Tons" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionDetrac">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Detraccion" Type="Edm.String"/>
+                <Property Name="Tons" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionFactPag">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Precio" Type="Edm.String"/>
+                <Property Name="Tons" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionHabilit">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="Tasa" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionMatServ">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="Precio" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionOtrosDesc">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="Tasa" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionPagoFinanc">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Cantidad" Type="Edm.String"/>
+                <Property Name="TipoDocumento" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionVentaPet">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                    <PropertyRef Name="IDDocumento"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDDocumento" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaDoc" Type="Edm.String"/>
+                <Property Name="Embarcacion" Type="Edm.String"/>
+                <Property Name="Gln" Type="Edm.String"/>
+                <Property Name="Precio" Type="Edm.String"/>
+                <Property Name="Monto" Type="Edm.String"/>
+                <Property Name="TipoCambio" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="LiquidacionViaPago">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDLiquidacion"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDLiquidacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="Tipo" Type="Edm.String"/>
+                <Property Name="Acta" Type="Edm.String"/>
+                <Property Name="De" Type="Edm.String"/>
+                <Property Name="Fecha" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Maestra">
+                <Key>
+                    <PropertyRef Name="iMaestraId"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="20"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="iMaestraId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="sTabla" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="sContenido" Type="Edm.String" MaxLength="500" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String" MaxLength="500"/>
+                <Property Name="iOrden" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="vCodigo" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="Temporada">
+                <Key>
+                    <PropertyRef Name="IDRuc"/>
+                    <PropertyRef Name="IDTemporada"/>
+                </Key>
+                <Property Name="IDRuc" Type="Edm.String" Nullable="false"/>
+                <Property Name="IDTemporada" Type="Edm.String" Nullable="false"/>
+                <Property Name="FechaInicio" Type="Edm.String"/>
+                <Property Name="FechaFin" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoBanco">
+                <Key>
+                    <PropertyRef Name="IDTipoBanco"/>
+                </Key>
+                <Property Name="IDTipoBanco" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoCuenta">
+                <Key>
+                    <PropertyRef Name="IDTipoCuenta"/>
+                </Key>
+                <Property Name="IDTipoCuenta" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoEmbarcacion">
+                <Key>
+                    <PropertyRef Name="IDEmbarcacion"/>
+                </Key>
+                <Property Name="IDEmbarcacion" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoPlanta">
+                <Key>
+                    <PropertyRef Name="IDPlanta"/>
+                </Key>
+                <Property Name="IDPlanta" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoRazonSocial">
+                <Key>
+                    <PropertyRef Name="IDRazonSocial"/>
+                </Key>
+                <Property Name="IDRazonSocial" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TipoViaPago">
+                <Key>
+                    <PropertyRef Name="IDViaPago"/>
+                </Key>
+                <Property Name="IDViaPago" Type="Edm.String" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

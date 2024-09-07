@@ -1,0 +1,7 @@
+{
+	"Message": "Se ha enviado la solicitud a Hayduk Contigo",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/ClosePage.action",
+	"OnSuccess": "/Armadores/Actions/Home/NavToHome.action",
+	"_Type": "Action.Type.Message"
+}

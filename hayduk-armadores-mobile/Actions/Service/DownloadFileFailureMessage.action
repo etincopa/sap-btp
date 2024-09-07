@@ -1,0 +1,6 @@
+{
+	"Message": "Please, try again. Reason: download error.",
+	"Duration": 5,
+	"Animated": true,
+	"_Type": "Action.Type.BannerMessage"
+}

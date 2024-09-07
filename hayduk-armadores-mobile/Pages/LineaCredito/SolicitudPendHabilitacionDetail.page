@@ -1,0 +1,275 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/EliminarSolicitudHabilitacionConfirm.action",
+				"Position": "Right",
+				"SystemItem": "Trash",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/ActualizarSolicitudConfirm.action",
+				"Position": "Right",
+				"SystemItem": "Save",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Detalle de solicitud",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Estado",
+							"IsEditable": false,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{sEstadoDet}",
+							"_Name": "FormCellSimpleProperty2",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto de Solicitud",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Number",
+							"PlaceHolder": "Ingrese Monto",
+							"Target": "",
+							"Value": "{sMontoSolicitado}",
+							"_Name": "spMontoSolicitud",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AllowDefaultValueIfOneItem": true,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Moneda",
+							"IsEditable": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{IDMoneda} {Descripcion}",
+								"ReturnValue": "{IDMoneda}",
+								"Target": {
+									"EntitySet": "TipoMonedaSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione moneda y presione el botón atrás",
+							"Target": "",
+							"Value": [
+								"USD"
+							],
+							"_Name": "lpMoneda",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Via de Pago",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Habilitaciones/ViaPagoOnChangeRule.js",
+							"PickerItems": {
+								"DisplayValue": "{IDViaPago} {Descripcion}",
+								"ReturnValue": "{IDViaPago}",
+								"Target": {
+									"EntitySet": "TipoViaPagoSet",
+									"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Vía de Pago y presione el botón atrás",
+							"Target": "",
+							"Value": "{sViaPago}",
+							"_Name": "lpViaPago",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Planta",
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{IDPlanta} {Descripcion}",
+								"ReturnValue": "{IDPlanta}",
+								"Target": {
+									"EntitySet": "TipoPlantaSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Planta y presione el botón atrás",
+							"Target": "",
+							"Value": "{sPlanta}",
+							"_Name": "lpPlanta",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Embarcación",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionEmbarcacionOnValueChange.js",
+							"PickerItems": {
+								"DisplayValue": "{IDEmbarcacion} {Descripcion}",
+								"ReturnValue": "{IDEmbarcacion}",
+								"Target": {
+									"EntitySet": "TipoEmbarcacionSet",
+									"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Embarcación y presione el botón atrás",
+							"Target": "",
+							"Value": "{sEmbarcacion}",
+							"_Name": "lpEmbarcacion",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"Caption": "Razon Social",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Target": "",
+							"Value": "{sRazonSocial}",
+							"_Name": "spRSocial",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Pagar en Nro de Temporadas",
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": false,
+							"PickerItems": [
+								{
+									"DisplayValue": "1",
+									"ReturnValue": "1"
+								},
+								{
+									"DisplayValue": "2",
+									"ReturnValue": "2"
+								}
+							],
+							"PickerPrompt": "Seleccione Número y presione el botón atrás",
+							"Target": "",
+							"Value": [
+								"{sTemporada}"
+							],
+							"_Name": "lpPagarNroTemp",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"Caption": "Nro Documento",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Value": "{sNumDoc}",
+							"_Name": "spNumDoc",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Sociedad",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Value": "{sSociedad}",
+							"_Name": "spSociedad",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Ejercicio",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Value": "{sEjercicio}",
+							"_Name": "spEjercicio",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Posicion",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Value": "{sPosicion}",
+							"_Name": "spPosicion",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Tasa de Descuento",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Target": "",
+							"Value": "{sTasaDescuento}",
+							"_Name": "spTasaDescuento",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"IsEditable": true,
+							"IsVisible": true,
+							"MaxNumberOfLines": 6,
+							"MinNumberOfLines": 3,
+							"PlaceHolder": "Detalle 0/50",
+							"Target": "",
+							"Value": "{sDetalle}",
+							"_Name": "ntDetDescuento",
+							"_Type": "Control.Type.FormCell.Note"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnLoaded": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionUpdateTasaRule.js",
+	"Target": "",
+	"_Name": "SolicitudPendHabilitacionDetail",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

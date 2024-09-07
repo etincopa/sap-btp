@@ -1,0 +1,70 @@
+{
+	"Caption": "Detalle del Descuento",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/TipoDescuentoRule.js",
+						"StatusText": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/DescuentoTipoMontoRule.js",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Target": ""
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"PreserveIconStackSpacing": false,
+						"StatusText": "$(C,{Monto},'USD')",
+						"Styles": {
+							"Title": "SimplePropertyFormCellCaption"
+						},
+						"Subhead": "{FechaDoc}",
+						"Title": "{Referencia}"
+					},
+					"Target": {
+						"EntitySet": "AdelantoDescuentoDetSet",
+						"QueryOptions": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoDetailDetailQueryOption.js",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "DescuentosDetailDetail",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

@@ -1,0 +1,13 @@
+{
+	"ActionResult": {
+		"_Name": "get"
+	},
+	"OnFailure": "/Armadores/Actions/Overview/Message/ErrorDatosWF.action",
+	"OnSuccess": "/Armadores/Rules/Overview/DatosWFSuccess.js",
+	"Target": {
+		"EntitySet": "SolicitudDatoArmador",
+		"QueryOptions": "$filter=sUsuarioRegistro eq '{{#Application/#ClientData/#Property:UserId}}' and sEstado eq '1'",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

@@ -1,0 +1,7 @@
+{
+	"CancelCaption": "Cancelar",
+	"Message": "¿Está seguro de cerrar sesión?",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/Logout.action",
+	"_Type": "Action.Type.Message"
+}

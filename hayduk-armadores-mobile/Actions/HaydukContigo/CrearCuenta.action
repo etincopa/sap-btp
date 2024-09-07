@@ -1,0 +1,21 @@
+{
+	"ActionResult": {
+		"_Name": "result"
+	},
+	"ActivityIndicatorText": "Abriendo...",
+	"OnFailure": "/Armadores/Rules/HaydukContigo/CrearCuentaSuccessRule.js",
+	"OnSuccess": "/Armadores/Rules/HaydukContigo/CrearCuentaSuccessRule.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"Path": "/registrarArmador",
+		"RequestProperties": {
+			"Body": "/Armadores/Rules/HaydukContigo/CrearCuentaBodyRule.js",
+			"Headers": {
+				"Content-Type": "application/json"
+			},
+			"Method": "POST"
+		},
+		"Service": "/Armadores/Services/haydukContigoService.service"
+	},
+	"_Type": "Action.Type.RestService.SendRequest"
+}

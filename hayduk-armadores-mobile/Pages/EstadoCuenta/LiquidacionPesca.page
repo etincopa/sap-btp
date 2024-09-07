@@ -1,0 +1,137 @@
+{
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Target": "",
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "lspEjercicio",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"Caption": "AÑO",
+							"DataPaging": {
+								"LoadingIndicatorText": "Cargando",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"PickerPrompt": "Seleccione año",
+							"OnValueChange": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaEjercicioOnChange.js",
+							"IsSelectedSectionEnabled": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"AllowDefaultValueIfOneItem": true,
+							"FilterProperty": "IDEjercicio",
+							"Search": {
+								"Placeholder": "Seleccionar año y presionar botón atras"
+							},
+							"PickerItems": {
+								"DisplayValue": "{IDEjercicio}",
+								"ReturnValue": "{IDEjercicio}",
+								"Target": {
+									"EntitySet": "EjerciciosSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							}
+						},
+						{
+							"Target": "",
+							"Value": "LIQUIDACIONES DE PESCA",
+							"_Type": "Control.Type.FormCell.Title",
+							"_Name": "FormCellTitle0",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Value": "SimplePropertyFormCellCaption"
+							},
+							"PlaceHolder": "PlaceHolder"
+						}
+					],
+					"Target": "",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0"
+				},
+				{
+					"_Type": "Section.Type.ObjectTable",
+					"Target": {
+						"EntitySet": "LiquidacionSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}' ",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"ObjectCell": {
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Title": "{IDLiquidacion}",
+						"Subhead": "{FechaContabi}",
+						"Description": "Description",
+						"StatusText": "{NetoPagar} {Moneda}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "none",
+						"ProgressIndicator": "open",
+						"Icons": [
+							"/Armadores/Images/EstadoCuenta/liquidacion.png"
+						],
+						"Tags": [],
+						"AvatarStack": {
+							"Avatars": [],
+							"ImageIsCircular": false
+						},
+						"AvatarGrid": {
+							"Avatars": []
+						},
+						"OnPress": "/Armadores/Actions/EstadoCuenta/NavToLiquidacionPescaDetalle.action"
+					},
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"HighlightSelectedItem": true
+				}
+			],
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "LiquidacionPesca",
+	"Caption": "Liquidación de Pesca",
+	"PrefersLargeCaption": true,
+	"OnLoaded": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaOnLoaded.js",
+	"OnReturning": "/Armadores/Rules/EstadoCuenta/LiquidacionPescaOnReturning.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ActionBarItem0",
+				"Caption": "Item",
+				"Icon": "sap-icon://filter",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"OnPress": "/Armadores/Actions/EstadoCuenta/FilterAction/LiquidacionListFilter.action"
+			}
+		],
+		"_Name": "ActionBar1"
+	}
+}

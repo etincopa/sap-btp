@@ -1,0 +1,20 @@
+{
+	"ActionResult": {
+		"_Name": "result"
+	},
+	"ActivityIndicatorText": "abriendo...",
+	"OnSuccess": "/Armadores/Rules/HaydukContigo/ObtenerTokenSuccessRule.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"Path": "/tokenEmbeddedApp",
+		"RequestProperties": {
+			"Body": "/Armadores/Rules/HaydukContigo/ObtenerTokenBodyRule.js",
+			"Headers": {
+				"Content-Type": "application/json"
+			},
+			"Method": "POST"
+		},
+		"Service": "/Armadores/Services/haydukContigoService.service"
+	},
+	"_Type": "Action.Type.RestService.SendRequest"
+}

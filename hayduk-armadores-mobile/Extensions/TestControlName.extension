@@ -1,0 +1,23 @@
+{
+	"_Type": "Register.Type.ExtensionControl",
+	"Module": "TestModule",
+	"Control": "TestControl",
+	"Class": "TestClass",
+	"Display": "/Armadores/Images/webview.png",
+	"ExtensionPropertiesSchema": {
+		"type": "object",
+		"BindType": "",
+		"properties": {
+			"Prop": {
+				"type": "object",
+				"BindType": "",
+				"properties": {
+					"City": {
+						"type": "string",
+						"BindType": ""
+					}
+				}
+			}
+		}
+	}
+}

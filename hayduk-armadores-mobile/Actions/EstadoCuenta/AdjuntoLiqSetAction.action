@@ -1,0 +1,15 @@
+{
+	"ActionResult": {
+		"_Name": "oData"
+	},
+	"ActivityIndicatorText": "Descargando...",
+	"OnFailure": "/Armadores/Actions/Home/Message/ObtenerUsuarioFallo.action",
+	"OnSuccess": "/Armadores/Rules/EstadoCuenta/AdjuntoLiqSetSuccesRule.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "AdjuntoLiqSet",
+		"QueryOptions": "$filter=IDLiquidacion eq '{{#Page:LiquidacionPescaDetalle/#Control:spIDLiquidacion/#Value}}'",
+		"Service": "/Armadores/Services/s4hService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

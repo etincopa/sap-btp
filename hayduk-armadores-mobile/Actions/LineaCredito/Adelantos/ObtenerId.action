@@ -1,0 +1,20 @@
+{
+	"ActionResult": {
+		"_Name": "results"
+	},
+	"Headers": {
+		"If-Match": "{@odata.etag}"
+	},
+	"OnFailure": "/Armadores/Rules/LineaCredito/Adelantos/DescuentosValues/ObtenerIdErrorRule.js",
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoSearchExistResp.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"Function": {
+			"Name": "obtenerAdelantoId",
+			"Parameters": {
+			}
+		},
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CallFunction"
+}

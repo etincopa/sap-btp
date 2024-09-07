@@ -1,0 +1,17 @@
+{
+	"Class": "MySliderNSClass",
+	"Control": "MySliderNSControl",
+	"Display": "/Armadores/Images/slider.png",
+	"ExtensionPropertiesSchema": {
+		"BindType": "",
+		"properties": {
+			"Value": {
+				"BindType": "",
+				"type": "string"
+			}
+		},
+		"type": "object"
+	},
+	"Module": "MySliderNSModule",
+	"_Type": "Register.Type.ExtensionControl"
+}

@@ -1,0 +1,23 @@
+{
+	"ActionResult": {
+		"_Name": "resultOdata"
+	},
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Habilitaciones/ActualizarSolicitudSuccess.js",
+	"Properties": {
+		"sDetalle": "#Page:SolicitudPendHabilitacionDetail/#Control:ntDetDescuento/#Value",
+		"sEmbarcacion": "#Page:SolicitudPendHabilitacionDetail/#Control:lpEmbarcacion/#SelectedValue",
+		"sMontoSolicitado": "#Page:SolicitudPendHabilitacionDetail/#Control:spMontoSolicitud/#Value",
+		"sPlanta": "#Page:SolicitudPendHabilitacionDetail/#Control:lpPlanta/#SelectedValue",
+		"sRazonSocial": "#Page:SolicitudPendHabilitacionDetail/#Control:spRSocial/#Value",
+		"sTasaDescuento": "#Page:SolicitudPendHabilitacionDetail/#Control:spTasaDescuento/#Value",
+		"sTemporada": "#Page:SolicitudPendHabilitacionDetail/#Control:lpPagarNroTemp/#SelectedValue",
+		"sViaPago": "#Page:SolicitudPendHabilitacionDetail/#Control:lpViaPago/#SelectedValue"
+	},
+	"Target": {
+		"EntitySet": "SolicitudPendHabilitacion",
+		"ReadLink": "{@odata.editLink}",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Habilitaciones/EliminarSolicitudValidationRule.js",
+	"_Type": "Action.Type.ODataService.UpdateEntity"
+}

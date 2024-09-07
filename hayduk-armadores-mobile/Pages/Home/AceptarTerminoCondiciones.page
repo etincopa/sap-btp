@@ -1,0 +1,65 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/Home/ServiceOData/AceptacionTermino.action",
+				"Position": "Right",
+				"SystemItem": "Done",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Aceptación de Términos y Condiciones",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"IsEditable": false,
+							"IsVisible": true,
+							"MaxNumberOfLines": 5,
+							"MinNumberOfLines": 2,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "Leer y aceptar lo siguiente para poder seguir usando el aplicativo",
+							"_Name": "FormCellNote0",
+							"_Type": "Control.Type.FormCell.Note"
+						},
+						{
+							"ButtonType": "Text",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/Home/NavToTerminosCondiciones.action",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Ver términos y condiciones",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						},
+						{
+							"Caption": "Acepto lo leído",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Target": "",
+							"Value": false,
+							"_Name": "schAceptarTerminoId",
+							"_Type": "Control.Type.FormCell.Switch"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"OnActivityBackPressed": "/Armadores/Rules/Home/SideMenuOnLoadedRule.js",
+	"Target": "",
+	"_Name": "AceptarTerminoCondiciones",
+	"_Type": "Page"
+}

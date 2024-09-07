@@ -1,0 +1,7 @@
+{
+	"Message": "¿Está seguro de actualizar la solicitud de habilitación?",
+	"OKCaption": "Aceptar",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Habilitaciones/ActualizarSolicitud.action",
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Habilitaciones/EnviarSolicitudValidationRule.js",
+	"_Type": "Action.Type.Message"
+}

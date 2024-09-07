@@ -1,0 +1,131 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/Home/CrearSolicitudCorreo.action",
+				"Position": "Right",
+				"Style": "$(PLT,'ios-font-icon-class','android-font-icon-class')",
+				"SystemItem": "Edit",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "TabDatos",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Modificación de Datos Generales"
+			},
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "RUC",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "#Application/#ClientData/#Property:UserId",
+							"_Name": "RUC",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"validationProperties": {
+								"SeparatorBackgroundColor": "#ba5959",
+								"SeparatorIsHidden": true
+							}
+						},
+						{
+							"Caption": "Distrito",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Distrito.js",
+							"_Name": "Distrito",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"validationProperties": {
+								"SeparatorIsHidden": true
+							}
+						},
+						{
+							"AlternateInput": "None",
+							"Caption": "Correo",
+							"IsEditable": false,
+							"IsVisible": true,
+							"KeyboardType": "Default",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Correo.js",
+							"_Name": "FormCellSimpleProperty0",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"validationProperties": {
+								"SeparatorBackgroundColor": "#e24d4d",
+								"SeparatorIsHidden": true
+							}
+						},
+						{
+							"ButtonType": "Primary",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/Overview/NavTableDatosEdit.action",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Editar Correo",
+							"_Name": "btnEditarCorreo",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				},
+				{
+					"EmptySection": {
+						"Caption": "Datos Generales",
+						"FooterVisible": true
+					},
+					"Layout": {
+						"NumberOfColumns": 2
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "               Modificación en proceso :",
+								"Styles": {
+									"KeyName": "SimplePropertyFormCellCaption"
+								},
+								"Target": "",
+								"Value": "Value",
+								"Visible": true
+							}
+						}
+					],
+					"Target": "",
+					"Visible": false,
+					"_Name": "spcNuevoCorreo",
+					"_Type": "Section.Type.SimplePropertyCollection"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnLoaded": "/Armadores/Rules/Overview/ExisteSolicitudCorreoRule.js",
+	"Target": "",
+	"_Name": "TabDatos",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

@@ -1,0 +1,108 @@
+{
+	"Caption": "Habilitación",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Nro de Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{IDDocumento}",
+							"_Name": "FormCellSimpleProperty0",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Nro de Documento",
+							"IsEditable": true,
+							"IsVisible": false,
+							"Target": "",
+							"Value": "{Referencia}",
+							"_Name": "FormCellSimpleProperty7",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Fecha del Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{FechaDoc}",
+							"_Name": "FormCellSimpleProperty1",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Embarcación",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Target": "",
+							"Value": "{Embarcacion}",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"_Name": "FormCellSimpleProperty2",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "TONS",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Tons}",
+							"_Name": "FormCellSimpleProperty5",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Target": "",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Value": "{Monto}",
+							"_Name": "FormCellSimpleProperty6",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Tipo Cambio",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{TipoCambio}",
+							"_Name": "FormCellSimpleProperty3",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				},
+				{
+					"Controls": [
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "Habilitacion",
+	"_Type": "Page"
+}

@@ -1,0 +1,5 @@
+{
+	"Message": "{{#ActionResults:get/data/0/RazonSocial}}",
+	"Title": "success",
+	"_Type": "Action.Type.Message"
+}

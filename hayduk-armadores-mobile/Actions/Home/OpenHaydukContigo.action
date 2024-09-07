@@ -1,0 +1,17 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"OnSuccessLog": {
+		"Message": "/Armadores/Rules/LogMessages/OpenHaydukContigoMessages.js",
+		"Level": "Info"
+	},
+	"OnInvalidLog": {
+		"Message": "/Armadores/Rules/OpenHaydukContigoMessagesError.js",
+		"Level": "Error"
+	},
+	"OnFailureLog": {
+		"Message": "/Armadores/Rules/OpenHaydukContigoMessagesError.js",
+		"Level": "Error"
+	},
+	"PageToOpen": "/Armadores/Pages/HaydukContigo.page",
+	"NavigationType": "Cross"
+}

@@ -1,0 +1,5 @@
+{
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/Overview/TabCuentaEdit.page",
+	"_Type": "Action.Type.Navigation"
+}

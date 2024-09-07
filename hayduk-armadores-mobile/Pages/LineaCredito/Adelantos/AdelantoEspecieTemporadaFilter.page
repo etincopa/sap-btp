@@ -1,0 +1,199 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/ClosePage.action",
+				"Position": "Right",
+				"SystemItem": "Done",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Filtros",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Especie",
+							"DataPaging": {
+								"LoadingIndicatorText": "Cargando Especie...",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": false,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoEspecieOnValueChange.js",
+							"PickerItems": {
+								"DisplayValue": "{IDEspecie} {Nombre}",
+								"ReturnValue": "{IDEspecie}",
+								"Target": {
+									"EntitySet": "TipoEspecieSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione una Especie",
+							"Target": "",
+							"_Name": "lpEspecie",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "TEMPORADA",
+							"DataPaging": {
+								"LoadingIndicatorText": "Cargando Temporada...",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoTemporadaOnValueChange.js",
+							"PickerItems": {
+								"DisplayValue": "{IDTemporada}",
+								"ReturnValue": "{IDTemporada}",
+								"Target": {
+									"EntitySet": "TemporadaSet",
+									"QueryOptions": "$filter=IDEspecie eq '01' and IDTipo eq 'ADELTEMP'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione una Temporada",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpTemporada",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Embarcación",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"FilterProperty": "Embarcacion",
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": false,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/FilterEmbarcacionOnValueChangeRule.js",
+							"PickerItems": {
+								"DisplayValue": "{IDEmbarcacion} {Descripcion}",
+								"ReturnValue": "{IDEmbarcacion}",
+								"Target": {
+									"EntitySet": "TipoEmbarcacionSet",
+									"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Embarcación y presione el botón atrás",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpEmbarcacion",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": true,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Fecha Inicio",
+							"DataPaging": {
+								"LoadingIndicatorText": "Cargando F. Inicio ...",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"FilterProperty": "FechaInicio",
+							"IsEditable": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{FechaInicio}",
+								"ReturnValue": "{FechaInicio}",
+								"Target": {
+									"EntitySet": "TemporadaSet",
+									"QueryOptions": "$filter=IDEspecie eq '01' and IDTipo eq 'ADELTEMP'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Please select one single item",
+							"Target": "",
+							"_Name": "lpFechaInicio",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": true,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Fecha Fin",
+							"DataPaging": {
+								"LoadingIndicatorText": "cargando F.Fin...",
+								"PageSize": 50,
+								"ShowLoadingIndicator": true
+							},
+							"FilterProperty": "FechaFin",
+							"IsEditable": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/FilterFechaFinOnValueChangeRule.js",
+							"PickerItems": {
+								"DisplayValue": "{FechaFin}",
+								"ReturnValue": "{FechaFin}",
+								"Target": {
+									"EntitySet": "TemporadaSet",
+									"QueryOptions": "$filter=IDEspecie eq '01' and IDTipo eq 'ADELTEMP'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Selecione un filtro",
+							"Target": "",
+							"_Name": "lpFechaFin",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"OnActivityBackPressed": "/Armadores/Rules/LineaCredito/Adelantos/FilterFechaFinOnValueChangeRule.js",
+	"OnLoaded": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoFiltersOnLoadedRule.js",
+	"Result": [
+		"#Page:AdelantoEspecieTemporadaFilter/#Control:lpFechaFin/#FilterValue",
+		"#Page:AdelantoEspecieTemporadaFilter/#Control:lpFechaInicio/#FilterValue"
+	],
+	"Target": "",
+	"_Name": "AdelantoEspecieTemporadaFilter",
+	"_Type": "Page"
+}

@@ -1,0 +1,57 @@
+{
+	"Caption": "Descuentos",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Description": "/Armadores/Rules/LineaCredito/Adelantos/DescuentoSaldoRule.js",
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"Footnote": "Dcto. Total : $(C,{DescuentoTotal} ,'USD')",
+						"OnPress": "/Armadores/Actions/LineaCredito/NavToDescuentoDetail.action",
+						"PreserveIconStackSpacing": false,
+						"ProgressIndicator": "open",
+						"StatusText": "$(C,{SubtotalDctos} ,'USD')",
+						"Subhead": "{Embarcacion}",
+						"Title": "{Descripcion}"
+					},
+					"Target": {
+						"EntitySet": "AdelantoLinCredSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "Descuentos",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

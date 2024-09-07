@@ -1,0 +1,15 @@
+{
+	"Controls": [
+		{
+			"_Type": "Control.Type.Extension",
+			"_Name": "FormCellExtension0",
+			"Module": "TestModule",
+			"Control": "TestControl",
+			"Class": "TestClass"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TestPageC",
+	"Caption": "TestPageC",
+	"PrefersLargeCaption": true
+}

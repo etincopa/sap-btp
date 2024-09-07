@@ -1,0 +1,220 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/EnviarSolicitudAdelantoConfirm.action",
+				"Position": "Right",
+				"SystemItem": "Save",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Solicitar Adelanto",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Monto de Solicitud",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Number",
+							"PlaceHolder": "Ingrese Monto",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "spMontoSolicitud",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Moneda",
+							"IsEditable": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{IDMoneda} {Descripcion}",
+								"ReturnValue": "{IDMoneda}",
+								"Target": {
+									"EntitySet": "TipoMonedaSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Please select one single item",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": [
+								"USD"
+							],
+							"_Name": "lpMoneda",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Via de Pago",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/ViaPagoOnChangeRule.js",
+							"PickerItems": {
+								"DisplayValue": "{IDViaPago} {Descripcion}",
+								"ReturnValue": "{IDViaPago}",
+								"Target": {
+									"EntitySet": "TipoViaPagoSet",
+									"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Vía de Pago y presione el botón atrás",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpViaPago",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Planta",
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"PickerItems": {
+								"DisplayValue": "{IDPlanta} {Descripcion}",
+								"ReturnValue": "{IDPlanta}",
+								"Target": {
+									"EntitySet": "TipoPlantaSet",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Planta y presione el botón atrás",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpPlanta",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"AllowDefaultValueIfOneItem": false,
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+							"Caption": "Embarcación",
+							"DataPaging": {
+								"PageSize": 50,
+								"ShowLoadingIndicator": false
+							},
+							"IsEditable": true,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": false,
+							"IsSelectedSectionEnabled": false,
+							"IsVisible": true,
+							"OnValueChange": "/Armadores/Rules/LineaCredito/Adelantos/AdelantoEmbarcacionOnValueChange.js",
+							"PickerItems": {
+								"DisplayValue": "{IDEmbarcacion} {Descripcion}",
+								"ReturnValue": "{IDEmbarcacion}",
+								"Target": {
+									"EntitySet": "TipoEmbarcacionSet",
+									"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+									"Service": "/Armadores/Services/s4hService.service"
+								}
+							},
+							"PickerPrompt": "Seleccione Embarcación y presione el botón atrás",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpEmbarcacion",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+						{
+							"Caption": "Razon Social",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Headline.js",
+							"_Name": "spRSocial",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"IsEditable": true,
+							"IsVisible": true,
+							"MaxNumberOfLines": 6,
+							"MinNumberOfLines": 3,
+							"PlaceHolder": "Detalle 0/50",
+							"Target": "",
+							"_Name": "ntDetDescuento",
+							"_Type": "Control.Type.FormCell.Note"
+						},
+						{
+							"Caption": "id WF",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "spWorkflowInstanceId",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Tasa Descuento",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "spTasaDescuento",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Temporada",
+							"IsEditable": true,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"_Name": "lpTemporada",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "SolicitarAdelanto",
+	"_Type": "Page"
+}

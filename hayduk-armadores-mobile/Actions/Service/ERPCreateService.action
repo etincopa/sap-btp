@@ -1,0 +1,11 @@
+{
+	"ActionResult": {
+		"_Name": "init"
+	},
+	"ActivityIndicatorText": "Cargando...",
+	"OnFailure": "/Armadores/Actions/Service/ERPCreateOpenServiceFailureMessage.action",
+	"OnSuccess": "/Armadores/Actions/Service/ERPOpenService.action",
+	"Service": "/Armadores/Services/ERPService.service",
+	"ShowActivityIndicator": true,
+	"_Type": "Action.Type.ODataService.Create"
+}

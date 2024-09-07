@@ -1,0 +1,5 @@
+{
+	"Duration": 7,
+	"Message": "Failed to initialize application data service - {{#ActionResults:init/#Property:error}}",
+	"_Type": "Action.Type.BannerMessage"
+}

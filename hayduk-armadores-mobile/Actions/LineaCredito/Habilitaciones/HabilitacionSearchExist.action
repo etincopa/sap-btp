@@ -1,0 +1,15 @@
+{
+	"ActionResult": {
+		"_Name": "oData"
+	},
+	"Headers": {
+		"Content-Type": "application/json"
+	},
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Habilitaciones/HabilitacionSearchExistResp.js",
+	"Target": {
+		"EntitySet": "SolicitudHabilitacion",
+		"QueryOptions": "",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.Read"
+}

@@ -1,0 +1,49 @@
+{
+	"Caption": "Solicitudes de Adelantos",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"Description": "Description",
+						"AvatarStack": {
+							"Avatars": [
+								{
+									"Image": "res://mdk_logo.png"
+								}
+							],
+							"ImageIsCircular": false
+						},
+						"Footnote": "Footnote",
+						"PreserveIconStackSpacing": true,
+						"ProgressIndicator": "inProgress",
+						"StatusText": "Status",
+						"Subhead": "Subhead",
+						"SubstatusText": "Substatus",
+						"Title": "Title"
+					},
+					"Target": "",
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "AdelantoSolicitudes",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

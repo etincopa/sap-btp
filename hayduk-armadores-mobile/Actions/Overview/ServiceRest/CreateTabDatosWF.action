@@ -1,0 +1,21 @@
+{
+	"ActionResult": {
+		"_Name": "create"
+	},
+	"ActivityIndicatorText": "Enviando...",
+	"OnFailure": "/Armadores/Actions/Overview/Message/TestFallo.action",
+	"OnSuccess": "/Armadores/Rules/Overview/ServiceOData/CreateRegisterTabDatos.js",
+	"ShowActivityIndicator": true,
+	"Target": {
+		"Path": "/workflow-instances",
+		"RequestProperties": {
+			"Body": {
+				"context": "/Armadores/Rules/Overview/TabDatosEdit.js",
+				"definitionId": "armador"
+			},
+			"Method": "POST"
+		},
+		"Service": "/Armadores/Services/wfService.service"
+	},
+	"_Type": "Action.Type.RestService.SendRequest"
+}

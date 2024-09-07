@@ -1,0 +1,6 @@
+{
+	"NavigationType": "Cross",
+	"OnSuccess": "/Armadores/Actions/Home/ServiceOData/ObtenerUsuario.action",
+	"PageToOpen": "/Armadores/Pages/Home/User.page",
+	"_Type": "Action.Type.Navigation"
+}

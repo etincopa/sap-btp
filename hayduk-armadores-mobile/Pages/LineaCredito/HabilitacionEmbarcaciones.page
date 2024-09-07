@@ -1,0 +1,69 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Icon": "sap-icon://vertical-grip",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Habilitaciones/PopoverMenu.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Habilitaciones por Embarcación",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"DataPaging": {
+						"PageSize": 50,
+						"ShowLoadingIndicator": false
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"OnPress": "/Armadores/Actions/LineaCredito/Habilitacion.action",
+						"PreserveIconStackSpacing": false,
+						"ProgressIndicator": "open",
+						"StatusText": "$(C,{MontoMaximo} ,{Moneda})",
+						"Styles": {
+							"Title": "SimplePropertyFormCellCaption"
+						},
+						"Subhead": "Consumido : $(C,{MontoConsumido} ,{Moneda}) ({Porcentaje} %)",
+						"Title": "{Embarcacion} {Descripcion}"
+					},
+					"Target": {
+						"EntitySet": "HabilitacionLinCredSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "HabilitacionEmbarcaciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="CatalogService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="AceptacionTermino" EntityType="CatalogService.AceptacionTermino"/>
+                <EntitySet Name="Download" EntityType="CatalogService.Download"/>
+                <EntitySet Name="FacturaPDF" EntityType="CatalogService.FacturaPDF"/>
+                <EntitySet Name="Maestra" EntityType="CatalogService.Maestra"/>
+                <EntitySet Name="OpenDocument" EntityType="CatalogService.OpenDocument"/>
+                <EntitySet Name="SolicitudAdelanto" EntityType="CatalogService.SolicitudAdelanto"/>
+                <EntitySet Name="SolicitudDatoArmador" EntityType="CatalogService.SolicitudDatoArmador"/>
+                <EntitySet Name="SolicitudDatoCuenta" EntityType="CatalogService.SolicitudDatoCuenta"/>
+                <EntitySet Name="SolicitudHabilitacion" EntityType="CatalogService.SolicitudHabilitacion"/>
+                <EntitySet Name="SolicitudPendAdelanto" EntityType="CatalogService.SolicitudPendAdelanto"/>
+                <EntitySet Name="SolicitudPendHabilitacion" EntityType="CatalogService.SolicitudPendHabilitacion"/>
+                <EntitySet Name="SolicitudPrueba" EntityType="CatalogService.SolicitudPrueba"/>
+                <EntitySet Name="TerminoCondiciones" EntityType="CatalogService.TerminoCondiciones"/>
+            </EntityContainer>
+            <EntityType Name="AceptacionTermino">
+                <Key>
+                    <PropertyRef Name="sTerminoCondicionesId"/>
+                    <PropertyRef Name="sRUC"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sTerminoCondicionesId" Type="Edm.String" Nullable="false"/>
+                <Property Name="sRUC" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Download">
+                <Key>
+                    <PropertyRef Name="sUri"/>
+                    <PropertyRef Name="sFileName"/>
+                </Key>
+                <Property Name="sUri" Type="Edm.String" Nullable="false"/>
+                <Property Name="sFileName" Type="Edm.String" Nullable="false"/>
+                <Property Name="sAdjunto" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="FacturaPDF">
+                <Key>
+                    <PropertyRef Name="sFolio"/>
+                </Key>
+                <Property Name="sFolio" Type="Edm.String" Nullable="false"/>
+                <Property Name="sTipo" Type="Edm.String"/>
+                <Property Name="sUrl" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Maestra">
+                <Key>
+                    <PropertyRef Name="iMaestraId"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="iMaestraId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="sTabla" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="sContenido" Type="Edm.String" MaxLength="500" Nullable="false"/>
+                <Property Name="sDescripcion" Type="Edm.String" MaxLength="500"/>
+                <Property Name="iOrden" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="vCodigo" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="OpenDocument">
+                <Key>
+                    <PropertyRef Name="sIdOpenDocument"/>
+                </Key>
+                <Property Name="sIdOpenDocument" Type="Edm.String" Nullable="false"/>
+                <Property Name="sBase64" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="SolicitudAdelanto">
+                <Key>
+                    <PropertyRef Name="iID"/>
+                </Key>
+                <Property Name="iID" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="SolicitudDatoArmador">
+                <Key>
+                    <PropertyRef Name="sIDWorklow"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sIDWorklow" Type="Edm.String" Nullable="false"/>
+                <Property Name="sArmador" Type="Edm.String"/>
+                <Property Name="sCorreoAct" Type="Edm.String"/>
+                <Property Name="sCorreoProp" Type="Edm.String"/>
+                <Property Name="sEstado" Type="Edm.String"/>
+                <Property Name="sAprobador" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="SolicitudDatoCuenta">
+                <Key>
+                    <PropertyRef Name="sIDWorklow"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sIDWorklow" Type="Edm.String" Nullable="false"/>
+                <Property Name="sArmador" Type="Edm.String"/>
+                <Property Name="sCuentaAct" Type="Edm.String"/>
+                <Property Name="sBancoAct" Type="Edm.String"/>
+                <Property Name="sNroAct" Type="Edm.String"/>
+                <Property Name="sCCIAct" Type="Edm.String"/>
+                <Property Name="sDecJurAct" Type="Edm.String"/>
+                <Property Name="sCuentaProp" Type="Edm.String"/>
+                <Property Name="sBancoProp" Type="Edm.String"/>
+                <Property Name="sNroProp" Type="Edm.String"/>
+                <Property Name="sCCIProp" Type="Edm.String"/>
+                <Property Name="sDecJurProp" Type="Edm.String"/>
+                <Property Name="sEstado" Type="Edm.String"/>
+                <Property Name="sAprobador" Type="Edm.String"/>
+                <Property Name="sAdjunto" Type="Edm.String"/>
+                <Property Name="sFileName" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="SolicitudHabilitacion">
+                <Key>
+                    <PropertyRef Name="iID"/>
+                </Key>
+                <Property Name="iID" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="SolicitudPendAdelanto">
+                <Key>
+                    <PropertyRef Name="sIDWorklow"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sIDWorklow" Type="Edm.String" Nullable="false"/>
+                <Property Name="sID" Type="Edm.String"/>
+                <Property Name="sCodAdelanto" Type="Edm.String"/>
+                <Property Name="sMontoSolicitado" Type="Edm.String"/>
+                <Property Name="sViaPago" Type="Edm.String"/>
+                <Property Name="sPlanta" Type="Edm.String"/>
+                <Property Name="sPlantaDes" Type="Edm.String"/>
+                <Property Name="sEmbarcacion" Type="Edm.String"/>
+                <Property Name="sEmbarcacionDes" Type="Edm.String"/>
+                <Property Name="sRazonSocial" Type="Edm.String"/>
+                <Property Name="sTemporada" Type="Edm.String"/>
+                <Property Name="sTasaDescuento" Type="Edm.String"/>
+                <Property Name="sDetalle" Type="Edm.String"/>
+                <Property Name="sIDRUC" Type="Edm.String"/>
+                <Property Name="sArmador" Type="Edm.String"/>
+                <Property Name="sEstado" Type="Edm.String"/>
+                <Property Name="sEstadoDet" Type="Edm.String"/>
+                <Property Name="sComment" Type="Edm.String"/>
+                <Property Name="sUsertask" Type="Edm.String"/>
+                <Property Name="sTask" Type="Edm.String"/>
+                <Property Name="sGroup" Type="Edm.String"/>
+                <Property Name="sMoneda" Type="Edm.String"/>
+                <Property Name="sMessage" Type="Edm.String"/>
+                <Property Name="sNumDoc" Type="Edm.String"/>
+                <Property Name="sSociedad" Type="Edm.String"/>
+                <Property Name="sEjercicio" Type="Edm.String"/>
+                <Property Name="sPosicion" Type="Edm.String"/>
+                <Property Name="sAprobador" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="SolicitudPendHabilitacion">
+                <Key>
+                    <PropertyRef Name="sIDWorklow"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sIDWorklow" Type="Edm.String" Nullable="false"/>
+                <Property Name="sID" Type="Edm.String"/>
+                <Property Name="sCodHabilitacion" Type="Edm.String"/>
+                <Property Name="sMontoSolicitado" Type="Edm.String"/>
+                <Property Name="sViaPago" Type="Edm.String"/>
+                <Property Name="sPlanta" Type="Edm.String"/>
+                <Property Name="sPlantaDes" Type="Edm.String"/>
+                <Property Name="sEmbarcacion" Type="Edm.String"/>
+                <Property Name="sEmbarcacionDes" Type="Edm.String"/>
+                <Property Name="sRazonSocial" Type="Edm.String"/>
+                <Property Name="sTemporada" Type="Edm.String"/>
+                <Property Name="sNumTemporada" Type="Edm.String"/>
+                <Property Name="sTasaDescuento" Type="Edm.String"/>
+                <Property Name="sDetalle" Type="Edm.String"/>
+                <Property Name="sIDRUC" Type="Edm.String"/>
+                <Property Name="sArmador" Type="Edm.String"/>
+                <Property Name="sEstado" Type="Edm.String"/>
+                <Property Name="sEstadoDet" Type="Edm.String"/>
+                <Property Name="sComment" Type="Edm.String"/>
+                <Property Name="sUsertask" Type="Edm.String"/>
+                <Property Name="sTask" Type="Edm.String"/>
+                <Property Name="sGroup" Type="Edm.String"/>
+                <Property Name="sMoneda" Type="Edm.String"/>
+                <Property Name="sMessage" Type="Edm.String"/>
+                <Property Name="sNumDoc" Type="Edm.String"/>
+                <Property Name="sSociedad" Type="Edm.String"/>
+                <Property Name="sEjercicio" Type="Edm.String"/>
+                <Property Name="sPosicion" Type="Edm.String"/>
+                <Property Name="sAprobador" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="SolicitudPrueba">
+                <Key>
+                    <PropertyRef Name="sIDWorklow"/>
+                </Key>
+                <Property Name="sIDWorklow" Type="Edm.String" Nullable="false"/>
+                <Property Name="sArmador" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TerminoCondiciones">
+                <Key>
+                    <PropertyRef Name="sTerminoCondicionesId"/>
+                </Key>
+                <Property Name="dFechaRegistro" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioRegistro" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="dFechaActualiza" Type="Edm.DateTimeOffset"/>
+                <Property Name="sUsuarioActualiza" Type="Edm.String" MaxLength="100"/>
+                <Property Name="xActivo" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="sTerminoCondicionesId" Type="Edm.String" Nullable="false"/>
+                <Property Name="sHtml" Type="Edm.String"/>
+                <Property Name="xEnUso" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="iVersion" Type="Edm.Int32"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

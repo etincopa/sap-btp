@@ -1,0 +1,76 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Icon": "sap-icon://log",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/Overview/Message/LogoutConfirm.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			},
+			{
+				"Icon": "sap-icon://vertical-grip",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/Overview/PopoverMenu/OverviewMenu.action",
+				"Position": "Right",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "/Armadores/Rules/Home/Headline.js",
+						"Styles": {
+							"ObjectHeader": "HaydukBackground"
+						},
+						"Target": ""
+					},
+					"Visible": true,
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [
+				{
+					"Caption": "ARMADOR",
+					"Image": "sap-icon://employee-pane",
+					"PageToOpen": "/Armadores/Pages/Overview/TabDatos.page",
+					"_Name": "ArmadorTab",
+					"_Type": "Control.Type.TabItem"
+				},
+				{
+					"Caption": "CUENTAS",
+					"Image": "sap-icon://payment-approval",
+					"PageToOpen": "/Armadores/Pages/Overview/TabCuentas.page",
+					"_Name": "CuentaTab",
+					"_Type": "Control.Type.TabItem"
+				},
+				{
+					"Caption": "EMBARCACIONES",
+					"Image": "sap-icon://basket",
+					"PageToOpen": "/Armadores/Pages/Overview/TabEmbarcaciones.page",
+					"_Name": "EmbarcacionTab",
+					"_Type": "Control.Type.TabItem"
+				}
+			],
+			"Position": "Top",
+			"Target": "",
+			"_Name": "Tabs0",
+			"_Type": "Control.Type.Tabs"
+		}
+	],
+	"Target": "",
+	"_Name": "OverviewPage",
+	"_Type": "Page"
+}

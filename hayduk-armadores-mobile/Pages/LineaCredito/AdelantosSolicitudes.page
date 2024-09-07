@@ -1,0 +1,40 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/NavToAdelantoSolicitud.action",
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "Item",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Solicitudes de Adelantos",
+	"Controls": [
+		{
+			"Items": [
+				{
+					"Caption": "En Proceso",
+					"PageToOpen": "/Armadores/Pages/LineaCredito/SolicitudPendAdelanto.page",
+					"_Name": "TabItem1",
+					"_Type": "Control.Type.TabItem"
+				},
+				{
+					"Caption": "Completadas",
+					"PageToOpen": "/Armadores/Pages/LineaCredito/SolicitudAprobAdelanto.page",
+					"_Name": "TabItem2",
+					"_Type": "Control.Type.TabItem"
+				}
+			],
+			"Position": "Top",
+			"Target": "",
+			"_Name": "Tabs0",
+			"_Type": "Control.Type.Tabs"
+		}
+	],
+	"Target": "",
+	"_Name": "AdelantosSolicitudes",
+	"_Type": "Page"
+}

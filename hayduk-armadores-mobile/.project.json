@@ -1,0 +1,64 @@
+{
+	"Credential": "cf",
+	"CF": {
+		"Target": "https://api.cf.us10.hana.ondemand.com",
+		"Organization": "aed00394-a5f9-47b6-a06b-842695cb2282",
+		"Space": "87836814-cd43-43a6-91fe-a8f87f271fc8",
+		"Deploy": {
+			"Destination": [
+				{
+					"CF": "ArmadorBackend",
+					"MDK": "ArmadorBackend",
+					"URL": ""
+				},
+				{
+					"CF": "ArmadorService",
+					"MDK": "ArmadorService",
+					"URL": ""
+				},
+				{
+					"CF": "workflow",
+					"MDK": "workflow",
+					"URL": ""
+				},
+				{
+					"CF": "S4H",
+					"MDK": "S4H",
+					"URL": ""
+				},
+				{
+					"CF": "S4H",
+					"MDK": "S4H",
+					"URL": ""
+				}
+			],
+			"Name": "hayduk.armadores",
+			"Version": "1.0.0",
+			"StandaloneRouter": true,
+			"URL": "https://hayduk-qas-armadores-haydukarmadores-approuter.cfapps.us10.hana.ondemand.com/haydukarmadores/index.html"
+		}
+	},
+	"MobileService": {
+		"AdminAPI": "https://mobile-service-cockpit-api.cfapps.us10.hana.ondemand.com/cockpit/v1/org/aed00394-a5f9-47b6-a06b-842695cb2282/space/87836814-cd43-43a6-91fe-a8f87f271fc8",
+		"AppId": "hayduk.armadores",
+		"Destination": [
+			"com.sap.edm.sampleservice.v2",
+			"ArmadorBackend",
+			"ArmadorService",
+			"S4H",
+			"HaydukContigo",
+			"workflow"
+		],
+		"Type": "standard"
+	},
+	"Onboarding": {
+		"Schema": "sapmobilesvcs",
+		"TimeZone": "UTC",
+		"URL": "sapmobilesvcs://?AppId=hayduk.armadores&ClientId=7bd7e84b-a96c-4716-ac37-ca6b7974ffe2&ServerUrl=https://sd-hayduk-qas-armadores-hayduk-armadores.cfapps.us10.hana.ondemand.com&SapCloudPlatformEndpoint=https://sd-hayduk-qas-armadores-hayduk-armadores.cfapps.us10.hana.ondemand.com&AuthorizationEndpointUrl=https://sd-hayduk-qas-armadores-hayduk-armadores.cfapps.us10.hana.ondemand.com/oauth2/api/v1/authorize&RedirectUrl=https://sd-hayduk-qas-armadores-hayduk-armadores.cfapps.us10.hana.ondemand.com&TokenUrl=https://sd-hayduk-qas-armadores-hayduk-armadores.cfapps.us10.hana.ondemand.com/oauth2/api/v1/token&multiUser=false"
+	},
+	"Build": {
+		"SourceMap": false,
+		"TSTarget": "es6",
+		"WMF": false
+	}
+}

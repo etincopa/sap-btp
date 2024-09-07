@@ -1,0 +1,159 @@
+{
+	"Caption": "Descuento FEP",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Nro de Documento",
+							"IsEditable": true,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{IDDocumento}",
+							"_Name": "spIDDocumento",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Nro de Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Referencia}",
+							"_Name": "spReferencia",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Fecha del Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{FechaDoc}",
+							"_Name": "spFechaDoc",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Embarcación",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Embarcacion}",
+							"_Name": "spEmbarcacion",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "TONS",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Tons}",
+							"_Name": "spTons",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto en Dolares",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "$ {Monto}",
+							"_Name": "spMonto",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Tipo Cambio",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{TipoCambio}",
+							"_Name": "spTipoCambio",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto en Soles",
+							"IsEditable": true,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "S/ {MontoDoc}",
+							"_Name": "FormCellSimpleProperty0",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Ruc",
+							"IsEditable": false,
+							"IsVisible": false,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{IDRuc}",
+							"_Name": "spIDRuc",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Ejercicio",
+							"IsEditable": false,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{#Page:LiquidacionPesca/#Control:lspEjercicio/#SelectedValue}",
+							"_Name": "spIDEjercicio",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				},
+				{
+					"Controls": [
+						{
+							"ButtonType": "Primary",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/EstadoCuenta/Detalle/AdjuntoLiqDescuentoFepSet.action",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Descargar FEP",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "DescuentoFEP",
+	"_Type": "Page"
+}

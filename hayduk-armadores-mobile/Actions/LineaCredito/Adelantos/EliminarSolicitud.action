@@ -1,0 +1,18 @@
+{
+	"ActionResult": {
+		"_Name": "resultOdata"
+	},
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Adelantos/EliminarSolicitudSuccess.js",
+	"Properties": {
+		"sEstado": "-100",
+		"sTask": "",
+		"xActivo": false
+	},
+	"Target": {
+		"EntitySet": "SolicitudPendAdelanto",
+		"QueryOptions": "",
+		"ReadLink": "{@odata.readLink}",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.UpdateEntity"
+}

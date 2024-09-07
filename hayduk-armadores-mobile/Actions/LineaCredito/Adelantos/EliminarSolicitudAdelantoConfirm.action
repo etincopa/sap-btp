@@ -1,0 +1,7 @@
+{
+	"Message": "¿Está seguro de eliminar la solicitud de adelanto?",
+	"OKCaption": "Aceptar",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Adelantos/EliminarSolicitud.action",
+	"ValidationRule": "/Armadores/Rules/LineaCredito/Adelantos/EliminarSolicitudValidationRule.js",
+	"_Type": "Action.Type.Message"
+}

@@ -1,0 +1,6 @@
+{
+	"ClearHistory": true,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/AdelantosSolicitudes.page",
+	"_Type": "Action.Type.Navigation"
+}

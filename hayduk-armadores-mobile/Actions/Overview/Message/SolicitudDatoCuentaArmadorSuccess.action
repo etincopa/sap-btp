@@ -1,0 +1,7 @@
+{
+	"Message": "Se envió la solicitud de actualización exitosamente",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/Home/Misdatos.action",
+	"OnSuccess": "/Armadores/Actions/ClosePage.action",
+	"_Type": "Action.Type.Message"
+}

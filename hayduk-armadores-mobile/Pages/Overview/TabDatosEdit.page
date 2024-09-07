@@ -1,0 +1,95 @@
+{
+	"Caption": "Editar correo",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"IsEditable": false,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Styles": {
+								"Value": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "MODIFICACION DE DATOS GENERALES",
+							"_Name": "FormCellTitle0",
+							"_Type": "Control.Type.FormCell.Title",
+							"validationProperties": {
+								"SeparatorIsHidden": true
+							}
+						},
+						{
+							"Caption": "Correo",
+							"IsEditable": true,
+							"IsVisible": true,
+							"KeyboardType": "Email",
+							"PlaceHolder": "Ingrese el correo",
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "/Armadores/Rules/Home/Correo.js",
+							"_Name": "EmailEdit",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "IdWF",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"_Name": "IdWF",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Fecha",
+							"IsEditable": true,
+							"IsVisible": false,
+							"KeyboardType": "Default",
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"_Name": "FechaRegistro",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"IsEditable": false,
+							"IsVisible": false,
+							"Styles": {
+								"Value": "messageErrorColor"
+							},
+							"Target": "",
+							"_Name": "lblMessageDato",
+							"_Type": "Control.Type.FormCell.Title"
+						},
+						{
+							"ButtonType": "Primary",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Rules/Overview/sendDatoEditRule.js",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Enviar solicitud",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "TabDatosEdit",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

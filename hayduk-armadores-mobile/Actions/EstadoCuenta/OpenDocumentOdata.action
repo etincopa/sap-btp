@@ -1,0 +1,20 @@
+{
+	"ActionResult": {
+		"_Name": "oData"
+	},
+	"ActivityIndicatorText": "Abriendo...",
+	"Headers": {
+		"Content-Type": "application/json"
+	},
+	"OnSuccess": "/Armadores/Rules/OpenDocumentSuccess.js",
+	"Properties": {
+		"sBase64": "/Armadores/Rules/OpenDocumentBase64.js",
+		"sIdOpenDocument": "123"
+	},
+	"ShowActivityIndicator": true,
+	"Target": {
+		"EntitySet": "OpenDocument",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.CreateEntity"
+}

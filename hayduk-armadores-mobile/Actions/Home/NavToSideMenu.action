@@ -1,0 +1,6 @@
+{
+	"ClearHistory": true,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/Home/SideMenu.page",
+	"_Type": "Action.Type.Navigation"
+}

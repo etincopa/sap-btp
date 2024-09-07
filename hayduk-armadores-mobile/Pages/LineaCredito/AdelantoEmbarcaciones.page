@@ -1,0 +1,78 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Icon": "sap-icon://vertical-grip",
+				"IsIconCircular": false,
+				"OnPress": "/Armadores/Actions/LineaCredito/Adelantos/EmbarcacionesPopoverMenu.action",
+				"Position": "Right",
+				"Caption": "",
+				"Visible": true
+			}
+		]
+	},
+	"Caption": "Adelantos por Embarcaciones",
+	"Controls": [
+		{
+			"LoadingIndicator": {
+				"Enabled": true,
+				"Text": "Cargando..."
+			},
+			"Sections": [
+				{
+					"DataPaging": {
+						"LoadingIndicatorText": "Cargando...",
+						"PageSize": 50,
+						"ShowLoadingIndicator": true
+					},
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"ContextMenu": {
+							"Items": [],
+							"PerformFirstActionWithFullSwipe": true
+						},
+						"AvatarStack": {
+							"ImageIsCircular": false
+						},
+						"OnPress": "/Armadores/Actions/LineaCredito/Adelanto.action",
+						"PreserveIconStackSpacing": false,
+						"ProgressIndicator": "open",
+						"StatusText": "/Armadores/Rules/LineaCredito/Adelantos/EmbarcacionSaldoDisponibleRule.js",
+						"Styles": {
+							"Title": "SimplePropertyFormCellCaption"
+						},
+						"Title": "{Matricula} {Descripcion}"
+					},
+					"Target": {
+						"EntitySet": "AdelantoLinCredSet",
+						"QueryOptions": "$filter=IDRuc eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/s4hService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Controls": [],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "AdelantoEmbarcaciones",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

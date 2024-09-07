@@ -1,0 +1,17 @@
+{
+	"ActionResult": {
+		"_Name": "resultOdata"
+	},
+	"OnSuccess": "/Armadores/Rules/LineaCredito/Habilitaciones/EliminarSolicitudSuccess.js",
+	"Properties": {
+		"sEstado": "-100",
+		"sTask": "",
+		"xActivo": false
+	},
+	"Target": {
+		"EntitySet": "SolicitudPendHabilitacion",
+		"ReadLink": "{@odata.editLink}",
+		"Service": "/Armadores/Services/armadorService.service"
+	},
+	"_Type": "Action.Type.ODataService.UpdateEntity"
+}

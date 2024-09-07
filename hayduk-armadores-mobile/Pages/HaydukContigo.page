@@ -1,0 +1,20 @@
+{
+	"Caption": "HaydukContigo",
+	"Controls": [
+		{
+			"Class": "MyWebViewClass",
+			"Control": "MyWebViewExtension",
+			"ExtensionProperties": {
+				"Url": "/Armadores/Rules/Home/GetTokenHaydukContigoRule.js"
+			},
+			"Module": "MyWebViewModule",
+			"Target": "",
+			"_Name": "ExtensionControl0",
+			"_Type": "Control.Type.Extension"
+		}
+	],
+	"Target": "",
+	"_Name": "HaydukContigo",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

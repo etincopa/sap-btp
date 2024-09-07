@@ -1,0 +1,5 @@
+{
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/HabilitacionesDetail.page",
+	"_Type": "Action.Type.Navigation"
+}

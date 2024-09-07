@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"PageToOpen": "/Armadores/Pages/TestPageC.page",
+	"NavigationType": "Cross"
+}

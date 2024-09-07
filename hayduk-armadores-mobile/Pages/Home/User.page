@@ -1,0 +1,79 @@
+{
+	"Caption": "User",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"HighlightSelectedItem": false,
+					"ObjectCell": {
+						"AccessoryType": "none",
+						"Description": "Description",
+						"AvatarStack": {
+							"Avatars": [
+								{
+									"Image": "res://mdk_logo.png"
+								}
+							],
+							"ImageIsCircular": false
+						},
+						"Footnote": "Footnote",
+						"PreserveIconStackSpacing": true,
+						"ProgressIndicator": "inProgress",
+						"StatusText": "Status",
+						"Subhead": "{RazonSocial}",
+						"SubstatusText": "Substatus",
+						"Title": "{IDRUC}"
+					},
+					"Target": {
+						"EntitySet": "DatosArmador",
+						"QueryOptions": "$filter=IDRUC eq '{{#Application/#ClientData/#Property:UserId}}'",
+						"Service": "/Armadores/Services/ERPService.service"
+					},
+					"Visible": true,
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Controls": [
+						{
+							"Caption": "Caption",
+							"IsEditable": true,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"_Name": "UsuarioPrueba",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/Home/ServiceOData/ObtenerUsuario.action",
+							"Target": "",
+							"Alignment": "Center",
+							"Title": "Button",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"ButtonType": "Text",
+							"Semantic": "Tint"
+						}
+					],
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Target": "",
+					"Visible": true,
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"Target": "",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"Target": "",
+	"_Name": "User",
+	"_Type": "Page",
+	"PrefersLargeCaption": true
+}

@@ -1,0 +1,129 @@
+{
+	"Caption": "Venta de Petróleo",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"Caption": "Nro de Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Referencia}",
+							"_Name": "FormCellSimpleProperty0",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Fecha del Documento",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{FechaDoc}",
+							"_Name": "FormCellSimpleProperty1",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Embarcación",
+							"IsEditable": true,
+							"IsVisible": true,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{Embarcacion}",
+							"_Name": "FormCellSimpleProperty2",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "TONS",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{Tons}",
+							"_Name": "FormCellSimpleProperty5",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto en Dolares",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "$ {Monto}",
+							"_Name": "FormCellSimpleProperty6",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Tipo Cambio",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "{TipoCambio}",
+							"_Name": "FormCellSimpleProperty3",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "Monto en Soles",
+							"IsEditable": true,
+							"IsVisible": true,
+							"Styles": {
+								"Caption": "SimplePropertyFormCellCaption"
+							},
+							"Target": "",
+							"Value": "S/ {MontoDoc}",
+							"_Name": "FormCellSimpleProperty7",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"ButtonType": "Primary",
+							"IsVisible": true,
+							"OnPress": "/Armadores/Actions/EstadoCuenta/ObtenerFacturaVentaPetroleo.action",
+							"Target": "",
+							"Alignment": "Right",
+							"Title": "Descargar Factura",
+							"_Name": "FormCellButton0",
+							"_Type": "Control.Type.FormCell.Button",
+							"Semantic": "Tint"
+						},
+						{
+							"Caption": "Numero",
+							"IsEditable": true,
+							"IsVisible": false,
+							"PlaceHolder": "PlaceHolder",
+							"Target": "",
+							"Value": "{Referencia}",
+							"_Name": "NumeroFactura",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					],
+					"Target": "",
+					"Visible": true
+				},
+				{
+					"Controls": [],
+					"Target": "",
+					"Visible": true
+				}
+			],
+			"Target": "",
+			"_Name": "FormCellContainer0",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"Target": "",
+	"_Name": "VentaPetroleo",
+	"_Type": "Page"
+}

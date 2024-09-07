@@ -1,0 +1,6 @@
+{
+	"ModalPageFullscreen": false,
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/Overview/TabDatosEdit.page",
+	"_Type": "Action.Type.Navigation"
+}

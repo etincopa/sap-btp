@@ -1,0 +1,7 @@
+{
+	"Message": "¿Desea enviar la solicitud de adelanto?",
+	"OKCaption": "Aceptar",
+	"OnOK": "/Armadores/Actions/LineaCredito/Adelantos/AdelantoSearchExist.action",
+	"OnSuccess": "/Armadores/Actions/LineaCredito/Adelantos/AdelantoSearchExist.action",
+	"_Type": "Action.Type.Message"
+}

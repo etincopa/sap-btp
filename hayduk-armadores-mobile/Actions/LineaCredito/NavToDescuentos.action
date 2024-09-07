@@ -1,0 +1,5 @@
+{
+	"NavigationType": "Cross",
+	"PageToOpen": "/Armadores/Pages/LineaCredito/Descuentos.page",
+	"_Type": "Action.Type.Navigation"
+}

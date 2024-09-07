@@ -1,0 +1,5 @@
+{
+	"Message": "Correo incorrecto, ingrese un correo valido",
+	"OKCaption": "Aceptar",
+	"_Type": "Action.Type.Message"
+}
