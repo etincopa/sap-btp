@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>EmptyIndicatorMode</name>
+    <derived/>
+    <documentation>Modes in which a control will render empty indicator if its content is empty.</documentation>
+    <since>1.87</since>
+    <enumeration>
+        <value name="On">
+            <documentation>Empty indicator is rendered always when the control's content is empty.</documentation>
+        </value>
+        <value name="Off">
+            <documentation>Empty indicator is never rendered.</documentation>
+        </value>
+        <value name="Auto">
+            <documentation>Empty indicator will be rendered depending on the context in which the control is placed.
+If one of the parents has the context class sapMShowEmpty-CTX then the empty indicator will be shown.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

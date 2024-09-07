@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ColorPalettePopover</name>
+    <derived/>
+    <documentation>A thin wrapper over {@link sap.m.ColorPalette} allowing the latter to be used in a popover.</documentation>
+    <since>1.54</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="defaultColor" type="sap.ui.core/CSSColor" group="Appearance">
+            <documentation>The color, which the app developer will receive when end-user chooses the "Default color" button.
+See event {@link #event:colorSelect colorSelect}.</documentation>
+        </property>
+        <property name="colors" type="sap.ui.core/CSSColor[]" defaultValue="[gold,darkorange,indianred,darkmagenta,cornflowerblue,deepskyblue,darkcyan,olivedrab,darkslategray,azure,white,lightgray,darkgray,dimgray,black]" group="Appearance">
+            <documentation>Defines the List of colors displayed in the palette. Minimum is 2 colors, maximum is 15 colors.</documentation>
+        </property>
+        <property name="showDefaultColorButton" type="sap.ui.core/boolean" defaultValue="true" group="Appearance">
+            <documentation>Indicates if the button for default color selection is available.</documentation>
+        </property>
+        <property name="showMoreColorsButton" type="sap.ui.core/boolean" defaultValue="true" group="Appearance">
+            <documentation>Denotes if the color has been chosen by selecting the "Default Color" button (true or false)</documentation>
+        </property>
+        <property name="showRecentColorsSection" type="sap.ui.core/boolean" defaultValue="true" group="Appearance" since="1.74">
+            <documentation>Indicates if the Recent Colors section is available</documentation>
+        </property>
+        <property name="displayMode" type="sap.ui.unified/ColorPickerDisplayMode" defaultValue="Default" group="Appearance" since="1.70">
+            <documentation>Determines the &lt;code&gt;displayMode&lt;/code&gt; of the &lt;code&gt;ColorPicker&lt;/code&gt; among three types - Default, Large and Simplified</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="colorSelect" allowPreventDefault="false">
+            <documentation>Fired when the user selects a color.</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/CSSColor">
+                    <documentation>The color that is returned when user chooses the "Default Color" button.</documentation>
+                </parameter>
+                <parameter name="defaultAction" type="sap.ui.core/boolean">
+                    <documentation>Denotes if the color has been chosen by selecting the "Default Color" button (true or false).</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="liveChange" since="1.85" allowPreventDefault="false">
+            <documentation>Fired when the value is changed by user interaction in the internal ColorPicker of the ColorPalette</documentation>
+            <parameters>
+                <parameter name="r" type="sap.ui.core/int">
+                    <documentation>Parameter containing the RED value (0-255).</documentation>
+                </parameter>
+                <parameter name="g" type="sap.ui.core/int">
+                    <documentation>Parameter containing the GREEN value (0-255).</documentation>
+                </parameter>
+                <parameter name="b" type="sap.ui.core/int">
+                    <documentation>Parameter containing the BLUE value (0-255).</documentation>
+                </parameter>
+                <parameter name="h" type="sap.ui.core/int">
+                    <documentation>Parameter containing the HUE value (0-360).</documentation>
+                </parameter>
+                <parameter name="s" type="sap.ui.core/int">
+                    <documentation>Parameter containing the SATURATION value (0-100).</documentation>
+                </parameter>
+                <parameter name="v" type="sap.ui.core/int">
+                    <documentation>Parameter containing the VALUE value (0-100).</documentation>
+                </parameter>
+                <parameter name="l" type="sap.ui.core/int">
+                    <documentation>Parameter containing the LIGHTNESS value (0-100).</documentation>
+                </parameter>
+                <parameter name="hex" type="sap.ui.core/string">
+                    <documentation>Parameter containing the Hexadecimal string (#FFFFFF).</documentation>
+                </parameter>
+                <parameter name="alpha" type="sap.ui.core/string">
+                    <documentation>Parameter containing the alpha value (transparency).</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+    <methods>
+        <method name="close" type="sap.ui.core/Control">
+            <documentation>Closes the &lt;code&gt;ColorPalettePopover&lt;/code&gt;.</documentation>
+        </method>
+    </methods>
+</control>

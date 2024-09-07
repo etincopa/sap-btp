@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>IllustratedMessageSize</name>
+    <derived/>
+    <documentation>Available &lt;code&gt;Illustration&lt;/code&gt; sizes for the {@link sap.m.IllustratedMessage} control.</documentation>
+    <since>1.98</since>
+    <enumeration>
+        <value name="Auto">
+            <documentation>Automatically decides the &lt;code&gt;Illustration&lt;/code&gt; size (&lt;code&gt;Base&lt;/code&gt;, &lt;code&gt;Spot&lt;/code&gt;,
+&lt;code&gt;Dialog&lt;/code&gt;, or &lt;code&gt;Scene&lt;/code&gt;) depending on the &lt;code&gt;IllustratedMessage&lt;/code&gt; container width.
+
+&lt;b&gt;Note:&lt;/b&gt; &lt;code&gt;Auto&lt;/code&gt; is the only option where the illustration size is changed according to
+the available container width. If any other &lt;code&gt;IllustratedMessageSize&lt;/code&gt; is chosen, it remains
+until changed by the app developer.</documentation>
+        </value>
+        <value name="Base">
+            <documentation>Base &lt;code&gt;Illustration&lt;/code&gt; size (XS breakpoint). Suitable for cards (two columns).
+
+&lt;b&gt;Note:&lt;/b&gt; When &lt;code&gt;Base&lt;/code&gt; is in use, no illustration is displayed.</documentation>
+        </value>
+        <value name="Spot">
+            <documentation>Spot &lt;code&gt;Illustration&lt;/code&gt; size (S breakpoint). Suitable for cards (four columns).</documentation>
+        </value>
+        <value name="Dialog">
+            <documentation>Dialog &lt;code&gt;Illustration&lt;/code&gt; size (M breakpoint). Suitable for dialogs.</documentation>
+        </value>
+        <value name="Scene">
+            <documentation>Scene &lt;code&gt;Illustration&lt;/code&gt; size (L breakpoint). Suitable for a &lt;code&gt;Page&lt;/code&gt; or a table.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

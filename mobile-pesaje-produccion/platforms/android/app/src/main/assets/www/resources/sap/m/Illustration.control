@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>Illustration</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>A simple control which uses a Symbol ID to visualize an SVG
+which has already been loaded in the {@link sap.m.IllustrationPool}.
+
+To build a Symbol ID, all of the &lt;code&gt;Illustration&lt;/code&gt; properties must be populated with data.</documentation>
+    <since>1.98</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="set" type="sap.ui.core/string" since="1.98">
+            <documentation>Defines which illustration set should be used when building the Symbol ID.</documentation>
+        </property>
+        <property name="media" type="sap.ui.core/string" since="1.98">
+            <documentation>Defines which media/breakpoint should be used when building the Symbol ID.</documentation>
+        </property>
+        <property name="type" type="sap.ui.core/string" since="1.98">
+            <documentation>Defines which illustration type should be used when building the Symbol ID.</documentation>
+        </property>
+    </properties>
+</control>

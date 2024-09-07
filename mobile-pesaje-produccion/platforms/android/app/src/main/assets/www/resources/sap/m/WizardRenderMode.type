@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>WizardRenderMode</name>
+    <derived/>
+    <documentation>Wizard rendering mode.</documentation>
+    <developmentState state="experimental" since="1.83"></developmentState>
+    <enumeration>
+        <value name="Scroll">
+            <documentation>Display all steps into a scroll section.</documentation>
+        </value>
+        <value name="Page">
+            <documentation>Display steps as separate, single pages.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>IllustratedMessageType</name>
+    <derived/>
+    <documentation>Available &lt;code&gt;Illustration&lt;/code&gt; types for the {@link sap.f.IllustratedMessage} control.</documentation>
+    <since>1.98</since>
+    <enumeration>
+        <value name="BeforeSearch" value="sapIllus-BeforeSearch">
+            <documentation>"Before Search" illustration type.</documentation>
+        </value>
+        <value name="NoActivities" value="sapIllus-NoActivities">
+            <documentation>"No Activities" illustration type.</documentation>
+        </value>
+        <value name="NoData" value="sapIllus-NoData">
+            <documentation>"No Data" illustration type.</documentation>
+        </value>
+        <value name="NoMail" value="sapIllus-NoMail">
+            <documentation>"No Email" illustration type.</documentation>
+        </value>
+        <value name="NoMailV1" value="sapIllus-NoMail_v1">
+            <documentation>"No Email v1" illustration type.</documentation>
+        </value>
+        <value name="NoEntries" value="sapIllus-NoEntries">
+            <documentation>"No Entries" illustration type.</documentation>
+        </value>
+        <value name="NoNotifications" value="sapIllus-NoNotifications">
+            <documentation>"No Notifications" illustration type.</documentation>
+        </value>
+        <value name="NoSavedItems" value="sapIllus-NoSavedItems">
+            <documentation>"No Saved Items" illustration type.</documentation>
+        </value>
+        <value name="NoSavedItemsV1" value="sapIllus-NoSavedItems_v1">
+            <documentation>"No Saved Items v1" illustration type.</documentation>
+        </value>
+        <value name="NoSearchResults" value="sapIllus-NoSearchResults">
+            <documentation>"No Search Results" illustration type.</documentation>
+        </value>
+        <value name="NoTasks" value="sapIllus-NoTasks">
+            <documentation>"No Tasks" illustration type.</documentation>
+        </value>
+        <value name="NoTasksV1" value="sapIllus-NoTasks_v1">
+            <documentation>"No Tasks v1" illustration type.</documentation>
+        </value>
+        <value name="UnableToLoad" value="sapIllus-UnableToLoad">
+            <documentation>"Unable To Load" illustration type.</documentation>
+        </value>
+        <value name="UnableToLoadImage" value="sapIllus-UnableToLoadImage">
+            <documentation>"Unable To Load Image" illustration type.</documentation>
+        </value>
+        <value name="UnableToUpload" value="sapIllus-UnableToUpload">
+            <documentation>"Unable To Upload" illustration type.</documentation>
+        </value>
+        <value name="AddColumn" value="sapIllus-AddColumn">
+            <documentation>"Add Column" illustration type.</documentation>
+        </value>
+        <value name="AddPeople" value="sapIllus-AddPeople">
+            <documentation>"Add People" illustration type.</documentation>
+        </value>
+        <value name="BalloonSky" value="sapIllus-BalloonSky">
+            <documentation>"Balloon Sky" illustration type.</documentation>
+        </value>
+        <value name="Connection" value="sapIllus-Connection">
+            <documentation>"Connection" illustration type.</documentation>
+        </value>
+        <value name="EmptyCalendar" value="sapIllus-EmptyCalendar">
+            <documentation>"Empty Calendar" illustration type.</documentation>
+        </value>
+        <value name="EmptyList" value="sapIllus-EmptyList">
+            <documentation>"Empty List" illustration type.</documentation>
+        </value>
+        <value name="EmptyPlanningCalendar" value="sapIllus-EmptyPlanningCalendar">
+            <documentation>"Empty Planning Calendar" illustration type.</documentation>
+        </value>
+        <value name="ErrorScreen" value="sapIllus-ErrorScreen">
+            <documentation>"Error Screen" illustration type.</documentation>
+        </value>
+        <value name="FilterTable" value="sapIllus-FilterTable">
+            <documentation>"Filter Table" illustration type.</documentation>
+        </value>
+        <value name="GroupTable" value="sapIllus-GroupTable">
+            <documentation>"Group Table" illustration type.</documentation>
+        </value>
+        <value name="NoFilterResults" value="sapIllus-NoFilterResults">
+            <documentation>"No Filter Results" illustration type.</documentation>
+        </value>
+        <value name="PageNotFound" value="sapIllus-PageNotFound">
+            <documentation>"Page Not Found" illustration type.</documentation>
+        </value>
+        <value name="ReloadScreen" value="sapIllus-ReloadScreen">
+            <documentation>"Reload Screen" illustration type.</documentation>
+        </value>
+        <value name="ResizeColumn" value="sapIllus-ResizeColumn">
+            <documentation>"Resize Column" illustration type.</documentation>
+        </value>
+        <value name="SearchEarth" value="sapIllus-SearchEarth">
+            <documentation>"Search Earth" illustration type.</documentation>
+        </value>
+        <value name="SearchFolder" value="sapIllus-SearchFolder">
+            <documentation>"Search Folder" illustration type.</documentation>
+        </value>
+        <value name="SimpleBalloon" value="sapIllus-SimpleBalloon">
+            <documentation>"Simple Balloon" illustration type.</documentation>
+        </value>
+        <value name="SimpleBell" value="sapIllus-SimpleBell">
+            <documentation>"Simple Bell" illustration type.</documentation>
+        </value>
+        <value name="SimpleCalendar" value="sapIllus-SimpleCalendar">
+            <documentation>"Simple Calendar" illustration type.</documentation>
+        </value>
+        <value name="SimpleCheckMark" value="sapIllus-SimpleCheckMark">
+            <documentation>"Simple CheckMark" illustration type.</documentation>
+        </value>
+        <value name="SimpleConnection" value="sapIllus-SimpleConnection">
+            <documentation>"Simple Connection" illustration type.</documentation>
+        </value>
+        <value name="SimpleEmptyDoc" value="sapIllus-SimpleEmptyDoc">
+            <documentation>"Simple Empty Doc" illustration type.</documentation>
+        </value>
+        <value name="SimpleEmptyList" value="sapIllus-SimpleEmptyList">
+            <documentation>"Simple Empty List" illustration type.</documentation>
+        </value>
+        <value name="SimpleError" value="sapIllus-SimpleError">
+            <documentation>"Simple Error" illustration type.</documentation>
+        </value>
+        <value name="SimpleMagnifier" value="sapIllus-SimpleMagnifier">
+            <documentation>"Simple Magnifier" illustration type.</documentation>
+        </value>
+        <value name="SimpleMail" value="sapIllus-SimpleMail">
+            <documentation>"Simple Mail" illustration type.</documentation>
+        </value>
+        <value name="SimpleNoSavedItems" value="sapIllus-SimpleNoSavedItems">
+            <documentation>"Simple No Saved Items" illustration type.</documentation>
+        </value>
+        <value name="SimpleNotFoundMagnifier" value="sapIllus-SimpleNotFoundMagnifier">
+            <documentation>"Simple Not Found Magnifier" illustration type.</documentation>
+        </value>
+        <value name="SimpleReload" value="sapIllus-SimpleReload">
+            <documentation>"Simple Reload" illustration type.</documentation>
+        </value>
+        <value name="SimpleTask" value="sapIllus-SimpleTask">
+            <documentation>"Simple Task" illustration type.</documentation>
+        </value>
+        <value name="SleepingBell" value="sapIllus-SleepingBell">
+            <documentation>"Sleeping Bell" illustration type.</documentation>
+        </value>
+        <value name="SortColumn" value="sapIllus-SortColumn">
+            <documentation>"Sort Column" illustration type.</documentation>
+        </value>
+        <value name="SuccessBalloon" value="sapIllus-SuccessBalloon">
+            <documentation>"Success Balloon" illustration type.</documentation>
+        </value>
+        <value name="SuccessCheckMark" value="sapIllus-SuccessCheckMark">
+            <documentation>"Success CheckMark" illustration type.</documentation>
+        </value>
+        <value name="SuccessHighFive" value="sapIllus-SuccessHighFive">
+            <documentation>"Success HighFive" illustration type.</documentation>
+        </value>
+        <value name="SuccessScreen" value="sapIllus-SuccessScreen">
+            <documentation>"Success Screen" illustration type.</documentation>
+        </value>
+        <value name="Tent" value="sapIllus-Tent">
+            <documentation>"Tent" illustration type.</documentation>
+        </value>
+        <value name="UploadCollection" value="sapIllus-UploadCollection">
+            <documentation>"Upload Collection" illustration type.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

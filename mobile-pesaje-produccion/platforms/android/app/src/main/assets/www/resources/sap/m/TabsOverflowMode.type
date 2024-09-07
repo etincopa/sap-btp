@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>TabsOverflowMode</name>
+    <derived/>
+    <documentation>Specifies &lt;code&gt;IconTabBar&lt;/code&gt; tab overflow mode.</documentation>
+    <since>1.90.0</since>
+    <enumeration>
+        <value name="End">
+            <documentation>Default behavior: One overflow tab at the end of the header.</documentation>
+        </value>
+        <value name="StartAndEnd">
+            <documentation>Two overflow tabs at both ends of the header to keep tabs order intact.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

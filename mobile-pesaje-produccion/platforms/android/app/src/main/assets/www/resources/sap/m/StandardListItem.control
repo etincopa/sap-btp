@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>StandardListItem</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>&lt;code&gt;sap.m.StandardListItem&lt;/code&gt; is a list item providing the most common use cases, e.g. image, title and description.</documentation>
+    <baseType>sap.m/ListItemBase</baseType>
+    <properties>
+        <property name="title" type="sap.ui.core/string" group="Misc">
+            <documentation>Defines the title of the list item.</documentation>
+        </property>
+        <property name="description" type="sap.ui.core/string" group="Misc">
+            <documentation>Defines the additional information for the title.
+&lt;b&gt;Note:&lt;/b&gt; This is only visible when the &lt;code&gt;title&lt;/code&gt; property is not empty.</documentation>
+        </property>
+        <property name="icon" type="sap.ui.core/URI" group="Misc">
+            <documentation>Defines the list item icon.</documentation>
+        </property>
+        <property name="iconInset" type="sap.ui.core/boolean" defaultValue="true" group="Appearance">
+            <documentation>Defines the indentation of the icon. If set to &lt;code&gt;false&lt;/code&gt;, the icon will not be shown as embedded. Instead it will take the full height of the list item.</documentation>
+        </property>
+        <property name="iconDensityAware" type="sap.ui.core/boolean" defaultValue="true" group="Misc">
+            <documentation>By default, one or more requests are sent to get the density perfect version of the icon if the given version of the icon doesn't exist on the server.
+&lt;b&gt;Note:&lt;/b&gt; If bandwidth is a key factor for the application, set this value to &lt;code&gt;false&lt;/code&gt;.</documentation>
+        </property>
+        <property name="activeIcon" type="sap.ui.core/URI" group="Misc">
+            <documentation>Defines the icon that is shown while the list item is pressed.</documentation>
+        </property>
+        <property name="info" type="sap.ui.core/string" group="Misc">
+            <documentation>Defines an additional information text.
+&lt;b&gt;Note:&lt;/b&gt;
+A wrapping of the information text is also supported as of version 1.95, if &lt;code&gt;wrapping=true&lt;/code&gt;. Although long strings are supported for the information text, it is recommended to use short strings. For more details, see {@link #getWrapping wrapping}.</documentation>
+        </property>
+        <property name="infoState" type="sap.ui.core/ValueState" defaultValue="None" group="Misc">
+            <documentation>Defines the state of the information text, e.g. &lt;code&gt;Error&lt;/code&gt;, &lt;code&gt;Warning&lt;/code&gt;, &lt;code&gt;Success&lt;/code&gt;.</documentation>
+        </property>
+        <property name="adaptTitleSize" type="sap.ui.core/boolean" defaultValue="true" group="Appearance" since="1.16.3">
+            <documentation>By default, the title size adapts to the available space and gets bigger if the description is empty. If you have list items with and without descriptions, this results in titles with different sizes. In this case, it can be better to switch the size adaption off by setting this property to &lt;code&gt;false&lt;/code&gt;.</documentation>
+        </property>
+        <property name="titleTextDirection" type="sap.ui.core/TextDirection" defaultValue="Inherit" group="Appearance" since="1.28.0">
+            <documentation>Defines the &lt;code&gt;title&lt;/code&gt; text directionality with enumerated options. By default, the control inherits text direction from the DOM.</documentation>
+        </property>
+        <property name="infoTextDirection" type="sap.ui.core/TextDirection" defaultValue="Inherit" group="Appearance" since="1.28.0">
+            <documentation>Defines the &lt;code&gt;info&lt;/code&gt; directionality with enumerated options. By default, the control inherits text direction from the DOM.</documentation>
+        </property>
+        <property name="wrapping" type="sap.ui.core/boolean" defaultValue="false" group="Behavior" since="1.67">
+            <documentation>Defines the wrapping behavior of title and description texts.
+
+&lt;b&gt;Note:&lt;/b&gt;
+
+In the desktop mode, initial rendering of the control contains 300 characters along with a button to expand and collapse the text whereas in the phone mode, the character limit is set to 100 characters.&lt;br&gt;
+A wrapping of the information text is supported as of 1.95. But expanding and collapsing the information text is not possible.
+A wrapping of the information text is disabled if &lt;code&gt;infoStateInverted&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+        </property>
+        <property name="infoStateInverted" type="sap.ui.core/boolean" defaultValue="false" group="Appearance" since="1.74">
+            <documentation>Determines the inverted rendering behavior of the info text and the info state.
+The color defined by the &lt;code&gt;infoState&lt;/code&gt; property is rendered as the background color for the info text, if this property is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+        </property>
+        <property name="wrapCharLimit" type="sap.ui.core/int" defaultValue="0" group="Behavior" since="1.94">
+            <documentation>This property can be used to change the default character limits for the wrapping behavior.
+
+If this property is set to 0, then the default character limit used by the wrapping behavior is used. For details see {@link #getWrapping wrapping}.
+
+&lt;b&gt;Note:&lt;/b&gt;
+
+0 or a positive integer must be used for this property.</documentation>
+        </property>
+    </properties>
+    <aggregations>
+        <aggregation name="avatar" type="sap.m/Avatar" since="1.98" cardinality="0..1">
+            <documentation>A &lt;code&gt;sap.m.Avatar&lt;/code&gt; control instance that, if set, is used instead of an icon or image.
+
+The size of the &lt;code&gt;Avatar&lt;/code&gt; control depends on the &lt;code&gt;insetIcon&lt;/code&gt; property of &lt;code&gt;StandardListItem&lt;/code&gt;.
+The &lt;code&gt;displaySize&lt;/code&gt; property of the &lt;code&gt;Avatar&lt;/code&gt; control is not supported. If the &lt;code&gt;insetIcon&lt;/code&gt; property of &lt;code&gt;StandardListItem&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;, the size of the &lt;code&gt;Avatar&lt;/code&gt; control is set to XS; if the &lt;code&gt;insetIcon&lt;/code&gt; property of &lt;code&gt;StandardListItem&lt;/code&gt; is set to &lt;code&gt;false&lt;/code&gt;, the size of the &lt;code&gt;Avatar&lt;/code&gt; control is set to "S".</documentation>
+        </aggregation>
+    </aggregations>
+</control>
