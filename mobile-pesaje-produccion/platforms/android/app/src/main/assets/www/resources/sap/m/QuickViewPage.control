@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>QuickViewPage</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>QuickViewPage consists of a page header, an avatar,
+an object name with short description, and an object information divided in groups.
+The control uses the sap.m.SimpleForm control to display information.</documentation>
+    <since>1.28.11</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="pageId" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Page id</documentation>
+        </property>
+        <property name="header" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Specifies the text displayed in the header of the control.</documentation>
+        </property>
+        <property name="title" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Specifies the text displayed in the header of the content section of the control.</documentation>
+        </property>
+        <property name="titleUrl" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Specifies the URL which opens when the title or the avatar is clicked.
+&lt;b&gt;Note:&lt;/b&gt; If the avatar has &lt;code&gt;press&lt;/code&gt; listeners this URL is not opened automatically.</documentation>
+        </property>
+        <property name="crossAppNavCallback" type="sap.ui.core/object" group="Misc">
+            <documentation>Specifies the application which provides target and param configuration for cross-application navigation from the 'page header'.</documentation>
+        </property>
+        <property name="description" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Specifies the text displayed under the header of the content section.</documentation>
+        </property>
+        <property name="icon" type="sap.ui.core/string" defaultValue="" group="Misc">
+            <documentation>Specifies the URL of the icon or image displayed under the header of the page.</documentation>
+            <deprecation since="1.92">Use the &lt;code&gt;avatar&lt;/code&gt; aggregation instead.</deprecation>
+        </property>
+        <property name="fallbackIcon" type="sap.ui.core/URI" group="Appearance" since="1.69">
+            <documentation>Defines the fallback icon displayed in case of wrong image src or loading issues.
+
+&lt;b&gt;Note:&lt;/b&gt; Accepted values are only icons from the SAP icon font.</documentation>
+            <deprecation since="1.92">Use the &lt;code&gt;avatar&lt;/code&gt; aggregation and use its property &lt;code&gt;fallbackIcon&lt;/code&gt; instead.</deprecation>
+        </property>
+    </properties>
+    <aggregations default="groups">
+        <aggregation name="groups" type="sap.m/QuickViewGroup" cardinality="0..n" bindable="bindable">
+            <documentation>QuickViewGroup consists of a title (optional) and an entity of group elements.</documentation>
+        </aggregation>
+        <aggregation name="avatar" type="sap.m/Avatar" since="1.92" cardinality="0..1" bindable="bindable">
+            <documentation>Specifies the avatar displayed under the header of the page.
+&lt;b&gt;Note:&lt;/b&gt; To achieve the recommended design and behavior don't use the
+&lt;code&gt;displaySize&lt;/code&gt;, &lt;code&gt;customDisplaySize&lt;/code&gt;, &lt;code&gt;customFontSize&lt;/code&gt; properties
+and &lt;code&gt;detailBox&lt;/code&gt; aggregation of &lt;code&gt;sap.m.Avatar&lt;/code&gt;.</documentation>
+        </aggregation>
+    </aggregations>
+</control>

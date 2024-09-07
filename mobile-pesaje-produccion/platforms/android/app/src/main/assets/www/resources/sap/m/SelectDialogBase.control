@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>SelectDialogBase</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The &lt;code&gt;sap.m.SelectDialogBase&lt;/code&gt; control provides a base functionality of the
+&lt;code&gt;sap.m.SelectDialog&lt;/code&gt; and &lt;code&gt;sap.m.TableSelectDialog&lt;/code&gt; controls.</documentation>
+    <since>1.93</since>
+    <abstract/>
+    <baseType>sap.ui.core/Control</baseType>
+    <events>
+        <event name="updateStarted" since="1.93" allowPreventDefault="false">
+            <documentation>Fires before &lt;code&gt;items&lt;/code&gt; binding is updated (e.g. sorting, filtering)
+
+&lt;b&gt;Note:&lt;/b&gt; Event handler should not invalidate the control.				 *</documentation>
+            <parameters>
+                <parameter name="reason" type="sap.ui.core/string">
+                    <documentation>The reason of the update, e.g. Binding, Filter, Sort, Growing, Change, Refresh, Context.</documentation>
+                </parameter>
+                <parameter name="actual" type="sap.ui.core/int">
+                    <documentation>Actual number of items.</documentation>
+                </parameter>
+                <parameter name="total" type="sap.ui.core/int">
+                    <documentation>The total count of bound items. This can be used if the &lt;code&gt;growing&lt;/code&gt; property is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="updateFinished" since="1.93" allowPreventDefault="false">
+            <documentation>Fires after &lt;code&gt;items&lt;/code&gt; binding is updated and processed by the control.</documentation>
+            <parameters>
+                <parameter name="reason" type="sap.ui.core/string">
+                    <documentation>The reason of the update, e.g. Binding, Filter, Sort, Growing, Change, Refresh, Context.</documentation>
+                </parameter>
+                <parameter name="actual" type="sap.ui.core/int">
+                    <documentation>Actual number of items.</documentation>
+                </parameter>
+                <parameter name="total" type="sap.ui.core/int">
+                    <documentation>The total count of bound items. This can be used if the &lt;code&gt;growing&lt;/code&gt; property is set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="selectionChange" since="1.93" allowPreventDefault="false">
+            <documentation>Fires when selection is changed via user interaction inside the control.</documentation>
+            <parameters>
+                <parameter name="listItem" type="sap.m/ListItemBase">
+                    <documentation>The item whose selection has changed. In &lt;code&gt;MultiSelect&lt;/code&gt; mode, only the up-most selected item is returned. This parameter can be used for single-selection modes.</documentation>
+                </parameter>
+                <parameter name="listItems" type="sap.m/ListItemBase[]">
+                    <documentation>Array of items whose selection has changed. This parameter can be used for &lt;code&gt;MultiSelect&lt;/code&gt; mode.</documentation>
+                </parameter>
+                <parameter name="selected" type="sap.ui.core/boolean">
+                    <documentation>Indicates whether the &lt;code&gt;listItem&lt;/code&gt; parameter is selected or not.</documentation>
+                </parameter>
+                <parameter name="selectAll" type="sap.ui.core/boolean">
+                    <documentation>Indicates whether the select all action is triggered or not.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+</control>

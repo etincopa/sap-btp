@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>P13nPopupMode</name>
+    <derived/>
+    <documentation>Type of popup used in the &lt;code&gt;sap.m.p13n.Popup&lt;/code&gt;.</documentation>
+    <enumeration>
+        <value name="Dialog">
+            <documentation>Dialog type as popup type.</documentation>
+        </value>
+        <value name="ResponsivePopover">
+            <documentation>ResponsivePopover type as popup type.</documentation>
+        </value>
+    </enumeration>
+</simple-type>
