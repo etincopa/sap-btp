@@ -1,0 +1,100 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-privacyscreen": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-e2etrace": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-odata": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-xhook": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-corelibs": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-apppreferences": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-i18n": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-authproxy": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-attachmentviewer": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-calendar": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-ui5": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-logon": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-encryptedstorage": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-logger": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-settings": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    },
+    "kapsel-plugin-usage": {
+      "PACKAGE_NAME": "com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa"
+    }
+  }
+}

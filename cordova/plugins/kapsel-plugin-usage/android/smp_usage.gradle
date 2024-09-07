@@ -1,0 +1,13 @@
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+// Apply values after project's build-extras.gradle
+cdvPluginPostBuildExtras.add({
+    dependencies {
+        compile(name:'usage-plugin-4.7.6', ext:'aar')
+        compile(name:'Usage-3.16.27', ext:'aar')
+    }
+})
