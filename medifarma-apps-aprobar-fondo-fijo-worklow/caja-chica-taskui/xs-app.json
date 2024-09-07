@@ -1,0 +1,30 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/bpmworkflowruntime/(.*)$",
+      "target": "/$1",
+      "service": "com.sap.bpm.workflow",
+      "endpoint": "workflow_rest_url",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/saperp/(.*)$",
+      "target": "/sap/opu/odata/$1",
+      "authenticationType": "none",
+      "destination": "ER_FF_S4H_HTTP_BASIC",
+      "csrfProtection": false
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    }
+  ]
+}

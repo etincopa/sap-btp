@@ -1,0 +1,2 @@
+
+$.context.aprobarRequest.Type = "C";

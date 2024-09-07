@@ -1,0 +1,98 @@
+_schema-version: "2.1"
+ID: rendicion_gastos_wf_caja_chica
+version: 0.0.1
+modules:
+- name: workflow_caja_chica
+  type: com.sap.application.content
+  path: caja-chica-workflow
+  requires:
+  - name: workflow_mta
+    parameters:
+      content-target: true
+- name: rendicion_gastos_wf_caja_chica-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: rendicion_gastos_wf_caja_chica-destination-service
+    parameters:
+      content-target: true
+  - name: rendicion_gastos_wf_caja_chica_html_repo_host
+    parameters:
+      service-key:
+        name: rendicion_gastos_wf_caja_chica_html_repo_host-key
+  - name: uaa_rendicion_gastos_wf_caja_chica
+    parameters:
+      service-key:
+        name: uaa_rendicion_gastos_wf_caja_chica-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: workflow_rendicion_gastos_wf_caja_chica_html_repo_host
+          ServiceInstanceName: rendicion_gastos_wf_caja_chica_html_repo_host
+          ServiceKeyName: rendicion_gastos_wf_caja_chica_html_repo_host-key
+          sap.cloud.service: medifarma-apps-rendicion-gastos-bs
+        - Authentication: OAuth2UserTokenExchange
+          Name: workflow_uaa_rendicion_gastos_wf_caja_chica
+          ServiceInstanceName: uaa_rendicion_gastos_wf_caja_chica
+          ServiceKeyName: uaa_rendicion_gastos_wf_caja_chica-key
+          sap.cloud.service: medifarma-apps-rendicion-gastos-bs
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: rendicion_gastos_wf_caja_chica-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: rendicion_gastos_wf_caja_chica_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - cajachicataskui.zip
+      name: cajachicataskui
+      target-path: resources/
+- name: cajachicataskui
+  type: html5
+  path: caja-chica-taskui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: workflow_mta
+  type: org.cloudfoundry.existing-service
+- name: rendicion_gastos_wf_caja_chica-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: rendicion_gastos_wf_caja_chica-destination-service
+    service-plan: lite
+- name: rendicion_gastos_wf_caja_chica_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: uaa_rendicion_gastos_wf_caja_chica
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: xsuaa
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
