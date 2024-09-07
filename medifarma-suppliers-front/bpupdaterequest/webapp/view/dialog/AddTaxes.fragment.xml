@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple"
+	xmlns:layout="sap.ui.layout">
+	<Dialog title="{i18n>titleTaxes}" class="sapUiContentPadding sapUiSizeCompact" contentWidth="50%">
+		<content>
+			<layout:VerticalLayout>
+				<core:Icon tooltip="{i18n>tltTaxes}" src="sap-icon://add" class="sapUiTinyMarginTop" color="#1C4C98" press="onDialogAddTaxes">
+					<core:layoutData>
+						<FlexItemData growFactor="1"/>
+					</core:layoutData>
+				</core:Icon>
+				<Table width="100%" noDataText="{i18n>tblNoData}" items="{DataSociety>/WithholdingTaxCodes}" mode="None" showSeparators="All" growing="true"
+					growingThreshold="20" growingScrollToLoad="true">
+					<infoToolbar>
+						<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+							<content>
+								<!--<core:Icon tooltip="{i18n>tltTaxes}" src="sap-icon://add" class="sapUiTinyMarginTop" color="#1C4C98">-->
+								<!--	<core:layoutData>-->
+								<!--		<FlexItemData growFactor="1"/>-->
+								<!--	</core:layoutData>-->
+								<!--</core:Icon>-->
+							</content>
+						</Toolbar>
+					</infoToolbar>
+					<headerToolbar/>
+					<columns>
+						<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clTypeTaxes}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clIndicator}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="{i18n>clSujeto}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							</header>
+							<footer/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Active">
+							<cells>
+								<ComboBox items="{path : 'listTypeTaxes>/'}" width="100%" placeholder="{i18n>phclTypeTaxes}" change="onGetIndicatorTaxes"
+									selectedKey="{DataSociety>WithholdingTaxType}" value="{DataSociety>WithholdingTaxTypeDesc}" showSecondaryValues="true"
+									filterSecondaryValues="true">
+									<core:ListItem key="{listTypeTaxes>WithholdingTaxTypeID}" text="{listTypeTaxes>Description}"
+										additionalText="{listTypeTaxes>WithholdingTaxTypeID}"/>
+								</ComboBox>
+								<ComboBox items="{path : 'listIndicatorTaxes>/'}" width="100%" placeholder="{i18n>phclIndicator}"
+									selectedKey="{DataSociety>WithholdingTaxCode}" value="{DataSociety>WithholdingTaxCodeDesc}" showSecondaryValues="true"
+									filterSecondaryValues="true">
+									<core:ListItem key="{listIndicatorTaxes>WithholdingTaxCodeID}" text="{listIndicatorTaxes>Description}"
+										additionalText="{listIndicatorTaxes>WithholdingTaxCodeID}"/>
+								</ComboBox>
+								<CheckBox select="onSelectCheckBoxAddTaxes" selected="{= ${DataSociety>SubjectToWithholding}.length > 0 ? true : false }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</layout:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button text="{i18n>btnConfirm}" press="onConfirmAddTaxses" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelAddTaxses" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

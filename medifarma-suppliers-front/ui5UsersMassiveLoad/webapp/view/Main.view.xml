@@ -1,0 +1,81 @@
+<mvc:View 
+        controllerName="com.everis.suppliers.ui5UsersMassiveLoad.controller.Main" 
+        xmlns:mvc="sap.ui.core.mvc" 
+        displayBlock="true" 
+        xmlns="sap.m" 
+        xmlns:core="sap.ui.core"
+        xmlns:u="sap.ui.unified" 
+        xmlns:l="sap.ui.layout" 
+        xmlns:f="sap.ui.layout.form">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page">
+					<content>
+                        <VBox class="sapUiSmallMargin">
+                        <MessageStrip
+				            text="El archivo .CSV debe contener máximo 200 registros (usuarios). Por favor verifique que se cumpla con dicha cantidad."
+				            showIcon="true"
+				            showCloseButton="false">
+			            </MessageStrip>
+                            <f:Form editable="true">
+                        	    <f:title>
+				                    <core:Title text="Carga Masiva de Usuarios IAS" />
+			                    </f:title>
+                                <f:layout>
+				                    <f:ResponsiveGridLayout
+				                    	labelSpanXL="3"
+				                    	labelSpanL="3"
+				                    	labelSpanM="3"
+				                    	labelSpanS="12"
+				                    	adjustLabelSpan="false"
+				                    	emptySpanXL="4"
+				                    	emptySpanL="4"
+				                    	emptySpanM="4"
+				                    	emptySpanS="0"
+				                    	columnsXL="1"
+				                    	columnsL="1"
+				                    	columnsM="1"
+				                    	singleContainerFullSize="false" />
+			                    </f:layout>
+                                <f:formContainers>
+                                    <f:FormContainer>
+                                        <f:formElements>
+                                            <f:FormElement label="Archivo CSV">
+                                                <f:fields>
+								                    <u:FileUploader
+			                                            id="fuBulkUsers"
+			                                            tooltip="Cargue aquí la lista de usuarios a crear"
+                			                            typeMissmatch="handleTypeMissmatch"
+			                                            fileType="csv"
+                                                        icon="sap-icon://upload"
+                                                        width="100%"
+			                                            change="handleUploadCSV"/>
+							                    </f:fields>
+                                            </f:FormElement>
+                                        </f:formElements>
+                                    </f:FormContainer>
+                                </f:formContainers>
+                            </f:Form>
+                        </VBox>
+                    </content>
+                     <footer>
+                        <Toolbar
+                        id="otbFooter">
+                            <Button
+                                icon="sap-icon://alert"
+                                text="{= ${message>/}.length }"
+                                visible="{= ${message>/}.length > 0 }"
+                                type="Emphasized"
+                                press="onMessagePopoverPress" />
+
+                            <ToolbarSpacer/>
+                            <Button text="Iniciar carga masiva" type="Accept" press="handleUploadUsers"/>
+                            <Button text="Limpiar Mensajes de error" press="onClearPress"  visible="{= ${message>/}.length > 0 }"/>
+                        </Toolbar>
+                    </footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

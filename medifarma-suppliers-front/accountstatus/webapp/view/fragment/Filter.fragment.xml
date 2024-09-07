@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<fb:FilterBar header="Filtros" reset="onRestoreFilters" search="onSearch" useToolbar="false" showGoOnFB="true"
+		showFilterConfiguration="true" showRestoreOnFB="true" showRestoreButton="false">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="MANGROUP" name="A" label="{i18n>lblInvoiceDate}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<ComboBox required="true" id="idCmbFecha" selectedKey="{filters>/DateCreation}" change="onSelectionChange">
+						<core:Item key="0" text="{i18n>cblTxt30}"/>
+						<core:Item key="1" text="{i18n>cblTxt15}"/>
+						<core:Item key="99" text="{i18n>cblTxtOtherRange}"/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="MANGROUP" name="B" label="{i18n>lblSociety}" partOfCurrentVariant="true" visibleInFilterBar="true">
+				<fb:control>
+					<MultiComboBox required="false" id="mbxSociedad" showSecondaryValues="true" items="{ path: '/CompanySet',templateShareable:true }"
+						selectedKeys="{filters>/Bukrs}">
+						<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

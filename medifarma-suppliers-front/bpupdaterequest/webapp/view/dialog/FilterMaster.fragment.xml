@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleFilterDialogConfirm">
+		<filterItems>
+			<ViewSettingsFilterItem text="{i18n>fltDate}" key="WeightMeasure" multiSelect="false">
+				<items>
+					<DatePicker id="DP1" placeholder="Enter Date ..." change="handleChange" class="sapUiSmallMarginBottom"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

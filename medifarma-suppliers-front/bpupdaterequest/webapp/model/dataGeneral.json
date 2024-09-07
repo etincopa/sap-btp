@@ -1,0 +1,262 @@
+{
+	"group":[{
+		"id": 1,
+		"text": "0001"
+	},{
+		"id": 2,
+		"text": "0002"
+	},{
+		"id": 3,
+		"text": "0003"
+	},{
+		"id": 4,
+		"text": "0004"
+	},{
+		"id": 5,
+		"text": "0005"
+	}],
+	"tipoDoc":[{
+		"id": 1,
+		"text": "DNI"
+	},{
+		"id": 2,
+		"text": "RUC"
+	},{
+		"id": 3,
+		"text": "Carnet Extranjeria"
+	},{
+		"id": 4,
+		"text": "RUT"
+	},{
+		"id": 5,
+		"text": "OTROS"
+	}],
+	"distrito":[{
+		"id": 1,
+		"text": "San Borja"
+	},{
+		"id": 2,
+		"text": "Miraflores"
+	},{
+		"id": 3,
+		"text": "Santa Anita"
+	},{
+		"id": 4,
+		"text": "Magdalena"
+	},{
+		"id": 5,
+		"text": "Surco"
+	}],
+	"poblacion":[{
+		"id": 1,
+		"text": "01"
+	},{
+		"id": 2,
+		"text": "02"
+	},{
+		"id": 3,
+		"text": "03"
+	},{
+		"id": 4,
+		"text": "04"
+	},{
+		"id": 5,
+		"text": "05"
+	}],
+	"pais":[{
+		"id": 1,
+		"text": "Peru"
+	},{
+		"id": 2,
+		"text": "Brasil"
+	},{
+		"id": 3,
+		"text": "Argentina"
+	},{
+		"id": 4,
+		"text": "Chile"
+	},{
+		"id": 5,
+		"text": "Colombia"
+	}],
+	"region":[{
+		"id": 1,
+		"text": "Lima"
+	},{
+		"id": 2,
+		"text": "Arequipa"
+	},{
+		"id": 3,
+		"text": "Moquegua"
+	},{
+		"id": 4,
+		"text": "Ica"
+	},{
+		"id": 5,
+		"text": "Tacna"
+	}],
+	"ramo":[{
+		"id": 1,
+		"text": "Pesca Maritima, Costera y de altura"
+	},{
+		"id": 2,
+		"text": "Comunicacion"
+	},{
+		"id": 3,
+		"text": "Bancos y Seguros"
+	},{
+		"id": 4,
+		"text": "Ferreteria"
+	},{
+		"id": 5,
+		"text": "Informatica"
+	}],
+	"idioma":[{
+		"id": 1,
+		"text": "Español"
+	},{
+		"id": 2,
+		"text": "Ingles"
+	},{
+		"id": 3,
+		"text": "Portugues"
+	},{
+		"id": 4,
+		"text": "Frances"
+	},{
+		"id": 5,
+		"text": "Italiano"
+	}],
+	"banco":[{
+		"id": "BCP",
+		"text": "Banco de Credito del Peru"
+	},{
+		"id": "BBVA",
+		"text": "Banco Continental"
+	},{
+		"id": "BN",
+		"text": "Banco de la Nacion"
+	}],
+	"tipoCuenta":[{
+		"id": 1,
+		"text": "Cuenta 1"
+	},{
+		"id": 2,
+		"text": "Cuenta 2"
+	},{
+		"id": 3,
+		"text": "Cuenta 3"
+	},{
+		"id": 4,
+		"text": "Cuenta 4"
+	},{
+		"id": 5,
+		"text": "Cuenta 5"
+	}],
+	"moneda":[{
+		"id": 1,
+		"text": "USD"
+	},{
+		"id": 2,
+		"text": "PEN"
+	},{
+		"id": 3,
+		"text": "EUR"
+	}],
+	"funcion":[{
+		"id": 1,
+		"text": "Persona de contacto"
+	},{
+		"id": 2,
+		"text": "Funcion 2"
+	},{
+		"id": 3,
+		"text": "Funcion 3"
+	},{
+		"id": 4,
+		"text": "Funcion 4"
+	},{
+		"id": 5,
+		"text": "Funcion 5"
+	}],
+	"tipoRelacion":[{
+		"id": 1,
+		"text": "Relacion 1"
+	},{
+		"id": 2,
+		"text": "Relacion 2"
+	},{
+		"id": 3,
+		"text": "Relacion 3"
+	},{
+		"id": 4,
+		"text": "Relacion 4"
+	},{
+		"id": 5,
+		"text": "Relacion 5"
+	}],
+	"purchaseOrg":[{
+		"id": 1,
+		"text": "Org. Compras 1"
+	},{
+		"id": 2,
+		"text": "Org. Compras 2"
+	},{
+		"id": 3,
+		"text": "Org. Compras 3"
+	},{
+		"id": 4,
+		"text": "Org. Compras 4"
+	},{
+		"id": 5,
+		"text": "Org. Compras 5"
+	}],
+	"society":[{
+		"id": 1,
+		"text": "Sociedad 1"
+	},{
+		"id": 2,
+		"text": "Sociedad 2"
+	},{
+		"id": 3,
+		"text": "Sociedad 3"
+	},{
+		"id": 4,
+		"text": "Sociedad 4"
+	},{
+		"id": 5,
+		"text": "Sociedad 5"
+	}],
+	"typeTaxes":[{
+		"id": 1,
+		"text": "Tipo de retencion 1"
+	},{
+		"id": 2,
+		"text": "Tipo de retencion 2"
+	},{
+		"id": 3,
+		"text": "Tipo de retencion 3"
+	},{
+		"id": 4,
+		"text": "Tipo de retencion 4"
+	},{
+		"id": 5,
+		"text": "Tipo de retencion 5"
+	}],
+	"indicator":[{
+		"id": 1,
+		"text": "Indicador 1"
+	},{
+		"id": 2,
+		"text": "Indicador 2"
+	},{
+		"id": 3,
+		"text": "Indicador 3"
+	},{
+		"id": 4,
+		"text": "Indicador 4"
+	},{
+		"id": 5,
+		"text": "Indicador 5"
+	}]
+}

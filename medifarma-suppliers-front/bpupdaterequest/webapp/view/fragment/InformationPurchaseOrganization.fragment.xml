@@ -1,0 +1,155 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<form:Form width="100%" editable="true" visible="{visible>/state}">
+		<form:title>
+			<core:Title text="{i18n>dataPurchaseOrg}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblPurchaseOrganizations}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listPurchaseOrg>/'}" placeholder="{i18n>phlblPurchaseOrganizations}" change="onChangeEstab"
+								selectedKey="{DataPurchaseOrg>/PurchasingOrganizationID}" width="50%" value="{DataPurchaseOrg>/PurcOrganizationDescription}"
+								showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}">
+								<core:ListItem key="{listPurchaseOrg>PurchasingOrganizationID}" text="{listPurchaseOrg>Description}"
+									additionalText="{listPurchaseOrg>PurchasingOrganizationID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblOrderCurrency}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listOrderCurrency>/'}" placeholder="{i18n>phlblOrderCurrency}" change="onChangeEstab"
+								selectedKey="{DataPurchaseOrg>/POCurrency}" width="50%" value="{DataPurchaseOrg>/POCurrencyDescription}" showSecondaryValues="true"
+								filterSecondaryValues="true" enabled="{general>/state}">
+								<core:ListItem key="{listOrderCurrency>PurchaseOrderCurrencyID}" text="{listOrderCurrency>Description}"
+									additionalText="{listOrderCurrency>PurchaseOrderCurrencyID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblPaymentTerms}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<!--Cambio de Kallpa-->
+							<ComboBox items="{path : 'listPayCondition>/'}" placeholder="{i18n>phlblFunction}" selectedKey="{DataPurchaseOrg>/PaymentCondition}"
+								width="50%" enabled="false" value="{DataPurchaseOrg>/PaymentConditionDescription}">
+								<core:Item key="{listPayCondition>PaymentConditionID}" text="{listPayCondition>Description}"/>
+							</ComboBox>
+							<!--<Input value="{DataPurchaseOrg>/PaymentConditionDescription}" selectedKey="{DataPurchaseOrg>/PaymentCondition}"-->
+							<!--	placeholder="{i18n>phlblPaymentTerms}" type="Text" showValueHelp="true" enabled="{general>/state}" visible="true" width="50%"-->
+							<!--	valueHelpOnly="true" valueHelpRequest="onMatchCodePayConditionPurchase"/>-->
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblIncoterms}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataPurchaseOrg>/IncotermsDescription}" placeholder="{i18n>phlblIncoterms}" type="Text" showValueHelp="true"
+								enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="true" valueHelpRequest="onMatchCodeIncoterms"/>
+						</form:fields>
+					</form:FormElement>
+					<!--<form:FormElement visible="true">-->
+					<!--	<form:label>-->
+					<!--		<Label text="{i18n>lblShoppingGroup}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>-->
+					<!--	</form:label>-->
+					<!--	<form:fields>-->
+					<!--		<Input liveChange="onNumericLiveChange" placeholder="{i18n>phlblShoppingGroup}" type="Text" showValueHelp="true" enabled="true" visible="true"-->
+					<!--			width="50%" valueHelpOnly="false" maxLength="10"/>-->
+					<!--	</form:fields>-->
+					<!--</form:FormElement>-->
+					<!--<form:FormElement visible="true">-->
+					<!--	<form:label>-->
+					<!--		<Label text="{i18n>lblPartnerFunctions}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>-->
+					<!--	</form:label>-->
+					<!--	<form:fields>-->
+					<!--		<Input liveChange="onNumericLiveChange" placeholder="{i18n>phlblPartnerFunctions}" type="Text" showValueHelp="true" enabled="true" visible="true"-->
+					<!--			width="50%" valueHelpOnly="false" maxLength="10"/>-->
+					<!--	</form:fields>-->
+					<!--</form:FormElement>-->
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<Button press="onAddPurchaseOrg" text="{i18n>btnAddPurchaseOrg}" type="Emphasized" icon="sap-icon://official-service" iconFirst="true"
+		width="auto" enabled="{general>/state}" visible="{visible>/state}" iconDensityAware="false"/>
+	<Table items="{path:'listTblPurchaseOrg>/'}" width="100%" noDataText="No hay datos" mode="None" showSeparators="All" growing="true"
+		growingThreshold="20" growingScrollToLoad="true">
+		<infoToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+				<content>
+					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+				</content>
+			</Toolbar>
+		</infoToolbar>
+		<headerToolbar/>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblPurchaseOrganizations}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblOrderCurrency}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblPaymentTerms}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblIncoterms}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<!--<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>lblShoppingGroup}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+			<!--	</header>-->
+			<!--	<footer/>-->
+			<!--</Column>-->
+			<!--<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>lblPartnerFunctions}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+			<!--	</header>-->
+			<!--	<footer/>-->
+			<!--</Column>-->
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clDelete}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active">
+				<cells>
+					<Text text="{listTblPurchaseOrg>PurcOrganizationDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin"
+						textDirection="Inherit"/>
+					<Text text="{listTblPurchaseOrg>POCurrencyDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listTblPurchaseOrg>PaymentConditionDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin"
+						textDirection="Inherit"/>
+					<Text text="{listTblPurchaseOrg>IncotermsDescription}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Button press="onDeletePurchaseOrg" type="Transparent" icon="sap-icon://delete" enabled="{general>/state}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

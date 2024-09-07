@@ -1,0 +1,160 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<form:Form width="100%" editable="true" visible="{visible>/state}">
+		<form:title>
+			<core:Title text="{i18n>dataSociety}" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<!--<form:FormElement visible="true" label="">-->
+					<!--	<RadioButtonGroup columns="2" selectedIndex="0">-->
+					<!--		<RadioButton text="{i18n>lblClient}"/>-->
+					<!--		<RadioButton text="{i18n>lblSupplier}"/>-->
+					<!--	</RadioButtonGroup>-->
+					<!--</form:FormElement>-->
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblSociety}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<ComboBox items="{path : 'listSociety>/'}" width="50%" placeholder="{i18n>phlblSociety}" selectedKey="{DataSociety>/CompanyID}"
+								change="onGetAssociatedAccount" value="{DataSociety>/CompanyDescription}" showSecondaryValues="true" filterSecondaryValues="true"
+								enabled="{general>/state}">
+								<core:ListItem key="{listSociety>CompanyID}" text="{listSociety>Description}" additionalText="{listSociety>CompanyID}"/>
+							</ComboBox>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblAssociatedAccount}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<Input value="{DataSociety>/AccountDescription}" placeholder="{i18n>phlblAssociatedAccount}" type="Text" showValueHelp="true"
+								enabled="{account>/state}" visible="true" width="50%" valueHelpOnly="true" valueHelpRequest="onMatchCodeAssociatedAccount"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblPayCondition}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<!--Cambio de Kallpa-->
+							<ComboBox items="{path : 'listPayCondition>/'}" placeholder="{i18n>phlblFunction}" selectedKey="{DataSociety>/PaymentCondition}" width="50%"
+								enabled="false" value="{DataSociety>/PaymentConditionDescription}">
+								<core:Item key="{listPayCondition>PaymentConditionID}" text="{listPayCondition>Description}"/>
+							</ComboBox>
+							<!--<Input value="{DataSociety>/PaymentConditionDescription}" selectedKey="{DataSociety>/PaymentCondition}"-->
+							<!--	placeholder="{i18n>phlblPayCondition}" type="Text" showValueHelp="true" enabled="{general>/state}" visible="true" width="50%"-->
+							<!--	valueHelpOnly="true" valueHelpRequest="onMatchCodePayCondition"/>-->
+							<!--<Input type="Text" showSuggestion="true" placeholder="{i18n>phlblunidadlectura}" suggestionItems="{path: 'listPayCondition>/'}"-->
+							<!--	selectedKey="{DataSociety>/idPayCondition}">-->
+							<!--	<suggestionItems>-->
+							<!--		<core:Item text="{listPayCondition>PaymentConditionID} {listPayCondition>Description}" key="{listPayCondition>PaymentConditionID}"/>-->
+							<!--	</suggestionItems>-->
+							<!--</Input>-->
+						</form:fields>
+					</form:FormElement>
+					<!--<form:FormElement visible="true">-->
+					<!--	<form:label>-->
+					<!--		<Label text="{i18n>lblPayMethod}" design="Bold" width="100%" required="true" textAlign="Begin" textDirection="Inherit"/>-->
+					<!--	</form:label>-->
+					<!--	<form:fields>-->
+							<!--Cambio Kallpa, Vias de pago de matchcode se cambio a un combobox para una seleccion individual.-->
+					<!--		<ComboBox items="{path : 'listPayMethod>/'}" width="50%" placeholder="{i18n>phlblSociety}" selectedKey="{DataSociety>/PaymentMethod}"-->
+					<!--			value="{DataSociety>/PaymentMethodDescription}" showSecondaryValues="true" filterSecondaryValues="true" enabled="{general>/state}">-->
+					<!--			<core:ListItem key="{listPayMethod>PaymentMethodID}" text="{listPayMethod>Description}" additionalText="{listPayMethod>PaymentMethodID}"/>-->
+					<!--		</ComboBox>-->
+							<!--<Input value="{DataSociety>/PaymentMethod}" placeholder="{i18n>phlblPayMethod}" type="Text" showValueHelp="true" enabled="{general>/state}"-->
+							<!--	visible="true" width="50%" valueHelpOnly="true" maxLength="10" valueHelpRequest="onMatchCodePayMethod"/>-->
+					<!--	</form:fields>-->
+					<!--</form:FormElement>-->
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblTaxes}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<MultiInput tokens="{ path: 'DataSociety>/WithholdingTaxCodes' }" placeholder="{i18n>phlblTaxes}" showValueHelp="true"
+								enabled="{general>/state}" visible="true" width="50%" valueHelpOnly="false" maxLength="18" valueHelpRequest="onAddTaxes"
+								tokenUpdate="onTokenUpdateMultiTaxes">
+								<tokens >
+									<Token editable="true" delete="onTokenUpdateMultiTaxes" key="{DataSociety>WithholdingTaxType}"
+										text="{DataSociety>WithholdingTaxTypeDesc} {DataSociety>WithholdingTaxCodeDesc}"/>
+								</tokens>
+							</MultiInput>
+							<!--<Input liveChange="onNumericLiveChange" placeholder="{i18n>phlblTaxes}" type="Text" showValueHelp="true" enabled="true" visible="true"-->
+							<!--	width="50%" valueHelpOnly="false" maxLength="18"/>-->
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+	<Button press="onAddSociety" text="{i18n>btnAddSociety}" type="Emphasized" icon="sap-icon://cart-4" iconFirst="true" width="auto"
+		enabled="{general>/state}" visible="{visible>/state}" iconDensityAware="false"/>
+	<Table items="{path:'listTblSociety>/'}" width="100%" noDataText="No hay datos" mode="None" showSeparators="All" growing="true"
+		growingThreshold="20" growingScrollToLoad="true">
+		<infoToolbar>
+			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+				<content>
+					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+				</content>
+			</Toolbar>
+		</infoToolbar>
+		<headerToolbar/>
+		<columns>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblSociety}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblAssociatedAccount}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblPayCondition}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblPayMethod}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>lblTaxes}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+			<Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+				<header>
+					<Text text="{i18n>clDelete}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+				</header>
+				<footer/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active">
+				<cells>
+					<Text text="{listTblSociety>CompanyDescription}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listTblSociety>AccountDescription}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{listTblSociety>PaymentConditionDescription}" width="auto" maxLines="5" wrapping="true" textAlign="Begin"
+						textDirection="Inherit"/>
+					<Text text="{listTblSociety>PaymentMethodDescription}" width="auto" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Button icon="sap-icon://detail-view" type="Transparent" text="" press="onDetailTaxes"/>
+					<Button press="onDeleteSociety" type="Transparent" icon="sap-icon://delete" enabled="{general>/state}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

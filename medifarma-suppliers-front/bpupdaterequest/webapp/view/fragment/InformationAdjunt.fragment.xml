@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<form:Form width="100%" editable="true" visible="true">
+		<form:title>
+			<core:Title text="" level="Auto"/>
+		</form:title>
+		<form:formContainers>
+			<form:FormContainer visible="true">
+				<form:formElements>
+					<form:FormElement visible="true">
+						<form:fields>
+							<MessageStrip text="{i18n>msgformat}" showIcon="true" showCloseButton="true" class="sapUiMediumMarginBottom"></MessageStrip>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblsworndeclaration}" required="true" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader1" value="{UploadFile>/DJ}" name="myFileUpload1" uploadUrl="upload1/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="DJ" change="onSaveFile"
+                                buttonText="{i18n>btnFileUploaderText}"/>
+							<Button text="{i18n>btndownload}" width="50%" custom:custom="DJ" press="onDowloadFile" icon="sap-icon://download"/>
+							<Button text="{i18n>btnformat}" width="50%" custom:custom="DJ" press="onDowloadFormat" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblrequestrucfile}" required="true" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader2" value="{UploadFile>/SR}" name="myFileUpload2" uploadUrl="upload2/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="SR" change="onSaveFile"
+                                buttonText="{i18n>btnFileUploaderText}"/>
+							<Button text="{i18n>btndownload}" width="50%" custom:custom="SR" press="onDowloadFile" icon="sap-icon://download"/>
+							<Button text="{i18n>btnformat}" width="50%" custom:custom="SR" press="onDowloadFormat" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement visible="true">
+						<form:label>
+							<Label text="{i18n>lblbankstatementheading}" required="true" design="Bold" width="100%" textAlign="Begin" textDirection="Inherit"/>
+						</form:label>
+						<form:fields>
+							<u:FileUploader id="fileUploader3" value="{UploadFile>/EC}" name="myFileUpload3" uploadUrl="upload3/" enabled="{general>/state}"
+								tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" custom:custom="EC" change="onSaveFile"
+                                buttonText="{i18n>btnFileUploaderText}"/>
+							<Button text="{i18n>btndownload}" width="50%" custom:custom="EC" press="onDowloadFile" icon="sap-icon://download"/>
+							<Button text="{i18n>btnformat}" width="50%" custom:custom="EC" press="onDowloadFormat" icon="sap-icon://download"/>
+						</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+		</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+</core:FragmentDefinition>

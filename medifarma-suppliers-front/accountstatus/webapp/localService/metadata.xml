@@ -1,0 +1,449 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="EPER.SUPPLIERS_SRV" xml:lang="es" sap:schema-version="1">
+			<EntityType Name="Attachment" sap:content-version="1">
+				<Key><PropertyRef Name="Objkey"/></Key><Property Name="BdnTabI" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Cpo.númerico(8)"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Client" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Mandante" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Classname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nombre cat."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Classtype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Tipo de clase"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Objkey" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Clave de objeto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogSystem" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ID sistema lógico"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LoioId" Type="Edm.String" Nullable="false" MaxLength="42" sap:unicode="false" sap:label="ID de documento"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocVerNo" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº versión" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocVarId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ID de variante"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocVarTg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Día variante"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Descript" Type="Edm.String" Nullable="false" MaxLength="64" sap:unicode="false" sap:label="Descripción"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Langu" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Idioma" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CompId" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="ID componente"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="128" sap:unicode="false" sap:label="Tipo MIME" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreaUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Autor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreaTime" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Hora creación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChngUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Modificado por"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChngTime" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Hora modif."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Contrep" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Repository conten."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Docuclass" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false"
+					sap:label="Característica de atributo (version media)" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false"
+					sap:label="Característica de atributo (version corta)" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Expirytime" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false"
+					sap:label="Característica de atributo (version media)" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="BdsDocid" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false"
+					sap:label="Característica de atributo (versión larga)" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="LoioIdTo" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Docum.lógico"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RelaId" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="ID de relación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="State" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="status técnico" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BdsStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="StorTab" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BdnTabD" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Mantener entr.R/3" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NoteType" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Status" sap:content-version="1">
+				<Key><PropertyRef Name="StatusId"/></Key><Property Name="StatusId" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Cotización"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Descripcion" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Texto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Tender" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/><PropertyRef Name="Ebeln"/><PropertyRef Name="Lifnr"/></Key><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Proveedor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Supplier" sap:content-version="1">
+				<Key><PropertyRef Name="Ruc"/></Key><Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Interloc.cial."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ruc" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="N.I.F." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RazonSocial" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Raz#n Social" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Return" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Type" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tipo de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Clase de mensajes"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Number" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" MaxLength="220" sap:unicode="false" sap:label="Texto mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogNo" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Número log" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogMsgNo" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Nº mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV1" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV2" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV3" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV4" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Variable de mensaje" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Parameter" Type="Edm.String" MaxLength="32" sap:unicode="false" sap:label="Parámetro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Row" Type="Edm.Int32" sap:unicode="false" sap:label="Línea parámetro" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Field" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Nombre campo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="System" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Sistema lógico" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Company" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/></Key><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Butxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Nombre empresa"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Organiz.ventas" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Canal distrib." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sector" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Application" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Aplicación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ItTaxIdNumber" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Upload" sap:content-version="1">
+				<Key><PropertyRef Name="DocNumber"/></Key><Property Name="DocNumber" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Clave" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FileName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nombre de archivo (con extensión)"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Data" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="DATA" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQPaymentCondition" sap:content-version="1">
+				<Key><PropertyRef Name="QuotationNr"/><PropertyRef Name="PaymentConditionCode"/></Key><Property Name="QuotationNr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Quotation Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="PaymentConditionCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false"
+					sap:label="Payment Condition Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQCurrency" sap:content-version="1">
+				<Key><PropertyRef Name="QuotationNr"/><PropertyRef Name="CurrencyCod"/></Key><Property Name="QuotationNr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Quotation Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="CurrencyCod" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LongText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Currency Text"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ShortText" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Currency Short teXT"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQDetail" sap:content-version="1">
+				<Key><PropertyRef Name="PetOferta"/><PropertyRef Name="Bukrs"/><PropertyRef Name="Lifnr"/></Key><Property Name="IndCotizado" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Ind.Cotizado" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TxtPos" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="TXT_POS" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PetOferta" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="N°Pet.Oferta"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PosPoferta" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Licitacion" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Licitación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Estado" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Cotización"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EstadoTxt" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Texto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CentroTxt" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nombre 1" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MatServ" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MatServTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Texto breve"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Unid" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CantSoli" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeEntreq" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha entrega" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CantOfer" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeEntpro" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha entrega" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PreUnit" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Precio neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CantBase" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DsctoPer" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Importe"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SubtotSd" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Valor neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MtoDscto" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Valor neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SubtotCd" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Valor neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TipoPos" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo posición"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeDocu" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha de pedido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Proveedor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ObserPos" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Descripción"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQFile" sap:content-version="1">
+				<Key><PropertyRef Name="IDocumentId"/></Key><Property Name="IDocumentId" Type="Edm.String" Nullable="false" MaxLength="46" sap:unicode="false"
+					sap:label="ID de una entrada en carpeta (obj.+carp.+nombre transmisor)" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="EString" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="File String" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EXstring" Type="Edm.String" Nullable="false" MaxLength="1024" sap:unicode="false" sap:label="File XString"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQ" sap:content-version="1">
+				<Key><PropertyRef Name="Licitacion"/><PropertyRef Name="Ebeln"/></Key><Property Name="Licitacion" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Licitación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeDesde" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeHasta" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Estado" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Cotización"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Proveedor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Moneda" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Moneda" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CondPago" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cond.pago" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PzoOferta" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Plazo de oferta" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VigOferta" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha entrega" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeDocu" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha de pedido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Observacion" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Observaciones"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RFQHeader" sap:content-version="1">
+				<Key><PropertyRef Name="PetOferta"/><PropertyRef Name="Bukrs"/><PropertyRef Name="Lifnr"/></Key><Property Name="PetOferta" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="N°Pet.Oferta"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Verkf" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Vendedor/a" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IndCotizado" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Ind.Cotizado"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Licitacion" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Licitación"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Moneda" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Moneda" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CondPago" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cond.pago" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PzoOferta" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Plazo de oferta" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VigOferta" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha entrega" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FeDocu" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fecha de pedido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Proveedor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Observacion" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Observaciones"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Attachments" Relationship="EPER.SUPPLIERS_SRV.RFQHeaderToAttachment" FromRole="FromRole_RFQHeaderToAttachment"
+					ToRole="ToRole_RFQHeaderToAttachment"/><NavigationProperty Name="Currencies" Relationship="EPER.SUPPLIERS_SRV.RFQHeaderToRFQCurrency" FromRole="FromRole_RFQHeaderToRFQCurrency"
+					ToRole="ToRole_RFQHeaderToRFQCurrency"/><NavigationProperty Name="Details" Relationship="EPER.SUPPLIERS_SRV.RFQHeaderToRFQDetail" FromRole="FromRole_RFQHeaderToRFQDetail"
+					ToRole="ToRole_RFQHeaderToRFQDetail"/><NavigationProperty Name="PaymentConditions" Relationship="EPER.SUPPLIERS_SRV.RFQHeaderToRFQPaymentCondition"
+					FromRole="FromRole_RFQHeaderToRFQPaymentCondition" ToRole="ToRole_RFQHeaderToRFQPaymentCondition"/><NavigationProperty Name="Returns" Relationship="EPER.SUPPLIERS_SRV.RFQHeaderToReturn" FromRole="FromRole_RFQHeaderToReturn"
+					ToRole="ToRole_RFQHeaderToReturn"/></EntityType>
+			<EntityType Name="InvoiceHeader" sap:content-version="1">
+				<Key><PropertyRef Name="ItTaxIdNumber"/><PropertyRef Name="PaymentNumber"/><PropertyRef Name="INVOICENUMBER"/></Key><Property Name="ItTaxIdNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ruc" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:semantics="name"/><Property Name="PaymentNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="ItRequestDate" Type="Edm.String" sap:unicode="false" sap:label="Fecha" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="ItCompanyId" Type="Edm.String" sap:unicode="false" sap:label="Sociedad" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="EXTERNALDOCUMENTID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="N# Folio" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="INVOICENUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Doc. SAP" sap:creatable="false"
+					sap:updatable="false"/><Property Name="DOCUMENTTYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo Doc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="COMPANY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="COMPANYNAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RECEPTIONDATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="F. Creaci#n" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false" sap:semantics="bday"/><Property Name="INVOICEDATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="F. Factura" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="EXPIRATIONDATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="F. Venc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VALUE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Monto" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="CURRENCY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Moneda" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="STATUS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Estado" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PAYMENTDATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="F. Pago" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="PAYMENTMETHOD" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Forma Pago" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PAYMENTMETHOD_T" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Forma Pago" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DISCOUNT" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="0" sap:unicode="false" sap:unit="CURRENCY"
+					sap:label="Dscto" sap:creatable="false" sap:updatable="false" sap:filterable="false"/><Property Name="DISCOUNTDOCUMENT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Doc Dscto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NET_PAYMENT" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="0" sap:unicode="false" sap:unit="CURRENCY"
+					sap:label="Pago Neto" sap:creatable="false" sap:updatable="false" sap:filterable="false"/><Property Name="RECEPTIONDATE_TXT" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="F. Creaci#n" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="INVOICEDATE_TXT" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="F. Factura" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EXPIRATIONDATE_TXT" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="F. Venc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PAYMENTDATE_TXT" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="F. Pago" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DISCOUNT_TXT" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Dscto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NET_PAYMENT_TXT" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Pago Neto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FreeText" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><NavigationProperty Name="Items" Relationship="EPER.SUPPLIERS_SRV.InvoiceHeaderToInvoiceItem" FromRole="FromRole_InvoiceHeaderToInvoiceItem"
+					ToRole="ToRole_InvoiceHeaderToInvoiceItem"/></EntityType>
+			<EntityType Name="Dirss" sap:content-version="1">
+				<Key><PropertyRef Name="Bsart"/></Key><Property Name="Bsart" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Batxt" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PurchaseOrderHeader" sap:content-version="1">
+				<Key><PropertyRef Name="DN_NUMBER"/><PropertyRef Name="ItTaxIdNumber"/><PropertyRef Name="PO_NUMBER"/></Key><Property Name="ClasePedido" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Clase de pedido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="COMPANY" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="currency" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CURRENCY" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="DELIVERY_DATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Fecha Guia Remisi#n" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DM_NUMBER" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Documento Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DmNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DN_NUMBER" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GR/HES" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="DnNumber" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DOC_DATE" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Cronomarcador" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocumentType" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FECHA_FACTURA" Type="Edm.String" sap:unicode="false" sap:label="Fecha" sap:creatable="false" sap:updatable="false"/><Property Name="FechaFacturaP" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Fecha Factura Proveedor"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="HEADER_TEXT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ItCompanyId" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Itemdescription" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Itemnumber" Type="Edm.Int16" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ItTaxIdNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Linenumber" Type="Edm.Int16" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Materialnumber" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Packagenumber" Type="Edm.Int16" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PAYMENT_TERMS" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:filterable="false"/><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="N OC" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Po_unit" Type="Edm.Int16" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PSTYP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="quantity" Type="Edm.Decimal" Precision="31" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="REFERENCE" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="RNG_COMPANY_ID" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="RNG_PO_NUMBER" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="RNG_REQUEST_DATE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="RUC_SOCIEDAD" Type="Edm.String" MaxLength="48" sap:unicode="false" sap:label="Ruc" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="subtotal" Type="Edm.Decimal" Precision="31" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIPDOCREFERENCE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TOTAL_VALUE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:filterable="false"/><Property Name="TOTAL_VALUE_IGV" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="TOTAL_VALUE_NO_IGV" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Unitprice" Type="Edm.Decimal" Precision="31" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="wrbtr" Type="Edm.Decimal" Precision="31" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Items" Relationship="EPER.SUPPLIERS_SRV.PurchaseOrderHeaderToPurchaseOrderItem"
+					FromRole="FromRole_PurchaseOrderHeaderToPurchaseOrderItem" ToRole="ToRole_PurchaseOrderHeaderToPurchaseOrderItem"/><NavigationProperty Name="Lines" Relationship="EPER.SUPPLIERS_SRV.PurchaseOrderHeaderToPurchaseOrderLine"
+					FromRole="FromRole_PurchaseOrderHeaderToPurchaseOrderLine" ToRole="ToRole_PurchaseOrderHeaderToPurchaseOrderLine"/></EntityType>
+			<EntityType Name="Contact" sap:content-version="1">
+				<Key><PropertyRef Name="Ruc"/><PropertyRef Name="Dni"/><PropertyRef Name="Sociedad"/></Key><Property Name="Ruc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Dni" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Sociedad" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Partner1" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Partner2" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SociedadDes" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SociedadRuc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Root" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Folder" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FolderId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Legalenty" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="DocumentType" sap:content-version="1">
+				<Key><PropertyRef Name="Codigo"/></Key><Property Name="Codigo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="C#digo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Descripcion" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descripcion" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PurchaseOrderItem" sap:content-version="1">
+				<Key><PropertyRef Name="SUPPLIERID"/><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="ITEMNUMBER"/><PropertyRef Name="DN_NUMBER"/></Key><Property Name="SUPPLIERID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="RNG_REQUEST_DATE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="RNG_COMPANY_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="RNG_PO_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="ITEMNUMBER" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="MATERIALNUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="ITEMDESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="PO_UNIT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="QUANTITY" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="UNITPRICE" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CURRENCY" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="SUBTOTAL" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="WRBTR" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="DN_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Guia de Remisi#n" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DM_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Documento Material" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="CLASEPEDIDO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Clase de pedido"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="InvoiceItem" sap:content-version="1">
+				<Key><PropertyRef Name="TAX_ID_NUMBER"/><PropertyRef Name="INVOICENUMBER"/><PropertyRef Name="PaymentNumber"/></Key><Property Name="TAX_ID_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="INVOICENUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="PaymentNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="MATERIALNUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="ITEMDESCRIPTION" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="QUANTITY" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="0" sap:unicode="false" sap:unit="UNIT"
+					sap:creatable="false" sap:updatable="false"/><Property Name="UNIT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="PRICEPERUNIT" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="2" sap:unicode="false" sap:unit="CURRENCY"
+					sap:creatable="false" sap:updatable="false"/><Property Name="VALUE" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="2" sap:unicode="false" sap:unit="CURRENCY"
+					sap:creatable="false" sap:updatable="false"/><Property Name="CURRENCY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="PurchaseOrderLine" sap:content-version="1">
+				<Key><PropertyRef Name="DnNumber"/><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="LINENUMBER"/><PropertyRef Name="ITEMDESCRIPTION"/></Key><Property Name="DnNumber" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DmNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ITEMNUMBER" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PACKAGENUMBER" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="LINENUMBER" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MATERIALNUMBER" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ITEMDESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="QUANTITY" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PO_UNIT" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="UNITPRICE" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CURRENCY" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SUBTOTAL" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="WRBTR" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SupplierId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ClasePedido" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Clase de Pedido"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="InvoiceReg" sap:content-version="1">
+				<Key><PropertyRef Name="SUPPLIERID"/><PropertyRef Name="PO_NUMBER"/></Key><Property Name="DOCUMENTTYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SUPPLIERID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PAYMENT_TERMS" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="REFERENCE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="TOTAL_VALUE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="CURRENCY" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="COMPANY_CODE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DOC_DATE" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ORDER_DATE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="COMPANY" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DN_NUMBER" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Guia de Remisi#n"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="ClasePedido" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ConexionPIPO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HEADER_TEXT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIPO_DOCUMENTO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PSTYP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="PoLineSet" Relationship="EPER.SUPPLIERS_SRV.InvoiceRegToPurchaseOrderLines"
+					FromRole="FromRole_InvoiceRegToPurchaseOrderLines" ToRole="ToRole_InvoiceRegToPurchaseOrderLines"/><NavigationProperty Name="RegHeaderToPos" Relationship="EPER.SUPPLIERS_SRV.InvoiceRegToPurchaseOrderItem"
+					FromRole="FromRole_InvoiceRegToPurchaseOrderItem" ToRole="ToRole_InvoiceRegToPurchaseOrderItem"/></EntityType>
+			<EntityType Name="InvoiceRegFile" sap:content-version="1">
+				<Key><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="RUC"/><PropertyRef Name="FOLIO"/></Key><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RUC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ruc" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FOLIO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Folio" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FILENAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nombre Archivo" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Anexo" sap:content-version="1">
+				<Key><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="RUC"/><PropertyRef Name="FOLIO"/></Key><Property Name="PO_NUMBER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sociedad" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RUC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ruc" sap:creatable="false" sap:updatable="false"/><Property Name="FOLIO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Folio" sap:creatable="false" sap:updatable="false"/><Property Name="RAZON_SOCIAL" Type="Edm.String" sap:unicode="false" sap:label="Raz#n Social" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FECHA_DOCUMENTO" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Fecha Factura" sap:creatable="false"
+					sap:updatable="false"/><Property Name="MONTO" Type="Edm.String" sap:unicode="false" sap:label="Monto" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="MONEDA" Type="Edm.String" sap:unicode="false" sap:label="Moneda" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SUBRC" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="AnexoToFile" Relationship="EPER.SUPPLIERS_SRV.AnexoToInvoiceRegFile" FromRole="FromRole_AnexoToInvoiceRegFile"
+					ToRole="ToRole_AnexoToInvoiceRegFile"/></EntityType>
+			<Association Name="InvoiceHeaderToInvoiceItem" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.InvoiceHeader" Multiplicity="1" Role="FromRole_InvoiceHeaderToInvoiceItem"/><End Type="EPER.SUPPLIERS_SRV.InvoiceItem" Multiplicity="*" Role="ToRole_InvoiceHeaderToInvoiceItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceHeaderToInvoiceItem"><PropertyRef Name="ItTaxIdNumber"/><PropertyRef Name="PaymentNumber"/><PropertyRef Name="INVOICENUMBER"/></Principal>
+					<Dependent Role="ToRole_InvoiceHeaderToInvoiceItem"><PropertyRef Name="TAX_ID_NUMBER"/><PropertyRef Name="PaymentNumber"/><PropertyRef Name="INVOICENUMBER"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PurchaseOrderHeaderToPurchaseOrderItem" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderHeader" Multiplicity="1" Role="FromRole_PurchaseOrderHeaderToPurchaseOrderItem"/><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderItem" Multiplicity="*" Role="ToRole_PurchaseOrderHeaderToPurchaseOrderItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PurchaseOrderHeaderToPurchaseOrderItem"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="ItTaxIdNumber"/><PropertyRef Name="DN_NUMBER"/></Principal>
+					<Dependent Role="ToRole_PurchaseOrderHeaderToPurchaseOrderItem"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="SUPPLIERID"/><PropertyRef Name="DN_NUMBER"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PurchaseOrderHeaderToPurchaseOrderLine" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderHeader" Multiplicity="*" Role="FromRole_PurchaseOrderHeaderToPurchaseOrderLine"/><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderLine" Multiplicity="*" Role="ToRole_PurchaseOrderHeaderToPurchaseOrderLine"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PurchaseOrderHeaderToPurchaseOrderLine"><PropertyRef Name="DN_NUMBER"/><PropertyRef Name="ItTaxIdNumber"/><PropertyRef Name="PO_NUMBER"/></Principal>
+					<Dependent Role="ToRole_PurchaseOrderHeaderToPurchaseOrderLine"><PropertyRef Name="DnNumber"/><PropertyRef Name="SupplierId"/><PropertyRef Name="PO_NUMBER"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RFQHeaderToRFQCurrency" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.RFQHeader" Multiplicity="1" Role="FromRole_RFQHeaderToRFQCurrency"/><End Type="EPER.SUPPLIERS_SRV.RFQCurrency" Multiplicity="*" Role="ToRole_RFQHeaderToRFQCurrency"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RFQHeaderToRFQCurrency"><PropertyRef Name="PetOferta"/><PropertyRef Name="Bukrs"/><PropertyRef Name="Lifnr"/></Principal>
+					<Dependent Role="ToRole_RFQHeaderToRFQCurrency"><PropertyRef Name="QuotationNr"/><PropertyRef Name="QuotationNr"/><PropertyRef Name="QuotationNr"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RFQHeaderToRFQDetail" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.RFQHeader" Multiplicity="1" Role="FromRole_RFQHeaderToRFQDetail"/><End Type="EPER.SUPPLIERS_SRV.RFQDetail" Multiplicity="*" Role="ToRole_RFQHeaderToRFQDetail"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RFQHeaderToRFQDetail"><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/><PropertyRef Name="PetOferta"/></Principal>
+					<Dependent Role="ToRole_RFQHeaderToRFQDetail"><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/><PropertyRef Name="PetOferta"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RFQHeaderToRFQPaymentCondition" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.RFQHeader" Multiplicity="1" Role="FromRole_RFQHeaderToRFQPaymentCondition"/><End Type="EPER.SUPPLIERS_SRV.RFQPaymentCondition" Multiplicity="*" Role="ToRole_RFQHeaderToRFQPaymentCondition"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RFQHeaderToRFQPaymentCondition"><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/><PropertyRef Name="PetOferta"/></Principal>
+					<Dependent Role="ToRole_RFQHeaderToRFQPaymentCondition"><PropertyRef Name="QuotationNr"/><PropertyRef Name="QuotationNr"/><PropertyRef Name="QuotationNr"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RFQHeaderToReturn" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.RFQHeader" Multiplicity="1" Role="FromRole_RFQHeaderToReturn"/><End Type="EPER.SUPPLIERS_SRV.Return" Multiplicity="*" Role="ToRole_RFQHeaderToReturn"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RFQHeaderToReturn"><PropertyRef Name="PetOferta"/><PropertyRef Name="Bukrs"/><PropertyRef Name="Lifnr"/></Principal>
+					<Dependent Role="ToRole_RFQHeaderToReturn"><PropertyRef Name="Id"/><PropertyRef Name="Id"/><PropertyRef Name="Id"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RFQHeaderToAttachment" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.RFQHeader" Multiplicity="1" Role="FromRole_RFQHeaderToAttachment"/><End Type="EPER.SUPPLIERS_SRV.Attachment" Multiplicity="*" Role="ToRole_RFQHeaderToAttachment"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RFQHeaderToAttachment"><PropertyRef Name="PetOferta"/><PropertyRef Name="Bukrs"/><PropertyRef Name="Lifnr"/></Principal>
+					<Dependent Role="ToRole_RFQHeaderToAttachment"><PropertyRef Name="Objkey"/><PropertyRef Name="Objkey"/><PropertyRef Name="Objkey"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="AnexoToInvoiceRegFile" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.Anexo" Multiplicity="1" Role="FromRole_AnexoToInvoiceRegFile"/><End Type="EPER.SUPPLIERS_SRV.InvoiceRegFile" Multiplicity="*" Role="ToRole_AnexoToInvoiceRegFile"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AnexoToInvoiceRegFile"><PropertyRef Name="FOLIO"/><PropertyRef Name="RUC"/><PropertyRef Name="PO_NUMBER"/></Principal>
+					<Dependent Role="ToRole_AnexoToInvoiceRegFile"><PropertyRef Name="FOLIO"/><PropertyRef Name="RUC"/><PropertyRef Name="PO_NUMBER"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceRegToPurchaseOrderItem" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.InvoiceReg" Multiplicity="1" Role="FromRole_InvoiceRegToPurchaseOrderItem"/><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderItem" Multiplicity="*" Role="ToRole_InvoiceRegToPurchaseOrderItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceRegToPurchaseOrderItem"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="SUPPLIERID"/></Principal>
+					<Dependent Role="ToRole_InvoiceRegToPurchaseOrderItem"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="SUPPLIERID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceRegToPurchaseOrderLines" sap:content-version="1"><End Type="EPER.SUPPLIERS_SRV.InvoiceReg" Multiplicity="1" Role="FromRole_InvoiceRegToPurchaseOrderLines"/><End Type="EPER.SUPPLIERS_SRV.PurchaseOrderLine" Multiplicity="*" Role="ToRole_InvoiceRegToPurchaseOrderLines"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceRegToPurchaseOrderLines"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="SUPPLIERID"/></Principal>
+					<Dependent Role="ToRole_InvoiceRegToPurchaseOrderLines"><PropertyRef Name="PO_NUMBER"/><PropertyRef Name="SupplierId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="EPER_SUPPLIERS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="AttachmentSet" EntityType="EPER.SUPPLIERS_SRV.Attachment" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="StatusSet" EntityType="EPER.SUPPLIERS_SRV.Status" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="TenderSet" EntityType="EPER.SUPPLIERS_SRV.Tender" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="SupplierSet" EntityType="EPER.SUPPLIERS_SRV.Supplier" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ReturnSet" EntityType="EPER.SUPPLIERS_SRV.Return" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="CompanySet" EntityType="EPER.SUPPLIERS_SRV.Company" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="UploadSet" EntityType="EPER.SUPPLIERS_SRV.Upload" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQPaymentConditionSet" EntityType="EPER.SUPPLIERS_SRV.RFQPaymentCondition" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQCurrencySet" EntityType="EPER.SUPPLIERS_SRV.RFQCurrency" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQDetailSet" EntityType="EPER.SUPPLIERS_SRV.RFQDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQFileSet" EntityType="EPER.SUPPLIERS_SRV.RFQFile" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQSet" EntityType="EPER.SUPPLIERS_SRV.RFQ" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RFQHeaderSet" EntityType="EPER.SUPPLIERS_SRV.RFQHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="InvoiceHeaderSet" EntityType="EPER.SUPPLIERS_SRV.InvoiceHeader" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="DirssSet" EntityType="EPER.SUPPLIERS_SRV.Dirss" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PurchaseOrderHeaderSet" EntityType="EPER.SUPPLIERS_SRV.PurchaseOrderHeader" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ContactSet" EntityType="EPER.SUPPLIERS_SRV.Contact" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="DocumentTypeSet" EntityType="EPER.SUPPLIERS_SRV.DocumentType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PurchaseOrderItemSet" EntityType="EPER.SUPPLIERS_SRV.PurchaseOrderItem" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="InvoiceItemSet" EntityType="EPER.SUPPLIERS_SRV.InvoiceItem" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PurchaseOrderLineSet" EntityType="EPER.SUPPLIERS_SRV.PurchaseOrderLine" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="InvoiceRegSet" EntityType="EPER.SUPPLIERS_SRV.InvoiceReg" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="InvoiceRegFileSet" EntityType="EPER.SUPPLIERS_SRV.InvoiceRegFile" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AnexoSet" EntityType="EPER.SUPPLIERS_SRV.Anexo" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="RFQHeaderToRFQPaymentConditionSet" Association="EPER.SUPPLIERS_SRV.RFQHeaderToRFQPaymentCondition"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="RFQHeaderSet" Role="FromRole_RFQHeaderToRFQPaymentCondition"/><End EntitySet="RFQPaymentConditionSet" Role="ToRole_RFQHeaderToRFQPaymentCondition"/></AssociationSet>
+				<AssociationSet Name="PurchaseOrderHeaderToPurchaseOrderIteSet" Association="EPER.SUPPLIERS_SRV.PurchaseOrderHeaderToPurchaseOrderItem"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="PurchaseOrderHeaderSet" Role="FromRole_PurchaseOrderHeaderToPurchaseOrderItem"/><End EntitySet="PurchaseOrderItemSet" Role="ToRole_PurchaseOrderHeaderToPurchaseOrderItem"/></AssociationSet>
+				<AssociationSet Name="RFQHeaderToRFQCurrencySet" Association="EPER.SUPPLIERS_SRV.RFQHeaderToRFQCurrency" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="RFQHeaderSet" Role="FromRole_RFQHeaderToRFQCurrency"/><End EntitySet="RFQCurrencySet" Role="ToRole_RFQHeaderToRFQCurrency"/></AssociationSet>
+				<AssociationSet Name="RFQHeaderToRFQDetailSet" Association="EPER.SUPPLIERS_SRV.RFQHeaderToRFQDetail" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="RFQHeaderSet" Role="FromRole_RFQHeaderToRFQDetail"/><End EntitySet="RFQDetailSet" Role="ToRole_RFQHeaderToRFQDetail"/></AssociationSet>
+				<AssociationSet Name="InvoiceRegToPurchaseOrderItemSet01" Association="EPER.SUPPLIERS_SRV.InvoiceRegToPurchaseOrderItem"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceRegSet" Role="FromRole_InvoiceRegToPurchaseOrderItem"/><End EntitySet="PurchaseOrderItemSet" Role="ToRole_InvoiceRegToPurchaseOrderItem"/></AssociationSet>
+				<AssociationSet Name="AnexoToInvoiceRegFileSet" Association="EPER.SUPPLIERS_SRV.AnexoToInvoiceRegFile" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AnexoSet" Role="FromRole_AnexoToInvoiceRegFile"/><End EntitySet="InvoiceRegFileSet" Role="ToRole_AnexoToInvoiceRegFile"/></AssociationSet>
+				<AssociationSet Name="RFQHeaderToAttachmentSet" Association="EPER.SUPPLIERS_SRV.RFQHeaderToAttachment" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="RFQHeaderSet" Role="FromRole_RFQHeaderToAttachment"/><End EntitySet="AttachmentSet" Role="ToRole_RFQHeaderToAttachment"/></AssociationSet>
+				<AssociationSet Name="InvoiceRegToPurchaseOrderLinesSet01" Association="EPER.SUPPLIERS_SRV.InvoiceRegToPurchaseOrderLines"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceRegSet" Role="FromRole_InvoiceRegToPurchaseOrderLines"/><End EntitySet="PurchaseOrderLineSet" Role="ToRole_InvoiceRegToPurchaseOrderLines"/></AssociationSet>
+				<AssociationSet Name="InvoiceHeaderToInvoiceItemSet" Association="EPER.SUPPLIERS_SRV.InvoiceHeaderToInvoiceItem" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceHeaderSet" Role="FromRole_InvoiceHeaderToInvoiceItem"/><End EntitySet="InvoiceItemSet" Role="ToRole_InvoiceHeaderToInvoiceItem"/></AssociationSet>
+				<AssociationSet Name="RFQHeaderToReturnSet" Association="EPER.SUPPLIERS_SRV.RFQHeaderToReturn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="RFQHeaderSet" Role="FromRole_RFQHeaderToReturn"/><End EntitySet="ReturnSet" Role="ToRole_RFQHeaderToReturn"/></AssociationSet>
+				<AssociationSet Name="PurchaseOrderHeaderToPurchaseOrderLinSet" Association="EPER.SUPPLIERS_SRV.PurchaseOrderHeaderToPurchaseOrderLine"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="PurchaseOrderHeaderSet" Role="FromRole_PurchaseOrderHeaderToPurchaseOrderLine"/><End EntitySet="PurchaseOrderLineSet" Role="ToRole_PurchaseOrderHeaderToPurchaseOrderLine"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://everiss4:50100/sap/opu/odata/EPER/SUPPLIERS_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="http://everiss4:50100/sap/opu/odata/EPER/SUPPLIERS_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

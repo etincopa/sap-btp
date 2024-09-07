@@ -1,0 +1,97 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer height="80%" vertical="true" focusable="true">
+		<Table id="tblEstadoCuenta" sticky="ColumnHeaders" items="{/InvoiceHeaderSet}" updateFinished="onUpdateFinish" growing="true"
+			growingScrollToLoad="true" app:fileName="EstadoCuentaProveedor" app:header="Documentos">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title id="titHeader" text="{i18n>tlDocuments}"></Title>
+					<ToolbarSpacer/>
+					<SearchField id="sfTabla" width="20%" search="onSearchFreeText">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</SearchField>
+					<ToolbarSeparator/>
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="Clasificar" tooltip="Clasificar" icon="sap-icon://sort"
+						press="onSortButtonPressed"/>
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnOptions}" tooltip="{i18n>btnOptions}"
+						icon="sap-icon://action-settings" press="onPersoButtonPressed"/>
+					<OverflowToolbarButton enabled="{Config>/thereIsData}" text="{i18n>btnExport}" tooltip="{i18n>btnExport}" icon="sap-icon://excel-attachment"
+						press="onExportXLS"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column app:property="DOCUMENTTYPE" id="DOCUMENTTYPE">
+					<Text text="{i18n>clDocumentType}"></Text>
+				</Column>
+				<Column app:property="EXTERNALDOCUMENTID" id="EXTERNALDOCUMENTID">
+					<Text text="{i18n>clFolio}"></Text>
+				</Column>
+				<Column app:property="INVOICENUMBER" id="INVOICENUMBER" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clDocumentSAP}"></Text>
+				</Column>
+				<Column app:property="COMPANYNAME" id="COMPANYNAME" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clSociety}"></Text>
+				</Column>
+				<Column app:property="RECEPTIONDATE_TXT" id="RECEPTIONDATE_TXT" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clCreationDate}"></Text>
+				</Column>
+				<Column app:property="INVOICEDATE_TXT" id="INVOICEDATE_TXT" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clInvoiceDate}"></Text>
+				</Column>
+				<Column app:property="EXPIRATIONDATE_TXT" id="EXPIRATIONDATE_TXT" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clDueDate}"></Text>
+				</Column>
+				<Column app:property="ANNULATIONDATE_TXT" id="ANNULATIONDATE_TXT" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+					<Text text="{i18n>clNullificationDate}"></Text>
+				</Column>
+				<Column app:property="VALUE" id="VALUE" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+					<Text text="{i18n>clAmount}"></Text>
+				</Column>
+				<Column app:property="CURRENCY" id="CURRENCY" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+					<Text text="{i18n>clCurrency}"></Text>
+				</Column>
+				<Column app:property="STATUS" id="STATUS" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="10em">
+					<Text text="{i18n>clStatus}"></Text>
+				</Column>
+				<Column app:property="PAYMENTDATE_TXT" id="PAYMENTDATE_TXT" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+					<Text text="{i18n>clPayDate}"></Text>
+				</Column>
+				<Column app:property="DISCOUNT_TXT" id="DISCOUNT_TXT" demandPopin="true" minScreenWidth="1380px" popinDisplay="Inline" visible="false">
+					<Text text="{i18n>clDiscount}"></Text>
+				</Column>
+				<Column app:property="BANK_TXT" id="BANK_TXT" demandPopin="true" minScreenWidth="1380px" popinDisplay="Inline" visible="true">
+					<Text text="{i18n>clBank}"></Text>
+				</Column>
+				<Column id="STATUS_SUNAT" demandPopin="true" minScreenWidth="1380px" popinDisplay="Inline" visible="true">
+					<Text text="{i18n>clSunatTitle}"></Text>
+				</Column>
+				<Column id="COMMENTS" demandPopin="true" width="5%" popinDisplay="Inline" visible="true">
+					<Text text="{i18n>clComments}"></Text>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{DOCUMENTTYPE}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{EXTERNALDOCUMENTID}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{INVOICENUMBER}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{COMPANYNAME}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{RECEPTIONDATE_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{INVOICEDATE_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{EXPIRATIONDATE_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{ANNULATIONDATE_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<ObjectNumber number="{ parts: [ { path: 'VALUE' }, { path: 'CURRENCY' } ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false, decimalSeparator: '.', groupingSeparator: ',' } }"/>
+					<Text text="{CURRENCY}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{STATUS}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{PAYMENTDATE_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<!--<Text text="{PAYMENTMETHOD}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>-->
+					<Text text="{DISCOUNT_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<Text text="{BankDescription}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+					<!--<Text text="{NET_PAYMENT_TXT}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>-->
+					<Button icon="sap-icon://collections-insight" type="Transparent" press="onPressLoadSunat" tooltip="{i18n>clSunat}"/>
+					<Button icon="sap-icon://comment" width="auto"  tooltip="{i18n>clComments}" press="onCommentPress"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

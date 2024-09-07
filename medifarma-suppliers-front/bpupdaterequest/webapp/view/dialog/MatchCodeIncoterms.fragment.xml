@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:simple="sap.gantt.simple"
+	xmlns:layout="sap.ui.layout">
+	<Dialog title="{i18n>titleIncoterms}" class="sapUiContentPadding sapUiSizeCompact" contentWidth="50%"
+		afterClose="onCancelMatchCodeIncoterms">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="{i18n>fltAssociatedAccount}" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>lblIncoterms}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{MatchIncoterms>/Incoterms}" placeholder="{i18n>phlblIncoterms}" type="Text" showValueHelp="false" enabled="true" visible="true"
+										width="100%" valueHelpOnly="false" maxLength="18"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="{i18n>lblExplainText}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+								</form:label>
+								<form:fields>
+									<Input value="{MatchIncoterms>/ExplainText}" placeholder="{i18n>phlblExplainText}" type="Text" showValueHelp="false" enabled="true"
+										visible="true" width="100%" valueHelpOnly="false" maxLength="18"/>
+								</form:fields>
+							</form:FormElement>
+							<!--<form:FormElement visible="true" label="" textAlign="Right">-->
+							<!--	<form:fields>-->
+							<!--		<Button press="onAddBanco" text="{i18n>btnBuscar}" type="Emphasized" width="50%" enabled="true" visible="true" iconDensityAware="false"/>-->
+							<!--	</form:fields>-->
+							<!--</form:FormElement>-->
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<OverflowToolbar class="sapUiSmallMarginBottom" style="Clear">
+				<ToolbarSpacer/>
+				<Button press="onSearchIncoterms" text="{i18n>btnBuscar}" type="Emphasized" enabled="true" visible="true"/>
+			</OverflowToolbar>
+			<Table items="{path:'listIncoterms>/'}" width="100%" noDataText="{i18n>tblNoData}" mode="None" showSeparators="All" growing="true" growingThreshold="20"
+				growingScrollToLoad="true" itemPress="onConfirmMatchCodeIncoterms">
+				<columns>
+					<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>lblPayCondition}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>lblExplainText}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<Text text="{listIncoterms>IncotermsID}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+							<Text text="{listIncoterms>Description}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button text="{i18n>btnCancel}" press="onCancelMatchCodeIncoterms" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

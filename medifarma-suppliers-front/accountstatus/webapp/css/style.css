@@ -1,0 +1,4 @@
+/* Enter your custom styles here */
+.sapMListTblSubCntRow>.sapMListTblSubCntSpr, .sapMListTblSubCntRow>.sapMListTblSubCntHdr .sapMText, .sapMListTblSubCntRow>.sapMListTblSubCntHdr .sapMLabel {
+    font-weight: bold !important;
+}
