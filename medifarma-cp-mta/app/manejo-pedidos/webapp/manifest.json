@@ -1,0 +1,293 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "com.medifarma.cp.manejopedidos",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "ach": "ach",
+        "dataSources": {
+            "mainService": {
+                "uri": "srv_api/v2/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "sapErp": {
+                "uri": "/saperp/sap/opu/odata/sap/Z_PP_CENTRALPESADAS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "manejoPedidos",
+                    "action": "display",
+                    "title": "Manejo de pedidos",
+                    "icon": "sap-icon://sales-document",
+                    "subTitle": "Central Pesada",
+                    "info": "Ingresar"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "com.medifarma.cp.manejopedidos.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        },
+        "dependencies": {
+            "minUI5Version": "1.66.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.medifarma.cp.manejopedidos.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "groupId": "$direct",
+                    "synchronizationMode": "None",
+                    "autoExpandSelect": true
+                }
+            },
+            "sapErp": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": false
+                },
+                "dataSource": "sapErp",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.medifarma.cp.manejopedidos.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "clearControlAggregation": false,
+                "async": true
+            },
+            "routes": [
+                {
+                    "name": "RouteHome",
+                    "pattern": "",
+                    "target": [
+                        "TargetHome"
+                    ]
+                },
+                {
+                    "name": "RoutePedidoAdmin",
+                    "pattern": "RoutePedidoAdmin",
+                    "target": [
+                        "TargetPedidoAdmin"
+                    ]
+                },
+                {
+                    "name": "RouteProgramacion",
+                    "pattern": "RouteProgramacion",
+                    "target": [
+                        "TargetProgramacion"
+                    ]
+                },
+                {
+                    "name": "RoutePedidoAtencion",
+                    "pattern": "RoutePedidoAtencion",
+                    "target": [
+                        "TargetPedidoAtencion"
+                    ]
+                },
+                {
+                    "name": "RouteSeguimientoPickingPedido",
+                    "pattern": "RouteSeguimientoPickingPedido",
+                    "target": [
+                        "TargetSeguimientoPickingPedido"
+                    ]
+                }, 
+                {
+                    "name": "RouteSeguimientoSalaPesada",
+                    "pattern": "RouteSeguimientoSalaPesada",
+                    "target": [
+                        "TargetSeguimientoSalaPesada"
+                    ]
+                }, 
+                {
+                    "name": "RouteSeguimientoEntrega",
+                    "pattern": "RouteSeguimientoEntrega",
+                    "target": [
+                        "TargetSeguimientoEntrega"
+                    ]
+                },
+                {
+                    "name": "RouteSeguimientoTraslado",
+                    "pattern": "RouteSeguimientoTraslado",
+                    "target": [
+                        "TargetSeguimientoTraslado"
+                    ]
+                }, 
+                {
+                    "name": "RoutePedidoAlmacen",
+                    "pattern": "RoutePedidoAlmacen",
+                    "target": [
+                        "TargetPedidoAlmacen"
+                    ]
+                },
+                {
+                    "name": "RouteSeguimientoPickingPedidoAlmacen",
+                    "pattern": "RouteSeguimientoPickingPedidoAlmacen",
+                    "target": [
+                        "TargetSeguimientoPickingPedidoAlmacen"
+                    ]
+                },
+                               
+                {
+					"pattern": "UsageStatistics",
+					"name": "usageStatistics",
+					"target": "usageStatistics"
+				}
+            ],
+            "targets": {
+                "TargetHome": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "Home"
+                },
+                "TargetPedidoAdmin": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"PedidoAdmin",
+                    "viewName": "admin.PedidoAdmin"
+                },
+                "TargetPedidoAtencion": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"PedidoAtencion",
+                    "viewName": "centralPesadas.PedidoAtencion"
+                },
+                "TargetProgramacion": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"Programacion",
+                    "viewName": "centralPesadas.Programacion"
+                },
+                "TargetSeguimientoPickingPedido": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"SeguimientoPickingPedido",
+                    "viewName": "centralPesadas.SeguimientoPickingPedido"
+                },          
+                "TargetSeguimientoSalaPesada": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"SeguimientoSalaPesada",
+                    "viewName": "centralPesadas.SeguimientoSalaPesada"
+                },
+                "TargetSeguimientoEntrega": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"SeguimientoEntrega",
+                    "viewName": "centralPesadas.SeguimientoEntrega"
+                },
+                "TargetSeguimientoTraslado": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"SeguimientoTraslado",
+                    "viewName": "centralPesadas.SeguimientoTraslado"
+                },
+                "TargetPedidoAlmacen": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"PedidoAlmacen",
+                    "viewName": "almacen.PedidoAlmacen"
+                },
+                "TargetSeguimientoPickingPedidoAlmacen": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId":"SeguimientoPickingPedidoAlmacen",
+                    "viewName": "almacen.SeguimientoPickingPedido"
+                },
+                "usageStatistics": {
+					"viewId": "usageStatistics",
+					"viewName": "UsageStatistics"
+                },
+                "notFound":{
+                    "viewName": "NotFound1",
+                    "viewId": "notFound1"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "centralpesadas_apps_bs"
+    }
+}

@@ -1,0 +1,13 @@
+<mvc:View
+	controllerName="com.medifarma.cp.manejopedidos.controller.almacen.SeguimientoPickingPedido"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="true" title="{i18n>sideContentSeguiPickPediAlm}">
+		<content>
+        <core:Fragment fragmentName="com.medifarma.cp.manejopedidos.view.almacen.fragment.FilterSegPickPedido" type="XML"/>
+        <core:Fragment fragmentName="com.medifarma.cp.manejopedidos.view.almacen.fragment.BodySegPickPedido" type="XML"/>
+        </content>
+	</Page>
+</mvc:View>

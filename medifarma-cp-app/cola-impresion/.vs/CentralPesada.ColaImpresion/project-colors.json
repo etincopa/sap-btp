@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ef74403f-d054-4787-ab55-bf9fc5619c87": {
+      "ProjectGuid": "ef74403f-d054-4787-ab55-bf9fc5619c87",
+      "DisplayName": "CentralPesada.ColaImpresion.TestApp",
+      "ColorIndex": 0
+    },
+    "711fc8ba-9655-4cff-8bbe-408a74b03d40": {
+      "ProjectGuid": "711fc8ba-9655-4cff-8bbe-408a74b03d40",
+      "DisplayName": "CentralPesada.ColaImpresion.Aplicacion",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

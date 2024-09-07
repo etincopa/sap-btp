@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+>
+	<fb:FilterBar
+		header="Filtros"
+		reset="onRestoreFilters"
+		search="onSearch"
+		useToolbar="false"
+		showGoOnFB="true"
+		showFilterConfiguration="false"
+		showRestoreOnFB="true"
+		showRestoreButton="false"
+	>
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem
+				groupName="MANGROUP"
+				name="B"
+				label="{i18n>lblPlanta}"
+				partOfCurrentVariant="true"
+				visibleInFilterBar="true"
+			>
+				<fb:control>
+					<Select
+						selectedKey="{localModel>/Filtros/plantaId}"
+						placeholder="{i18n>phlblOption}"
+						items="{
+							path: 'localModel>/Plantas'
+						}"
+						change="onPlantaChange"
+					>
+						<core:Item
+							key="{localModel>iMaestraId}"
+							text="{localModel>contenido}"
+						/>
+					</Select>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+				groupName="MANGROUP"
+				name="A"
+				label="{i18n>lblSala}"
+				partOfCurrentVariant="true"
+				visibleInFilterBar="true"
+			>
+				<fb:control>
+					<Select
+						selectedKey="{localModel>/Filtros/salaPesajeId}"
+						placeholder="{i18n>phlblOption}"
+						items="{
+							path: 'localModel>/SalaPesajes'
+						}"
+						change="onSelectionChange"
+					>
+						<core:Item
+							key="{localModel>salaPesajeId}"
+							text="{localModel>sala}"
+						/>
+					</Select>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

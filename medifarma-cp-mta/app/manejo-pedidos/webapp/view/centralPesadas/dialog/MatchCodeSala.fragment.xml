@@ -1,0 +1,76 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogSalaMC"
+		title="Salas"
+		contentWidth="25%"
+		contentHeight="40%"
+		draggable="true"
+	>
+		<content>
+			<ui:Table
+				id="idTableMatchCodeSala"
+				rows="{
+					path: 'McSalaModel>/',
+					sorter: [{
+						path: 'oPlanta/codigo',
+						descending: false
+					}, {
+						path: 'sala',
+						descending: false
+					}]
+				}"
+				selectionMode="Single"
+				visibleRowCount="10"
+				enableSelectAll="false"
+			>
+				<ui:columns>
+					<ui:Column
+						width="10em"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dclSala}"/>
+						<ui:template>
+							<Text text="{McSalaModel>sala}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="15rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dclCentro}"/>
+						<ui:template>
+							<Text text="{McSalaModel>oPlanta/codigoSap} - {McSalaModel>oPlanta/contenido}"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="Ok"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onOkMatchCodeSala"
+			/>
+			<Button
+				text="Cerrar"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

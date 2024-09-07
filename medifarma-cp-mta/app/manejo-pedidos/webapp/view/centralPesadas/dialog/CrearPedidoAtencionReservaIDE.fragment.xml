@@ -1,0 +1,440 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogPedido"
+		title="{i18n>tlTipoPedidos}: {PedidoModel>/valueTipoPedido}"
+		contentWidth="100%"
+		contentHeight="100%"
+	>
+		<content>
+			<f:Form>
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="2"
+						singleContainerFullSize="false"
+					/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+										text="{i18n>dclCentro}"
+										required="true"
+									/>
+								</f:label>
+								<f:fields>
+									<ComboBox
+										placeholder="{i18n>dclCentro}"
+										selectedKey="{PedidoModel>/tipoPedidoParams/keyCentro}"
+										items="{
+											path: 'CentroSalaModel>/',
+											sorter: [{
+												path: 'Name1',
+												descending: false
+											}]
+										}"
+										change="onPedidoChangeCentro"
+									>
+										<core:Item
+											key="{CentroSalaModel>Bwkey}"
+											text="{CentroSalaModel>Name1}"
+										/>
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+										text="{i18n>dclSala}"
+										required="true"
+									/>
+								</f:label>
+								<f:fields>
+									<ComboBox
+										id="idPedidoSala"
+										editable="false"
+										placeholder="{i18n>dclSala}"
+										selectedKey="{PedidoModel>/tipoPedidoParams/keySala}"
+										value="{PedidoModel>/tipoPedidoParams/valueSala}"
+										items="{
+											path: '/SALA_PESAJE',
+											filters: [{
+												path: 'activo',
+												operator: 'EQ',
+												value1: 'true'
+											}],
+											sorter: [{
+												path: 'sala',
+												descending: false
+											}]
+										}"
+										change="onSelectionChange"
+									>
+										<core:Item
+											key="{salaPesajeId}"
+											text="{sala}"
+										/>
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+										text="{i18n>dlblFechaReserva}"
+										required="true"
+									/>
+								</f:label>
+								<f:fields>
+									<DateRangeSelection
+										id="idDateFechaPedido"
+										displayFormat="dd-MM-yyyy"
+										placeholder="{i18n>dphlblFechaOrden}"
+										value="{PedidoModel>/tipoPedidoParams/valueFechaInicio}"
+									/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+										text="{i18n>btnBuscarReservas}"
+										required="true"
+									/>
+								</f:label>
+								<f:fields>
+									<Input
+										value=""
+										placeholder="{i18n>btnBuscarReservas}"
+										type="Text"
+										showValueHelp="true"
+										visible="true"
+										width="100%"
+										valueHelpOnly="true"
+										valueHelpRequest=".onMatchCodeReservaGroup"
+									/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<ui:Table
+				id="idTableReservasDisponibles"
+				rows="{
+					path: 'ReservaModel>/'
+				}"
+				selectionMode="Single"
+				visibleRowCount="5"
+				enableSelectAll="false"
+				rowSelectionChange="onSelectReservaDisplayInsumo"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<Title text="{i18n>tlReservasIDE}"/>
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://delete"
+							text="Quitar"
+							tooltip="Quitar"
+							type="Reject"
+							press="onDeleteReservas"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclNroReserva}"/>
+						<ui:template>
+							<Text
+								text="{ReservaModel>Rsnum}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclFechaSolicitud}"/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ReservaModel>Bdter',
+									formatter: '.formatter.getTimestampToDMY'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclCreadorSolicitud}"/>
+						<ui:template>
+							<Text
+								text="{ReservaModel>Usnam}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+			<ui:Table
+				id="idTableReservasSeleccionadas"
+				rows="{
+					path: 'ReservaListModel>/'
+				}"
+				selectionMode="None"
+				visibleRowCount="8"
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<Title text="{i18n>tlReservasIDESeleccionadas}"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clAccion}"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://delete"
+								tooltip="Quitar"
+								type="Reject"
+								press="onDeleteItemsReservas"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclNroReserva}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Rsnum}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>lblCodigoInsumo}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Matnr}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>lblLoteInsumo}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Charg}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="auto"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclDescripMaterial}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Maktx}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Label text="{i18n>dclCantSug}"/>
+						<ui:template>
+							<Input
+								change="onChangeValue($event,${ReservaListModel>}, 'CANT_SUGERIDA_IDE')"
+								value="{ReservaListModel>CantSugeridaEdit}"
+								placeholder="{ReservaListModel>CantSugeridaColor}"
+								type="Number"
+								visible="true"
+								textAlign="End"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clUnidad}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Meins}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclCentro}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Werks}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclAlmacen}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Lgort}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Label
+							text="{i18n>dclStockLibUtil}"
+							wrapping="true"
+						/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Clabs}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Label text="{i18n>dclCantComp}"/>
+						<ui:template>
+							<Link
+								text="{ReservaListModel>AvailQty1}"
+								press="onOpenDialogOR($event,'ReservaIDE')"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text text="{i18n>dclStockATP}"/>
+						<ui:template>
+							<Text
+								text="{
+									parts: [{
+										path: 'ReservaListModel>Clabs'
+									}, {
+										path: 'ReservaListModel>AvailQty1'
+									}],
+									formatter: '.formatter.getResta'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="5rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclAgotar}"/>
+						<ui:template>
+							<Switch
+								state="{ReservaListModel>Agotar}"
+								customTextOff="No"
+								customTextOn="Si"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclGlosa}"/>
+						<ui:template>
+							<Text
+								text="{ReservaListModel>Glos2}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnCrear}"
+				type="Emphasized"
+				iconFirst="true"
+				width="auto"
+				press="onCreatePAIDE"
+			/>
+			<Button
+				text="{i18n>btnCancelar}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,139 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<ui:Table
+		rows="{
+			path: 'localModel>/Salas',
+			sorter: [{
+				path: 'sala',
+				descending: false
+			}]
+		}"
+		selectionMode="MultiToggle"
+		visibleRowCount="7"
+		paste="onPaste"
+		ariaLabelledBy="title"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title
+					id="title"
+					text="{i18n>lblTitulo}"
+				/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<Button
+					tooltip="{i18n>tpExportar}"
+					type="Transparent"
+					text="{i18n>btnExportar}"
+					icon="sap-icon://excel-attachment"
+					press=".onExportar"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column
+				width="auto"
+				sortProperty="sala"
+			>
+				<Label text="{i18n>lblSala}"/>
+				<ui:template>
+					<Link
+						text="{localModel>sala}"
+						press="onEditarPress"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oPlanta/contenido"
+			>
+				<Label text="{i18n>lblCentro}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oPlanta/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				sortProperty="ipPc"
+			>
+				<Label text="{i18n>lblIP}"/>
+				<ui:template>
+					<Text
+						text="{localModel>ipPc}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				sortProperty="horaLectEtiqueta"
+			>
+				<Label text="{i18n>lblHorasConfigurada}"/>
+				<ui:template>
+					<Text
+						text="{localModel>horaLectEtiqueta}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				sortProperty="oEstadoLecturaEtiqueta/contenido"
+			>
+				<Label text="{i18n>lblEstado}"/>
+				<ui:template>
+					<ObjectStatus
+						text="{localModel>oEstadoLecturaEtiqueta/contenido}"
+						icon="sap-icon://Error"
+						visible="{=${localModel>oEstadoLecturaEtiqueta} === null ? false : true}"
+						state="{=${localModel>oEstadoLecturaEtiqueta/codigo} === 'HABIL' ? 'Success' : 'Error'}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				sortProperty="inicioLectEtiqueta"
+			>
+				<Label text="{i18n>fechaInicio}"/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'localModel>inicioLectEtiqueta',
+							type: 'sap.ui.model.type.DateTime',
+							formatOptions: {
+								pattern: 'dd/MM/yyyy HH:mm'
+							}
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				sortProperty="finLectEtiqueta"
+			>
+				<Label text="{i18n>fechaFin}"/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'localModel>finLectEtiqueta',
+							type: 'sap.ui.model.type.DateTime',
+							formatOptions: {
+								pattern: 'dd/MM/yyyy HH:mm'
+							}
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+</core:FragmentDefinition>

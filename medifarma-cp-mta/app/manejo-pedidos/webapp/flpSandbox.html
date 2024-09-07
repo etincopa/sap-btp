@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0,
+         minimum-scale=1.0, width=device-width, height=device-height,
+         target-densitydpi=device-dpi" />
+        <title>Fiori Launchpad Sandbox</title>
+
+        <script>
+            window["sap-ushell-config"] = {
+                defaultRenderer: "fiori2",
+                bootstrapPlugins: {
+                    KeyUserPlugin: {
+                        component: "sap.ushell.plugins.rta"
+                    },
+                    PersonalizePlugin: {
+                        component: "sap.ushell.plugins.rta-personalize"
+                    }
+                },
+                applications: {
+                    "display-manejopedidos": {
+                        title: "App",
+                        description: "",
+                        icon: "sap-icon://add",
+                        additionalInformation: "SAPUI5.Component=com.medifarma.cp.manejopedidos",
+                        applicationType: "URL",
+                        url: "./",
+                        navigationMode: "embedded"
+                    }
+                }
+            };
+        </script>
+
+        <script
+            id="sap-ui-bootstrap"
+            src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"
+        ></script>
+
+        <script
+            id="sap-ui-bootstrap"
+            src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-resourceroots='{
+                "com.medifarma.cp.manejopedidos": "./"
+            }'
+            data-sap-ui-theme="sap_fiori_3"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-async="true"
+            data-sap-ui-frameOptions="allow"
+        ></script>
+
+        <script>
+            sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt("content"));
+        </script>
+    </head>
+
+    <body class="sapUiBody" id="content"></body>
+</html>

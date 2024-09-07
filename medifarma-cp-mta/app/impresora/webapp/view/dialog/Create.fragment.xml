@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog title="{= ${localModel>/Impresora/Editar} ? ${i18n>tlEditarImpresora} : ${i18n>tlCrearImpresora}}" class="sapUiSizeCompact" contentWidth="600px">
+        <content>
+
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="4"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="2"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <core:Title text="{i18n>tlDatosImpresora}" />
+                    <Label text="{i18n>lblNombre}" required="true"/>
+                    <Input value="{localModel>/Impresora/nombre}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                    <Label text="{i18n>lblDireccion}" required="true"/>
+                    <Input value="{localModel>/Impresora/direccion}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                    <Label text="{i18n>lblSerie}" required="true"/>
+                    <Input value="{localModel>/Impresora/serie}" type="Text" showValueHelp="false" visible="true" width="100%" valueHelpOnly="false"/>
+                    <Label text="{i18n>lblPlanta}" required="true"/>
+                    <Select selectedKey="{localModel>/Impresora/oPlanta_iMaestraId}"  items="{path: 'localModel>/Impresora_Plantas'}" change="onSelectionChange">
+                        <core:Item key="{localModel>iMaestraId}" text="{localModel>contenido}"/>
+                    </Select>
+                    <Label text="{i18n>lblArea}" required="false" visible="{localModel>/visibleByRol/RMD}"/>
+                    <ComboBox items="{path : 'localModel>/aListaArea'}" placeholder="{i18n>phlblArea}" selectedKey="{localModel>/Impresora/area}"
+                        showSecondaryValues="true" filterSecondaryValues="true" visible="{localModel>/visibleByRol/RMD}">
+                        <core:ListItem key="{localModel>Atwrt}" text="{localModel>Atwrt}" additionalText="{localModel>Atzhl}"/>
+                    </ComboBox>
+                    <Label text="{i18n>lblRmd}" visible="{localModel>/visibleByRol/RMD}"/>
+                    <Switch state="{localModel>/Impresora/rmd}" visible="{localModel>/visibleByRol/RMD}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                    <Label text="{i18n>lblEstadoImpresora}" />
+                    <Switch state="{localModel>/Impresora/estadoImpresora}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                    <Label text="{i18n>lblIndicadorCP}" visible="{localModel>/visibleByRol/CP}"/>
+                    <Switch state="{localModel>/Impresora/indicadorCp}" visible="{localModel>/visibleByRol/CP}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                    <Label text="{i18n>lblIndicadorPicking}" visible="{localModel>/visibleByRol/CP}"/>
+                    <Switch state="{localModel>/Impresora/indicadorPicking}" visible="{localModel>/visibleByRol/CP}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>   
+                    <Label text="{i18n>lblIndicadorEtiqueta}" visible="{localModel>/visibleByRol/CP}"/>
+                    <Switch state="{localModel>/Impresora/indicadorEtiqueta}" visible="{localModel>/visibleByRol/CP}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>                                                          
+                </f:content>
+            </f:SimpleForm>
+
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button type="Default" iconFirst="true" width="auto" icon="sap-icon://display" press="onPressLog"/>
+            <Button text="{i18n>btnGuardar}" type="Default" iconFirst="true" width="auto" press="onPressSave"/>
+            <Button text="{i18n>btnCancelar}" type="Default" iconFirst="true" width="auto" press="onPressClose"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

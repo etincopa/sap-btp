@@ -1,0 +1,82 @@
+<mvc:View
+	controllerName="com.medifarma.cp.manejopedidos.controller.Home"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Page
+		showHeader="false"
+		title="hola"
+	>
+		<landmarkInfo>
+			<PageAccessibleLandmarkInfo
+				rootRole="Region"
+				rootLabel="{i18n>Home_rootLabel}"
+				contentRole="Main"
+				contentLabel="{i18n>Home_contentLabel}"
+			/>
+		</landmarkInfo>
+		<l:BlockLayout
+			id="BlockLayout"
+			background="Default"
+		>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeD"
+				>
+					<l:VerticalLayout>
+						<core:Icon
+							id="supplierIcon"
+							src="sap-icon://supplier"
+							size="2.5rem"
+							color="Default"
+						/>
+						<Title
+							text="{i18n>sideContentInicio}"
+							level="H3"
+							titleStyle="H1"
+							class="sapUiTinyMarginTopBottom"
+						/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+		</l:BlockLayout>
+		<VBox
+			class="sapUiTinyMargin"
+			items="{
+				path: 'side>/navigation'
+			}"
+		>
+			<l:HorizontalLayout
+				id="TileContainerExpanded"
+				allowWrapping="true"
+				content="{
+					path: 'side>items'
+				}"
+				class="sapUiTinyMarginTopBottom"
+			>
+				<GenericTile
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					header="{
+						path: 'side>titleI18nKey',
+						formatter: '.getBundleText'
+					}"
+					subheader="{
+						path: 'side>subheader',
+						formatter: '.getBundleText'
+					}"
+					press="onNav"
+					app:route="{side>key}"
+					app:prefixRol="{side>prefixRol}"
+				>
+					<TileContent>
+						<ImageContent src="{side>icon}"/>
+					</TileContent>
+				</GenericTile>
+			</l:HorizontalLayout>
+		</VBox>
+	</Page>
+</mvc:View>

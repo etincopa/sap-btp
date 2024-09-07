@@ -1,0 +1,89 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		title="{i18n>tlTipoPedidos}"
+		contentWidth="25rem"
+	>
+		<content>
+			<f:Form>
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="3"
+						columnsL="3"
+						columnsM="2"
+						singleContainerFullSize="false"
+					/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+										text="{i18n>tlTipoPedidos}"
+										required="true"
+									/>
+								</f:label>
+								<f:fields>
+									<ComboBox
+										value="{PedidoModel>/valueTipoPedido}"
+										placeholder="{i18n>dphlblTipoPedido}"
+										selectedKey="{PedidoModel>/keyTipoPedido}"
+										items="{
+											path: 'TipoPedidoDetalleListModel>/',
+											filters: [{
+												path: 'oTipoPedido_tpedidoId',
+												operator: 'EQ',
+												value1: '2'
+											}]
+										}"
+										change="onSelectionChange"
+									>
+										<core:Item
+											key="{TipoPedidoDetalleListModel>codigo}"
+											text="{TipoPedidoDetalleListModel>nombre}"
+										/>
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnAceptar}"
+				type="Emphasized"
+				iconFirst="true"
+				width="auto"
+				press="onPressAceptar"
+			/>
+			<Button
+				text="{i18n>btnCancelar}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onPressClose"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

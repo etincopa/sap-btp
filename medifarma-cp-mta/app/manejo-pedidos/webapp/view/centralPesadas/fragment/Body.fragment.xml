@@ -1,0 +1,705 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<ui:Table
+		id="idPedidoList"
+		rows="{
+			path: '/VIEW_SEGUIMIENTO_PEDIDO_CP',
+			filters: [{
+				path: 'Tipo_codigo',
+				operator: 'EQ',
+				value1: 'PCP'
+			}],
+			sorter: [{
+				path: 'numPedido',
+				descending: true
+			}]
+		}"
+		threshold="100"
+		enableBusyIndicator="true"
+		selectionMode="Single"
+		rowSelectionChange="onRowSelectPedido"
+		visibleRowCount="5"
+		enableSelectAll="false"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title text="{i18n>lblPedido}"/>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://history"
+					tooltip="{i18n>tpHistorial}"
+					type="Default"
+					text="Historial"
+					press=".onShowHistory"/>
+				<ToolbarSeparator/>
+				<Button
+					icon="sap-icon://add-document"
+					tooltip="{i18n>btnCrear}"
+					type="Default"
+					text="{i18n>btnCrear}"
+					press=".onCreate"
+				/>
+				<OverflowToolbarButton
+					text="{i18n>btnExport}"
+					tooltip="{i18n>btnExport}"
+					icon="sap-icon://excel-attachment"
+					press="onExportXLSReport"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<!--ui:rowSettingsTemplate>
+			<ui:RowSettings highlight="{
+				path: 'insumoEstadoDes',
+				formatter: '.formatter.highlightStatusPedido'
+			}"/>
+		</ui:rowSettingsTemplate-->
+		<ui:columns>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>lblPedido}"/>
+				<ui:template>
+					<Text
+						text="{numPedido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clTipoPedido}"/>
+				<ui:template>
+					<Text
+						text="{TipoDetalle_nombre}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="14rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clEstado}"/>
+				<ui:template>
+					<HBox>
+						<ObjectStatus
+							text="{Estado_contenido}"
+							state="{
+								path: 'Estado_codigo',
+								formatter: '.formatter.highlightStatusPedido'
+							}"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>dclCentro}"/>
+				<ui:template>
+					<Text
+						text="{Centro_codigoSap}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{usuarioRegistro}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'fechaRegistro',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'fechaRegistro',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{pickingUsuInic}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecInic',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecInic',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{pickingUsuFin}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecFin',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecFin',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="9rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>tlUserAssigned}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ExpandableText
+						class="sapUiTinyMarginBottom sapUiTinyMarginTop"
+						text="{
+							path: 'usuarioAsignado',
+							formatter: '.formatter.stringDeteleDuplicate'
+						}"
+						overflowMode="Popover"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>dclMotivo}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{Motivo_contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>Acciones}"/>
+				<ui:template>
+					<HBox>
+						<Button
+							icon="sap-icon://employee-lookup"
+							tooltip="Asignar Usuarios"
+							app:pedidoAction="ShowUserAssignments"
+							press="onRowButtonsAction($event, ${pedidoId})"
+							visible="{= ${Estado_codigo} === 'PAPPEND' || ${Estado_codigo} === 'PAPPROC' ? true : false }"
+						/>
+						<Button
+							icon="sap-icon://order-status"
+							tooltip="Bloquear/Desbloquear"
+							app:pedidoAction="LockUnlock"
+							visible="{= ${Estado_codigo} === 'PAPPEND' || ${Estado_codigo} === 'PAPBLOQ' ? true : false }"
+							press="onRowButtonsAction($event, ${pedidoId})"
+						/>
+						<Button
+							icon="sap-icon://cancel"
+							tooltip="Anular"
+							type="Reject"
+							app:pedidoAction="Annulate"
+							visible="{= ${Estado_codigo} === 'PAPPEND' ? true : false }"
+							press="onRowButtonsAction($event, ${pedidoId})"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+	<ui:Table
+		id="idOrdenList"
+		rows="{
+			path: 'OrdenSelectedItemsModel>/',
+            sorter: [{
+                path: 'ordenNumero',
+                descending: false
+            }, {
+                path: 'ordenPos',
+                descending: false
+            }, {
+                path: 'numFraccion',
+                descending: false
+            }, {
+                path: 'numSubFraccion',
+                descending: false
+            }, {
+                path: 'codigoInsumo',
+                descending: false
+            }, {
+                path: 'lote',
+                descending: false
+            }]
+		}"
+		selectionMode="None"
+		visibleRowCount="7"
+		enableSelectAll="false"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title text="{i18n>tlOrdReser}"/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<OverflowToolbarButton
+					text="{i18n>btnExport}"
+					tooltip="{i18n>btnExport}"
+					icon="sap-icon://excel-attachment"
+					press="onExportXLSReportOrden"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clOrdReser}"/>
+				<ui:template>
+					<Text
+						text="{= ${OrdenSelectedItemsModel>reservaIDE} === 'X' ? ${OrdenSelectedItemsModel>reservaNum} : ${OrdenSelectedItemsModel>ordenNumero}}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clPosnr}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>ordenPos}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFraccion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>numFraccion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clSubFraccion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>numSubFraccion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>dclAlmacen}"/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>almacen}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>lblCodigoInsumo}"/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>codigoInsumo}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="12rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>dclDescripMaterial}"/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>descripcion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>lblLoteInsumo}"/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>lote}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="14rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clEstado}"/>
+				<ui:template>
+					<HBox>
+						<ObjectStatus
+							text="{OrdenSelectedItemsModel>insumoEstadoDes}"
+							state="{
+								path: 'OrdenSelectedItemsModel>insumoEstado',
+								formatter: '.formatter.highlightStatusInsumo'
+							}"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="End"
+			>
+				<Text
+					text="{i18n>clCantReq}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>cantRequerida',
+							formatter: '.formatter.formatWeight'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="3rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUnidad}"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>cantRequeridaUM}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="End"
+			>
+				<Text
+					text="{i18n>dclCantSugTotal}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>cantSugeridaTotal',
+							formatter: '.formatter.formatWeight'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="End"
+			>
+				<Text
+					text="{i18n>dclCantSug}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>cantSugerida',
+							formatter: '.formatter.formatWeight'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="End"
+			>
+				<Text
+					text="{i18n>clCantPed}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>sugerido',
+							formatter: '.formatter.formatWeight'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="3rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clUnidad}"/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>unidad}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>dclAgotar}"/>
+				<ui:template>
+					<Text
+						text="{= ${OrdenSelectedItemsModel>agotar} === '' ? 'No': 'Si'}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="9rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>Acciones}"/>
+				<ui:template>
+					<HBox>
+						<Button
+							icon="sap-icon://cancel"
+							tooltip="Anular"
+							type="Reject"
+							app:insumoAction="Annulate"
+							visible="{= ${OrdenSelectedItemsModel>insumoEstado} === 'PAIPEPI' &amp;&amp; ( ${OrdenSelectedItemsModel>fraccionEstado} === 'PAOPEND' || ${OrdenSelectedItemsModel>fraccionEstado} === 'PAOPICK' ) ? true : false }"
+							press="onChangeStatusInsumo"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+</core:FragmentDefinition>

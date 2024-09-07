@@ -1,0 +1,143 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogInsumoMC"
+		title="Insumos"
+		contentWidth="50%"
+		contentHeight="50rem"
+		draggable="true"
+	>
+		<content>
+			<ui:Table
+				id="idTableMatchCodeInsumo"
+				rows="{
+					path: 'McInsumoModel>/',
+					sorter: [{
+						path: 'Rsnum',
+						descending: false
+					}, {
+						path: 'Rspos',
+						descending: false
+					}]
+				}"
+				selectionMode="Single"
+				visibleRowCount="10"
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+						<SearchField
+							placeholder="Buscar"
+							value=""
+							search="onFilterMatchCodeInsumo"
+							width="50%"
+							enabled="true"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="auto"
+						hAlign="Left"
+					>
+						<Label text="{i18n>lblCodigoInsumo}"/>
+						<ui:template>
+							<HBox>
+								<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+									<Label text="{McInsumoModel>Matnr}"/>
+									<Text text="{McInsumoModel>Maktx}"/>
+								</VBox>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>clPosnr}"/>
+						<ui:template>
+							<Text text="{McInsumoModel>Posnr}"/>
+						</ui:template>
+					</ui:Column>
+					<!--ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clFraccion}"/>
+						<ui:template>
+							<Text
+								text="{McInsumoModel>Fracc}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column-->
+					<ui:Column
+						width="5rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clSubFraccion}"/>
+						<ui:template>
+							<Text
+								text="{McInsumoModel>Subfracc}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dlblLote}"/>
+						<ui:template>
+							<Text text="{McInsumoModel>Charg}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dclAlmacen}"/>
+						<ui:template>
+							<Text text="{McInsumoModel>Lgort}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>clUnidad}"/>
+						<ui:template>
+							<Text text="{McInsumoModel>Erfme}"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="Ok"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onOkMatchCodeInsumo"
+			/>
+			<Button
+				text="Cerrar"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

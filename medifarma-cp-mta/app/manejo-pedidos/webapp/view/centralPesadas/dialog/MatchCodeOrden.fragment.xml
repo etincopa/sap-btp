@@ -1,0 +1,118 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogOrdenMC"
+		title="Orden"
+		contentWidth="50%"
+		contentHeight="100%"
+		draggable="true"
+	>
+		<content>
+			<ui:Table
+			id="idTableMatchCodeOrden"
+				rows="{
+					path: 'McOrdenModel>/',
+					sorter: [
+					{
+						path: 'Aufnr',
+						descending: false
+					},
+					{
+						path: 'Rsnum',
+						descending: false
+					},
+					{
+						path: 'Rspos',
+						descending: false
+					}
+					]
+				}"
+				selectionMode="Single"
+				visibleRowCount="8"
+				enableSelectAll="false"
+				
+			>
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+					
+						<DateRangeSelection
+						id="idDateFechaOrdenMC"
+							displayFormat="dd-MM-yyyy"
+							placeholder="{i18n>dphlblFechaOrden}"
+							value="{PedidoModel>/tipoPedidoParams/MCOrdenFecha}"
+							width="40%"
+						/>
+						<Button
+							icon="sap-icon://search"
+							type="Default"
+							iconFirst="true"
+							press="onSearchMatchCodeOrden"
+						/>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+						<SearchField
+							placeholder="Buscar"
+							value=""
+							search="onFilterMatchCodeOrden"
+							width="50%"
+							enabled="true"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="7rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dclNroOrden}"/>
+						<ui:template>
+							<Text text="{McOrdenModel>Aufnr}"/>
+						</ui:template>
+					</ui:Column>
+
+					<ui:Column
+						width="auto"
+						hAlign="Left"
+					>
+						<Label text="{i18n>dclNomProTerm}"/>
+						<ui:template>
+							<HBox>
+								<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+									<Label text="Codigo: {McOrdenModel>Plnbez}"/>
+									<Text text="{McOrdenModel>Maktx}"/>
+									<Text text=" Lote: {McOrdenModel>Charg}"/>
+								</VBox>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+		<Button
+				text="Ok"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onOkMatchCodeOrden"
+			/>
+			<Button
+				text="Cerrar"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

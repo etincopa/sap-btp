@@ -1,0 +1,120 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogLoteAMMC"
+		title="Lotes"
+		contentWidth="45rem"
+		contentHeight="30rem"
+		draggable="true"
+	>
+		<content>
+			<ui:Table
+				id="idTableMatchCodeAMLote"
+				rows="{
+					path: 'McLoteModel>/',
+					sorter: [{
+						path: 'Charg',
+						descending: false
+					}]
+				}"
+				selectionMode="Single"
+				visibleRowCount="10"
+				enableSelectAll="false"
+				
+			>
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+						<SearchField
+							placeholder="Buscar"
+							value=""
+							search="onFilterMatchCodeLote"
+							width="50%"
+							enabled="true"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="7rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>lblCodigoInsumo}"/>
+						<ui:template>
+							<HBox>
+								<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+									<Label text="{McLoteModel>Matnr}"/>
+									<Text text="Centro: {McLoteModel>Werks}"/>
+								</VBox>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="8rem"
+						hAlign="Left"
+					>
+						<Label text="{i18n>clLote}"/>
+						<ui:template>
+							<Text text="{McLoteModel>Charg}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="End"
+					>
+						<Label text="{i18n>clCantidad}"/>
+						<ui:template>
+							<Text text="{McLoteModel>Clabs}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="End"
+					>
+						<Label text="{i18n>clUnidad}"/>
+						<ui:template>
+							<Text text="{McLoteModel>Meins}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="End"
+					>
+						<Label text="{i18n>clFechaVencimiento}"/>
+						<ui:template>
+							<Text text="{
+								path: 'McLoteModel>Vfdat',
+								formatter: '.formatter.getTimestampToDMY'
+							}"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="Ok"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onOkMatchCodeLote"
+			/>
+			<Button
+				text="Cerrar"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

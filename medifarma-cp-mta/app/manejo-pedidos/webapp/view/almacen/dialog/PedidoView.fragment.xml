@@ -1,0 +1,543 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		title="{i18n>tlPedido}"
+		contentWidth="100%"
+		contentHeight="35rem"
+	>
+		<content>
+			<ui:Table
+				rows="{
+					path: 'ViewOrdenListModel>/',
+					sorter: [{
+						path: 'pedidoNumero',
+						descending: true
+					}]
+				}"
+				selectionMode="Single"
+				rowSelectionChange="onSelectOrderItems"
+				visibleRowCount="5"
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<Title text="La Orden ya fue asignado a los siguientes pedidos:"/>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="6rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>lblPedido}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>pedidoNumero}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clTipoPedido}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>pedidoTipoDN}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="14rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clEstado}"/>
+						<ui:template>
+							<HBox>
+								<ObjectStatus
+									text="{ViewOrdenListModel>pedidoEstadoD}"
+									state="{
+										path: 'ViewOrdenListModel>pedidoEstado',
+										formatter: '.formatter.highlightStatusPedido'
+									}"
+								/>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclFPedido}"/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ViewOrdenListModel>pedidoFecha',
+									formatter: '.formatter.getTimestampToDMY'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<!--ui:Column
+						width="9rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclSala}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>pedidoSala}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column-->
+					<ui:Column
+						width="9rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclNroOrdenReser}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>ordenNumero}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clFraccion}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>numFraccion}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="13rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclClasOrdProd}"/>
+						<ui:template>
+							<ComboBox
+								id="idPedidoSala"
+								editable="false"
+								selectedKey="{ViewOrdenListModel>ordenClasOrdPrd}"
+								items="{MaestraModel>/CLASE_DOCUMENTO_AM}"
+							>
+								<core:Item
+									key="{MaestraModel>codigoSap}"
+									text="{MaestraModel>codigoSap} - {MaestraModel>contenido}"
+								/>
+							</ComboBox>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclLotePT}"/>
+						<ui:template>
+							<Text
+								text="{ViewOrdenListModel>ordenLote}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="11rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclFecVenProductTerm}"/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ViewOrdenListModel>ordenFechaVencimiento',
+									formatter: '.formatter.getTimestampToDMY'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+			<ui:Table
+				id="idPedidoCPItemsView"
+				rows="{
+					path: 'ViewPedidoDetalleModel>/',
+					filters: [{
+						path: 'ordenFraccionId',
+						operator: 'EQ',
+						value1: ''
+					}],
+					sorter: [{
+                        path: 'ordenNumero',
+                        descending: false
+                    }, {
+                        path: 'ordenPos',
+                        descending: false
+                    }, {
+                        path: 'numFraccion',
+                        descending: false
+                    }, {
+                        path: 'numSubFraccion',
+                        descending: false
+                    }, {
+                        path: 'codigoInsumo',
+                        descending: false
+                    }, {
+                        path: 'lote',
+                        descending: false
+                    }]
+				}"
+				selectionMode="None"
+				enableSelectAll="false"
+				visibleRowCount="5"
+			>
+				<ui:columns>
+					<ui:Column
+						width="6rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclNroOrdenReser}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>ordenNumero}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text
+							text="{i18n>clPosnr}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>ordenPos}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="14rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clEstado}"/>
+						<ui:template>
+							<HBox>
+								<ObjectStatus
+									text="{ViewPedidoDetalleModel>insumoEstadoDes}"
+									state="{
+										path: 'ViewPedidoDetalleModel>insumoEstado',
+										formatter: '.formatter.highlightStatusInsumo'
+									}"
+								/>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text
+							text="{i18n>clFraccion}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>numFraccion}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text
+							text="{i18n>clSubFraccion}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>numSubFraccion}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>lblCodigoInsumo}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>codigoInsumo}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclDescripMaterial}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>descripcion}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>lblLoteInsumo}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>lote}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>clCantReq}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ViewPedidoDetalleModel>cantRequerida',
+									formatter: '.formatter.formatWeight'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="Center"
+					>
+						<Text
+							text="{i18n>clUnidad}"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>cantRequeridaUM}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclCantSugTotal}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ViewPedidoDetalleModel>cantSugeridaTotal',
+									formatter: '.formatter.formatWeight'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclCantSug}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ViewPedidoDetalleModel>cantSugerida',
+									formatter: '.formatter.formatWeight'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>clCantPed}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>sugerido}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>clUnidad}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>unidad}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclCentro}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>centro}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclAlmacen}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>almacen}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text text="{i18n>dclStockLibUtil}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>stockLibrUtil}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text text="{i18n>dclCantComp}"/>
+						<ui:template>
+							<Link
+								text="{ViewPedidoDetalleModel>cantCompromet}"
+								press="onOpenDialogOR($event,'View')"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text text="{i18n>dclStockATP}"/>
+						<ui:template>
+							<Text
+								text="{ViewPedidoDetalleModel>stockATP}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclAgotar}"/>
+						<ui:template>
+							<Text
+								text="{= ${ViewPedidoDetalleModel>agotar} === '' ? 'No': 'Si'}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnContinuar}"
+				type="Emphasized"
+				iconFirst="true"
+				width="auto"
+				press="onConfirmDialogPA"
+			/>
+			<Button
+				text="{i18n>btnCerrar}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

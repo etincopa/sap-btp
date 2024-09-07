@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+	<appSettings>
+		<add key="UrlSrv" value="https://medifarmaprd-prd-cp-srv.cfapps.us10.hana.ondemand.com/browse/" />
+		<add key="IP" value="172.16.8.25" />
+		<add key="client_uri" value="https://medifarmaprd.authentication.us10.hana.ondemand.com"/>
+		<add key="client_id" value="sb-mf-centralpesadas!t84490"/>
+		<add key="client_secret" value="SC3Nsdz3oxNvg7HO9LwWWniGmNQ="/>
+		<add key="ClientSettingsProvider.ServiceUri" value="" />
+	</appSettings>
+</configuration>

@@ -1,0 +1,149 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		title="{i18n>tlActualizarProgramacion}"
+		contentWidth="100%"
+	>
+		<content>
+			<f:SimpleForm
+				editable="true"
+				layout="ColumnLayout"
+				labelSpanXL="4"
+				labelSpanL="3"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="2"
+				emptySpanL="2"
+				emptySpanM="2"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="2"
+				columnsM="2"
+				singleContainerFullSize="false"
+				
+			>
+				<f:content>
+					<Label text="{i18n>dclCentro}"/>
+					<ComboBox
+						editable="false"
+						placeholder="{i18n>dclCentro}"
+						valueState="{ActualizarProgramacion>/valueStateCentro}"
+						selectedKey="{ActualizarProgramacion>/keyCentro}"
+						items="{
+							path: 'CentroModel>/',
+							sorter: [{
+								path: 'Name1',
+								descending: false
+							}]
+						}"
+						change="onActualizarProgramacionChangeCentro"
+					>
+						<core:Item
+							key="{CentroModel>Bwkey}"
+							text="{CentroModel>Name1}"
+						/>
+					</ComboBox>
+					<Label text="{i18n>dclSala}"/>
+					<ComboBox
+						valueState="{ActualizarProgramacion>/valueStateSala}"
+						id="idCmbSala"
+						placeholder="{i18n>dclSala}"
+						selectedKey="{ActualizarProgramacion>/keySala}"
+						items="{
+							path: '/SALA_PESAJE',
+							parameters: {
+								expand: 'oEstado,oPlanta'
+							},
+							filters: [{
+								path: 'activo',
+								operator: 'EQ',
+								value1: 'true'
+							}],
+							sorter: [{
+								path: 'sala',
+								descending: false
+							}]
+						}"
+						change="onChangeComboBox"
+					>
+						<core:Item
+							key="{salaPesajeId}"
+							text="{sala} - {oPlanta/contenido}"
+						/>
+					</ComboBox>
+					<Label text="{i18n>lblOrdenProduccion}"/>
+					<Input
+						id="idInpOrden"
+						editable="false"
+						value="{ActualizarProgramacion>/orden}"
+						maxSuggestionWidth="100%"
+						showSuggestion="false"
+						type="Text"
+						showValueHelp="false"
+						visible="true"
+						width="100%"
+						valueHelpOnly="false"
+					/>
+					<Label text="{i18n>clDescPT}"/>
+					<Input
+						value="{ActualizarProgramacion>/valueProducto}"
+						editable="false"
+						type="Text"
+						showValueHelp="false"
+						visible="true"
+						width="100%"
+						valueHelpOnly="false"
+						valueHelpRequest=".onValueHelpRequest"
+					/>
+					<Label text="{i18n>dlblLote}"/>
+					<Input
+						value="{ActualizarProgramacion>/lote}"
+						editable="false"
+						type="Text"
+						showValueHelp="false"
+						visible="true"
+						width="100%"
+						valueHelpOnly="false"
+						valueHelpRequest=".onValueHelpRequest"
+					/>
+					<Label text="{i18n>dlblFecha}"/>
+					<DatePicker
+						displayFormat="dd-MM-yyyy"
+						value="{ActualizarProgramacion>/fecha}"
+						valueFormat="yyyy-MM-dd"
+						valueState="{ActualizarProgramacion>/valueStateFecha}"
+						valueStateText=""
+						change="handleChangeDatePicker"
+					/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnActualizar}"
+				type="Emphasized"
+				iconFirst="true"
+				width="auto"
+				press="onPressActualizar"
+			/>
+			<Button
+				text="{i18n>btnCancelar}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onPressCloseWoWarning"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

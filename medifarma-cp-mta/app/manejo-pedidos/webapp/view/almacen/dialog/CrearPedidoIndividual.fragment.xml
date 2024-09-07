@@ -1,0 +1,516 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogPedidoIndividual"
+		title="{i18n>tlTipoPedidos}: {PedidoModel>/valueTipoPedido}"
+		contentWidth="100%"
+		contentHeight="100%"
+		draggable="true"
+		resizable="true"
+	>
+		<content>
+			<f:SimpleForm
+				editable="true"
+				layout="ColumnLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="12"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="2"
+				columnsM="2"
+				singleContainerFullSize="false"
+			>
+				<f:content>
+					<Label
+						text="{i18n>dclCentro}"
+						required="true"
+					/>
+					<ComboBox
+						placeholder="{i18n>dclCentro}"
+						selectedKey="{PedidoModel>/tipoPedidoParams/keyCentro}"
+						items="{
+							path: 'CentroSalaModel>/',
+							sorter: [{
+								path: 'Name1',
+								descending: false
+							}]
+						}"
+						change="onPedidoChangeCentro"
+					>
+						<core:Item
+							key="{CentroSalaModel>Bwkey}"
+							text="{CentroSalaModel>Name1}"
+						/>
+					</ComboBox>
+					<!--Label
+						text="{i18n>dclSala}"
+						required="true"
+					/>
+					<ComboBox
+						id="idPedidoSala"
+						editable="false"
+						placeholder="{i18n>dclSala}"
+						selectedKey="{PedidoModel>/tipoPedidoParams/keySala}"
+						value="{PedidoModel>/tipoPedidoParams/valueSala}"
+						items="{
+							path: '/SALA_PESAJE',
+							filters: [{
+								path: 'activo',
+								operator: 'EQ',
+								value1: 'true'
+							}],
+							sorter: [{
+								path: 'sala',
+								descending: false
+							}]
+						}"
+						change="onSelectionChange"
+					>
+						<core:Item
+							key="{salaPesajeId}"
+							text="{sala}"
+						/>
+					</ComboBox-->
+					<Label
+						text="{i18n>dclMotivo}"
+						required="true"
+					/>
+					<ComboBox
+						placeholder="{i18n>dclMotivo}"
+						selectedKey="{PedidoModel>/tipoPedidoParams/keyMotivo}"
+						items="{
+							path: 'MaestraModel>/MOTIVO_PEDIDO_AM',
+							filters: [{
+								path: 'tabla',
+								operator: 'EQ',
+								value1: 'MOTIVO_PEDIDO_AM'
+							}],
+							sorter: [{
+								path: 'contenido',
+								descending: false
+							}]
+						}"
+					>
+						<core:Item
+							key="{MaestraModel>iMaestraId}"
+							text="{MaestraModel>contenido}"
+						/>
+					</ComboBox>
+					<Label
+						text="{i18n>lblOrdenProduccion}"
+						required="true"
+					/>
+					<Input
+						value="{PedidoModel>/tipoPedidoParams/NumOrden}"
+						editable="{PedidoModel>/tipoPedidoParams/editOrden}"
+						placeholder="{i18n>lblOrdenProduccion}"
+						type="Text"
+						showValueHelp="true"
+						visible="true"
+						width="100%"
+						valueHelpOnly="false"
+						valueHelpRequest=".onMatchCodeOrdenPI"
+						submit="onOrdenSearchEnter"
+					/>
+					<Label
+						text="{i18n>lblCodigoInsumo}"
+						required="true"
+					/>
+					<Input
+						value="{PedidoModel>/tipoPedidoParams/oInsumo/Matnr}"
+						editable="{=${PedidoModel>/tipoPedidoParams/editInsumo} === true ? true : true }"
+						placeholder="{i18n>lblCodigoInsumo}"
+						type="Text"
+						showValueHelp="true"
+						visible="true"
+						valueHelpOnly="true"
+						valueHelpRequest=".onMatchCodeInsumoPI"
+					>
+						<layoutData>
+							<l:GridData span="XL1 L2 M2 S4"/>
+						</layoutData>
+					</Input>
+					<Input
+						value="{PedidoModel>/tipoPedidoParams/oInsumo/Maktx}"
+						placeholder="{i18n>lblCodigoInsumo}"
+						type="Text"
+						visible="true"
+						editable="false"
+					>
+						<layoutData>
+							<l:GridData span="XL3 L4 M4 S4"/>
+						</layoutData>
+					</Input>
+					<Label
+						text="{i18n>lblLoteInsumo}"
+						required="true"
+					/>
+					<Input
+						value="{PedidoModel>/tipoPedidoParams/oInsumo/Charg}"
+						placeholder="Lote insumo"
+						type="Text"
+						visible="true"
+						editable="false"
+					/>
+					<!-- <Label
+						text="Cantidad"
+						required="true"
+					/>
+					<Input
+						value="{PedidoModel>/tipoPedidoParams/oInsumo/CantReq}"
+						type="Number"
+						placeholder="Cantidad"
+						visible="true"
+						editable="false"
+					/> -->
+					<Text text=""/>
+					<Button
+						icon="sap-icon://add"
+						text="Agregar"
+						type="Default"
+						iconFirst="true"
+						width="auto"
+						press="onAddItemsIndivToList"
+					/>
+					<Button
+						icon="sap-icon://eraser"
+						text="Limpiar"
+						type="Default"
+						iconFirst="true"
+						width="auto"
+						press="onClearPI"
+					/>
+				</f:content>
+			</f:SimpleForm>
+			<ui:Table
+				id="idPAIndividualTempList"
+				rows="{
+					path: 'OrdenInsumoListModel>/',
+					sorter: [{
+						path: 'Aufnr',
+						descending: false
+					}, {
+						path: 'Posnr',
+						descending: false
+					}, {
+						path: 'Fracc',
+						descending: false
+					}, {
+						path: 'Subfracc',
+						descending: false
+					}, {
+						path: 'Matnr',
+						descending: false
+					}, {
+						path: 'Charg2',
+						descending: false
+					}]
+				}"
+				selectionMode="None"
+				enableSelectAll="false"
+				visibleRowCount="8"
+			>
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clAccion}"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://delete"
+								tooltip="Quitar"
+								type="Reject"
+								press="onRemoveItemsIndivToList"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clPosnr}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Posnr}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>lblOrdenProduccion}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Aufnr}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clFraccion}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Fracc}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clSubFraccion}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Subfracc}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>lblCodigoInsumo}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Matnr}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="7rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>lblLoteInsumo}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Charg2}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>dclDescripMaterial}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Maktx}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>clCantReq}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Input
+								change="onChangeValue($event,${OrdenInsumoListModel>})"
+								value="{OrdenInsumoListModel>Bdmng}"
+								type="Number"
+								visible="true"
+								textAlign="End"
+								editable="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclCantSug}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Input
+								change="onChangeValue($event,${OrdenInsumoListModel>})"
+								value="{OrdenInsumoListModel>CantSfraccUmb}"
+								type="Number"
+								visible="true"
+								textAlign="End"
+								editable="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclInsumoCantAdi}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Input
+								change="onChangeValue($event,${OrdenInsumoListModel>}, 'CANT_ADICIONAL')"
+								placeholder="{OrdenInsumoListModel>CantSugeridaColor}"
+								value="{OrdenInsumoListModel>CantAdicional}"
+								type="Number"
+								visible="true"
+								textAlign="End"
+								editable="true"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="3rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>clUnidad}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Erfme}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclStockLibUtil}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Clabs}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text
+							text="{i18n>dclCantComp}"
+							width="auto"
+							maxLines="2"
+							wrapping="true"
+							textAlign="Center"
+							textDirection="Inherit"
+						/>
+						<ui:template>
+							<Link
+								text="{OrdenInsumoListModel>AvailQty1}"
+								press="onOpenDialogOR($event,'Individual')"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="6rem"
+						hAlign="End"
+					>
+						<Text text="{i18n>dclStockATP}"/>
+						<ui:template>
+							<Text
+								text="{
+									parts: [{
+										path: 'OrdenInsumoListModel>Clabs'
+									}, {
+										path: 'OrdenInsumoListModel>AvailQty1'
+									}],
+									formatter: '.formatter.getResta'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>dclCentro}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Werks}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Text text="{i18n>dclAlmacen}"/>
+						<ui:template>
+							<Text
+								text="{OrdenInsumoListModel>Lgort}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnCrear}"
+				type="Emphasized"
+				iconFirst="true"
+				width="auto"
+				press="onCreatePAI"
+			/>
+			<Button
+				text="{i18n>btnCancelar}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

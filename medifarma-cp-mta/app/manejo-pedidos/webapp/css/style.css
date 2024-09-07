@@ -1,0 +1,267 @@
+/* Enter your custom styles here */
+
+/*html {
+  zoom: 67%;
+}
+.zoom {
+    zoom: 2;
+    -moz-transform: scale(2);
+    -moz-transform-origin: 0 0;
+}
+.sapUiTable {
+  zoom: 90% !important;
+}
+*/
+
+input[placeholder="CR"] {
+  color: #fff;
+  background: #f72525;
+}
+
+input[placeholder="CA"] {
+  color: #fff;
+  background: #63b1d7;
+}
+
+input[placeholder="CN"] {
+  color: #fff;
+  background: #4e4c4c;
+}
+
+.sapMObjectIdentifierTitle .sapMLnk,
+.sapMObjectIdentifierTitle .sapMText {
+  font-size: 0.79rem !important;
+  /*display: none !important;*/
+}
+
+.cantSugeridaCero .sapMInputBaseInner {
+  color: #fff;
+  background-color: #f50a08 !important;
+}
+
+.cantSugeridaModificada .sapMInputBaseInner {
+  color: #fff;
+  background-color: #108fcf !important;
+}
+.cantOriginal .sapMInputBaseInner {
+  color: #fff;
+  background-color: #000 !important;
+}
+
+.bgGreen {
+  background: #a9e159 !important;
+}
+.bgPurple {
+  background: #f159c4 !important;
+}
+.bgLBlue {
+  background: #7de5ff !important;
+}
+
+span[data-mydata="Menor"] {
+  background: #ff80b6 !important;
+}
+
+span[data-mydata="Igual"] {
+  background: #a9e159 !important;
+}
+
+span[data-mydata="Mayor"] {
+  background: #69d0a3 !important;
+}
+
+span[data-mydata="Valid"] {
+  background: #ff897d !important;
+}
+
+.custBgStatus01 {
+  background: #171818e9 !important;
+  color: beige;
+  font-weight: bold !important;
+}
+.custBgStatus02 {
+  background: #b00 !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+.custBgStatus03 {
+  background: #df6e0c !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+.custBgStatus04 {
+  background: #107e3e !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+.custBgStatus05 {
+  background: #0a6ed1 !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+.custBgStatus06 {
+  background: #757777 !important;
+  color: beige;
+  font-weight: bold !important;
+}
+.custBgStatus07 {
+  background: #925ace !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+.custBgStatus08 {
+  background: #458dc7 !important;
+  color: #171818e9;
+  font-weight: bold !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication01 {
+  background-color: #e93e49 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication02 {
+  background-color: #161414 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication03 {
+  background-color: #c7b330 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication04 {
+  background-color: #35a7ff !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication05 {
+  background-color: #0f7dd1 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication06 {
+  background-color: #459a49 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication07 {
+  background-color: #9920b1 !important;
+}
+
+.sapUiTableRowHighlight.sapUiTableRowHighlightIndication08 {
+  background-color: #858080 !important;
+}
+
+.sapMObjStatusIndication01 .sapMObjStatusText,
+.sapMObjStatusIndication01 .sapMObjStatusIcon {
+  background-color: #e93e49 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication02 .sapMObjStatusText,
+.sapMObjStatusIndication02 .sapMObjStatusIcon {
+  background-color: #161414 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication03 .sapMObjStatusText,
+.sapMObjStatusIndication03 .sapMObjStatusIcon {
+  background-color: #c7b330 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication04 .sapMObjStatusText,
+.sapMObjStatusIndication04 .sapMObjStatusIcon {
+  background-color: #35a7ff !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication05 .sapMObjStatusText,
+.sapMObjStatusIndication05 .sapMObjStatusIcon {
+  background-color: #0f7dd1 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication06 .sapMObjStatusText,
+.sapMObjStatusIndication06 .sapMObjStatusIcon {
+  background-color: #459a49 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication07 .sapMObjStatusText,
+.sapMObjStatusIndication07 .sapMObjStatusIcon {
+  background-color: #9920b1 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.sapMObjStatusIndication08 .sapMObjStatusText,
+.sapMObjStatusIndication08 .sapMObjStatusIcon {
+  background-color: #858080 !important;
+  color: #ffffff !important;
+  font-size: 0.999rem;
+}
+
+.redRow::before {
+  background-color: #b00;
+}
+
+.blueRow::before {
+  background-color: #108fcf;
+}
+
+.orangeRow::before {
+  background-color: #df6e0c;
+}
+
+/*.sapUiTableRowSelectionCell > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication07 {
+    background-color: rgb(145, 7, 127) !important;
+}*/
+
+/*
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight {
+    width: 0.775rem !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication01 {
+  background-color: #171818e9 !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication02 {
+  background-color: #b00 !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication03 {
+  background-color: #df6e0c !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication04 {
+  background-color: #107e3e !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication05 {
+  background-color: #0a6ed1 !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication06 {
+  background-color: #757777 !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication07 {
+  background-color: #925ace !important;
+}
+
+.sapUiTableRowSelectionCell
+  > .sapUiTableRowHighlight.sapUiTableRowHighlightIndication08 {
+  background-color: #458dc7 !important;
+}
+*/

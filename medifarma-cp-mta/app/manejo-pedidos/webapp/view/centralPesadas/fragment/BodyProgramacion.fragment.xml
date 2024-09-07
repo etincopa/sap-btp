@@ -1,0 +1,183 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:card="sap.f.cards"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:f="sap.f"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<HBox
+		justifyContent="End"
+		alignItems="Center"
+		backgroundDesign="Translucent"
+	>
+		<Button
+			icon="sap-icon://add"
+			text="{i18n>btnAgregar}"
+			press="onPressAgregar"
+			enabled="true"
+			class="sapUiSmallMarginEnd"
+		/>
+	</HBox>
+	<MessagePage
+		id="idMessagePage"
+		showHeader="false"
+		visible="false"
+		text="{i18n>msgPageTitle}"
+		enableFormattedText="true"
+		description="{i18n>msgPageDescription}"
+		icon="sap-icon://filter"
+	/>
+	<ScrollContainer
+		id="idScrollProgamacionContainer"
+		visible="true"
+		focusable="true"
+		horizontal="true"
+		vertical="true"
+	>
+		<HBox
+			id="idHBProgramacion"
+			items="{
+				path: 'SalaProgramacionModel>/'
+			}"
+			width="100%"
+		>
+			<Panel
+				headerText="{SalaProgramacionModel>sala} - {SalaProgramacionModel>oPlanta/contenido}"
+				width="35rem"
+				backgroundDesign="Solid"
+			>
+				<FlexBox
+					direction="Column"
+					alignItems="Center"
+					width="100%"
+					items="{
+						path: 'SalaProgramacionModel>aProgramacion'
+					}"
+				>
+					<items>
+						<ui:Table
+							width="100%"
+							rows="{
+								path: 'SalaProgramacionModel>aOrden',
+								sorter: [{
+									path: 'nomProdTerm',
+									descending: false
+								}, {
+									path: 'numero',
+									descending: false
+								}]
+							}"
+							visibleRowCount="5"
+							visibleRowCountMode="Interactive"
+							selectionMode="None"
+						>
+							<ui:extension>
+								<OverflowToolbar style="Clear">
+									<Title text="{
+										path: 'SalaProgramacionModel>fechaProgramacion',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											style: 'full',
+											UTC: true
+										}
+									}"/>
+								</OverflowToolbar>
+							</ui:extension>
+							<ui:columns>
+								<ui:Column
+									width="10rem"
+									hAlign="Center"
+								>
+									<Text
+										text="{i18n>clDescPT}"
+										width="100%"
+										maxLines="2"
+										wrapping="true"
+										textAlign="Begin"
+										textDirection="Inherit"
+									/>
+									<ui:template>
+										<ObjectIdentifier title="{SalaProgramacionModel>nomProdTerm}"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column
+									width="7rem"
+									hAlign="Center"
+								>
+									<Text
+										text="{i18n>clOrdenLote}"
+										width="100%"
+										maxLines="2"
+										wrapping="true"
+										textAlign="Begin"
+										textDirection="Inherit"
+									/>
+									<ui:template>
+										<ObjectIdentifier
+											title="{SalaProgramacionModel>numero}"
+											text="{SalaProgramacionModel>lote}"
+										/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column
+									width="auto"
+									hAlign="Center"
+								>
+									<Text
+										text="{i18n>clEstado}"
+										width="100%"
+										maxLines="2"
+										wrapping="true"
+										textAlign="Begin"
+										textDirection="Inherit"
+									/>
+									<ui:template>
+										<ObjectStatus
+											text="{
+												path: 'SalaProgramacionModel>estadoOrdenErp',
+												formatter: '.formatter.ErpOrdenStatusText'
+											}"
+											state="{
+												parts: [{
+													path: 'SalaProgramacionModel>estadoOrdenErp'
+												}, {
+													path: 'SalaProgramacionModel>iEntregaFisica'
+												}],
+												formatter: '.formatter.ErpOrdenStatusColor'
+											}"
+										/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column
+									width="6rem"
+									hAlign="Center"
+								>
+									<Text text=""/>
+									<ui:template>
+										<HBox>
+											<Button
+												icon="sap-icon://delete"
+												text=""
+												press="onPressDelete"
+												enabled="true"
+											/>
+											<Button
+												icon="sap-icon://edit"
+												text=""
+												press="onPressEdit"
+												enabled="true"
+											/>
+										</HBox>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+					</items>
+				</FlexBox>
+			</Panel>
+		</HBox>
+		<!-- </HBox> -->
+	</ScrollContainer>
+</core:FragmentDefinition>

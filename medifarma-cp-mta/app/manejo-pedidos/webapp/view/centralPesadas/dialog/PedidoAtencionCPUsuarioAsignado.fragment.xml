@@ -1,0 +1,199 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogOrdenSearch"
+		title="{i18n>tlUserAssigned}"
+		contentWidth="50%"
+	>
+		<content>
+			<ui:Table
+				id="idCPPedidoUsuarioList"
+				rows="{
+					path: 'PedidoUsuarioListModel>/',
+					sorter: [{
+						path: 'activo',
+						descending: false
+					}]
+				}"
+				selectionMode="None"
+				visibleRowCount="5"
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+						<SearchField
+							placeholder="Buscar"
+							search="onSearchUser"
+							width="15rem"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Usuario}"/>
+						<ui:template>
+							<Text
+								text="{PedidoUsuarioListModel>oUsuario/usuario}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="auto"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Nombre}"/>
+						<ui:template>
+							<Text
+								text="{PedidoUsuarioListModel>oUsuario/nombre} 
+									{PedidoUsuarioListModel>oUsuario/apellidoPaterno} 
+									{PedidoUsuarioListModel>oUsuario/apellidoMaterno}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Estado}"/>
+						<ui:template>
+							<ObjectStatus
+								icon="{
+									path: 'PedidoUsuarioListModel>activo',
+									formatter: '.formatter.getBStatusTextIcon'
+								}"
+								state="{
+									path: 'PedidoUsuarioListModel>activo',
+									formatter: '.formatter.getBStatus'
+								}"
+								text="{
+									path: 'PedidoUsuarioListModel>activo',
+									formatter: '.formatter.getBStatusText'
+								}"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Accion}"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://cancel"
+								tooltip="Habilitar/Deshanilitar"
+								press="onAnulateUser($event, ${PedidoUsuarioListModel>oPedido/pedidoId}, ${PedidoUsuarioListModel>oUsuario/usuarioId}, ${PedidoUsuarioListModel>activo})"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+			<ui:Table
+				id="idCPUsuarioAsignadoList"
+				rows="{
+					path: 'UserRoleListModel>/'
+				}"
+				selectionMode="None"
+				visibleRowCount="5"
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<Title text="{i18n>tlUserRol}"/>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+						<SearchField
+							placeholder="Buscar"
+							search="onSearchUserRol"
+							width="15rem"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<!--ui:Column width="12rem" hAlign="Center">
+                        <Label text="{i18n>Codigo}" />
+                        <ui:template>
+                            <Text text="{UserRoleListModel>oUsuario/usuarioId}" wrapping="false" />
+                        </ui:template>
+                    </ui:Column-->
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Usuario}"/>
+						<ui:template>
+							<Text
+								text="{UserRoleListModel>oUsuario/usuario}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="auto"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Nombre}"/>
+						<ui:template>
+							<Text
+								text="{UserRoleListModel>oUsuario/nombre} 
+									{UserRoleListModel>oUsuario/apellidoPaterno} 
+									{UserRoleListModel>oUsuario/apellidoMaterno}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="10rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Rol}"/>
+						<ui:template>
+							<Text
+								text="{UserRoleListModel>oRol/nombre}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>Accion}"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://add"
+								type="Default"
+								press="onAddUserRol"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnClose}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseDialogUA"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

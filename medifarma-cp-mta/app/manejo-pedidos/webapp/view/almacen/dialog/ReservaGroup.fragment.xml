@@ -1,0 +1,107 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDReservaGroup"
+		title="{i18n>dtlAgregarReserva}"
+		contentWidth="50%"
+		contentHeight="100%"
+		draggable="true"
+	>
+		<content>
+			<ui:Table
+				id="idReservaGroupList"
+				rows="{ReservaGroupModel>/}"
+				selectionMode="None"
+				visibleRowCount="4"
+				
+				enableSelectAll="false"
+			>
+				<ui:extension>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<ToolbarSeparator/>
+						<SearchField
+							placeholder="Buscar"
+							search="onSearchReservaGroup"
+							width="15rem"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="4rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>btnAgregar}"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://add"
+								tooltip="Agregar"
+								type="Default"
+								press=".onAddReservaToList"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="auto"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclNroReserva}"/>
+						<ui:template>
+							<Text
+								text="{ReservaGroupModel>Rsnum}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclFechaSolicitud}"/>
+						<ui:template>
+							<Text
+								text="{
+									path: 'ReservaGroupModel>Bdter',
+									formatter: '.formatter.getTimestampToDMY'
+								}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="12rem"
+						hAlign="Center"
+					>
+						<Label text="{i18n>dclCreadorSolicitud}"/>
+						<ui:template>
+							<Text
+								text="{ReservaGroupModel>Usnam}"
+								wrapping="false"
+							/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="{i18n>btnOk}"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onPressClose"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>

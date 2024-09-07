@@ -1,0 +1,114 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<ui:Table
+		id="tblResultados"
+		rows="{localModel>/Impresoras}"
+		selectionMode="MultiToggle"
+		visibleRowCount="7"
+		paste="onPaste"
+		ariaLabelledBy="title"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title
+					id="title"
+					text="{i18n>tlImpresoras}"
+				/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<Button
+					tooltip="{i18n>tpCrear}"
+					type="Transparent"
+					text="{i18n>btnCrear}"
+					press=".onCreate"
+				/>
+				<Button
+					tooltip="{i18n>tpExportart}"
+					type="Transparent"
+					text="{i18n>btnExportar}"
+					icon="sap-icon://excel-attachment"
+					press=".onExportar"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column width="11rem">
+				<Label text="{i18n>lblNombre}"/>
+				<ui:template>
+					<Link
+						text="{localModel>nombre}"
+						press="onEditarPress"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="9rem">
+				<Label text="{i18n>lblDireccion}"/>
+				<ui:template>
+					<Text
+						text="{localModel>direccion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="8rem">
+				<Label text="{i18n>lblSerie}"/>
+				<ui:template>
+					<Text
+						text="{localModel>serie}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="8rem">
+				<Label text="{i18n>lblPlanta}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oPlanta/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="10rem">
+				<Label text="{i18n>lblEstadoImpresora}"/>
+				<ui:template>
+					<ObjectStatus
+						text="{=${localModel>estadoImpresora} ? 'Activo' : 'Baja'}"
+						state="{=${localModel>estadoImpresora}? 'Success' : 'Error'}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="10rem">
+				<Label text="{i18n>lblIndicadorCP}"/>
+				<ui:template>
+					<Text
+						text="{=${localModel>indicadorCp} ? 'Si' : 'No'}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="10rem">
+				<Label text="{i18n>lblIndicadorPicking}"/>
+				<ui:template>
+					<Text
+						text="{=${localModel>indicadorPicking} ? 'Si' : 'No'}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="10rem">
+				<Label text="{i18n>lblIndicadorEtiqueta}"/>
+				<ui:template>
+					<Text
+						text="{=${localModel>indicadorEtiqueta} ? 'Si' : 'No'}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+</core:FragmentDefinition>

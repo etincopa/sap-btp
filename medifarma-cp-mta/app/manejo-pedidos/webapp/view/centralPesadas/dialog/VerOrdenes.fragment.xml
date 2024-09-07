@@ -1,0 +1,139 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Dialog
+		id="idDialogOrdenSearch"
+		title="Ordenes"
+		contentWidth="70%"
+	>
+		<content>
+			<ui:Table
+				id="idOrdenSearch"
+				rows="{
+					path: 'OrdenModel>/',
+					sorter: {
+						path: 'Aufnr',
+						descending: false
+					}
+				}"
+				selectionMode="None"
+				visibleRowCount="5"
+				enableSelectAll="false"
+				
+			>
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+						<SearchField
+							placeholder="Buscar"
+							value=""
+							search="onSearchDialogVerOrdenes"
+							width="50%"
+							enabled="true"
+						/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column
+						width="3rem"
+						hAlign="Center"
+					>
+						<Label text="Acción"/>
+						<ui:template>
+							<Button
+								icon="sap-icon://add"
+								type="Default"
+								press="onPressAgregarTabla"
+								visible="{= ${OrdenModel>Charg} === '' ? false: true}"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column
+						width="auto"
+						hAlign="Left"
+					>
+						<Label text="Orden"/>
+						<ui:template>
+							<HBox>
+								<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+									<Label text="Orden Nº - {OrdenModel>Aufnr}"/>
+									<Text text="{OrdenModel>Maktx}"/>
+									<Text text=" Lote: {OrdenModel>Charg}"/>
+									<ObjectStatus
+										text="{
+											path: 'OrdenModel>Stat',
+											formatter: '.formatter.ErpOrdenStatusText'
+										}"
+										state="{
+											path: 'OrdenModel>Stat',
+											formatter: '.formatter.ErpOrdenStatusColor'
+										}"
+										icon="{
+											path: 'OrdenModel>Stat',
+											formatter: '.formatter.ErpOrdenStatusIcon'
+										}"
+									/>
+								</VBox>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button
+				text="Cerrar"
+				type="Default"
+				iconFirst="true"
+				width="auto"
+				press="onCloseVerOrdenes"
+			/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>
+<!--core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		id="idTSDOrden"
+		noDataText="No hay órdenes"
+		title="Select Product"
+		search=".onSearchDialogVerOrdenes"
+		confirm=".onConfirmDialogVerOrdenes"
+		cancel=".onCancelDialogVerOrdenes"
+		items="{
+			path: 'OrdenModel>/',
+			sorter: {
+				path: 'Aufnr',
+				descending: false
+			}
+		}">
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<HBox>
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+						<Label text="Orden Nº - {OrdenModel>Aufnr}" />
+						<Text text="{OrdenModel>Maktx}"/>
+						<Text text=" Lote: {OrdenModel>Charg}"/>
+						<ObjectStatus text="{OrdenModel>Txt30}" state="{path: 'OrdenModel>Txt30', formatter: '.formatter.orderStatusColor'}" icon="{path: 'OrdenModel>Txt30', formatter: '.formatter.orderStatusIcon'}"/>
+					</VBox>
+				</HBox>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em">
+				<header>
+					<Text text="Orden" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition-->

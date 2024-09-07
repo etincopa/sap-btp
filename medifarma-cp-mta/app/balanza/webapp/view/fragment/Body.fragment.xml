@@ -1,0 +1,310 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<ui:Table
+		id="tblResultados"
+		rows="{localModel>/Balanzas}"
+		selectionMode="MultiToggle"
+		visibleRowCount="7"
+		paste="onPaste"
+		ariaLabelledBy="title"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title
+					id="title"
+					text="{i18n>tlBalanzas}"
+				/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<Button
+					tooltip="{i18n>tpCrear}"
+					type="Transparent"
+					text="{i18n>btnCrear}"
+					press=".onCreate"
+				/>
+				<Button
+					tooltip="{i18n>tpExportar}"
+					type="Transparent"
+					text="{i18n>btnExportar}"
+					icon="sap-icon://excel-attachment"
+					press=".onExportar"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column
+				width="11rem"
+				sortProperty="codigo"
+			>
+				<Label text="{i18n>clBalanza}"/>
+				<ui:template>
+					<Link
+						text="{localModel>codigo}"
+						press="onEditarPress"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oSalaPesaje/oPlanta/contenido"
+			>
+				<Label text="{i18n>clCentro}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oSalaPesaje/oPlanta/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oSalaPesaje/sala"
+			>
+				<Label text="{i18n>clSala}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oSalaPesaje/sala}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="serie"
+			>
+				<Label text="{i18n>clSerie}"/>
+				<ui:template>
+					<Text
+						text="{localModel>serie}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="marca"
+			>
+				<Label text="{i18n>clMarca}"/>
+				<ui:template>
+					<Text
+						text="{localModel>marca}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="modelo"
+			>
+				<Label text="{i18n>clModelo}"/>
+				<ui:template>
+					<Text
+						text="{localModel>modelo}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oUnidad/contenido"
+			>
+				<Label text="{i18n>clUM}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oUnidad/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oTipoBalanza/contenido"
+			>
+				<Label text="{i18n>clTipoBalanza}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oTipoBalanza/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="conexion"
+			>
+				<Label text="{i18n>clConexion}"/>
+				<ui:template>
+					<Text
+						text="{=${localModel>conexion} === 'X' ? 'SI' : 'NO'}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="oPuertoCom/contenido"
+			>
+				<Label text="{i18n>clPuertCom}"/>
+				<ui:template>
+					<Text
+						text="{localModel>oPuertoCom/contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="boundRate"
+			>
+				<Label text="{i18n>clBoundRate}"/>
+				<ui:template>
+					<Text
+						text="{localModel>boundRate}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="parity"
+			>
+				<Label text="{i18n>clParity}"/>
+				<ui:template>
+					<Text
+						text="{localModel>parity}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="stopBits"
+			>
+				<Label text="{i18n>clStopBits}"/>
+				<ui:template>
+					<Text
+						text="{localModel>stopBits}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="dataBits"
+			>
+				<Label text="{i18n>clDataBits}"/>
+				<ui:template>
+					<Text
+						text="{localModel>dataBits}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="cantidadDecimales"
+			>
+				<Label text="{i18n>clCantDecimal}"/>
+				<ui:template>
+					<Text
+						text="{localModel>cantidadDecimales}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="capacidadMinimo"
+			>
+				<Label text="{i18n>clCapMin}"/>
+				<ui:template>
+					<Text
+						text="{
+							parts: ['localModel>capacidadMinimo', 'localModel>cantidadDecimales'],
+							formatter: '.formatoDecimales'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="capacidadMaximo"
+			>
+				<Label text="{i18n>clCapMax}"/>
+				<ui:template>
+					<Text
+						text="{
+							parts: ['localModel>capacidadMaximo', 'localModel>cantidadDecimales'],
+							formatter: '.formatoDecimales'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="tolerancia"
+			>
+				<Label text="{i18n>clTolerancia}"/>
+				<ui:template>
+					<Text
+						text="{
+							parts: ['localModel>tolerancia', 'localModel>cantidadDecimales'],
+							formatter: '.formatoDecimales'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				sortProperty="precision"
+			>
+				<Label text="{i18n>clPrecision}"/>
+				<ui:template>
+					<Text
+						text="{localModel>precision}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="9rem"
+				sortProperty="activoBalanza"
+			>
+				<Label text="{i18n>lblEstado}"/>
+				<ui:template>
+					<ObjectStatus
+						text="{=${localModel>activoBalanza} === 'X' ? 'HABILITADO' : 'DESHABILITADO'}"
+						state="{=${localModel>activoBalanza} === 'X' ? 'Success' : 'Error'}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column width="5rem">
+				<Label text=""/>
+				<ui:template>
+					<HBox>
+						<Button
+							type="Reject"
+							press="onBorrarPress"
+							visible="{=${localModel>activoBalanza} === 'X' ? true : false}"
+							icon="sap-icon://delete"
+						/>
+						<Button
+							type="Approve"
+							press="onActivarPress"
+							visible="{=${localModel>activoBalanza} === 'X' ? false : true}"
+							icon="sap-icon://accept"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+</core:FragmentDefinition>

@@ -1,0 +1,34 @@
+{
+  "proxy": {
+    "srv_api": {
+      "target": "http://localhost:4004",
+      "auth": "elvis.percy.garcia.tincopa@everis.com:ScpPeruEveris2022++",
+      "entryPath": "/"
+    },
+    "saperp": {
+      "target": "http://10.100.4.13:8000",
+      "auth": "MESPINOZAD:M1gu3l1to2024@",
+      "entryPath": "/",
+      "sap-client": "300"
+    },
+    "scimApi": {
+      "target": "https://awjv7cscn.accounts.ondemand.com",
+      "auth": "5d0609aa-c0bf-4c7b-abc3-359d6f59a374:Peru1234.",
+      "entryPath": "/service/scim"
+    },
+    "bpmworkflowruntime": {
+      "target": "https://api.workflow-sap.cfapps.us10.hana.ondemand.com",
+      "auth": "<scp_user>:<password>",
+      "entryPath": "/workflow-service"
+    },
+    "DocumentService": {
+      "target": "<java_cmis_app_endpoint>",
+      "auth": "<scp_user>:<password>",
+      "entryPath": "<java_cmis_app_name>/cmis/json"
+    },
+    "sharepoint": {
+      "target": "https://accounts.accesscontrol.windows.net/3048dc87-43f0-4100-9acb-ae1971c79395/tokens/OAuth/2",
+      "entryPath": "/"
+    }
+  }
+}

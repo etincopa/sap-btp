@@ -1,0 +1,49 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/do/logout"
+    },
+    "routes": [
+        {
+            "source": "^/srv_api/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "CP_BTP_HTTP",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/saperp/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "CP_S4H_HTTP_BASIC",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/scimApi/(.*)$",
+            "target": "$1",
+            "authenticationType": "none",
+            "destination": "IAS_SCIM_API",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/resources/(.*)$",
+            "target": "/resources/$1",
+            "authenticationType": "none",
+            "destination": "ui5"
+        },
+        {
+            "source": "^/test-resources/(.*)$",
+            "target": "/test-resources/$1",
+            "authenticationType": "none",
+            "destination": "ui5"
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa",
+            "cacheControl": "no-cache, no-store, must-revalidate"
+        }
+    ]
+}

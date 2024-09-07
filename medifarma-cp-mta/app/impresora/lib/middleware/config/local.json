@@ -1,0 +1,44 @@
+{
+    "proxy": {
+      "srv_api_admin": {
+        "target": "https://medifarmaqas-qas-mif-admin-srv.cfapps.us10.hana.ondemand.com",
+        "auth": "",
+        "entryPath": "/"
+      },
+      "srv_api": {
+        "target": "http://localhost:4004",
+        "entryPath": "/"
+      },
+      "saperp": {
+        "target": "http://10.100.4.10:8000",
+        "auth": "HLEONN:Jamaica52..",
+        "entryPath": "/",
+        "sap-client": "150"
+      },
+      "saperpDev": {
+        "target": "http://localhost:4004",
+        "auth": "P000022:ScpPeruEveris2021",
+        "entryPath": "/v2/"
+      },
+      "iasscim": {
+        "target": "https://ao1k9k5jk.accounts.ondemand.com",
+        "auth": "d353abb9-d7d7-482c-9d0c-6bfe10cb5dfe:M3dif4rma_2021",
+        "entryPath": "/service/scim"
+      },
+      "bpmworkflowruntime": {
+        "target": "https://api.workflow-sap.cfapps.us10.hana.ondemand.com",
+        "auth": "<scp_user>:<password>",
+        "entryPath": "/workflow-service"
+      },
+      "DocumentService": {
+        "target": "<java_cmis_app_endpoint>",
+        "auth": "<scp_user>:<password>",
+        "entryPath": "<java_cmis_app_name>/cmis/json"
+      },
+      "sharepoint": {
+        "target": "https://accounts.accesscontrol.windows.net/3048dc87-43f0-4100-9acb-ae1971c79395/tokens/OAuth/2",
+        "entryPath": "/"
+      }
+    }
+  }
+  

@@ -1,0 +1,30 @@
+<c:FragmentDefinition
+	xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.f"
+>
+	<Dialog
+		id="dialogTarar"
+		title="{i18n>bultosEnteros}"
+	>
+		<buttons>
+			<Button
+				text="{i18n>actualizaBulto}"
+				press="onChangeBultoTara($event,'SELECCION')"
+			/>
+			<Button
+				text="{i18n>actualizaTodo}"
+				press="onChangeBultoTara($event,'TODOS')"
+			/>
+			<Button
+				text="{i18n>btnClose}"
+				press="onCloseDialog"
+			/>
+		</buttons>
+		<form:SimpleForm>
+			<Label text="Peso"/>
+			<Input value="{FraccionDetalleModel>/oBultoTara/TaraNew}"/>
+		</form:SimpleForm>
+	</Dialog>
+</c:FragmentDefinition>

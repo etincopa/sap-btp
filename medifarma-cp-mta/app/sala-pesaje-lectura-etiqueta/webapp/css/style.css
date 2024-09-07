@@ -1,0 +1,7 @@
+/* Enter your custom styles here */
+.sapUiTableCell .sapMObjStatus{
+    margin: 0 !important
+}
+.sapMObjStatusIcon{
+    display:none !important
+}

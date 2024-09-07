@@ -1,0 +1,67 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<fb:FilterBar
+		header="Filtros"
+		reset="onRestoreFilters"
+		search="onSearchFilter"
+		useToolbar="true"
+		showGoOnFB="true"
+		showFilterConfiguration="false"
+		showRestoreOnFB="true"
+		showRestoreButton="false"
+	>
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem
+				mandatory="true"
+				groupName="MANGROUP"
+				name="A"
+				label="{i18n>dclCentro}"
+				partOfCurrentVariant="true"
+				visibleInFilterBar="true"
+			>
+				<fb:control>
+					<ComboBox
+						app:controlType="ComboBox"
+						app:controlPath="Bwkey"
+						placeholder="{i18n>phdclCentro}"
+						items="{
+							path: 'CentroModel>/',
+							sorter: [{
+								path: 'Name1',
+								descending: false
+							}]
+						}"
+					>
+						<core:Item
+							key="{CentroModel>Bwkey}"
+							text="{CentroModel>Name1}"
+						/>
+					</ComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+				mandatory="true"
+				groupName="MANGROUP"
+				name="B"
+				label="{i18n>lblPeriodo}"
+				partOfCurrentVariant="true"
+				visibleInFilterBar="true"
+			>
+				<fb:control>
+					<DateRangeSelection
+						app:controlType="DateRange"
+						app:controlPath=""
+						placeholder="{i18n>dphlblFechaPuntual}"
+						displayFormat="dd-MM-yyyy"
+						change="handleChange"
+					/>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

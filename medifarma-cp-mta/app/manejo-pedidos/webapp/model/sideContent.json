@@ -1,0 +1,126 @@
+{
+  "selectedKey": "",
+
+  "navigation": [
+    {
+      "titleI18nKey": "sideContentInicio",
+      "icon": "sap-icon://home",
+      "expanded": true,
+      "key": "RouteHome",
+      "items": []
+    },
+    {
+      "titleI18nKey": "sideContentAdmin",
+      "icon": "sap-icon://add-activity-2",
+      "expanded": true,
+      "key": "Admin",
+      "items": [
+        {
+          "titleI18nKey": "sideContentPedidoAdmin",
+          "key": "RoutePedidoAdmin",
+          "icon": "sap-icon://customize",
+          "subheader": "sideContentCePe",
+          "prefixRol": "MPAD"
+        }
+      ]
+    },
+    {
+      "titleI18nKey": "sideContentCePe",
+      "icon": "sap-icon://add-activity-2",
+      "expanded": true,
+      "key": "CentralPesadas",
+      "items": [
+        {
+          "titleI18nKey": "sideContentProgramCePe",
+          "key": "RouteProgramacion",
+          "icon": "sap-icon://overview-chart",
+          "subheader": "sideContentCePe"
+        },
+        {
+          "titleI18nKey": "sideContentPediAtencion",
+          "key": "RoutePedidoAtencion",
+          "icon": "sap-icon://add-activity-2",
+          "subheader": "sideContentCePe"
+        },
+        {
+          "titleI18nKey": "sideContentSeguiPedi",
+          "key": "RouteSeguimientoPickingPedido",
+          "icon": "sap-icon://add-activity-2",
+          "subheader": "sideContentCePe"
+        },
+        {
+          "titleI18nKey": "sideContentSeguiSalaPesa",
+          "key": "RouteSeguimientoSalaPesada",
+          "icon": "sap-icon://add-activity-2",
+          "subheader": "sideContentCePe"
+        },
+        {
+          "titleI18nKey": "sideContentSeguiConsolidado",
+          "key": "RouteSeguimientoEntrega",
+          "icon": "sap-icon://add-activity-2",
+          "subheader": "sideContentCePe"
+        },
+        {
+          "titleI18nKey": "sideContentSeguiTraslado",
+          "key": "RouteSeguimientoTraslado",
+          "icon": "sap-icon://shipping-status",
+          "subheader": "sideContentCePe"
+        }
+      ]
+    },
+    {
+      "titleI18nKey": "sideContentAlmacen",
+      "icon": "sap-icon://sap-box",
+      "expanded": true,
+      "key": "Almacen",
+      "items": [
+        {
+          "titleI18nKey": "sideContentPedidoAlmacen",
+          "key": "RoutePedidoAlmacen",
+          "icon": "sap-icon://sap-box",
+          "subheader" : "sideContentAlmacen"
+        },
+        {
+          "titleI18nKey": "sideContentSeguiPickPediAlm",
+          "key": "RouteSeguimientoPickingPedidoAlmacen",
+          "icon": "sap-icon://sap-box",
+          "subheader" : "sideContentAlmacen"
+        }
+      ]
+    }
+  ],
+  "fixedNavigation": [
+    {
+      "titleI18nKey": "sideContentSelectPrint",
+      "icon": "sap-icon://print",
+      "key": "selectPrint"
+    }
+  ],
+  "masterSettings": [
+    {
+      "titleI18nKey": "sideContentSystemSettings",
+      "key": "systemSettings",
+      "selected": true
+    },
+    {
+      "titleI18nKey": "sideContentOrderSettings",
+      "key": "orderSettings",
+      "selected": false
+    },
+    {
+      "titleI18nKey": "sideContentSupplierSettings",
+      "key": "supplierSettings",
+      "selected": false
+    },
+    {
+      "titleI18nKey": "sideContentCampaignSettings",
+      "key": "campaignSettings",
+      "selected": false
+    },
+    {
+      "titleI18nKey": "sideContentShippingSettings",
+      "key": "shippingSettings",
+      "selected": false
+    }
+  ]
+}

@@ -1,0 +1,1935 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<ui:Table
+		id="idPedidoList"
+		rows="{
+			path: '/VIEW_SEGUIMIENTO_PEDIDO_CP',
+			sorter: [{
+				path: 'fechaRegistro',
+				descending: true
+			}]
+		}"
+		threshold="100"
+		enableBusyIndicator="true"
+		selectionMode="Single"
+		rowSelectionChange="onRowSelectPedido"
+		visibleRowCount="5"
+		enableSelectAll="false"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title text="{i18n>lblPedido}"/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<Button
+					icon="sap-icon://request"
+					press=".onChangeStatusGeneral($event,'PEDIDO')"
+					ariaHasPopup="Dialog"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<!--ui:rowSettingsTemplate>
+			<ui:RowSettings highlight="{
+				path: 'insumoEstadoDes',
+				formatter: '.formatter.highlightStatusPedido'
+			}"/>
+		</ui:rowSettingsTemplate-->
+		<ui:columns>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>lblPedido}"/>
+				<ui:template>
+					<Text
+						text="{numPedido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="11rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clTipoPedido}"/>
+				<ui:template>
+					<Text
+						text="{TipoDetalle_nombre}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="14rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>clEstado}"/>
+				<ui:template>
+					<HBox>
+						<ObjectStatus
+							text="{Estado_contenido}"
+							state="{
+								path: 'Estado_codigo',
+								formatter: '.formatter.highlightStatusPedido'
+							}"
+						/>
+					</HBox>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>dclCentro}"/>
+				<ui:template>
+					<Text
+						text="{Centro_codigoSap}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{usuarioRegistro}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'fechaRegistro',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'fechaRegistro',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{pickingUsuInic}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecInic',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraIniPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecInic',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{pickingUsuFin}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecFin',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraFinPicking}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'pickingFecFin',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="9rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>tlUserAssigned}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ExpandableText
+						class="sapUiTinyMarginBottom sapUiTinyMarginTop"
+						text="{
+							path: 'usuarioAsignado',
+							formatter: '.formatter.stringDeteleDuplicate'
+						}"
+						overflowMode="Popover"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>dclMotivo}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{Motivo_contenido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text text="{i18n>Acciones}"/>
+				<ui:template>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+	<ui:Table
+		id="idOrdenList"
+		rows="{
+			path: 'OrdenSelectedItemsModel>/',
+			sorter: [{
+				path: 'numPedido',
+				descending: true
+			}, {
+				path: 'numOrden',
+				descending: false
+			}, {
+				path: 'numFraccion',
+				descending: false
+			}]
+		}"
+		threshold="100"
+		enableBusyIndicator="true"
+		selectionMode="Single"
+		rowSelectionChange="onRowSelectOrden"
+		visibleRowCount="5"
+		enableSelectAll="false"
+	>
+		<ui:extension>
+			<OverflowToolbar style="Clear">
+				<Title text="Orden / Fracción"/>
+				<ToolbarSpacer/>
+				<ToolbarSeparator/>
+				<Button
+					icon="sap-icon://request"
+					press=".onChangeStatusGeneral($event,'FRACCION')"
+					ariaHasPopup="Dialog"
+				/>
+			</OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>lblPedido}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ObjectStatus
+						text="{OrdenSelectedItemsModel>numPedido}"
+						state="{
+							path: 'OrdenSelectedItemsModel>requiereTraslado',
+							formatter: '.formatter.highlightStatusTraslado'
+						}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="10rem"
+				hAlign="Begin"
+			>
+				<Text
+					text="{i18n>clTipoPedido}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>tipoPedido}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clOrdReser}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>numOrden}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="4rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFraccion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>numFraccion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clCodPT}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>codProdTerm}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="18rem"
+				hAlign="Begin"
+			>
+				<Text
+					text="{i18n>clDescPT}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>nomProdTerm}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clLotePT}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>loteProdTerm}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="16rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>dclSala}"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ComboBox
+						width="16rem"
+						placeholder="{i18n>dclSala}"
+						selectedKey="{OrdenSelectedItemsModel>salaPesajeId}"
+						items="{
+							path: 'SalaCentroModel>/',
+							sorter: [{
+								path: 'oPlanta/codigo',
+								descending: false
+							}, {
+								path: 'sala',
+								descending: false
+							}]
+						}"
+						editable="false"
+					>
+						<core:Item
+							key="{SalaCentroModel>salaPesajeId}"
+							text="{SalaCentroModel>sala} - {SalaCentroModel>oPlanta/contenido}"
+						/>
+					</ComboBox>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="14rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clEstado}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ObjectStatus
+						text="{OrdenSelectedItemsModel>estadoOrden}"
+						state="{
+							path: 'OrdenSelectedItemsModel>codEstadoOrden',
+							formatter: '.formatter.highlightStatusOrden'
+						}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>dclVerificado}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<ObjectStatus
+						text="{
+							path: 'OrdenSelectedItemsModel>ordenVerificacionEstado',
+							formatter: '.formatter.textStatusVerif'
+						}"
+						state="{
+							path: 'OrdenSelectedItemsModel>ordenVerificacionEstado',
+							formatter: '.formatter.highlightStatusVerif'
+						}"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>lblTamanoLote}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>tamanoLote}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuIniVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgLBlue"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>verificacionIniUsu}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecIniVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgLBlue"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>verificacionIniFec',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraIniVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgLBlue"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>verificacionIniFec',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuFinVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgPurple"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>verificacionFinUsu}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecFinVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgPurple"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>verificacionFinFec',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraFinVerif}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgPurple"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>verificacionFinFec',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuEntregaFis}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>entregaFisUsu}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecEntregaFis}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>entregaFisFec',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraEntregaFis}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>entregaFisFec',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgGreen"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>usuCreacion}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgGreen"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>fecCreacion',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraCreacion}"
+					width="auto"
+					maxLines="2"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+					class="bgGreen"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>fecCreacion',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuIniPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>pesajeIniUsu}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecIniPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>pesajeIniFec',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraIniPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>pesajeIniFec',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="8rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clUsuFinPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{OrdenSelectedItemsModel>pesajeFinUsu}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="7rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clFecFinPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>pesajeFinFec',
+							formatter: '.formatter.getTimestampToDMY'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column
+				width="6rem"
+				hAlign="Center"
+			>
+				<Text
+					text="{i18n>clHoraFinPesaje}"
+					width="auto"
+					maxLines="3"
+					wrapping="true"
+					textAlign="Center"
+					textDirection="Inherit"
+				/>
+				<ui:template>
+					<Text
+						text="{
+							path: 'OrdenSelectedItemsModel>pesajeFinFec',
+							formatter: '.formatter.getTimestampToHMS'
+						}"
+						wrapping="false"
+					/>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+	<l:ResponsiveSplitter
+		defaultPane="default"
+		height="auto"
+	>
+		<l:PaneContainer>
+			<l:SplitPane
+				requiredParentWidth="700"
+				id="default"
+			>
+				<l:layoutData>
+					<l:SplitterLayoutData size="auto"/>
+				</l:layoutData>
+				<ui:Table
+					id="idTableInsumos"
+					rows="{
+						path: 'FraccionDetalleModel>/Insumos',
+						sorter: [{
+							path: 'ordenNumero',
+							descending: false
+						}, {
+							path: 'ordenPos',
+							descending: false
+						}, {
+							path: 'numFraccion',
+							descending: false
+						}, {
+							path: 'numSubFraccion',
+							descending: false
+						}, {
+							path: 'codigoInsumo',
+							descending: false
+						}, {
+							path: 'lote',
+							descending: false
+						}]
+					}"
+					rowSelectionChange="onRowSelectInsumo"
+					selectionMode="Single"
+					visibleRowCount="6"
+					enableSelectAll="false"
+				>
+					<ui:extension>
+						<OverflowToolbar style="Clear">
+							<Title text="Insumos"/>
+							<ToolbarSpacer/>
+							<ToolbarSeparator/>
+							<Button
+								icon="sap-icon://request"
+								press=".onChangeStatusGeneral($event,'INSUMO')"
+								ariaHasPopup="Dialog"
+							/>
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text text="{i18n>clPosnr}"/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>ordenPos}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="4rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clSubFraccion}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>numSubFraccion}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>lblCodigoInsumo}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>codigoInsumo}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>lblLoteInsumo}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>lote}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="18rem"
+							hAlign="Begin"
+						>
+							<Text
+								text="{i18n>clDescripcion}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>descripcion}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="14rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clEstado}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									text="{FraccionDetalleModel>insumoEstadoDes}"
+									state="{
+										path: 'FraccionDetalleModel>insumoEstado',
+										formatter: '.formatter.highlightStatusInsumo'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>dclVerificado}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									text="{
+										path: 'FraccionDetalleModel>verificacionEstado',
+										formatter: '.formatter.textStatusVerif'
+									}"
+									state="{
+										path: 'FraccionDetalleModel>verificacionEstado',
+										formatter: '.formatter.highlightStatusVerif'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clPotenciaTeorica}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>pTInsumo',
+										formatter: '.formatter.formatWeightString'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clPotenciaPractica}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>pPLoteLog',
+										formatter: '.formatter.formatWeightString'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="3rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clUnidad}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>unidad}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCantReq}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantRequerida',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="3rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clUnidad}"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>cantRequeridaUM}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>dclCantSugTotal}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantSugeridaTotal',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>dclCantSug}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantSugerida',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCantPed}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>sugerido',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="4rem"
+							hAlign="Center"
+						>
+							<Text text="{i18n>dclAgotar}"/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>agotar} === '' ? 'No': 'Si'}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCant} Entero"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantAtendida',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCant} Saldo"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantAtendidaFrac',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCant} IFA"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantAtendidaIFA',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCantAtenTotal}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									class="sapUiSmallMarginMiddle"
+									text="{
+										parts: [{
+											path: 'FraccionDetalleModel>cantAtendida'
+										}, {
+											path: 'FraccionDetalleModel>cantAtendidaFrac'
+										}, {
+											path: '0'
+										}],
+										formatter: '.formatter.getSuma'
+									}"
+									state="{
+										parts: [{
+											path: 'FraccionDetalleModel>cantAtendida'
+										}, {
+											path: 'FraccionDetalleModel>cantAtendidaFrac'
+										}, {
+											path: 'FraccionDetalleModel>cantSugerida'
+										}],
+										formatter: '.formatter.totalColor'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="7rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCantAtenTotalFrac}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									class="sapUiSmallMarginMiddle"
+									text="{
+										path: 'FraccionDetalleModel>cantAtendidaTotalF'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clCantEntregada}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>cantEntregada',
+										formatter: '.formatter.formatWeight'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clIndListMat}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>indMat}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="20rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clIndOrdFab}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>indOrdenFab}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="4rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>dclAlmacen}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>almacen}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+					</ui:columns>
+				</ui:Table>
+			</l:SplitPane>
+			<l:SplitPane>
+				<l:layoutData>
+					<l:SplitterLayoutData size="40%"/>
+				</l:layoutData>
+				<ui:Table
+					rows="{
+						path: 'FraccionDetalleModel>/Bultos',
+						sorter: [{
+							path: 'Tipo',
+							descending: false
+						}]
+					}"
+					id="idTableBultos"
+					selectionMode="None"
+					visibleRowCount="6"
+					enableSelectAll="false"
+					alternateRowColors="true"
+				>
+					<ui:extension>
+						<OverflowToolbar style="Clear">
+							<Title text="Bultos"/>
+							<ToolbarSpacer/>
+							<ToolbarSeparator/>
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:rowSettingsTemplate>
+						<!--ui:RowSettings highlight="{= ${FraccionDetalleModel>Tipo} === 'SALDO' ? 'Indication07' : 'Indication01'}"/-->
+					</ui:rowSettingsTemplate>
+					<ui:columns>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clCodigoBulto}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>IdBulto}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clTicketAten}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>Etiqueta}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="10rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clTipoBulto}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									text="{FraccionDetalleModel>Tipo}"
+									state="{
+										path: 'FraccionDetalleModel>Tipo',
+										formatter: '.formatter.highlightTipoBultoInsumo'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="7rem"
+							hAlign="Center"
+						>
+							<Text text="{i18n>clIndVerif}"/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>FlagVerif} === 'X' ? 'Si': 'No'}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clPesoNeto}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>Tipo} === 'FRACCION' ? ${
+											path: 'FraccionDetalleModel>BalanzaPeso',
+											formatter: '.formatter.formatWeight'
+										} : ${
+											path: 'FraccionDetalleModel>CantidadA',
+											formatter: '.formatter.formatWeight'
+										}}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clTara}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>Tipo} === 'FRACCION' ? ${
+											path: 'FraccionDetalleModel>Tara',
+											formatter: '.formatter.formatWeight'
+										} : (${FraccionDetalleModel>UnidadM} === 'KG' || ${FraccionDetalleModel>UnidadM} === 'G' || ${FraccionDetalleModel>UnidadM} === 'kg' || ${FraccionDetalleModel>UnidadM} === 'g') ? ${
+											path: 'FraccionDetalleModel>Tara',
+											formatter: '.formatter.formatWeight'
+										} : '' }"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clPesoBruto}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>Tipo} === 'FRACCION' ? ${
+											parts: [{
+												path: 'FraccionDetalleModel>BalanzaPeso'
+											}, {
+												path: 'FraccionDetalleModel>Tara'
+											}, {
+												path: '0'
+											}],
+											formatter: '.formatter.getSuma'
+										} : (${FraccionDetalleModel>UnidadM} === 'KG' || ${FraccionDetalleModel>UnidadM} === 'G' || ${FraccionDetalleModel>UnidadM} === 'kg' || ${FraccionDetalleModel>UnidadM} === 'g') ? ${
+											parts: [{
+												path: 'FraccionDetalleModel>CantidadA'
+											}, {
+												path: 'FraccionDetalleModel>Tara'
+											}, {
+												path: '0'
+											}],
+											formatter: '.formatter.getSuma'
+										} : '' }"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="3rem"
+							hAlign="End"
+						>
+							<Text
+								text="{i18n>clUnidad}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{= ${FraccionDetalleModel>Tipo} === 'FRACCION' ? ${FraccionDetalleModel>BalanzaUnidadM} : ${FraccionDetalleModel>UnidadM}}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clUsuRegistro}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>UsuarioAte}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clFecRegistro}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>FechaAte',
+										formatter: '.formatter.getTimestampToDMY2'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clHorRegistro}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>HoraAte',
+										formatter: '.formatter.getMsToHMS'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clUsuEntregaFis}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{FraccionDetalleModel>EntregaFisUsurio}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clFecEntregaFis}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>EntregaFisFecha',
+										formatter: '.formatter.getTimestampToDMY2'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="6rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clHoraEntregaFis}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<Text
+									text="{
+										path: 'FraccionDetalleModel>EntregaFisHora',
+										formatter: '.formatter.getMsToHMS'
+									}"
+									wrapping="false"
+								/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							hAlign="Center"
+						>
+							<Text
+								text="{i18n>clEstadoEntregaFis}"
+								width="auto"
+								maxLines="2"
+								wrapping="true"
+								textAlign="Center"
+								textDirection="Inherit"
+							/>
+							<ui:template>
+								<ObjectStatus
+									text="{FraccionDetalleModel>StatusP}"
+									state="{
+										path: 'FraccionDetalleModel>StatusP',
+										formatter: '.formatter.highlightStatusInsumo'
+									}"
+								/>
+							</ui:template>
+						</ui:Column>
+					</ui:columns>
+				</ui:Table>
+			</l:SplitPane>
+		</l:PaneContainer>
+	</l:ResponsiveSplitter>
+</core:FragmentDefinition>
