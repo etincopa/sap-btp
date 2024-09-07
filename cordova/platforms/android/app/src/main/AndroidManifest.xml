@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest android:hardwareAccelerated="true" android:versionCode="10100" android:versionName="1.0.0" package="com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:allowBackup="false" android:extractNativeLibs="true" android:hardwareAccelerated="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:networkSecurityConfig="@xml/kapsel_network_security_config" android:supportsRtl="true" tools:replace="android:allowBackup">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <intent-filter android:label="@string/launcher_name">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa.xcallbackurl" />
+            </intent-filter>
+        </activity>
+        <provider android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true" android:name="org.apache.cordova.camera.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths" />
+        </provider>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.sap.mp.cordova.plugins.apppreferences.PrefsActivity" android:theme="@android:style/Theme.DeviceDefault" />
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:name="com.sap.smp.client.httpc.authflows.SAML2AuthActivity" />
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:name="com.sap.smp.client.httpc.authflows.OTPAuthActivity" />
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:name="com.sap.mp.cordova.plugins.authProxy.AuthProxyOTPAuthActivity" />
+        <provider android:authorities="com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa.KapselAttachmentViewer" android:exported="false" android:grantUriPermissions="true" android:name="com.sap.mp.cordova.plugins.attachmentViewer.FileProviderWithWorkaround">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/filepaths" />
+        </provider>
+        <activity android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize" android:exported="false" android:name="com.google.zxing.client.android.CaptureActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:label="Share" android:name="com.google.zxing.client.android.encode.EncodeActivity" />
+        <meta-data android:name="com.sap.afaria" android:value="com.sap.smp.client.android.afariaprovider.AfariaCertificateProvider" />
+        <meta-data android:name="android.content.APP_RESTRICTIONS" android:resource="@xml/restrictions" />
+        <meta-data android:name="com.sap.SystemCertProvider" android:value="com.sap.maf.html5.android.SystemCertProvider" />
+        <provider android:authorities="com.sap.webide.xd2331fe23c8745fc8ce8378255e2f1fa.KapselLogger" android:exported="false" android:grantUriPermissions="true" android:name="com.sap.mp.cordova.plugins.logger.LoggerFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/logfilepaths" />
+        </provider>
+        <service android:exported="false" android:name="com.sap.mp.cordova.plugins.odata.RefreshIntentService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+    </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="com.sap.mobile.clientHub.CLIENTHUB_ACCESS_PERMISSION" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+</manifest>
