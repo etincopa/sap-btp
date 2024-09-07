@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>aria/HasPopup</name>
+    <derived/>
+    <documentation>Types of popups to set as aria-haspopup attribute.
+Most of the values (except "None") of the enumeration are taken from the ARIA specification:
+https://www.w3.org/TR/wai-aria/#aria-haspopup</documentation>
+    <since>1.84</since>
+    <enumeration>
+        <value name="None">
+            <documentation>None - the aria-haspopup attribute will not be rendered.</documentation>
+        </value>
+        <value name="Menu">
+            <documentation>Menu popup type.</documentation>
+        </value>
+        <value name="ListBox">
+            <documentation>ListBox popup type.</documentation>
+        </value>
+        <value name="Tree">
+            <documentation>Tree popup type.</documentation>
+        </value>
+        <value name="Grid">
+            <documentation>Grid popup type.</documentation>
+        </value>
+        <value name="Dialog">
+            <documentation>Dialog popup type.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

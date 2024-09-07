@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>dnd/RelativeDropPosition</name>
+    <derived/>
+    <documentation>Drop positions relative to a dropped element.</documentation>
+    <since>1.100.0</since>
+    <enumeration>
+        <value name="On">
+            <documentation>Drop on the control.</documentation>
+        </value>
+        <value name="Before">
+            <documentation>Drop before the control.</documentation>
+        </value>
+        <value name="After">
+            <documentation>Drop after the control.</documentation>
+        </value>
+    </enumeration>
+</simple-type>

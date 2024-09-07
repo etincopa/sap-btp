@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>format/DateFormatTimezoneDisplay</name>
+    <derived/>
+    <documentation>Configuration options for the &lt;code&gt;showTimezone&lt;/code&gt; format option
+of &lt;code&gt;DateFormat#getDateTimeWithTimezoneInstance&lt;/code&gt;.</documentation>
+    <since>1.99.0</since>
+    <deprecation since="1.101">replaced by
+  &lt;code&gt;DateFormat#getDateTimeWithTimezoneInstance&lt;/code&gt; with the &lt;code&gt;showDate&lt;/code&gt;,
+  &lt;code&gt;showTime&lt;/code&gt; and &lt;code&gt;showTimezone&lt;/code&gt; format options.</deprecation>
+    <enumeration>
+        <value name="Show">
+            <documentation>Add the IANA timezone ID to the format output.</documentation>
+        </value>
+        <value name="Hide">
+            <documentation>Do not add the IANA timezone ID to the format output.</documentation>
+        </value>
+        <value name="Only">
+            <documentation>Only output the IANA timezone ID.</documentation>
+        </value>
+    </enumeration>
+</simple-type>
