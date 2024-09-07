@@ -1,0 +1,68 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="everis.com.pssPSS.controller.Main" displayBlock="true" height="100%">
+	<Page title="Password Self Service">
+		<content>
+			<VBox fitContainer="true">
+				<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+					labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+					singleContainerFullSize="false" ariaLabelledBy="Title1" backgroundDesign="Transparent">
+					<f:content>
+						<Label text="Usuario SAP"/>
+						<Select id="inUname" items="{localAlias>/results}" change="onSelectedUser">
+							<items>
+								<core:Item text="{localAlias>Bname}" key="{localAlias>Bname}"/>
+							</items>
+						</Select>
+						<!--<Input id="inUname" editable="false"/>-->
+						<Label text="Usuario de Red"/>
+						<Input id="inUserSCP" editable="false"/>
+						<Label text="Ambiente"/>
+						<Select id="system" items="{localModel>/results}" change="onSelectChanged">
+							<items>
+								<core:Item text="{localModel>System}" key="{localModel>System}"/>
+							</items>
+						</Select>
+						<Label text="Mandante"/>
+						<Select id="mandate" items="{localModel>/results}">
+							<items>
+								<core:Item text="{localModel>Mandate}" key="{localModel>Mandate}"/>
+							</items>
+						</Select>
+						<Label/>
+						<CheckBox id="chb1" text="Desbloquear usuario" select="onChecked"/>
+						<Label/>
+						<CheckBox id="chb2" text="Reiniciar contraseña" select="onChecked"/>
+					</f:content>
+					<f:layoutData>
+						<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+					</f:layoutData>
+				</f:SimpleForm>
+				<l:Grid id="grid0" position="Center" defaultIndent="XL2 L2 M2 S0" defaultSpan="XL8 L8 M8 S12">
+					<l:content>
+						<Panel>
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title text="Consideraciones"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<Text text="- No podrá desbloquear usuarios bloqueados por el Administrador" renderWhitespace="true" width="100%"/>
+								<Text text="- Es responsabilidad de cada trabajador el uso adecuado de su licencia" renderWhitespace="true" width="100%"/>
+								<Text text="- La contraseña es personal e intransferible" renderWhitespace="true" width="100%"/>
+							</content>
+						</Panel>
+					</l:content>
+				</l:Grid>
+				<l:Grid id="grid1" position="Center" defaultIndent="XL2 L2 M2 S0" defaultSpan="XL8 L8 M8 S12">
+					<l:content>
+						<CheckBox id="chbRead" text="Acepto lo leído anteriormente" width="100%"/>
+						<HBox width="100%" id="hbox0" fitContainer="false" justifyContent="Center">
+							<Button id="btnSubmit" text="Solicitar" width="100%" enabled="false" press="onSubmit"/>
+						</HBox>
+					</l:content>
+				</l:Grid>
+			</VBox>
+			<!--			<Table items="{/UserEntitySet}"></Table>-->
+		</content>
+	</Page>
+</mvc:View>
