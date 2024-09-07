@@ -1,0 +1,168 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "Hayduk.InformeDeFlota",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"INFORME": {
+				"uri": "/saperp/SAP/ZPP_INFORME_FLOTA_SRV_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			},
+			"Extensions": {
+				"uri": "model/addExtensions.json",
+				"type": "JSON"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		],
+		"fullWidth": true
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "Hayduk.InformeDeFlota.view.Informe",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "Hayduk.InformeDeFlota.i18n.i18n"
+				}
+			},
+			"INFORME": {
+				"dataSource": "INFORME",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"addExtensions": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "Extensions"
+			},
+			"listRsw": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/listRsw.json",
+				"preload": false
+			},
+			"listEspecie": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/listEspecie.json",
+				"preload": false
+			},
+			"addBod": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/addBod.json",
+				"preload": false
+			},
+			"listEspecieTallaMin": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/listEspecieTallaMin.json",
+				"preload": false
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			],
+			"img": [
+				{
+					"uri": "img/hayduk.png"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "Hayduk.InformeDeFlota.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteInforme",
+					"pattern": "RouteInforme",
+					"target": [
+						"TargetInforme"
+					]
+				},
+				{
+					"name": "RouteInforme2",
+					"pattern": "RouteInforme2",
+					"target": [
+						"TargetInforme2"
+					]
+				}
+			],
+			"targets": {
+				"TargetInforme": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Informe"
+				},
+				"TargetInforme2": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Informe2"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

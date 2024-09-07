@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="60%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Datos de Gestión" titleStyle="H5" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press="onCloseGestion"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:Form id="formGestion" editable="false">
+				
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer title="Entrada">
+							<f:formElements>
+								<f:FormElement label="Usuario">
+									<f:fields>
+										<Text text="{InformeFlota>/UserCrea}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Fecha">
+									<f:fields>
+										<Text text="{InformeFlota>/FechaCrea}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Hora">
+									<f:fields>
+										<Text text="{InformeFlota>/HoraCrea}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title="Modificación">
+							<f:formElements>
+								<f:FormElement label="Usuario">
+									<f:fields>
+										<Text text="{InformeFlota>/UserModif}"  />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Fecha">
+									<f:fields>
+										<Text text="{InformeFlota>/FechaModif}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Hora">
+									<f:fields>
+										<Text text="{InformeFlota>/HoraModif}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</VBox>
+			</content>
+		</Dialog>
+	</core:FragmentDefinition>

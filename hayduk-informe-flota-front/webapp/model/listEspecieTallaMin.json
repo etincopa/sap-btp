@@ -1,0 +1,25 @@
+{
+	"list":[
+		{"Id":"01","Especie":"ANCHOVETA","Talla":12},
+		{"Id":"02","Especie":"ANGUILA","Talla":42},
+		{"Id":"03","Especie":"ATUN ALETA AMARIL","Talla":60},
+		{"Id":"04","Especie":"BARRILETE","Talla":47},
+		{"Id":"05","Especie":"BONITO","Talla":52},
+		{"Id":"06","Especie":"CABALLA","Talla":29},
+		{"Id":"07","Especie":"CAMARON ROJO","Talla":0},
+		{"Id":"08","Especie":"CAMOTILLO","Talla":0},
+		{"Id":"09","Especie":"FALSO VOLADOR","Talla":0},
+		{"Id":"10","Especie":"JUREL","Talla":31},
+		{"Id":"11","Especie":"MERLUZA","Talla":28},
+		{"Id":"12","Especie":"PERICO","Talla":70},
+		{"Id":"13","Especie":"PEZ ESPADA","Talla":150},
+		{"Id":"14","Especie":"POTA","Talla":0},
+		{"Id":"15","Especie":"SARDINA","Talla":26},
+		{"Id":"16","Especie":"TAMBORIN","Talla":0},
+		{"Id":"17","Especie":"CALAMAR","Talla":9},
+		{"Id":"18","Especie":"CHAUCHILLA","Talla":52},
+		{"Id":"19","Especie":"BAGRE","Talla":50},
+		{"Id":"20","Especie":"ATUN BIG EYE","Talla":0},
+		{"Id":"21","Especie":"MACHETE","Talla":25}
+		]
+}

@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="25%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Observaciones" titleStyle="H5" class="sapUiSmallMarginBegin" wrapping="true"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press=".observaciones.onCloseObservaciones"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+		<TextArea id="txaObservaciones" value="{/Observaciones}" showExceededText="true" maxLength="300" width="100%" height="250px"
+		          liveChange=".observaciones.handleObsChange"  valueLiveUpdate="true"/>
+			
+		</content>
+		<buttons>
+			<Button type="Accept"  text="Aceptar" press=".observaciones.onAcceptObservaciones"/>
+			<Button type="Reject" text="Cancelar" press=".observaciones.onCloseObservaciones"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

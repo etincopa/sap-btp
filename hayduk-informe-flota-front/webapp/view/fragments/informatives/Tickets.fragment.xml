@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="80%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Log de Tickets Procesados" titleStyle="H5" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press="onCloseTickets"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<Table id="tblTicket" inset="false" items="{ path: 'LogTicketSet>/d/results' }">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<Title text="Tickets" titleStyle="H4"/>
+							<ToolbarSpacer/>
+							<Button type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefreshLogTicket"/>
+							<Button type="Transparent" text="Excel" icon="sap-icon://excel-attachment" tooltip="Excel" press="onXLSTickets"/>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Descrip. Breve"/>
+					</Column>
+					<Column>
+						<Text text="Nro Ticket"/>
+					</Column>
+					<Column>
+						<Text text="Fec. Ini. Desc."/>
+					</Column>
+					<Column>
+						<Text text="H. Ini. Desc"/>
+					</Column>
+					<Column>
+						<Text text="Fec. Fin. Desc."/>
+					</Column>
+					<Column>
+						<Text text="H. Fin. Desc."/>
+					</Column>
+					<Column>
+						<Text text="Fecha Ticket"/>
+					</Column>
+					<Column>
+						<Text text="N° Pesadas"/>
+					</Column>
+					<Column>
+						<Text text="Peso acumulado"/>
+					</Column>
+					<Column>
+						<Text text="Nro Report"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem highlight="{=${LogTicketSet>Status} === 'X'? 'Success' : 'Error'}">
+						<cells>
+							<Text text="{LogTicketSet>Descripcion}"/>
+							<Text text="{LogTicketSet>Nroticket}"/>
+							<Text text="{LogTicketSet>Fechainidesc}"/>
+							<Text text="{LogTicketSet>Fechainidesc}"/>
+							<Text text="{LogTicketSet>Fechafindesc}"/>
+							<Text text="{LogTicketSet>Horafindesc}"/>
+							<Text text="{LogTicketSet>Fechaticket}"/>
+							<Text text="{LogTicketSet>Numpesadas}"/>
+							<Text text="{LogTicketSet>Pesoacum}"/>
+							<Text text="{LogTicketSet>Nroreport}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

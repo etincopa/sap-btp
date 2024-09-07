@@ -1,0 +1,73 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<TableSelectDialog
+	    class="sapUiSizeCompact"
+		noDataText="No se encontraron clientes"
+		title="Clientes"
+		search=".clientes.handleClienteSearch"
+		confirm=".clientes._handleClienteClose"
+		cancel=".clientes._handleClienteClose"
+		items="{
+			path : 'ClienteSet>/d/results'
+		}">
+		<ColumnListItem>
+			<cells>
+				<Text text="{ClienteSet>Numero}" />
+				<Text text="{ClienteSet>Sociedad}" />
+				<Text text="{ClienteSet>Nombre}" />
+			   	<Text text="{ClienteSet>Poblacion}" />
+			   	<Text text="{ClienteSet>CodigoPostal}" />
+				<Text text="{ClienteSet>Busqueda}" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			
+			<Column hAlign="Center">
+				<header>
+					<Text text="Numero" />
+				</header>
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true" 
+				hAlign="Center">
+				<header>
+					<Text text="Sociedad" />
+				</header>
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center">
+				<header>
+					<Text text="Nombre" />
+				</header>
+			</Column>
+			
+			<Column	hAlign="Center">
+				<header>
+					<Text text="Población" />
+				</header>
+			</Column>
+			
+			<Column	hAlign="Center">
+				<header>
+					<Text text="Código Postal" />
+				</header>
+			</Column>
+			
+			<Column	hAlign="Center">
+				<header>
+					<Text text="Búsqueda" />
+				</header>
+			</Column>
+		
+		</columns>
+	</TableSelectDialog>
+	
+	
+</core:FragmentDefinition>

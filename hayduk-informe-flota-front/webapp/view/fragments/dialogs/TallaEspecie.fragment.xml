@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="25%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="{/Titulo}" titleStyle="H5" class="sapUiSmallMarginBegin" wrapping="true"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press=".calas.onCloseTallas"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<OverflowToolbar>
+				<content>
+					<Title text="{/Especie}" titleStyle="H5" wrapping="true" class="sapUiSmallMarginBegin"/>
+				</content>
+			</OverflowToolbar>
+			<ScrollContainer height="400px" vertical="true" horizontal="false">
+				<Table id="tblTallas" inset="false" items="{ path: 'TallaXEspecieSet>/d/results' }">
+					<headerToolbar></headerToolbar>
+					<columns>
+						<Column width="30%">
+							<Text text="Talla"/>
+						</Column>
+						<Column width="70%">
+							<Text text="Cantidad"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<Text text="{TallaXEspecieSet>Talla}"/>
+								<Input value="{TallaXEspecieSet>Cantidad}" liveChange=".util.onlyInteger" editable="{Configuracion>/Editable}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<buttons>
+			<Button type="Accept"  text="Aceptar" press=".calas.onAcceptTallas" visible="{Configuracion>/Editable}"/>
+			<Button type="Reject" text="Cancelar" press=".calas.onCloseTallas" visible="{Configuracion>/Editable}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,40 @@
+{
+    "env": {
+        "es6": true
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "sap": false,
+        "jQuery": false,
+        "XMLSerializer": false,
+        "DOMParser": false,
+        "window": false,
+        "$": false,
+        "FileReader": false,
+        "File": false,
+        "atob": false,
+        "Blob": false,
+        "document": false,
+        "URL": false,
+        "console": false,
+        "FormData": false,
+        "jsPDF": false,
+        "require": false,
+        "module": false,
+        "Buffer": false,
+        "__dirname": false,
+        "process": false,
+        "location": false,
+        "navigator": false,
+        "localStorage": false,
+        "setTimeout": false,
+        "setInterval": false,
+        "clearInterval": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {}
+}

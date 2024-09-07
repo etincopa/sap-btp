@@ -1,0 +1,168 @@
+<mvc:View controllerName="Hayduk.InformeDeFlota.controller.Informe" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic">
+	<App id="idAppControl" class="sapUiSizeCompact">
+		<pages>
+			<semantic:FullscreenPage showFooter="true" id="dpInforme" busy="true">
+				<semantic:subHeader>
+					<OverflowToolbar>
+						<Image class="sapUiSmallMarginBegin" src="img/hayduk.png" densityAware="false" height="1.3rem" width="6.2rem"></Image>
+						<Label text="{i18n>title}" class="onTitle sapUiTinyMarginTop" wrapping="true"/>
+						<ToolbarSpacer/>
+						<OverflowToolbarButton id="btnNewInforme" type="Transparent" text="Crear" icon="sap-icon://add-document" tooltip="Crear Informe de Flota"
+							press="onNewInforme"/>
+						<OverflowToolbarButton type="Transparent" text="Buscar" icon="sap-icon://inspection" tooltip="Buscar Informe de Flota"
+							press="onSearchInforme"/>
+						<OverflowToolbarButton type="Transparent" text="Editar" icon="sap-icon://edit" tooltip="Editar Informe de Flota" press="onEditInforme"
+							visible="false" id="btnEditarInforme"/>
+						<OverflowToolbarButton type="Transparent" text="Visualizar" icon="sap-icon://display" tooltip="Visualizar Informe de Flota"
+							press="onViewInforme" visible="false" id="btnViewInforme"/>
+						<OverflowToolbarButton type="Transparent" text="Guardar" icon="sap-icon://save" tooltip="Guardar Informe" id="btnSaveInforme"
+							visible="{Configuracion>/Editable}" press="saveInforme"/>
+						<ToolbarSeparator/>
+						<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" id="btnRegreshInforme"
+							press="refreshInforme"/>
+						<ToolbarSeparator/>
+						<MenuButton text="Informe" type="Transparent">
+							<menu>
+								<Menu >
+									<items>
+										<MenuItem text="Guardar Borrador" icon="sap-icon://pushpin-on" press="onGuardarBorrador"/>
+										<MenuItem text="Recuperar Borrador" icon="sap-icon://open-folder" press="recoverInforme"/>
+									</items>
+								</Menu>
+							</menu>
+						</MenuButton>
+						<ToolbarSeparator/>
+						<MenuButton text="Aprobación" type="Transparent" visible="{Botones>/APROBACION_MENU}">
+							<menu>
+								<Menu >
+									<items>
+										<MenuItem text="Aprobar Informe Operador Radio" icon="sap-icon://approvals" visible="{Botones>/APRAOP}" press="actualizarInforme" key="AOP"/>
+										<MenuItem text="Aprobar Informe Jefe de Flota" icon="sap-icon://hr-approval" visible="{Botones>/APRAJF}" press="actualizarInforme" key="AJF"/>
+										<MenuItem text="Desaprobar Informe" icon="sap-icon://sys-cancel-2" visible="{Botones>/DESAPRO}" press="actualizarInforme" key="CRE"/>
+									</items>
+								</Menu>
+							</menu>
+						</MenuButton>
+						<ToolbarSeparator/>
+						<OverflowToolbarButton type="Transparent" text="Iniciar sesión" icon="sap-icon://visits" tooltip="Iniciar sesión" press="onLogin"/>
+					</OverflowToolbar>
+				</semantic:subHeader>
+				<semantic:content>
+					<VBox>
+						<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.DatosGenerales" type="XML"/>
+						<IconTabBar id="itbGeneral" class="sapUiResponsiveContentPadding" expandable="false" select="onSelectCorrectFields">
+							<items>
+								<IconTabFilter icon="sap-icon://group" text="Tripulación" key="TRIP">
+									<Panel width="auto" class="sapUiResponsiveMargin">
+										<headerToolbar>
+											<OverflowToolbar height="3rem">
+												<core:Icon src="sap-icon://group" size="1.5rem" color="#086ecc"></core:Icon>
+												<Title text="Datos de Tripulación"/>
+												<ToolbarSpacer/>
+												<!--	<Button type="Transparent" text="Aprobar Tripulación" icon="sap-icon://approvals" tooltip="Aprobar Planilla"/>
+												<Button type="Transparent" text="Desaprobar Tripulación" icon="sap-icon://sys-cancel-2" tooltip="Desaprobar Tripulación"/> -->
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.Tripulacion" type="XML"/>
+										</content>
+									</Panel>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://activity-2" text="Operaciones">
+									<Panel width="auto" class="sapUiResponsiveMargin">
+										<headerToolbar>
+											<OverflowToolbar height="3rem">
+												<core:Icon src="sap-icon://activity-2" size="1.5rem" color="#ff8d00"></core:Icon>
+												<Title text="Datos de Operaciones"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.Operaciones" type="XML"/>
+										</content>
+									</Panel>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://product" text="Descarga">
+									<Panel width="auto" class="sapUiResponsiveMargin">
+										<headerToolbar>
+											<OverflowToolbar height="3rem">
+												<core:Icon src="sap-icon://product" size="1.5rem" color="#FFD700"></core:Icon>
+												<Title text="Descarga"/>
+												<ToolbarSpacer/>
+												<Button id="btnRegDesc" text="Registrar Descarga" icon="sap-icon://accept" visible="{Botones>/REGDES}" press=".descarga.procDescargaInforme"/>
+												<Button id="btnRepDesc" text="Reprocesar" icon="sap-icon://restart" visible="{Botones>/REGDES1}" press=".descarga.procDescargaInforme"/>
+												<Button id="btnAnuDesc" text="Anular Reg. Descarga" icon="sap-icon://sys-cancel-2" visible="false" press=".descarga.procDescargaInforme"/>
+												<Button type="Transparent" text="Log de Tickets" icon="sap-icon://tag" tooltip="Log de Tickets" press="onPressTicket"/>
+												<Button type="Transparent" text="Observaciones" icon="sap-icon://request" tooltip="Observaciones"
+													press=".observaciones.onPressObservaciones"/>
+												<ToolbarSeparator/>
+												<core:Icon src="sap-icon://color-fill" size="0.8rem" color="{Indicadores>/DescargaColor}" visible="false" id="iconDescarga"/>
+												<Text text="{Indicadores>/DescargaTexto}"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.ArriboDescarga" type="XML"/>
+										</content>
+									</Panel>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://mileage" text="Combustible">
+									<Panel width="auto" class="sapUiResponsiveMargin">
+										<headerToolbar>
+											<OverflowToolbar height="3rem">
+												<core:Icon src="sap-icon://mileage" size="1.5rem" color="#800000"></core:Icon>
+												<Title text="Combustible"/>
+												<ToolbarSpacer/>
+												<Button type="Transparent" text="Registrar Consumo" icon="sap-icon://performance" tooltip="Registrar Consumo"
+													press=".combustible.registrarConsumo"/>
+												<ToolbarSeparator/>
+												<core:Icon id="iconCombustible" src="sap-icon://color-fill" size="0.8rem" color="{Indicadores>/CombustibleColor}" visible="false"/>
+												<Text text="{Indicadores>/CombustibleTexto}"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.Combustible" type="XML"/>
+										</content>
+									</Panel>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://settings" visible="False" text="Horómetros" id="itfHorometro">
+									<Panel width="auto" class="sapUiResponsiveMargin">
+										<headerToolbar>
+											<OverflowToolbar height="3rem">
+												<core:Icon src="sap-icon://settings" size="1.5rem" color="#008080"></core:Icon>
+												<Title text="Horómetros"/>
+												<ToolbarSpacer/>
+												<Label id="txtGuardarHorom" text="Guardar" labelFor="swHorom"/>
+												<Switch id="swHorom" state="true" customTextOn="Sí" customTextOff="No" enabled="{Configuracion>/Editable}"/>
+												<ToolbarSeparator/>
+												<Button id="btnAprobHorometro" type="Transparent" text="Aprobar Horómetros" icon="sap-icon://approvals" tooltip="Aprobar Horómetros"
+													visible="{Botones>/APRO_HORO}" press=".horometro.procesarHorometro"/>
+												<Button id="btnAnularHorometro" type="Transparent" text="Anular Horómetros" icon="sap-icon://sys-cancel-2" tooltip="Anular Horómetros"
+													visible="{Botones>/ANUL_HORO}" press=".horometro.procesarHorometro"/>
+												<ToolbarSeparator/>
+												<core:Icon src="sap-icon://color-fill" size="0.8rem" color="{Indicadores>/HorometroColor}" id="iconEstadoHorom" visible="false"></core:Icon>
+												<Text id="txtEstadoHorometro" text=""/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<content>
+											<core:Fragment fragmentName="Hayduk.InformeDeFlota.view.fragments.Horometro" type="XML"/>
+										</content>
+									</Panel>
+								</IconTabFilter>
+							</items>
+						</IconTabBar>
+					</VBox>
+				</semantic:content>
+				<semantic:customFooterContent>
+					<OverflowToolbar>
+						<Button type="Transparent" text="Almac. Local" icon="sap-icon://database" tooltip="Almacenamiento Local" press="onCheckStorage"/>
+						<Button icon="sap-icon://message-popup" text="Log {Indicadores>/NumLog}" type="Transparent" press=".log.handleLogPress"
+							tooltip="Log de Operaciones"/>
+						<Button id="btnColaOper" icon="sap-icon://instance" text="Cola Oper. {Indicadores>/NumCola}" type="Transparent" press=".cola.onPressColas"
+							tooltip="Cola de Operaciones"/>
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</semantic:customFooterContent>
+			</semantic:FullscreenPage>
+		</pages>
+	</App>
+</mvc:View>

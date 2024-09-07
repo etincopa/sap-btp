@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<VBox class="sapUiSmallMargin">
+		<Panel>
+			<headerToolbar>
+				<OverflowToolbar>
+					<content>
+						<Title text="Tripulantes" titleStyle="H4"/>
+						<ToolbarSpacer/>
+						<SearchField width="30%" search=".tripulacion.searchTripulate" />
+						<OverflowToolbarButton type="Transparent" text="Cargar tripulación de archivo Excel" icon="sap-icon://upload" tooltip="Cargar tripulación de archivo Excel"
+							visible="{Configuracion>/Editable}" press=".tripulacion.onUploadXLSX"/>
+						<OverflowToolbarButton type="Transparent" text="Recuperar tripulación propuesta" icon="sap-icon://redo" tooltip="Recuperar tripulación propuesta"
+							visible="{Configuracion>/Editable}" press=".tripulacion.recoverTripulacion"/>
+						<OverflowToolbarButton type="Transparent" text="Agregar" icon="sap-icon://add-employee" tooltip="Agregar"
+							visible="{Configuracion>/Editable}" press=".tripulacion.addTripulante"/>
+						<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh"
+							press=".tripulacion.onRefreshTripulacion"/>
+						<OverflowToolbarButton type="Transparent" text="Descargar en archivo Excel" icon="sap-icon://excel-attachment" tooltip="Descargar en archivo Excel"
+							press=".tripulacion.onXLSTripulacion"/>
+						<Button id="btnCargaArchivos" enabled="false"  type="Transparent" text="Cargar Archivo" icon="sap-icon://attachment" tooltip="Cargar de archivos" 
+							press=".tripulacion.onCargarArchivos"/>
+					</content>
+				</OverflowToolbar>
+			</headerToolbar>
+			<content>
+				<ScrollContainer height="430px" width="100%" horizontal="false" vertical="true" focusable="true">
+					<Table id="tblTripulacion" inset="false" items="{ path: 'TripulacionSet>/d/results' }" mode="None" delete=".tripulacion.onDeleteTripulante" updateFinished=".tripulacion.onUpdFinTblTripulacion">
+						<headerToolbar></headerToolbar>
+						<columns>
+							<Column width="10%">
+								<Text text="N°"/>
+							</Column>
+							<Column width="15%">
+								<Text text="Código Cargo"/>
+							</Column>
+							<Column width="25%">
+								<Text text="Cargo"/>
+							</Column>
+							<Column width="15%" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="DNI"/>
+							</Column>
+							<Column width="35%" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Nombres y Apellidos"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Text text="{TripulacionSet>Numero}"/>
+									<Text text="{TripulacionSet>Cargo}"/>
+									<Text text="{TripulacionSet>Cargodesc}"/>
+									<Text text="{TripulacionSet>Dni}"/>
+									<Text text="{TripulacionSet>Nombre}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+			</content>
+		</Panel>
+	</VBox>
+</core:FragmentDefinition>

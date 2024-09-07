@@ -1,0 +1,136 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	
+		
+	<Dialog 
+	    class="sapUiSizeCompact"
+		type="Standard"
+		showHeader="false"
+		state="None"
+		draggable="true"
+		contentWidth="60%">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Historial de Tiempos" titleStyle="H5" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer />
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press="onCloseTiempos"/>
+			</Toolbar>
+		</customHeader>
+        <content>
+	
+	
+   <VBox class="sapUiSmallMargin">
+	<f:Form id="formTiempos"
+			editable="false">
+		
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="3"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Zarpe">
+					<f:formElements>
+					
+						<f:FormElement label="Fecha y hora">
+						
+							<f:fields>
+							   	<Text text="{InformeFlota>/FechaZarpe}" />
+								<Text text="{InformeFlota>/HoraZarpe}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="Operación">
+					<f:formElements>
+						<f:FormElement label="Llegada a la zona de pesca">
+							<f:fields>
+							   	<Text text="{InformeFlota>/FecIniZonaPesca}" />
+								<Text text="{InformeFlota>/HoraIniZonaPesca}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						
+				    	<f:FormElement label="Salida de zona de pesca">
+						
+							<f:fields>
+							  	<Text text="{InformeFlota>/FecFinZonaPesca}" />
+								<Text text="{InformeFlota>/HoraFinZonaPesca}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				
+				<f:FormContainer title="Arribo y Descarga">
+					<f:formElements>
+						<f:FormElement label="Arribo">
+						
+							<f:fields>
+							   	<Text text="{InformeFlota>/FechaArribo}" />
+								<Text text="{InformeFlota>/HoraArribo}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="Inicio de descarga">
+						
+							<f:fields>
+							  	<Text text="{InformeFlota>/FechaIniDesc}" />
+								<Text text="{InformeFlota>/HoraIniDesc}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="Fin de descarga">
+							<f:label>
+								<Label text="Fin de descarga" wrapping="true"/>
+							</f:label>
+							<f:fields>
+							   	<Text text="{InformeFlota>/FechaFinDesc}" />
+								<Text text="{InformeFlota>/HoraFinDesc}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+      </VBox>
+      	</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,81 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+   <VBox class="sapUiSmallMargin">
+	<f:Form id="formCombustible"
+			editable="true">
+		
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="5"
+					labelSpanL="5"
+					labelSpanM="5"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="3"
+					columnsM="3"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Stock al zarpe">
+							<f:fields>
+								<Input value="{InformeFlota>/StockZarpe}" editable="{Configuracion>/Editable}" liveChange=".combustible.liveChangeStockZarpe"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Abastecimiento Faena">
+							<f:fields>
+							   	<Input value="{InformeFlota>/AbastFaena}" editable="{Configuracion>/Editable}" liveChange=".combustible.liveChangeAbastFaena"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Abastecimiento Desc.">
+							<f:fields>
+							 	<Input value="{InformeFlota>/AbastDescarga}" editable="{Configuracion>/Editable}" liveChange=".combustible.liveChangeAbastDescarga"/>
+							</f:fields>
+						</f:FormElement>
+					
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer >
+					<f:formElements>
+						<f:FormElement label="Stock al arribo">
+							<f:fields>
+							  	<Input value="{InformeFlota>/StockArribo}" editable="{Configuracion>/Editable}" liveChange=".combustible.liveChangeStockArribo"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Stock al fin descarga">
+							<f:fields>
+								<Input value="{InformeFlota>/StockFinDescarga}" editable="{Configuracion>/Editable}" liveChange=".combustible.liveChangeStockFinDescarga"/>
+								
+							</f:fields>
+						</f:FormElement>
+					
+						
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Consumo faena">
+							<f:fields>
+								<Input id="inpConsumoFaena" value="" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Consumo descarga" >
+							<f:fields>
+								<Input id="inpConsumoDescarga" value="" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+      </VBox>
+</core:FragmentDefinition>

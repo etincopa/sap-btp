@@ -1,0 +1,154 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="90%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Informes de Flota" titleStyle="H5" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press="onCloseSearchInforme"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<fb:FilterBar id="ftbBuscarInforme" reset="onReset" search="onSearch" useToolbar="true" showGoOnFB="true" showRestoreButton="true"
+				showClearButton="true" showClearOnFB="true" clear="onClear">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem name="Centro" groupName="Filters" label="Centro" visibleInFilterBar="true">
+						<fb:control>
+							<Input id="inpCentroSearch" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".centros.handleCentroHelp"
+								suggestionItems="{path:'CentroSet>/d/results',templateShareable:true}" 
+								submit="onSubmitFilter">
+								<suggestionItems>
+									<core:ListItem key="{CentroSet>Identificador}" text="{CentroSet>Nombre}" additionalText="{CentroSet>Identificador}"/>
+								</suggestionItems>
+							</Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="Numero" groupName="Filters" label="N° Informe" visibleInFilterBar="true">
+						<fb:control>
+							<Input type="Text" value="" submit="onSubmitFilter"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="Tipo" groupName="Filters" label="Tipo de Informe" visibleInFilterBar="true">
+						<fb:control>
+							<ComboBox showSecondaryValues="true" items="{ path: 'TipoInformeSet>/d/results',templateShareable:true }" filterSecondaryValues="true">
+								<core:ListItem key="{TipoInformeSet>IdTipoInforme}" text="{TipoInformeSet>Nombre}" additionalText="{TipoInformeSet>IdTipoInforme}"/>
+							</ComboBox>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="Matricula" groupName="Filters" label="Num. Matri. Emb." visibleInFilterBar="true">
+						<fb:control>
+							<Input id="inpSearchMatricula" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" submit="onSubmitFilter"
+								valueHelpRequest=".matriculas.handleMatriculaHelp" suggestionItemSelected="suggestionItemSelected"></Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="Embarcacion" groupName="Filters" label="Nombre Emb." visibleInFilterBar="true">
+						<fb:control>
+							<Input type="Text" value="" liveChange=".util.toUpperCase"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="Especie" groupName="Filters" label="Especie" visibleInFilterBar="true">
+						<fb:control>
+							<Input type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".especie.handleEpecieHelp"
+								suggestionItems="{path:'EspecieSet>/d/results',templateShareable:true}" suggestionItemSelected="suggestionItemSelected"
+								submit="onSubmitFilter">
+								<suggestionItems>
+									<core:ListItem key="{EspecieSet>Identificador}" text="{EspecieSet>Nombre}" additionalText="{EspecieSet>Identificador}"/>
+								</suggestionItems>
+							</Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="FechaZarpe" groupName="Filters" label="Fecha de Zarpe" visibleInFilterBar="true">
+						<fb:control>
+							<DatePicker displayFormat="short" valueFormat="yyyyMMdd"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="FechaArribo" groupName="Filters" label="Fecha de Arribo" visibleInFilterBar="true">
+						<fb:control>
+							<DatePicker displayFormat="short" valueFormat="yyyyMMdd"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem name="CentroDescarga" groupName="Filters" label="Centro de descarga" visibleInFilterBar="true">
+						<fb:control>
+							<Input type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".centros.handleDescargaHelp"
+								suggestionItems="{path:'CentroDescargaSet>/d/results',templateShareable:true}" suggestionItemSelected="suggestionItemSelected"
+								submit="onSubmitFilter">
+								<suggestionItems>
+									<core:ListItem key="{CentroDescargaSet>Identificador}" text="{CentroDescargaSet>Nombre}" additionalText="{CentroDescargaSet>Identificador}"/>
+								</suggestionItems>
+							</Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+			<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true" focusable="true">
+				<Table id="tblInforme" inset="false" >
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="Informes" titleStyle="H4"/>
+								<ToolbarSpacer/>
+								<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefreshInforme"/>
+								<OverflowToolbarButton type="Transparent" text="Excel" icon="sap-icon://excel-attachment" tooltip="Excel" press="onXLSInformes"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="100px">
+							<Text text="N° Informe"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Tipo Inf."/>
+						</Column>
+						<Column width="100px">
+							<Text text="Centro"/>
+						</Column>
+						<Column width="100px">
+							<Text text="N. Matríc. Emb."/>
+						</Column>
+						<Column width="100px">
+							<Text text="Nombre Emb."/>
+						</Column>
+						<Column width="100px">
+							<Text text="Especie"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Estado"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Fecha Zarpe"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Fecha Arribo"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Puerto Arribo"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Centro Descarga"/>
+						</Column>
+						<Column width="100px">
+							<Text text="Destino"/>
+						</Column>
+					</columns>
+					<items>
+						<!--ColumnListItem type="Navigation" press="onPressInforme">
+							<cells>
+								<Text text="{INFORME>Numero}"/>
+								<ObjectIdentifier title="{INFORME>Tipo}" text="{INFORME>TipoDesc}"/>
+								<ObjectIdentifier title="{INFORME>Centro}" text="{INFORME>CentroDesc}"/>
+								<Text text="{INFORME>Matricula}"/>
+								<Text text="{INFORME>Embarcacion}"/>
+								<ObjectIdentifier title="{INFORME>Especie}" text="{INFORME>EspecieDesc}"/>
+								<ObjectIdentifier title="{INFORME>Estado}" text="{INFORME>EstadoDesc}"/>
+								<ObjectIdentifier title="{INFORME>FechaZarpe}" text="{INFORME>HoraZarpe}"/>
+								<ObjectIdentifier title="{INFORME>FechaArribo}" text="{INFORME>HoraArribo}"/>
+								<ObjectIdentifier title="{INFORME>PuertoArribo}" text="{INFORME>PuertoArriboDesc}"/>
+								<ObjectIdentifier title="{INFORME>CentroDescarga}" text="{INFORME>CentroDescargaDesc}"/>
+								<ObjectIdentifier title="{INFORME>Destino}" text="{INFORME>DestinoDesc}"/>
+							</cells>
+						</ColumnListItem-->
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

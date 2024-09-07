@@ -1,0 +1,26 @@
+{
+    "proxy": {
+        "saperp": {
+            "target": "http://hdks4appqas.haydukcorporacion.com.pe:50000",
+            "auth": "",
+            "entryPath": "/sap/opu/odata"
+        },
+        "ias": {
+            "target": "https://<iastenant>.accounts.ondemand.com",
+            "auth": "<T00000user>:<password>"
+        },
+        "bpmworkflowruntime": {
+            "target": "https://<bpmworkflowruntime...>.<region>.hana.ondemand.com",
+            "auth": "<scp_user>:<password>",
+            "entryPath": "/workflow-service"
+        },
+        "cmis": {
+            "target": "<java_cmis_app_endpoint>/cmis/json",
+            "not": "tested yet"
+        },
+        "Northwind": {
+            "target": "https://services.odata.org",
+            "entryPath": ""
+        }
+    }
+}

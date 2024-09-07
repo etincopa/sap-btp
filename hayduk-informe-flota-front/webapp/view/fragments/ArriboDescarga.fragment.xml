@@ -1,0 +1,185 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="formArribo" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Arribo">
+					<f:formElements>
+						<f:FormElement label="Puerto de arribo">
+							<f:fields>
+								<Input id="inpPtoArribo" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+									value="{InformeFlota>/PuertoArribo}" valueHelpRequest=".puertos.handlePuertoHelp" ariaLabelledBy="txtPuertoArribo"
+									liveChange=".puertos.onLiveChangePuerto" submit=".puertos.onLiveChangePuerto" editable="{Configuracion>/Editable}"/>
+								<Text id="txtPuertoArribo" text="">
+									<layoutData>
+										<l:GridData span="XL5 L5 M5 S5"/>
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Fecha de Arribo">
+							<f:fields>
+								<Input id="inpArribo" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss"
+									value="{InformeFlota>/FechaArribo} {InformeFlota>/HoraArribo}" valueLiveUpdate="{/ValueLiveUpdate}" editable="{Configuracion>/Editable}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									<!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL6 L6 M6 S6"/>
+									</layoutData>
+								</Input>
+<!--								<DatePicker id="dpArribo" visible="false" enabled="true" value="{InformeFlota>/FechaArribo}" change=".util.validateArriboDate" valueFormat="dd/MM/yyyy"
+									displayFormat="short"/>
+								<TimePicker id="tpArribo" visible="false" enabled="true" value="{InformeFlota>/HoraArribo}" change=".util.validateArriboDate" valueFormat="HH:mm:ss"/>-->
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Problemas">
+							<f:fields>
+								<ComboBox id="cbxProblemaArribo" showSecondaryValues="true" items="{ path: 'CausaNoPescaSet>/d/results' }"
+									selectedKey="{InformeFlota>/ProblemaArribo}" editable="{Configuracion>/Editable}">
+									<core:ListItem key="{CausaNoPescaSet>IdCausa}" text="{CausaNoPescaSet>Nombre}" additionalText="{CausaNoPescaSet>IdCausa}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<f:Form id="formDescarga" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Descarga">
+					<f:formElements>
+						<f:FormElement label="Destino">
+							<f:fields>
+								<ComboBox id="cbxDestino" showSecondaryValues="true" items="{ path: 'DestinoSet>/d/results' }" selectedKey="{InformeFlota>/Destino}"
+									editable="{Configuracion>/Editable}">
+									<core:ListItem key="{DestinoSet>IdDestino}" text="{DestinoSet>Nombre}" additionalText="{DestinoSet>IdDestino}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Centro de descarga">
+							<f:fields>
+								<Input id="inpCentroDescarga" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+									valueHelpRequest=".centros.handleDescargaHelp" suggestionItems="{CentroDescargaSet>/d/results}" selectedKey="{InformeFlota>/CentroDescarga}"
+									editable="{Configuracion>/Editable}" liveChange=".centros.oLiveChangeCentroDescarga">
+									<suggestionItems>
+										<core:ListItem key="{CentroDescargaSet>Identificador}" text="{CentroDescargaSet>Nombre}" additionalText="{CentroDescargaSet>Identificador}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<!--
+						<f:FormElement label="Cod. Emp. Maquila" id="feEmpMaquila">
+							<f:fields>
+								<Input id="inpEmpMaquila" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+									valueHelpRequest=".oper.handleMaquilaHelp" suggestionItems="{MaquilaSet>/d/results}" selectedKey="{InformeFlota>/EmpMaquila}"
+									editable="{Configuracion>/Editable}" liveChange=".oper.onLiveChangeMaquila">
+									<suggestionItems>
+										<core:ListItem key="{MaquilaSet>Identificador}" text="{MaquilaSet>Texto}" additionalText="{MaquilaSet>Identificador}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement> -->
+						<f:FormElement label="Cliente">
+							<f:fields>
+								<Input type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".clientes.handleClienteHelp"
+									suggestionItemSelected="suggestionItemSelected" value="{InformeFlota>/Cliente}" editable="{Configuracion>/Editable}"
+									submit=".clientes.onSubmitCliente" liveChange=".clientes.onSubmitCliente"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="" id="feTxtCliente" visible="false">
+							<f:fields>
+								<Text id="txtCliente" text="" wrapping="true"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Fecha Inicio">
+							<f:fields>
+								<Input id="inpDescarga" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss"
+									value="{InformeFlota>/FechaIniDesc} {InformeFlota>/HoraIniDesc}" valueLiveUpdate="{/ValueLiveUpdate}" editable="{Configuracion>/Editable}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									<!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL6 L6 M6 S6"/>
+									</layoutData>
+								</Input>
+								<!--
+								<DatePicker id="dpDescarga" visible="false" enabled="true" value="{InformeFlota>/FechaIniDesc}" change=".util.validatesDatesArrDesc"
+									valueFormat="dd/MM/yyyy" displayFormat="short"/>
+								<TimPicker id="tpDescarga" visible="false" enabled="true" value="{InformeFlota>/HoraIniDesc}" change=".util.validatesDatesArrDesc" valueFormat="HH:mm:ss"/>
+								-->
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fecha Fin">
+							<f:fields>
+								<Input id="inpDescarga2" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss" 
+									value="{InformeFlota>/FechaFinDesc} {InformeFlota>/HoraFinDesc}" valueLiveUpdate="{/ValueLiveUpdate}" editable="{Configuracion>/Editable}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									<!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL6 L6 M6 S6"/>
+									</layoutData>
+								</Input>
+								<!--
+								<DatePicker id="dpDescarga2" visible="false" enabled="true" change=".util.validateDescarDate" value="{InformeFlota>/FechaFinDesc}" valueFormat="dd/MM/yyyy"
+									displayFormat="short"/>
+								<TimePicker id="tpDescarga2" visible="false" enabled="true" change=".util.validateDescarDate" value="{InformeFlota>/HoraFinDesc}" valueFormat="HH:mm:ss"/>
+								-->
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Emisor" id="feEmisor">
+							<f:fields>
+								<Input type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".emisor.handleEmisorHelp"
+									suggestionItemSelected="suggestionItemSelected" value="{InformeFlota>/Emisor}" editable="{Configuracion>/Editable}"
+									submit=".emisor.onSubmitEmisor" liveChange=".emisor.onSubmitEmisor"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="" id="feTxtEmisor" visible="false">
+							<f:fields>
+								<Text id="txtEmisor" text=""/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Peso descargado">
+							<f:fields>
+								<Input type="Text" value="{InformeFlota>/PesoDescargado}" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Orden de Producción">
+							<f:fields>
+								<Input editable="false" value="{InformeFlota>/OrdenProd}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Orden de Compra">
+							<f:fields>
+								<Input editable="false" value="{InformeFlota>/OrdenCompra}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Doc. Recepción Maquila" visible="false">
+							<f:fields>
+								<Input editable="false" value="{InformeFlota>/DocMaquila}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

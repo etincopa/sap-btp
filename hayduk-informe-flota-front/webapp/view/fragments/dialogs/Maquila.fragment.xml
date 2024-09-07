@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Empresas Maquila"
+		class="sapUiPopupWithPadding"
+		items="{MaquilaSet>/d/results}"
+		contentHeight="35%"
+		search=".oper._handleMaquilaSearch"
+		confirm=".oper._handleMaquilaClose"
+		cancel=".oper._handleMaquilaClose">
+		<StandardListItem
+			iconDensityAware="false"
+			title="{MaquilaSet>Texto}"
+			description="{MaquilaSet>Identificador}" />
+	</SelectDialog>
+</core:FragmentDefinition>

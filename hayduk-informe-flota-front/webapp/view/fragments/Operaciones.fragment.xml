@@ -1,0 +1,237 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<VBox >
+		<f:Form id="formOperaciones" class="sapUiSmallMarginBottom" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="¿La embarcación zarpó?">
+							<f:fields>
+								<Switch id="cbZarpe" state="{=${InformeFlota>/IndicadorZarpe} === 'X'}" customTextOn="Sí" customTextOff="No"
+									enabled="{Configuracion>/Editable}" change=".oper.onZarpeSelect"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Motivo no zarpe" visible="{=!${Zarpe>/Estado}}">
+							<f:fields>
+								<ComboBox id="cbxMotivNoZarpe" showSecondaryValues="true" items="{ path: 'MotivoNoZarpeSet>/d/results' }"
+									selectedKey="{InformeFlota>/MotivoNoZarpe}" editable="{Configuracion>/Editable}" selectionChange=".oper.onSelectChangeMotivo"
+									change=".oper.onChangeMotivo">
+									<core:ListItem key="{MotivoNoZarpeSet>Identificador}" text="{MotivoNoZarpeSet>Nombre}" additionalText="{MotivoNoZarpeSet>Identificador}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement id="feCausaNoZarpe" label="Causa no zarpe" visible="{=!${Zarpe>/Estado}}">
+							<f:fields>
+								<Input id="inpCausaNoZarpe" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+									selectedKey="{InformeFlota>/CausaNoZarpe}" valueHelpRequest=".oper.handleCausaNoZarpeHelp" suggestionItems="{CausaNoZarpeSet>/d/results}"
+									suggestionItemSelected="suggestionItemSelected" editable="{Configuracion>/Editable}">
+									<suggestionItems>
+										<core:ListItem key="{CausaNoZarpeSet>Identificador}" text="{CausaNoZarpeSet>Nombre}" additionalText="{CausaNoZarpeSet>Identificador}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Tipo de red" visible="{Zarpe>/Estado}">
+							<f:fields>
+								<ComboBox id="cbxTipoRed" showSecondaryValues="true" items="{ path: 'TipoRedSet>/d/results' }" selectedKey="{InformeFlota>/TipoRed}"
+									editable="{Configuracion>/Editable}" selectionChange=".oper.selChangeTipoRed">
+									<core:ListItem key="{TipoRedSet>IdTipoRed}" text="{TipoRedSet>Nombre}" additionalText="{TipoRedSet>IdTipoRed}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Motivo del zarpe" visible="{Zarpe>/Estado}">
+							<f:fields>
+								<ComboBox id="cbxMotivoZarpe" showSecondaryValues="true" items="{ path: 'MotivoZarpeSet>/d/results' }"
+									selectedKey="{InformeFlota>/MotivoZarpe}" editable="{Configuracion>/Editable}">
+									<core:ListItem key="{MotivoZarpeSet>IdMotivo}" text="{MotivoZarpeSet>Nombre}" additionalText="{MotivoZarpeSet>IdMotivo}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Puerto de zarpe" visible="{Zarpe>/Estado}">
+							<f:fields>
+								<Input id="inpPuertoZarpe" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{InformeFlota>/PtoZarpe}"
+									ariaLabelledBy="txtPuertoZarpe" valueHelpRequest=".puertos.handlePuertoHelp" editable="{Configuracion>/Editable}"
+									liveChange=".puertos.onLiveChangePuerto" submit=".puertos.onLiveChangePuerto"/>
+								<Text id="txtPuertoZarpe" text="">
+									<layoutData>
+										<l:GridData span="XL6 L6 M6 S4"/>
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fecha y Hora">
+							<f:fields>
+								<Input id="inpZarpe" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss" value="{InformeFlota>/FechaZarpe} {InformeFlota>/HoraZarpe}"
+									valueLiveUpdate="{/ValueLiveUpdate}" editable="{Configuracion>/Editable}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									 <!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL4 L4 M8 S8"/>
+									</layoutData>
+								</Input>
+								<!--
+								<DatePicker id="dpZarpe" visible="false" value="{InformeFlota>/FechaZarpe}" valueFormat="dd/MM/yyyy" displayFormat="short"
+									change=".util.validateZonaPesca"/>
+								<TimePicker id="tpZarpe" visible="false" value="{InformeFlota>/HoraZarpe}" valueFormat="HH:mm:ss" change=".util.validateZonaPesca"/>
+								-->
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="¿La embarcación pescó?" visible="{=${Zarpe>/Estado}}">
+							<f:fields>
+								<Switch id="cbPesca" state="{=${InformeFlota>/IndicadorPesca} === 'X'}" customTextOn="Sí" customTextOff="No"
+									enabled="{Configuracion>/Editable}" change=".oper.onPescaSelect"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Causa de no pesca" visible="{=!${Pesca>/Estado} &amp;&amp; ${Zarpe>/Estado}}">
+							<f:fields>
+								<ComboBox id="cbxCausaNoPesca" showSecondaryValues="true" items="{ path: 'CausaNoPescaSet>/d/results' }"
+									editable="{Configuracion>/Editable}" selectedKey="{InformeFlota>/CausaNoPesca}">
+									<core:ListItem key="{CausaNoPescaSet>IdCausa}" text="{CausaNoPescaSet>Nombre}" additionalText="{CausaNoPescaSet>IdCausa}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Llegada a zona de pesca" visible="{=${Pesca>/Estado} &amp;&amp; ${Zarpe>/Estado}}">
+							<f:fields>
+								<Input id="inpLlegadaZonaPesca" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss"
+									value="{InformeFlota>/FecIniZonaPesca} {InformeFlota>/HoraIniZonaPesca}" valueLiveUpdate="{/ValueLiveUpdate}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									<!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4"/>
+									</layoutData>
+								</Input>
+								<!--
+								<DatePicker id="dpLlegadaZonaPesca" visible="false" value="{InformeFlota>/FecIniZonaPesca}" valueFormat="dd/MM/yyyy"
+									change=".util.validatesDates" displayFormat="short"/>
+								<TimePicker id="tpLlegadaZonaPesa" visible="false" value="{InformeFlota>/HoraIniZonaPesca}" valueFormat="HH:mm:ss"
+									change=".util.validatesDates"/>
+								-->
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Salida de zona de pesca" visible="{=${Pesca>/Estado} &amp;&amp; ${Zarpe>/Estado}}">
+							<f:fields>
+								<Input id="inpSalidaPesca" width="100%" type="Tel" class="sapUiSmallMarginBottom" placeholder="dd/mm/aaaa hh:mm:ss"
+									value="{InformeFlota>/FecFinZonaPesca} {InformeFlota>/HoraFinZonaPesca}" valueLiveUpdate="{/ValueLiveUpdate}" submit=".util.handleLiveChange" change=".util.handleLiveChange">
+									<!--value="{/InputValue}"-->
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4"/>
+									</layoutData>
+								</Input>
+								<!--
+								<DatePicker id="dpSalidaPesca" visible="false" value="{InformeFlota>/FecFinZonaPesca}" valueFormat="dd/MM/yyyy" displayFormat="short"
+									change=".util.validateZonaPesca2"/>
+								<TimePicker id="tpSalidaPesca" visible="false" value="{InformeFlota>/HoraFinZonaPesca}" valueFormat="HH:mm:ss"
+									change=".util.validateZonaPesca2"/>
+								-->
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<IconTabBar id="iconTabCalas" class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="Calas">
+					<Panel id="pnlCalas">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Cala" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<OverflowToolbarButton type="Transparent" text="Cargar calas de archivo Excel" icon="sap-icon://upload"
+										tooltip="Cargar calas de archivo Excel" visible="{Configuracion>/Editable}" press=".calas.onUploadXLSX"/>
+									<OverflowToolbarButton type="Transparent" text="Agregar" icon="sap-icon://add-document" tooltip="Agregar"
+										visible="{Configuracion>/Editable}" press=".calas.addCala"/>
+									<OverflowToolbarButton type="Transparent" text="Eliminar" icon="sap-icon://delete" tooltip="Eliminar" visible="{Configuracion>/Editable}"
+										press=".calas.onDeleteCala"/>
+									<Button type="Transparent" text="Hoja de Muestreo" icon="sap-icon://activity-items" tooltip="Hoja de Muestreo"
+										press=".calas.onPressMuestreo"/>
+									<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press=".calas.onRefreshCalas"/>
+									<OverflowToolbarButton type="Transparent" text="Descargar a archivo Excel" icon="sap-icon://excel-attachment"
+										tooltip="Descargar a archivo Excel" press=".calas.onXLSCalas"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true" focusable="true">
+								<Table id="tblCalas" inset="false" items="{ path: 'CalasSet>/d/results' }" mode="SingleSelectLeft" 
+									updateFinished=".calas._cargaFinalTabla">
+									<columns></columns>
+									<items>
+										<ColumnListItem ></ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter text="Composición por especie">
+					<Table id="tblCompEspecie" inset="false" items="{ path: 'CompEspecieSet>/d/results' }" mode="None">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Especies" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefreshCompEspecie"/>
+									<OverflowToolbarButton type="Transparent" text="Excel" icon="sap-icon://excel-attachment" tooltip="Excel" press="onXLSCompEspecie"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column >
+								<Text text="Especie"/>
+							</Column>
+							<Column >
+								<Text text="Descripción"/>
+							</Column>
+							<Column >
+								<Text text="Porc. Muestra"/>
+							</Column>
+							<Column >
+								<Text text="Cantidad"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Text text="{CompEspecieSet>Numespecie}"/>
+									<Text text="{CompEspecieSet>Descripcion}"/>
+									<Text text="{CompEspecieSet>Porcentaje}"/>
+									<Text text="{CompEspecieSet>Cantidad}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter text="RSW" visible="{InformeFlota>/bVisibleRSW}">
+					<VBox class="sapUiSmallMargin">
+						<!--<ScrollContainer height="100%" visible="false" width="100%" horizontal="true" vertical="true" focusable="true"></ScrollContainer>-->
+						<!--<RadioButtonGroup id="rbgRSW" selectedIndex="" >-->
+						<!--	<RadioButton groupName="GroupA" text="Operativo"/>-->
+						<!--	<RadioButton groupName="GroupA" text="Operativo con Limitaciones"/>-->
+						<!--	<RadioButton groupName="GroupA" text="Inoperativo"/>-->
+						<!--</RadioButtonGroup>-->
+						<!--<Input id="txtOperativoLim" value="" type="Text"/>-->
+						
+						<FlexBox alignItems="Center">
+							<items>
+								<ScrollContainer height="100%" visible="false" width="100%" horizontal="true" vertical="true" focusable="true"></ScrollContainer>
+								<RadioButtonGroup id="rbgRSW" select="onChangeRsw" class="sapUiSmallMarginEnd" >
+									<RadioButton groupName="GroupA" text="Operativo"/>
+									<RadioButton groupName="GroupA" text="Operativo con Limitaciones" />
+									<RadioButton groupName="GroupA" text="Inoperativo"/>
+								</RadioButtonGroup>
+								<Input id="txtOperativoLim" value="" type="Text" width="30rem" visible="false" />
+							</items>
+						</FlexBox>
+					</VBox>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</VBox>
+</core:FragmentDefinition>

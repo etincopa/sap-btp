@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "Hayduk.InformeDeFlota.informe-flota",
+        "description": "Informe de Flota",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#informeflota-Display",
+        "navigationComponentName": "Hayduk.InformeDeFlota",
+        "intentSemanticObject": "informe-flota",
+        "intentAction": "Display",
+        "html5ApplicationName": "informeflota",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "ff56bf1d-735d-42f9-94b5-8aff42022c44-1509049159881"
+        ],
+        "contentPackages": [
+            "701bf207-7501-43d5-968e-20efee842325-1534447619618"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Informe de Flota",
+        "subtitle": "",
+        "searchKeywords": "Informe de Flota,",
+        "displayIconUrl": "sap-icon://activate",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<TableSelectDialog
+	    class="sapUiSizeCompact"
+		noDataText="No se encontraron puertos"
+		title="Puertos"
+		search=".puertos.handlePuertoSearch"
+		confirm=".puertos._handlePuertoClose"
+		cancel=".puertos._handlePuertoClose"
+		items="{
+			path : 'PuertoSet>/d/results'
+		}">
+		<ColumnListItem>
+			<cells>
+				<Text text="{PuertoSet>Numero}" />
+				<Text text="{PuertoSet>Nombre}" />
+				<Text text="{PuertoSet>Tipo}" />
+			   	<Text text="{PuertoSet>Centro}" />
+			   	<Text text="{PuertoSet>Especie}" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			
+			<Column hAlign="Center">
+				<header>
+					<Text text="Número" />
+				</header>
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true" 
+				hAlign="Center">
+				<header>
+					<Text text="Nombre" />
+				</header>
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center">
+				<header>
+					<Text text="Tipo" />
+				</header>
+			</Column>
+			
+			<Column	hAlign="Center">
+				<header>
+					<Text text="Centro" />
+				</header>
+			</Column>
+			
+				<Column	hAlign="Center">
+				<header>
+					<Text text="Especie" />
+				</header>
+			</Column>
+		
+		</columns>
+	</TableSelectDialog>
+	
+	
+</core:FragmentDefinition>

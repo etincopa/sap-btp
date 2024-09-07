@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover title="Config. Envío Automático" class="sapUiPopupWithPadding" placement="Bottom" contentWidth="30%">
+		<beginButton>
+			<Button text="Aceptar" type="Accept" press=".cola.changeEnvio"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancelar" press=".cola.closePopOver"/>
+		</endButton>
+		<content>
+			<f:Form id="frmEnvio" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Envío Automático">
+								<f:fields>
+									<Switch id="swEnvioAutom" state="true" customTextOn="Sí" customTextOff="No" change=".cola.enableTime"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Tiempo (Minutos)">
+								<f:fields>
+									<StepInput id="inpTimeInterval" value="10" displayValuePrecision="{displayValuePrecision}" min="1" max="60"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

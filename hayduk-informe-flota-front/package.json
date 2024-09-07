@@ -1,0 +1,56 @@
+{
+    "name": "informeflota",
+    "productName": "Informe de Flota",
+    "version": "1.9.54-QAS",
+    "description": "Informe de Flota",
+    "private": true,
+    "author": "everis Perú S.A.C.",
+    "devDependencies": {
+        "@actions/core": "^1.2.4",
+        "@openui5/ts-types": "^1.60.5",
+        "@ui5/cli": "^2.14.7",
+        "config": "^3.3.1",
+        "electron": "^17.3.0",
+        "electron-builder": "22.3.2",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.1",
+        "express": "^4.17.1",
+        "http-proxy": "^1.18.0",
+        "spsave": "^4.0.2",
+        "@sap/ui5-builder-webide-extension": "^1.0.9"
+    },
+    "optionalDependencies": {
+        "@sap/ui5-builder-webide-extension": "^1.0.9"
+    },
+    "scripts": {
+        "start": "ui5 serve",
+        "ui5build": "ui5 build --all",
+        "dist": "electron-builder",
+        "replace:urls": "node build-tools/replace-service-urls.js",
+        "build": "node build-tools/replace-service-urls.js"
+    },
+    "ui5": {
+        "dependencies": [
+            "@sap/ui5-builder-webide-extension"
+        ]
+    },
+    "main": "electron.js",
+    "build": {
+        "appId": "informedeflota",
+        "win": {
+            "target": [
+                "nsis"
+            ],
+            "icon": "assets/icons/ship.ico"
+        },
+        "nsis": {
+            "installerIcon": "assets/icons/ship.ico",
+            "uninstallerIcon": "assets/icons/ship.ico",
+            "license": "LICENSE",
+            "runAfterFinish": false,
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "shortcutName": "${productName} - ${version}"
+        }
+    }
+}

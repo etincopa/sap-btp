@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Cargos"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{path:'CargoAlfaSet>/d/results'}"
+		contentHeight="45%"
+		search=".cargos.handleCargoSearch"
+		confirm=".cargos._handleCargoClose"
+		cancel=".cargos._handleCargoClose">
+		<StandardListItem
+			iconDensityAware="false"
+			title="{CargoAlfaSet>Nombre}"
+			description="{CargoAlfaSet>Identificador}" />
+	</SelectDialog>
+</core:FragmentDefinition>

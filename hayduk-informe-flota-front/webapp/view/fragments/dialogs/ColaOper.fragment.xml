@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="40%" contentHeight="50%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Cola de Operaciones" titleStyle="H4" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press=".cola.onCloseColaOper"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+
+				<Table id="tblColaOper" inset="false" items="{ path: 'ColaOperSet>/results' }" mode="SingleSelectLeft">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="Operaciones" titleStyle="H4"/>
+								<ToolbarSpacer/>
+								<Button text="Envío Autom." icon="sap-icon://action-settings" press=".cola.showPopOver"/>
+								<OverflowToolbarButton type="Transparent" text="Ejecutar" icon="sap-icon://play" tooltip="Ejecutar" press=".cola.onExecOperation" visible="{=${Indicadores>/NumCola}>0}" />
+								<OverflowToolbarButton type="Transparent" text="Eliminar" icon="sap-icon://delete" tooltip="Eliminar" press=".cola.onDeleteOperation" visible="{=${Indicadores>/NumCola}>0}"/>
+								<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press=".cola.onRefreshCola"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="30%">
+							<Text text="Id"/>
+						</Column>
+						<Column width="40%">
+							<Text text="Fecha"/>
+						</Column>
+						<Column width="30%">
+							<Text text="Volumen"/>
+						</Column>
+
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<Text text="{ColaOperSet>Id}"/>
+								<ObjectIdentifier title="{ColaOperSet>Date}" text="{ColaOperSet>Time}"/>
+								<Text text="{ColaOperSet>Volumen} MB"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

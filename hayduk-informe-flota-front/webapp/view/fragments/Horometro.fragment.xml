@@ -1,0 +1,96 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+   <VBox class="sapUiSmallMargin">
+   	
+   	   
+		
+			<ScrollContainer 
+		height="100%"
+		width="100%"
+		horizontal="true"
+		vertical="true"
+		focusable="true">
+		
+		<Table id="tblHorometro" 
+		inset="false"
+		items="{
+			path: 'HorometroSet>/d/results'
+			}"
+		mode="None"	>
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+				  <Title text="Horómetros" titleStyle="H4" />
+				  <ToolbarSpacer/>
+				   <!-- <OverflowToolbarButton type="Transparent" text="Recuperar horómetros por default" icon="sap-icon://redo" tooltip="Recuperar horómetros por default"
+							visible="{Configuracion>/Editable}" press=".horometro.recoverHorometro"/> -->
+				    <OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" tooltip="Refresh" press=".horometro.onRefreshHorometro"/>
+				    <OverflowToolbarButton type="Transparent" text="Excel" icon="sap-icon://excel-attachment" tooltip="Excel" press = ".horometro.onXLSHorometro"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="25px">
+				<Text text="Punto Med." />
+			</Column>
+			
+			<Column width="100px">
+				<Text text="Denominación" />
+			</Column>
+			
+			<Column width="65px">
+				<Text text="Fabricante" />
+			</Column>
+			
+			<Column width="50px">
+				<Text text="Modelo" />
+			</Column>
+			
+			<Column width="55px">
+				<Text text="Serie" />
+			</Column>
+			
+			<Column width="110px">
+				<Text text="Ubicación Técnica" />
+			</Column>
+			
+			<Column width="55px">
+				<Text text="Horómetro Total" />
+			</Column>
+			
+			<Column width="55px">
+				<Text text="Horómetro Actual" />
+			</Column>
+			
+			<Column width="55px">
+				<Text text="Horómetro Zarpe" />
+			</Column>
+			
+			<Column width="55px">
+				<Text text="Horómetro Arribo" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem >
+				<cells>
+					<Text text="{HorometroSet>Ptomedicion}" />
+					<Text text="{HorometroSet>Denominacion}" />
+					<Text text="{HorometroSet>Fabricante}" />
+					<Text text="{HorometroSet>Modelo}" />
+					<Text text="{HorometroSet>Serie}" />
+				    <Text text="{HorometroSet>Ubictecnica}" />
+				    <Text text="{HorometroSet>Hortotal}" />
+				    <Text text="{HorometroSet>Horactual}" />
+				    <Text text="{HorometroSet>Horzarpe}" />
+				    <Text text="{HorometroSet>Horarribo}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+   		</ScrollContainer>
+   </VBox>
+</core:FragmentDefinition>

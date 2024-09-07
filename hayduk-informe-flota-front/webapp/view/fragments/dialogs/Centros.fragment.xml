@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Centros"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{/d/results}"
+		contentHeight="45%"
+		search=".centros._handleCentroSearch"
+		confirm=".centros._handleCentroClose"
+		cancel=".centros._handleCentroClose">
+		<StandardListItem
+			iconDensityAware="false"
+			title="{Nombre}"
+			description="{Identificador}" />
+	</SelectDialog>
+</core:FragmentDefinition>

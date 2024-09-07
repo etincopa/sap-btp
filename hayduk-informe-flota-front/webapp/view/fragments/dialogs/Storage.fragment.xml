@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog type="Standard" showHeader="false" state="None" draggable="true" contentWidth="40%" contentHeight="80%" class="sapUiSizeCompact">
+		<customHeader>
+			<Toolbar class="sapUiContentPadding">
+				<Title text="Almacenamiento Local" titleStyle="H4" class="sapUiSmallMarginBegin"/>
+				<ToolbarSpacer/>
+				<core:Icon src="sap-icon://decline" size="1.3rem" class="sapUiSmallMarginEnd setPointer" press=".util.onCloseStorageDialog"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<IconTabBar id="itbStorage" select=".util.handleStorageSelect" class="sapUiResponsiveContentPadding" expandable="false">
+					<items>
+						<IconTabFilter text="Data Maestra" key="dat"/>
+						<IconTabFilter text="Informe Flota Borrador" key="inf"/>
+					</items>
+					<content>
+						
+						<Text id="txtMensInforme" text="{i18n>mensajeInforme}" class="sapUiSmallMarginBottom" visible = "false"/>
+						
+						<Table id="tblStorage" inset="false" items="{ path: 'StorageSet>/result' }">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title  text="Volumen de Datos " titleStyle="H4"/>
+										<Title id="titMaestro" text="{StorageSet>/Total} MB" titleStyle="H4"/>
+										<Title id="titInforme" text="{StorageSet>/TotalInforme} MB" titleStyle="H4" visible="false"/>
+										<ToolbarSpacer/>
+										<Button id="btnSincronizar" type="Transparent" text="Sinc. Data Local" icon="sap-icon://download-from-cloud" tooltip="Sinc. Data Local" press="onDownloadData"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="45%">
+									<Text text="Entidad"/>
+								</Column>
+								<Column width="25%">
+									<Text text="Volumen"/>
+								</Column>
+								<Column width="20%" id="colAction">
+									<Text text="Acciones"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem >
+									<cells>
+										<Text text="{StorageSet>Entidad}"/>
+										<Text text="{StorageSet>Volumen} MB"/>
+										<Button type="Transparent" icon="sap-icon://synchronize" tooltip="Actualizar" visible="{=${StorageSet>Updatable} === 'X'}"
+											press=".util.onSyncEntity"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</IconTabBar>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

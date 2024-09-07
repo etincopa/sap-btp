@@ -1,0 +1,37 @@
+specVersion: '1.0'
+metadata:
+  name: InformeDeFlota
+type: application
+server:
+  customMiddleware:
+    - name: requestProxy
+      beforeMiddleware: serveResources
+builder:
+  customTasks:
+    - name: webide-extension-task-updateNeoApp
+      afterTask: generateVersionInfo
+      configuration:
+        destDir: dist
+        appFolder: webapp
+        nameSpace: Hayduk
+    - name: webide-extension-task-updateManifestJson
+      afterTask: webide-extension-task-updateNeoApp
+      configuration:
+        appFolder: webapp
+        destDir: dist
+    - name: webide-extension-task-resources
+      afterTask: webide-extension-task-updateManifestJson
+      configuration:
+        nameSpace: Hayduk
+  resources:
+    excludes:
+      - "/resources/**"
+      - "/mobile/**"
+---
+specVersion: "1.0"
+kind: extension
+type: server-middleware
+metadata:
+  name: requestProxy
+middleware:
+  path: lib/middleware/requestProxy.js

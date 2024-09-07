@@ -1,0 +1,35 @@
+/* Enter your custom styles here */
+.setPointer {
+	cursor: pointer;
+}
+
+.onTitle{
+	font-size: large;
+	font-weight: bold;
+}
+
+span[id*='btnGo-content'] bdi:before{
+ display: block;
+ content: "Buscar";
+}
+
+.patronPrincipal {
+  background-color: #D1E7FE !important;
+}
+
+.patronSecundario {
+  background-color: #D1FED3 !important;
+}
+
+.styleSuccess{
+	color:#2B7D2B;
+}
+
+.styleWarning{
+	color:#E78C07;
+}
+
+.styleError{
+	color:#BB0000;
+}
+

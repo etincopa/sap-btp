@@ -1,0 +1,96 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<VBox class="sapUiSmallMarginEnd sapUiSmallMarginBegin">
+		<f:Form id="formGeneral" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:toolbar>
+				<OverflowToolbar height="3rem">
+					<core:Icon src="sap-icon://manager-insight" size="1.5rem" color="#10bd24"></core:Icon>
+					<Title text="Datos Generales"/>
+					<ToolbarSpacer/>
+					<Button type="Transparent" text="Datos de Auditoria" icon="sap-icon://kpi-managing-my-area" tooltip="Datos de Gestión"
+								press="onPressDatosGestion"/>
+					<OverflowToolbarButton type="Transparent" text="Historial de Tiempos" icon="sap-icon://history" tooltip="Historial de Tiempos"
+								press="onPressTiempos" id="btnShowTimes" visible="false"/>			
+					<CheckBox id="cbxInformativo" text="Informativo" selected="false" editable="false"/>
+				
+		    		<ToolbarSeparator/>
+					<core:Icon src="sap-icon://color-fill" size="0.8rem" color="{Indicadores>/EstadoColor}" id="iconEstadoInforme" visible="false"></core:Icon>
+					<Text text="{InformeFlota>/Estado}-{InformeFlota>/EstadoDesc}"/>
+			 </OverflowToolbar>
+			</f:toolbar>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Informe">
+							<f:fields>
+								<Input id="inpNumero" value="{InformeFlota>/Numero}" editable="false" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement id="feCentro" label="*Centro">
+							<f:fields>
+								<Input id="inpCentro" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".centros.handleCentroHelp"
+									suggestionItems="{CentroSet>/d/results}" suggestionItemSelected=".centros.suggestionCenterSelected" selectedKey="{InformeFlota>/Centro}"
+									editable="{Configuracion>/Editable}" liveChange=".centros.onLiveChangeCentro" change=".centros.onChangeCentro">
+									<suggestionItems>
+										<core:ListItem key="{CentroSet>Identificador}" text="{CentroSet>Nombre}" additionalText="{CentroSet>Identificador}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer >
+					<f:formElements>
+						<f:FormElement label="Tipo de Informe">
+							<f:fields>
+								<ComboBox id="cbxTipoInforme" showSecondaryValues="true" items="{ path: 'TipoInformeSet>/d/results'}" selectedKey="{InformeFlota>/Tipo}"
+								          editable="{Configuracion>/Editable}" selectionChange="onSelectTipoInforme" change="onChangeTipoInforme" filterSecondaryValues="true">
+								<core:ListItem key="{TipoInformeSet>IdTipoInforme}" text="{TipoInformeSet>Nombre}" additionalText="{TipoInformeSet>IdTipoInforme}"/>
+							</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Nro Matrícula">
+							<f:fields>
+							
+								<Input id="inpMatricula" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" 
+									valueHelpRequest=".matriculas.handleMatriculaHelp"  liveChange=".matriculas.onLiveChangeMatricula"
+									editable="false"  value="{InformeFlota>/Matricula}" submit=".matriculas.onSubmitMatricula" />
+								
+								
+								<Text text="{InformeFlota>/Embarcacion}">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+							
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Especie">
+							<f:fields>
+								<Input id="inpEspecie" type="Text" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest=".especie.handleEpecieHelp"
+									suggestionItems="{EspecieSet>/d/results}" suggestionItemSelected=".especie.suggestionEspecieSelected" selectedKey="{InformeFlota>/Especie}"
+									editable="{Configuracion>/Editable}" liveChange=".especie.onLiveChangeEspecie">
+									<suggestionItems>
+										<core:ListItem key="{EspecieSet>Identificador}" text="{EspecieSet>Nombre}" additionalText="{EspecieSet>Identificador}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Capacidad (TM)">
+							<f:fields>
+								<Input id="inpCapacidad" value="{InformeFlota>/Capacidad}" type="Text" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

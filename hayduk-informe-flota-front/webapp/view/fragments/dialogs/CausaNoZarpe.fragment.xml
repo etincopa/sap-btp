@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Causa de no zarpe"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{CausaNoZarpeSet>/d/results}"
+		contentHeight="45%"
+		search=".oper._handleCausaNoZarpeSearch"
+		confirm=".oper._handleCausaNoZarpeClose"
+		cancel=".oper._handleCausaNoZarpeClose">
+		<StandardListItem
+			iconDensityAware="false"
+			title="{CausaNoZarpeSet>Nombre}"
+			description="{CausaNoZarpeSet>Identificador}" />
+	</SelectDialog>
+</core:FragmentDefinition>

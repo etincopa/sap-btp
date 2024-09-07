@@ -1,0 +1,49 @@
+name: Upload to Sharepoint workflow
+
+on:
+  push:
+    tags:        
+      - v*
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+      - name: Check out git repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Run electron-builder action
+        uses: samuelmeuli/action-electron-builder@v1.6.0
+        with:
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
+
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        env:
+          # Para determinar ambiente de despliegue. Usado en build-tools/replace-service-urls.js
+          BUILD_SCP_ENV: ${{ github.ref }}
+
+      - name: Upload to Sharepoint action
+        uses: ./.github/actions/upload-sp # Uses an action in the root directory
+        id: upload-sp
+        with:
+          source-path: 'dist\'
+          sp-site-url: 'https://everisgroup.sharepoint.com/sites/CompartidoExterno/'
+          sp-destination-path: 'Documentos%20compartidos/General/3.%20Hayduk/Informe%20de%20Flota/Instalador'
+          file-name: 'Informe de Flota Setup ${{ github.ref }}.exe'
+        env:
+          SP_USER: ${{ secrets.SP_USER }}
+          SP_PASSWORD: ${{ secrets.SP_PASSWORD }}

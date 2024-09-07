@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Especie"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		contentHeight="45%"
+		items="{EspecieSet>/d/results}"
+		search=".especie._handleEspecieSearch"
+		confirm=".especie._handleEspecieClose"
+		cancel=".especie._handleEspecieClose">
+		<StandardListItem
+			iconDensityAware="false"
+			title="{EspecieSet>Nombre}"
+			description="{EspecieSet>Identificador}" />
+	</SelectDialog>
+</core:FragmentDefinition>

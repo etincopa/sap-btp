@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
+	<Dialog draggable="true" contentHeight="auto" class="sapUiSizeCompact" title="Adjuntar Archivos" afterClose="onCloseDialogAttach">
+		<content>
+			<UploadCollection
+				id="ucSubirArchivos"
+				noDataDescription="No se adjuntó ningún tipo de archivo"
+				noDataText="No se adjuntó ningún tipo de archivo"
+				maximumFileSize="100" 
+				multiple="false"
+				change=".tripulacion._onChangeAddFile"
+				typeMissmatch="onTypeMissmatch"
+				fileType="jpg,pdf"
+				uploadComplete="uploadComplete"
+				uploadTerminated="onUploadTerminated"
+				items="{ path: 'Documentos>/' }"
+				instantUpload="true"
+				uploadEnabled="true"
+				mode="{config>/mode}">
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitleDownload" text="Documentos"/>
+						<ToolbarSpacer/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem 
+						documentId="{Documentos>NombreArchivo}"
+						fileName="{Documentos>NombreArchivo}"
+						mimeType="{Documentos>Filemimetype}"
+						press=".tripulacion.onPressItemDownload"
+						deletePress=".tripulacion.onPressItemRemove"
+						enableEdit="true"
+						enableDelete="true" 
+						visibleDelete="true"
+						visibleEdit="false">
+					</UploadCollectionItem>
+				</items>
+			</UploadCollection>
+		</content>
+		
+		<buttons>
+			<Button text="Cerrar" press=".tripulacion._onCerrarDocumentos" custom:custom="default" icon="sap-icon://decline" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

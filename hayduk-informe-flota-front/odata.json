@@ -1,0 +1,7 @@
+{
+    "sap": {
+        "target": "http://vm-desa.haydukcorporacion.com.pe:80",
+        "auth": "CTAPIA:Chris5#e",
+        "entryPath": ""
+    }
+}
